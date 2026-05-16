@@ -22,12 +22,17 @@
 
     * { box-sizing: border-box; }
 
+    html {
+      overflow-x: hidden;
+    }
+
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
       color: var(--ink);
       background: #f7f8fb;
       line-height: 1.55;
+      overflow-x: hidden;
     }
 
     a { color: #075f86; text-underline-offset: 3px; }
@@ -123,6 +128,7 @@
       max-width: 930px;
       color: var(--muted);
       font-size: 16px;
+      overflow-wrap: anywhere;
     }
 
     .notice {
@@ -158,6 +164,7 @@
     .check-card,
     .ops-card,
     .day-ops-card {
+      min-width: 0;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
@@ -410,9 +417,14 @@
       align-items: start;
     }
 
+    .calculator > * {
+      min-width: 0;
+    }
+
     .controls,
     .result-panel,
     .source-panel {
+      min-width: 0;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
@@ -482,7 +494,9 @@
     }
 
     .table-wrap {
+      max-width: 100%;
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
@@ -542,6 +556,7 @@
     .hotel-card,
     .swot-card,
     .weather-card {
+      min-width: 0;
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -610,6 +625,7 @@
     .rain-note { margin-top: 6px; color: #4c442b; font-size: 13px; }
 
     .day-planner {
+      max-width: 100%;
       margin-top: 18px;
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -623,6 +639,7 @@
       gap: 8px;
       padding: 12px;
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       border-bottom: 1px solid var(--line);
       background: #f8fafc;
     }
@@ -768,6 +785,7 @@
       overflow: hidden;
       background: #dbe7e5;
       isolation: isolate;
+      contain: layout paint;
     }
 
     .tile-layer,
@@ -776,10 +794,16 @@
       inset: 0;
     }
 
+    .tile-layer {
+      overflow: hidden;
+      contain: paint;
+    }
+
     .tile-layer img {
       position: absolute;
       width: 256px;
       height: 256px;
+      max-width: none;
       border: 0;
       opacity: 0.94;
       user-select: none;
@@ -1031,7 +1055,10 @@
       color: #fff;
       font-size: 13px;
       font-weight: 800;
+      line-height: 1.25;
+      text-align: center;
       text-decoration: none;
+      white-space: normal;
     }
 
     .map-link + .map-link { margin-left: 6px; }
@@ -1056,6 +1083,7 @@
     }
 
     .poi-card {
+      min-width: 0;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
@@ -1220,7 +1248,10 @@
       color: #fff;
       font-size: 12px;
       font-weight: 900;
+      line-height: 1.25;
+      text-align: center;
       text-decoration: none;
+      white-space: normal;
     }
 
     .poi-actions {
@@ -1414,7 +1445,7 @@
       .route-grid,
       .poi-grid,
       .temp-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .calculator { grid-template-columns: 1fr; }
+      .calculator { grid-template-columns: minmax(0, 1fr); }
       .source-grid { grid-template-columns: 1fr; }
       .temp-step:nth-child(2) { border-right: 0; }
       .temp-step:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
@@ -1444,6 +1475,15 @@
       .temp-step:last-child { border-bottom: 0; }
       .itinerary { grid-template-columns: 88px minmax(0, 1fr); }
       .itinerary > div { padding: 11px; }
+      .day-tabs {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        overflow-x: visible;
+      }
+      .day-tab {
+        width: 100%;
+        min-width: 0;
+      }
       .day-focus { grid-template-columns: 1fr; }
       .day-photo { min-height: 220px; }
       .day-photo img { max-height: 240px; }
@@ -1453,6 +1493,15 @@
       .route-map { min-height: 360px; }
       .google-map-frame { height: 420px; }
       .tile-route-map { height: 440px; }
+      .map-legend {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+      .map-legend .map-link,
+      .day-actions .map-link {
+        width: 100%;
+        margin-left: 0;
+      }
       .route-map text { font-size: 15px; }
       .route-map .sub-label { font-size: 12px; }
       .route-overlay text { font-size: 13px; }
