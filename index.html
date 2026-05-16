@@ -366,6 +366,26 @@
       font-weight: 900;
     }
 
+    .food-public-rating {
+      margin-top: 10px;
+      border: 1px solid #d7dde5;
+      border-radius: 7px;
+      background: #f8fafc;
+      padding: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .food-public-rating strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
     .food-actions {
       display: flex;
       flex-wrap: wrap;
@@ -1158,7 +1178,7 @@
 
     .poi-rating {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 6px;
       margin-top: 10px;
     }
@@ -2233,10 +2253,10 @@
             </tr>
             <tr>
               <td>정은아팀 4명</td>
-              <td>7/25 OZ601, 7/31 OZ602</td>
+              <td>7/25 OZ601, 8/1 토 귀국편 재확인</td>
               <td>일반석</td>
               <td class="num">US$6,428</td>
-              <td>US$1,607/인. 2성인+2아동, 종현 만 12세 미만 전제.</td>
+              <td>금요일 투숙 확정. 기존 US$1,607/인 예산은 8/1 귀국편으로 재조회 필요.</td>
             </tr>
           </tbody>
         </table>
@@ -2309,8 +2329,8 @@
       </p>
       <div class="notice">
         각 카드는 영업시간·예약 가능 여부가 바뀔 수 있으므로 Google Maps와 예약 버튼에서 실시간 확인하는 전제다.
-        카드의 가족판단점수는 동선·아이/부모님 적합도·날씨·예약난도를 합친 내부 점수이고, 최신 Google 별점은 지도 버튼에서 확인한다.
-        히어로 사진은 장소명 기반 썸네일을 우선 사용하고, 이미지를 누르면 해당 장소 이미지 검색으로 바로 넘어간다.
+        히어로 사진은 장소별 이미지 크롤링 결과를 고정 반영했고, 평점은 Google Maps 공개 지도 검색과 Tripadvisor 스니펫을 2026.05.17 KST 기준으로 확인했다.
+        가족판단점수는 동선·아이/부모님 적합도·날씨·예약난도를 합친 내부 점수이고, 최신 Google 별점은 지도 버튼에서 확인한다.
       </div>
       <div class="poi-grid" id="poiGrid" aria-label="시드니 동선 주변 Top 100 카드"></div>
 
@@ -2746,6 +2766,215 @@
 
     const poiTop100 = poiTop50.concat(poiExtra50);
 
+    const venueHeroImages = [
+      "https://www.sydneyoperahouse.com/sites/default/files/collaborodam_assets/bennelong-hero-1600x900.jpg",
+      "https://www.quay.com.au/wp-content/uploads/2019/08/AB5I9367_NikkiTo.jpg",
+      "https://www.venuebooking.com.au/wp-content/uploads/2019/06/Aria-Restaurant-Sydney-Banner.jpg",
+      "https://img.delicious.com.au/u5Fp8SKb/del/2017/10/cafe-sydney-54627-2.jpg",
+      "https://www.onlinedining.com.au/sites/default/files/styles/venue_banner/public/photos/6head-banner.jpg",
+      "https://media.timeout.com/images/103685738/image.jpg",
+      "https://www.insetgroup.com.au/wp-content/uploads/2022/02/Ploos-Header.webp",
+      "https://sakerestaurant.com.au/wp-content/uploads/2022/03/The-Rocks-3-768x512.jpg",
+      "https://cdn.concreteplayground.com/content/uploads/2020/12/The-Glenmore-rooftop-W-Short-Supplied.jpg",
+      "https://www.hiddencitysecrets.com.au/wp-content/uploads/2025/10/La-Renaissance-Patisserie-Cafe-Sydney-Coffee-The-Rocks-French-Patisserie-Cakes-City-Cafe-Morning-Breakfast-Brunch-Courtyard-Freshly-Baked-Juices-005.jpg",
+      "https://www.travelandbeyond.org/wp-content/uploads/2012/10/TheRocksCafe1-RJohn.jpg",
+      "https://i.pinimg.com/originals/aa/db/cd/aadbcd7945ab7e074fbe6a8d5768ae9a.jpg",
+      "https://media-cdn.tripadvisor.com/media/photo-m/1280/24/30/3b/26/whalebridge.jpg",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/be/7e/11/caption.jpg?w=1200&h=-1&s=1&cx=1920&cy=1080&chk=v1_df7ceefc29eb10f3cb6e",
+      "https://wedlockers.com.au/assets/Uploads/Lana-Event-Space-Sydney.jpg",
+      "https://s3-ap-southeast-2.amazonaws.com/production.assets.merivale.com.au/wp-content/uploads/2017/06/17155519/MrWong-Entry_133-A51.jpg",
+      "https://localsaucetours.com.au/wp-content/uploads/2023/07/Restaurant-Hubert-Centurion-Magazine.jpeg",
+      "https://rockpoolbarandgrill.com.au/wp-content/uploads/2025/02/Rockpool-Bar-1-min-768x512.jpg",
+      "https://assets.atdw-online.com.au/images/359f8137d6bc812f7dd3b3ed3342bfe7.jpeg?rect=289%2C0%2C4312%2C3234&w=1600&h=1200&&rot=360&q=eyJ0eXBlIjoibGlzdGluZyIsImxpc3RpbmdJZCI6IjU5NWIyMTNjZDkzOWI1MjIzNDllYjFjOCIsImRpc3RyaWJ1dG9ySWQiOiI1NmIxZWI5MzQ0ZmVjYTNkZjJlMzIwYzgiLCJhcGlrZXlJZCI6IjU2YjFlZTU5MGNmMjEzYWQyMGRjNTgxOSJ9?w=1600&h=1200&fm=jpg",
+      "https://cdn.broadsheet.com.au/cache/f1/fb/f1fb28c0ac7b7ccb065f62c8f8b7722b.jpg",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/12/9e/3d/lunch-at-una-mas.jpg?w=900&h=500&s=1",
+      "https://australflooring.com.au/wp-content/uploads/2021/07/Wills-Bar-1.jpg",
+      "https://cdn.broadsheet.com.au/cache/43/b0/43b09b7647ed0bdab5ecf064f55dce56.jpg",
+      "https://www.hiddencitysecrets.com.au/wp-content/uploads/2020/03/osteria-coogee-function-venues-rooms-sydney-venue-hire-room-event-engagement-corporate-wedding-small-birthday-party-001-13.jpg",
+      "https://coogeenews.com.au/wp-content/uploads/2024/12/coogee-2-1200x1499.jpg",
+      "https://cdn.concreteplayground.com/content/uploads/2016/01/Bondi-Icebergs-Dining-Room-Sydney.jpeg",
+      "https://img.delicious.com.au/kBlySjjW/del/2018/10/seans-panorama-seafood-90445-2.jpg",
+      "https://media.timeout.com/images/105333121/1372/772/image.jpg",
+      "https://static.wixstatic.com/media/84be00_c7166e6da5b2477c8de12d5c8b69469b~mv2_d_6424_3846_s_4_2.jpg/v1/fill/w_980,h_587,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/84be00_c7166e6da5b2477c8de12d5c8b69469b~mv2_d_6424_3846_s_4_2.jpg",
+      "https://resizer.otstatic.com/v2/photos/large/25543975.jpg",
+      "https://dt4bfo2hrxdj4.cloudfront.net/media/items/1920x/1253-Taronga-Zoo-Sydney-xJgEN.jpg",
+      "https://assets.atdw-online.com.au/images/f07c00a80406205d4e5f009d47e48322.jpeg?rect=126%2C0%2C2048%2C1536&w=1600&h=1200&&rot=360&q=eyJ0eXBlIjoibGlzdGluZyIsImxpc3RpbmdJZCI6IjVkOGJmODE4MWVhY2NlNzQ3ZDAzYzViZSIsImRpc3RyaWJ1dG9ySWQiOiI1NmIxZWI5MzQ0ZmVjYTNkZjJlMzIwYzgiLCJhcGlrZXlJZCI6IjU2YjFlZTU5MGNmMjEzYWQyMGRjNTgxOSJ9?w=1600&h=1200&fm=jpg",
+      "https://www.ellaslist.com.au/ckeditor_assets/pictures/10775/content_bathers-spaces-balmoral.jpg",
+      "https://assets.atdw-online.com.au/images/f748221349b404b50beba4d615583cff.jpeg?rect=128%2C0%2C2048%2C1536&w=1600&h=1200&&rot=360&q=eyJ0eXBlIjoibGlzdGluZyIsImxpc3RpbmdJZCI6IjVlNDM5NGQ0NmVjNDAwMWIxYjBmNjA0YyIsImRpc3RyaWJ1dG9ySWQiOiI1NmIxZWI5MzQ0ZmVjYTNkZjJlMzIwYzgiLCJhcGlrZXlJZCI6IjU2YjFlZTU5MGNmMjEzYWQyMGRjNTgxOSJ9?w=1600&h=1200&fm=jpg",
+      "https://images.squarespace-cdn.com/content/v1/57eb64479f74562532d88289/1597804229381-NYZUWHETGBYG8ORZGFMS/rippleschowderbay_5.jpg",
+      "https://assets.atdw-online.com.au/images/bb6a0b53c735071800e7e314dd95968d.jpeg?rect=142%2C0%2C2276%2C1707&w=2048&h=1536&rot=360&q=eyJ0eXBlIjoibGlzdGluZyIsImxpc3RpbmdJZCI6IjVkNjg5NDIyOTAxOGUxN2Q3ZTRkNDNiMiIsImRpc3RyaWJ1dG9ySWQiOiI1NmIxZWI5MzQ0ZmVjYTNkZjJlMzIwYzgiLCJhcGlrZXlJZCI6IjU2YjFlZTU5MGNmMjEzYWQyMGRjNTgxOSJ9",
+      "https://www.atmospherefurniture.com.au/wp-content/gallery/felons-seafood-manly/felons-seafood-14.jpg",
+      "https://cdn.broadsheet.com.au/cache/c1/75/c17546e0c588adea51f1ec100943f662.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5c8f023192441beb9ee5e1e5/1555117716268-38V1RWD54U71FOP3KH6P/Photography-1-4.jpg",
+      "https://cdn.broadsheet.com.au/cache/c6/bf/c6bff837bf2b54decddcb14a89ab4ab2.jpg",
+      "https://assets.atdw-online.com.au/images/5312568e3b0c7428fb9556a177daf1cb.jpeg?rect=0%2C0%2C2223%2C1667&w=2048&h=1536&rot=360&q=eyJ0eXBlIjoibGlzdGluZyIsImxpc3RpbmdJZCI6IjU2YjI0MGM4ZDVmMTU2NTA0NWQ4NjM4NyIsImRpc3RyaWJ1dG9ySWQiOiI1NmIxZWI5MzQ0ZmVjYTNkZjJlMzIwYzgiLCJhcGlrZXlJZCI6IjU2YjFlZTU5MGNmMjEzYWQyMGRjNTgxOSJ9",
+      "https://www.datocms-assets.com/42890/1670881762-artgalleryofnsw_interiors_stevenwoodburn_9.jpg?fit=max&h=540&iptc=allow&max-w=1024",
+      "https://media.australian.museum/media/dd/images/Museum_Facade.width-1200.ba147ca.jpg",
+      "https://www.darlingharbour.com/getmedia/6de3e4f4-8d5e-40ce-bf51-142ead1f5a89/sealife-aquarium-001.jpg",
+      "https://image-tc.galaxy.tf/wijpeg-ayv6s27bdp5zfb3q33xj0yfq0/darling-harbour-tumbalong-park.jpg?width=2000",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/St%20Mary%27s%20Cathedral%20as%20viewed%20from%20Hyde%20Park%2C%20Sydney.jpg?width=1200",
+      "https://www.earthtrekkers.com/wp-content/uploads/2023/10/Scenic-World-Cableway-View.jpg.optimal.jpg",
+      "https://sydneyuncovered.com/wp-content/uploads/2020/08/echo-point-three-sisters.jpg",
+      "https://www.kayak.com.au/news/wp-content/uploads/sites/23/2020/07/7-photo_leura-garage-leura_destination-nsw-scaled.jpg",
+      "https://bensw.com.au/sites/default/files/styles/banner/public/lookout.jpg?itok=VDdAQN1H",
+      "https://media1.agfg.com.au/images/content/6834/25226.jpg",
+      "https://images.otstatic.com/prod1/41943940/2/large.jpg",
+      "https://coogeechamber.com.au/wp-content/uploads/elementor/thumbs/barzura-restaurant-dine-in-bookings-copy-pqifsk76afjj88filxvnuh40lo68zk55gnlb0qnxn4.jpeg",
+      "https://www.gustoespressobar.com.au/wp-content/uploads/2020/12/gusto2.jpg",
+      "https://cdn.broadsheet.com.au/cache/d6/61/d661b1f4bcb42509c5f8a33537eaee24.jpg",
+      "https://boyeatsworld.com.au/wp-content/uploads/2021/12/IMG_2360.jpg",
+      "https://www.onlinedining.com.au/sites/default/files/styles/venue_banner/public/photos/248553305_1041139803348951_8566445873118974507_n_0.jpg",
+      "https://cdn.broadsheet.com.au/cache/6f/ad/6fad2b8892201841dc271fcc8d2a05b7.jpg",
+      "https://cdn.broadsheet.com.au/cache/33/6a/336a79cee4e9e70e398ca5334d2f3291.jpg",
+      "https://content.api.news/v3/images/bin/71a8f077a0ad98cbf269713832aae2fd",
+      "https://sydneyweekender.com.au/wp-content/uploads/2023/11/promenade-thumb-1021x580.jpg",
+      "https://eccdn.com.au/beimages/89E674F7-F044-DCB6-FF4E-5E08D9EB0500_image_0_1526630091.jpg",
+      "https://secretsydney.com/wp-content/uploads/2022/04/Bar-Patron_Venue-scaled.jpg",
+      "https://content.api.news/v3/images/bin/8770c4a2359a301db2836b0e722704fe",
+      "https://sitchu.com.au/wp-content/uploads/2024/12/cured-meats-apollonia-sydney.jpg",
+      "https://content.api.news/v3/images/bin/a58ad63dc227f261613bd88b33e256d2",
+      "https://assets.atdw-online.com.au/images/ef2aec3abaf5c26e57d4de1fe192be9f.jpeg?rect=167%2C0%2C2667%2C2000&w=745&h=559&&rot=360&q=eyJ0eXBlIjoibGlzdGluZyIsImxpc3RpbmdJZCI6IjY2M2RjMjk4NjZlOTUzMTkzMzA1ZmM3NiIsImRpc3RyaWJ1dG9ySWQiOiI1NmIxZWI5MzQ0ZmVjYTNkZjJlMzIwYzgiLCJhcGlrZXlJZCI6IjU2YjFlZTU5MGNmMjEzYWQyMGRjNTgxOSJ9",
+      "https://cdn.broadsheet.com.au/cache/ca/f3/caf31fb6c2185777eebf08555781f55f.webp",
+      "https://thetearoom.com.au/wp-content/uploads/2017/04/wedding_banner2.jpg?v=123456",
+      "https://cdn.broadsheet.com.au/cache/34/d9/34d9624622827b814418927dd3922300.jpg",
+      "https://static.wixstatic.com/media/0dc9bd_bf77fb055ef04a828f7823de2e09d374~mv2.jpg/v1/fit/w_2500,h_1330,al_c/0dc9bd_bf77fb055ef04a828f7823de2e09d374~mv2.jpg",
+      "https://uploads-ssl.webflow.com/64509da48f71464741307bcb/6450a586eb229ac5cb736e33_regiment_111122_web2500_015.jpg",
+      "https://cdn.concreteplayground.com/content/uploads/2018/08/alanadimou-singleocbd-5-1920x1080.jpg",
+      "https://cdn.broadsheet.com.au/cache/0b/e8/0be84f83762e6a3596534f72ddb2a28e.jpg",
+      "https://cityextra.com.au/wp-content/uploads/2019/05/S1_Exteriors_6776.jpg",
+      "https://media.timeout.com/images/103800320/750/422/image.jpg",
+      "https://cdn.prod.website-files.com/67cb9462d41ccae4738e6685/6809f6d97d1f70f56f86fe0f_public-dining-room1.webp",
+      "https://www.eyachts.com.au/wp-content/uploads/2020/09/file-1280x853.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5bf74b66b105985459283c09/1701844352523-131XH3B8EN9KWYP9W7X1/DJI_0467-HDR.jpg",
+      "https://images.otstatic.com/prod/26468788/3/large.jpg",
+      "https://kreativdesign.com.au/wp-content/uploads/2020/11/Interior-Design-Frenchys-Cafe-Mosman-03.jpg",
+      "https://cdn.broadsheet.com.au/cache/9b/e2/9be202ff706904d39ea43c628fac6cc0.jpg",
+      "https://www.thebuena.com.au/wp-content/uploads/2019/12/Bistro-Mosman-Outdoors.jpg",
+      "https://assets.atdw-online.com.au/images/7e8898e1ff628b112834a779527d4663.jpeg?rect=205%2C0%2C3053%2C2290&w=2048&h=1536&rot=360&q=eyJ0eXBlIjoibGlzdGluZyIsImxpc3RpbmdJZCI6IjVlNmFkZWJiMzI2ZWQ5MGM0MDg5MzQzYiIsImRpc3RyaWJ1dG9ySWQiOiI1NmIxZWI5MzQ0ZmVjYTNkZjJlMzIwYzgiLCJhcGlrZXlJZCI6IjU2YjFlZTU5MGNmMjEzYWQyMGRjNTgxOSJ9",
+      "https://cdn.broadsheet.com.au/cache/70/b5/70b5ee1438438f9a139a2d25166e1c72.jpg",
+      "https://static.wixstatic.com/media/46fef2_7a43d676a4d942c285bb01ba143a7e84~mv2.jpg/v1/fill/w_980,h_653,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/46fef2_7a43d676a4d942c285bb01ba143a7e84~mv2.jpg",
+      "https://empireprojectmanagement.com.au/wp-content/uploads/2023/09/Manly-Wharf-Bar-5.jpg",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/78/a3/17/chilli-garlic-saffron.jpg?w=1200&h=900&s=1",
+      "https://cdn.broadsheet.com.au/cache/3e/31/3e31b2b209f19987db6000939c211621.jpg",
+      "https://images.otstatic.com/prod/24933397/1/large.jpg",
+      "https://aealuxury.com.au/wp-content/uploads/2023/06/Echoes-Restaurant-Terrace-Dining-View.jpg",
+      "https://assets.atdw-online.com.au/images/90b3102aa1ecc49b9fba3798a12b326a.jpeg?rect=100%2C0%2C1607%2C1205&w=1600&h=1200&&rot=360&q=eyJ0eXBlIjoibGlzdGluZyIsImxpc3RpbmdJZCI6IjYzYTNmNWRmYzg0ZDdjM2Y3YWEwM2M4YiIsImRpc3RyaWJ1dG9ySWQiOiI1NmIxZWI5MzQ0ZmVjYTNkZjJlMzIwYzgiLCJhcGlrZXlJZCI6IjU2YjFlZTU5MGNmMjEzYWQyMGRjNTgxOSJ9?w=1600&h=1200&fm=jpg",
+      "https://www.bluemountainsgazette.com.au/images/transform/v1/crop/frm/gDsCKgEkcTgTg7ZZhL6wDp/3f5983ee-bb28-4190-ab94-30cdae2cef1b.jpg/r0_351_5088_3392_w1200_h678_fmax.jpg",
+      "https://static.wixstatic.com/media/370a52_204e9296cf6d4bbeafdfc69d523b72de~mv2_d_3600_2400_s_4_2.jpg/v1/fill/w_899,h_599,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/370a52_204e9296cf6d4bbeafdfc69d523b72de~mv2_d_3600_2400_s_4_2.jpg",
+      "https://assets.atdw-online.com.au/images/4637538146243d53558314454ef6fa80.jpeg?rect=250%2C0%2C4000%2C3000&w=2048&h=1536&rot=360&q=eyJ0eXBlIjoibGlzdGluZyIsImxpc3RpbmdJZCI6IjYyY2I5N2ZiNDgyMzNjNWI0MDhiZjEyMSIsImRpc3RyaWJ1dG9ySWQiOiI1NmIxZWI5MzQ0ZmVjYTNkZjJlMzIwYzgiLCJhcGlrZXlJZCI6IjU2YjFlZTU5MGNmMjEzYWQyMGRjNTgxOSJ9",
+      "http://www.truebluemountains.com.au/wp-content/uploads/2015/04/Cassiopeia.jpg",
+      "https://media-cdn.tripadvisor.com/media/photo-s/10/00/2c/92/photo0jpg.jpg",
+      "https://chocolatemakers.com.au/wp-content/uploads/2023/10/blue-mountains.jpg",
+      "https://www.foodiva.net/wp-content/uploads/2022/07/68.-Hydro-Majestic-afternoon-tea.jpeg",
+      "https://bluemountainsescapes.com.au/wp-content/uploads/2025/01/Mountain-Culture-Beer-Co.jpg"
+    ];
+
+    const venueSignals = [
+      { text: "Google Maps 4.5/5 · Tripadvisor 4.3/5 · 1,575 reviews", verdict: "높음" },
+      { text: "Google Maps 4.5/5 · Tripadvisor 4.3/5 · 2,103 reviews", verdict: "높음" },
+      { text: "Google Maps 4.5/5", verdict: "높음" },
+      { text: "Google Maps 4.5/5", verdict: "높음" },
+      { text: "Google Maps 4.6/5", verdict: "높음" },
+      { text: "Google Maps 4.5/5", verdict: "높음" },
+      { text: "Google Maps 4.4/5", verdict: "안정권" },
+      { text: "Google Maps 4.3/5", verdict: "안정권" },
+      { text: "Google Maps 4.3/5", verdict: "안정권" },
+      { text: "Google Maps 4.4/5", verdict: "안정권" },
+      { text: "Google Maps 4.3/5", verdict: "안정권" },
+      { text: "Google Maps 4.3/5", verdict: "안정권" },
+      { text: "Google Maps 4.0/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.5/5", verdict: "높음" },
+      { text: "Google Maps 4.6/5", verdict: "높음" },
+      { text: "Google Maps 4.4/5", verdict: "안정권" },
+      { text: "Google Maps 4.6/5", verdict: "높음" },
+      { text: "Google Maps 4.4/5", verdict: "안정권" },
+      { text: "Google Maps 4.1/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.3/5", verdict: "안정권" },
+      { text: "Google Maps 4.3/5", verdict: "안정권" },
+      { text: "Google Maps 4.6/5", verdict: "높음" },
+      { text: "Google Maps 4.6/5", verdict: "높음" },
+      { text: "Google Maps 4.7/5", verdict: "매우 높음" },
+      { text: "Google Maps 4.3/5", verdict: "안정권" },
+      { text: "Google Maps 4.1/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.0/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.1/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.1/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.1/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.5/5", verdict: "높음" },
+      { text: "Google Maps 4.8/5", verdict: "매우 높음" },
+      { text: "Google Maps 4.3/5", verdict: "안정권" },
+      { text: "Google Maps 3.9/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.3/5", verdict: "안정권" },
+      { text: "Google Maps 4.5/5", verdict: "높음" },
+      { text: "Google Maps 4.4/5", verdict: "안정권" },
+      { text: "Google Maps 4.6/5", verdict: "높음" },
+      { text: "Google Maps 3.9/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.5/5", verdict: "높음" },
+      { text: "Google Maps 4.6/5", verdict: "높음" },
+      { text: "Google Maps 4.7/5", verdict: "매우 높음" },
+      { text: "Google Maps 4.6/5", verdict: "높음" },
+      { text: "Google Maps 4.3/5", verdict: "안정권" },
+      { text: "Google Maps 4.6/5", verdict: "높음" },
+      { text: "Google Maps 4.6-4.8/5 · Hyde Park/St Mary's 기준", verdict: "높음" },
+      { text: "Google Maps 4.5/5", verdict: "높음" },
+      { text: "Google Maps 4.7/5", verdict: "매우 높음" },
+      { text: "Google Maps 4.1/5", verdict: "후보 비교" },
+      { text: "Google Maps 3.9/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.1/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.2/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.2/5", verdict: "후보 비교" },
+      { text: "Google Maps 3.8/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.6/5", verdict: "높음" },
+      { text: "Google Maps 3.9/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.4/5", verdict: "안정권" },
+      { text: "Google Maps 4.0/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.2/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.4/5", verdict: "안정권" },
+      { text: "Google Maps 4.4/5", verdict: "안정권" },
+      { text: "Google Maps 4.5/5", verdict: "높음" },
+      { text: "Google Maps 4.4/5", verdict: "안정권" },
+      { text: "Google Maps 4.7/5", verdict: "매우 높음" },
+      { text: "Google Maps 4.6/5", verdict: "높음" },
+      { text: "Google Maps 4.1/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.6/5", verdict: "높음" },
+      { text: "Google Maps 4.7/5", verdict: "매우 높음" },
+      { text: "Google Maps 4.3/5", verdict: "안정권" },
+      { text: "Google Maps 4.2/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.3/5", verdict: "안정권" },
+      { text: "Google Maps 4.4/5", verdict: "안정권" },
+      { text: "Google Maps 4.5/5", verdict: "높음" },
+      { text: "Google Maps 4.2/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.0/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.5/5", verdict: "높음" },
+      { text: "Google Maps 4.5/5", verdict: "높음" },
+      { text: "Google Maps 4.6/5", verdict: "높음" },
+      { text: "Google Maps 4.1/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.1/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.3/5", verdict: "안정권" },
+      { text: "Google Maps 4.2/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.7/5", verdict: "매우 높음" },
+      { text: "Google Maps 4.4/5", verdict: "안정권" },
+      { text: "Google Maps 4.1/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.5/5", verdict: "높음" },
+      { text: "Google Maps 3.9/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.5/5", verdict: "높음" },
+      { text: "Google Maps 4.5/5", verdict: "높음" },
+      { text: "Google Maps 4.5/5", verdict: "높음" },
+      { text: "Google Maps 4.3/5", verdict: "안정권" },
+      { text: "Google Maps 4.8/5", verdict: "매우 높음" },
+      { text: "Google Maps 4.4/5", verdict: "안정권" },
+      { text: "Google Maps 4.6/5", verdict: "높음" },
+      { text: "Google Maps 4.2/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.6/5", verdict: "높음" },
+      { text: "Google Maps 4.1/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.2/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.1/5", verdict: "후보 비교" },
+      { text: "Google Maps 4.7/5", verdict: "매우 높음" }
+    ];
+
+    const venueHeroByQuery = new Map(poiTop100.map((poi, index) => [poi.query, venueHeroImages[index]]));
+    const venueSignalByQuery = new Map(poiTop100.map((poi, index) => [poi.query, venueSignals[index]]));
+
     const costs = {
       first: {
         parkStaggered: {
@@ -2888,6 +3117,7 @@
 
     function foodCard(item, type, typeClass) {
       const photo = foodHero(item, type);
+      const signal = venueSignalByQuery.get(item.query);
       return `
         <article class="day-ops-card food-card">
           <a class="food-photo" href="${imageSearch(item.query)}">
@@ -2907,6 +3137,7 @@
               <div><strong>T</strong><span>${item.t}</span></div>
             </div>
             <p>${item.source}</p>
+            ${signal ? `<div class="food-public-rating"><strong>${signal.verdict}</strong>${signal.text}</div>` : ""}
             <div class="food-actions">
               <a class="mini-link" href="${googleMapSearch(item.query)}">지도·영업시간</a>
               <a class="mini-link" href="${bookingSearch(item)}">예약/공식</a>
@@ -2993,10 +3224,11 @@
 
     function foodHero(item, type) {
       const fallback = areaFallbackPhoto({ name: item.name, area: item.area, kind: type });
+      const crawled = venueHeroByQuery.get(item.query);
       return {
-        src: venueThumbnail(item.query),
+        src: crawled || venueThumbnail(item.query),
         fallback: fallback.src,
-        label: "매장명 기반 사진 썸네일"
+        label: crawled ? "크롤링 확인 사진" : "매장명 기반 사진 썸네일"
       };
     }
 
@@ -3019,10 +3251,11 @@
 
     function poiHero(poi) {
       const fallback = areaFallbackPhoto(poi);
+      const crawled = venueHeroImages[poi.rank - 1] || venueHeroByQuery.get(poi.query);
       return {
-        src: venueThumbnail(poi.query),
+        src: crawled || venueThumbnail(poi.query),
         fallback: fallback.src,
-        label: "장소명 기반 사진 썸네일"
+        label: crawled ? "크롤링 확인 사진" : "장소명 기반 사진 썸네일"
       };
     }
 
@@ -3078,6 +3311,7 @@
         const action = poiAction(poi);
         const hero = poiHero(poi);
         const meta = poiDecisionMeta(poi);
+        const signal = venueSignals[poi.rank - 1] || { text: "공개 평점 확인 필요", verdict: "확인 필요" };
         return `
           <article class="poi-card">
             <a class="poi-photo" href="${imageSearch(poi.query)}">
@@ -3092,6 +3326,7 @@
               </div>
               <h3>${poi.name}</h3>
               <div class="poi-rating" aria-label="가족 판단 기준">
+                <span><strong>${signal.verdict}</strong><em>${signal.text}</em></span>
                 <span><strong>${meta.score}/5</strong><em>가족판단점수</em></span>
                 <span><strong>${meta.routeFit}</strong><em>동선적합</em></span>
                 <span><strong>${meta.bookingRisk}</strong><em>예약/대기</em></span>
@@ -3129,7 +3364,7 @@
       const parkAmount = park[mode];
       const tarongaAmount = taronga[mode];
       const interAmount = inter[mode];
-      const friAmount = sisterFriday.value === "yes" ? fri[mode] : 0;
+      const friAmount = fri[mode];
 
       const segments = [
         row(first, first.amount, first.memo),
@@ -3138,9 +3373,7 @@
         row(inter, interAmount, mode === "comfort" ? inter.memoComfort : inter.memoCheap)
       ];
 
-      if (sisterFriday.value === "yes") {
-        segments.push(row(fri, friAmount, mode === "comfort" ? fri.memoComfort : fri.memoCheap));
-      }
+      segments.push(row(fri, friAmount, mode === "comfort" ? fri.memoComfort : fri.memoCheap));
 
       const hotel = first.amount + parkAmount + tarongaAmount + interAmount + friAmount;
       const airHotel = hotel + airTotal;
@@ -3159,7 +3392,7 @@
         };
         const baseLabel = baseLabels[firstBase.value] || "Park Hyatt 직행/7·24 합류";
         const roomLabel = mode === "comfort" ? "2방 안정" : "1방 절약";
-        const extraLabel = sisterFriday.value === "yes" ? " + 누나네 금요투숙" : "";
+        const extraLabel = " + 누나네 금요투숙";
         summaryScenario.textContent = `${baseLabel} + ${roomLabel}${extraLabel}`;
       }
       if (summaryTotal) summaryTotal.textContent = won(grand);
