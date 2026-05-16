@@ -1,0 +1,3350 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026 시드니 가족여행 숙소 계산기</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17191f;
+      --muted: #5d6570;
+      --line: #dfe3ea;
+      --panel: #ffffff;
+      --soft: #f5f7fa;
+      --accent: #0e6f73;
+      --green: #28724d;
+      --gold: #8a671d;
+      --red: #a4453e;
+      --blue: #245f8e;
+      --shadow: 0 18px 46px rgba(19, 31, 48, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #f7f8fb;
+      line-height: 1.55;
+    }
+
+    a { color: #075f86; text-underline-offset: 3px; }
+    main a:not(.poi-photo) {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+    }
+    img { display: block; max-width: 100%; }
+
+    .hero {
+      min-height: 520px;
+      position: relative;
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(12, 18, 24, 0.15), rgba(12, 18, 24, 0.76)),
+        url("https://ak-d.tripcdn.com/images/0203b120008thak4u61B6_R_960_660_R5_D.jpg") center 44% / cover no-repeat;
+      color: #fff;
+    }
+
+    .hero-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 60px 0 42px;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0;
+      color: #b9f2e7;
+    }
+
+    h1 {
+      max-width: 860px;
+      margin: 0;
+      font-size: clamp(34px, 6vw, 70px);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 880px;
+      margin: 18px 0 0;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 18px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .hero-metric {
+      min-height: 110px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 8px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-metric span {
+      display: block;
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 13px;
+    }
+
+    .hero-metric strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 23px;
+      line-height: 1.18;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 36px 0 70px;
+    }
+
+    section { margin-top: 36px; }
+    h2 { margin: 0 0 14px; font-size: 25px; line-height: 1.2; }
+    h3 { margin: 0 0 10px; font-size: 18px; line-height: 1.28; }
+    p { margin: 0; }
+
+    .lead {
+      max-width: 930px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .notice {
+      margin-top: 16px;
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+      background: #eef8f7;
+      padding: 15px 17px;
+      color: #244046;
+    }
+
+    .warn {
+      border-left-color: var(--gold);
+      background: #fff8e8;
+      color: #4f421f;
+    }
+
+    .decision-grid,
+    .check-grid,
+    .ops-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .day-ops-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .decision-card,
+    .check-card,
+    .ops-card,
+    .day-ops-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      padding: 15px;
+    }
+
+    .decision-card.primary {
+      border-color: #9ac5ad;
+      background: #eef8f1;
+    }
+
+    .decision-card span,
+    .check-card span,
+    .ops-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .decision-card strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 22px;
+      line-height: 1.16;
+    }
+
+    .decision-card p,
+    .check-card p,
+    .ops-card p,
+    .day-ops-card p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .check-list {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: #3e4650;
+      font-size: 13px;
+    }
+
+    .check-list li { margin: 5px 0; }
+
+    .plan-block {
+      display: grid;
+      gap: 7px;
+      margin-top: 12px;
+    }
+
+    .plan-row {
+      display: grid;
+      grid-template-columns: 54px minmax(0, 1fr);
+      gap: 8px;
+      align-items: start;
+      border-top: 1px solid var(--line);
+      padding-top: 8px;
+      color: #3e4650;
+      font-size: 13px;
+    }
+
+    .plan-row:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .plan-row strong {
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .dining-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .dining-card {
+      border: 1px solid #dfe3ea;
+      border-radius: 8px;
+      background: #f8fafc;
+      padding: 10px;
+    }
+
+    .dining-card h4 {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .dining-card p {
+      margin-top: 4px;
+      font-size: 12px;
+    }
+
+    .day-food-head {
+      grid-column: 1 / -1;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fafc;
+      padding: 14px 16px;
+    }
+
+    .day-food-head h3 {
+      margin: 4px 0 0;
+      font-size: 21px;
+    }
+
+    .day-food-head p {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .day-ops-card.food-card {
+      display: flex;
+      min-height: 282px;
+      flex-direction: column;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .food-photo {
+      position: relative;
+      display: block;
+      aspect-ratio: 16 / 9;
+      background: #d9dee5;
+      overflow: hidden;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .food-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 180ms ease;
+    }
+
+    .food-photo:hover img {
+      transform: scale(1.03);
+    }
+
+    .food-photo span {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border-radius: 7px;
+      background: rgba(18, 25, 32, 0.76);
+      color: #fff;
+      padding: 5px 7px;
+      font-size: 10px;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .food-card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 13px;
+    }
+
+    .food-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .food-card h4 {
+      margin-top: 10px;
+      font-size: 17px;
+      line-height: 1.25;
+    }
+
+    .food-area {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .food-swot {
+      display: grid;
+      gap: 6px;
+      margin-top: 11px;
+      color: #3e4650;
+      font-size: 12px;
+    }
+
+    .food-swot div {
+      display: grid;
+      grid-template-columns: 20px minmax(0, 1fr);
+      gap: 7px;
+    }
+
+    .food-swot strong {
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .food-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: auto;
+      padding-top: 12px;
+    }
+
+    .mini-link {
+      display: inline-flex;
+      margin-top: 7px;
+      color: #075f86;
+      font-size: 12px;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .calculator {
+      display: grid;
+      grid-template-columns: 340px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .controls,
+    .result-panel,
+    .source-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .controls { padding: 18px; }
+
+    .field { margin-top: 16px; }
+    .field:first-child { margin-top: 0; }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: #333b46;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    select,
+    input {
+      width: 100%;
+      height: 42px;
+      border: 1px solid #cfd6df;
+      border-radius: 7px;
+      padding: 0 11px;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      min-width: 0;
+    }
+
+    .hint {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .result-panel { padding: 18px; }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .result-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--soft);
+      min-height: 100px;
+    }
+
+    .result-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .result-card strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 22px;
+      line-height: 1.15;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      padding: 12px 13px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    th {
+      background: #eef2f4;
+      color: #283039;
+      font-weight: 800;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+    .num { text-align: right; white-space: nowrap; }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: #3e4650;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .tag.good { color: var(--green); border-color: #9ac5ad; background: #eef8f1; }
+    .tag.warn { color: var(--gold); border-color: #dbc27c; background: #fff9e7; }
+    .tag.red { color: var(--red); border-color: #d6a09a; background: #fff1ef; }
+    .tag.blue { color: var(--blue); border-color: #a5c2db; background: #edf6ff; }
+
+    .hotel-grid,
+    .swot-grid,
+    .weather-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .hotel-card,
+    .swot-card,
+    .weather-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .hotel-card img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      background: #d9dee5;
+    }
+
+    .hotel-body,
+    .weather-card { padding: 15px; }
+
+    .hotel-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0 0;
+    }
+
+    .price-line {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .hotel-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 34px;
+      margin-top: 12px;
+      padding: 0 12px;
+      border-radius: 7px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .itinerary {
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1fr);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .itinerary > div {
+      padding: 13px 15px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .itinerary > div:nth-last-child(-n+2) { border-bottom: 0; }
+    .date-cell { background: #eef2f4; font-weight: 900; }
+    .day-title { font-weight: 900; }
+    .day-note { margin-top: 4px; color: var(--muted); }
+    .rain-note { margin-top: 6px; color: #4c442b; font-size: 13px; }
+
+    .day-planner {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .day-tabs {
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--line);
+      background: #f8fafc;
+    }
+
+    .day-tab {
+      flex: 0 0 auto;
+      min-width: 94px;
+      height: 44px;
+      border: 1px solid #cfd6df;
+      border-radius: 7px;
+      background: #fff;
+      color: #34404c;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .day-tab[aria-selected="true"] {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .day-focus {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1.18fr);
+      min-height: 300px;
+    }
+
+    .day-photo {
+      position: relative;
+      margin: 0;
+      min-height: 300px;
+      background: #d9dee5;
+    }
+
+    .day-photo img {
+      width: 100%;
+      height: 100%;
+      max-height: 340px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .day-photo figcaption {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      max-width: calc(100% - 24px);
+      border-radius: 7px;
+      background: rgba(18, 25, 32, 0.82);
+      color: #fff;
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .day-detail {
+      padding: 22px;
+    }
+
+    .day-detail h3 {
+      margin-top: 10px;
+      font-size: 24px;
+    }
+
+    .day-summary {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .day-facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin: 14px 0 0;
+    }
+
+    .day-fact {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fafc;
+      padding: 10px;
+    }
+
+    .day-fact dt {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .day-fact dd {
+      margin: 3px 0 0;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .day-why {
+      margin-top: 12px;
+      padding: 12px;
+      border-left: 4px solid var(--accent);
+      background: #f4f8f8;
+      color: #35414b;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .day-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .map-stage {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .route-map {
+      width: 100%;
+      min-height: 420px;
+      display: none;
+      background: #eaf1f5;
+    }
+
+    .google-map-frame {
+      width: 100%;
+      height: 520px;
+      display: block;
+      border: 0;
+      background: #eaf1f5;
+    }
+
+    .tile-route-map {
+      position: relative;
+      height: clamp(460px, 56vw, 640px);
+      overflow: hidden;
+      background: #dbe7e5;
+      isolation: isolate;
+    }
+
+    .tile-layer,
+    .route-overlay {
+      position: absolute;
+      inset: 0;
+    }
+
+    .tile-layer img {
+      position: absolute;
+      width: 256px;
+      height: 256px;
+      border: 0;
+      opacity: 0.94;
+      user-select: none;
+    }
+
+    .route-overlay {
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .route-overlay text {
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 0;
+      fill: #1e2f3a;
+      stroke: rgba(255,255,255,0.94);
+      stroke-width: 5px;
+      paint-order: stroke fill;
+    }
+
+    .route-overlay .sub-label {
+      font-size: 12px;
+      font-weight: 800;
+      fill: #4f5c67;
+    }
+
+    .route-overlay .route-main,
+    .route-overlay .route-side,
+    .route-overlay .route-blue {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 2px 2px rgba(20,35,45,0.28));
+    }
+
+    .route-overlay .route-main {
+      stroke: #0e6f73;
+      stroke-width: 7;
+    }
+
+    .route-overlay .route-side {
+      stroke: #d28f1d;
+      stroke-width: 5;
+      stroke-dasharray: 12 10;
+    }
+
+    .route-overlay .route-blue {
+      stroke: #2b75a8;
+      stroke-width: 5;
+      stroke-dasharray: 9 9;
+    }
+
+    .route-overlay .route-halo {
+      fill: none;
+      stroke: rgba(255,255,255,0.86);
+      stroke-width: 13;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .route-overlay .map-pin circle {
+      fill: #fff;
+      stroke: #0e6f73;
+      stroke-width: 4;
+      filter: drop-shadow(0 2px 3px rgba(20,35,45,0.35));
+    }
+
+    .route-overlay .map-pin.major circle {
+      fill: #0e6f73;
+      stroke: #fff;
+    }
+
+    .route-overlay .map-pin.side circle {
+      stroke: #d28f1d;
+    }
+
+    .route-overlay .map-pin.blue circle {
+      stroke: #2b75a8;
+    }
+
+    .map-attribution {
+      position: absolute;
+      right: 10px;
+      bottom: 8px;
+      z-index: 3;
+      padding: 4px 7px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.88);
+      color: #56616d;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .map-attribution a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .route-map text {
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      fill: #23313d;
+    }
+
+    .route-map .sub-label {
+      font-size: 13px;
+      font-weight: 700;
+      fill: #5d6570;
+    }
+
+    .route-map .route-main {
+      fill: none;
+      stroke: #0e6f73;
+      stroke-width: 9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .route-map .route-side {
+      fill: none;
+      stroke: #d39a2e;
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 12 12;
+    }
+
+    .route-map .route-blue {
+      fill: none;
+      stroke: #2d72a3;
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 10 10;
+    }
+
+    .map-pin circle {
+      fill: #fff;
+      stroke: #0e6f73;
+      stroke-width: 5;
+    }
+
+    .map-pin.major circle {
+      fill: #0e6f73;
+      stroke: #fff;
+      stroke-width: 4;
+    }
+
+    .map-pin.side circle {
+      stroke: #d39a2e;
+    }
+
+    .map-pin.blue circle {
+      stroke: #2d72a3;
+    }
+
+    .map-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px 14px;
+      border-top: 1px solid var(--line);
+      background: #f8fafc;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .legend-line {
+      width: 28px;
+      height: 4px;
+      border-radius: 999px;
+      background: #0e6f73;
+    }
+
+    .legend-line.side { background: #d39a2e; }
+    .legend-line.blue { background: #2d72a3; }
+
+    .route-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .route-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .route-card img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #d9dee5;
+    }
+
+    .route-body { padding: 15px; }
+
+    .route-card h3 {
+      min-height: 46px;
+    }
+
+    .route-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 10px;
+    }
+
+    .route-point {
+      border: 1px solid #cfd6df;
+      border-radius: 999px;
+      padding: 4px 9px;
+      background: #fff;
+      color: #3e4650;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .route-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .map-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      margin-top: 12px;
+      padding: 0 12px;
+      border-radius: 7px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .map-link + .map-link { margin-left: 6px; }
+
+    .poi-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .subsection-title {
+      margin-top: 28px;
+      font-size: 24px;
+    }
+
+    .section-note {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .poi-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      min-height: 410px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .poi-photo {
+      position: relative;
+      display: block;
+      aspect-ratio: 16 / 10;
+      background: #d9dee5;
+      overflow: hidden;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .poi-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 180ms ease;
+    }
+
+    .poi-photo:hover img {
+      transform: scale(1.03);
+    }
+
+    .poi-photo .poi-rank {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      box-shadow: 0 8px 18px rgba(15, 23, 32, 0.22);
+    }
+
+    .poi-photo-label {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border-radius: 7px;
+      background: rgba(18, 25, 32, 0.78);
+      color: #fff;
+      padding: 6px 8px;
+      font-size: 11px;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .poi-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 13px;
+    }
+
+    .poi-head {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .poi-rank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .poi-card h3 {
+      margin-bottom: 6px;
+      min-height: 44px;
+      font-size: 16px;
+    }
+
+    .poi-area {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .poi-swot {
+      display: grid;
+      gap: 5px;
+      margin-top: 10px;
+      color: #3e4650;
+      font-size: 12px;
+    }
+
+    .poi-swot div {
+      display: grid;
+      grid-template-columns: 18px minmax(0, 1fr);
+      gap: 6px;
+    }
+
+    .poi-swot strong {
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .poi-source {
+      margin-top: auto;
+      padding-top: 10px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .poi-rating {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .poi-rating span {
+      min-width: 0;
+      border: 1px solid #d7dde5;
+      border-radius: 7px;
+      background: #f8fafc;
+      padding: 7px;
+    }
+
+    .poi-rating strong {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.1;
+    }
+
+    .poi-rating em {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .poi-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      margin-top: 8px;
+      padding: 0 10px;
+      border-radius: 7px;
+      background: #24313e;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .poi-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      margin-top: 8px;
+    }
+
+    .poi-link.secondary {
+      background: #fff;
+      color: var(--ink);
+      border: 1px solid #cfd6df;
+    }
+
+    .swot-card h3,
+    .weather-card h3 { min-height: 46px; }
+
+    .swot-card img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      background: #d9dee5;
+    }
+
+    .swot-body { padding: 15px; }
+
+    .swot-list {
+      display: grid;
+      gap: 7px;
+      margin-top: 10px;
+    }
+
+    .swot-row {
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      gap: 8px;
+      align-items: start;
+      font-size: 13px;
+      color: #3e4650;
+    }
+
+    .swot-row strong {
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .swot-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 34px;
+      margin-top: 12px;
+      padding: 0 12px;
+      border-radius: 7px;
+      background: #24313e;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .swot-link + .swot-link { margin-left: 6px; }
+
+    .weather-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .temp-flow {
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .temp-flow-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: #eef5f6;
+      font-weight: 900;
+    }
+
+    .temp-flow-head span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .temp-steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+    }
+
+    .temp-step {
+      min-height: 150px;
+      padding: 15px;
+      border-right: 1px solid var(--line);
+      position: relative;
+    }
+
+    .temp-step:last-child { border-right: 0; }
+
+    .temp-step::before {
+      content: "";
+      position: absolute;
+      left: 15px;
+      right: 15px;
+      top: 74px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #98c5dc, #f2c46f);
+      opacity: 0.75;
+    }
+
+    .temp-step.cool::before { background: linear-gradient(90deg, #8fb8d7, #b7d3e5); }
+    .temp-step.peak::before { background: linear-gradient(90deg, #f0ca70, #e4a251); }
+    .temp-step.down::before { background: linear-gradient(90deg, #d8b36e, #8fb8d7); }
+
+    .temp-step span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .temp-step strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .temp-step p {
+      margin-top: 34px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .source-panel {
+      padding: 18px;
+      box-shadow: none;
+    }
+
+    .source-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .source-panel ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .source-panel li {
+      margin: 5px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .source-panel a,
+    .small a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 1040px) {
+      .hero-metrics,
+      .decision-grid,
+      .check-grid,
+      .ops-grid,
+      .day-ops-grid,
+      .result-grid,
+      .hotel-grid,
+      .swot-grid,
+      .weather-grid,
+      .route-grid,
+      .poi-grid,
+      .temp-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .calculator { grid-template-columns: 1fr; }
+      .source-grid { grid-template-columns: 1fr; }
+      .temp-step:nth-child(2) { border-right: 0; }
+      .temp-step:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    }
+
+    @media (max-width: 640px) {
+      .hero { min-height: 620px; }
+      .hero-inner,
+      .page { width: min(100% - 28px, 1180px); }
+      .hero-metrics,
+      .decision-grid,
+      .check-grid,
+      .ops-grid,
+      .day-ops-grid,
+      .result-grid,
+      .hotel-grid,
+      .swot-grid,
+      .weather-grid,
+      .route-grid,
+      .poi-grid,
+      .temp-steps { grid-template-columns: 1fr; }
+      .temp-flow-head { display: block; }
+      .temp-flow-head span { margin-top: 4px; display: block; }
+      .temp-step,
+      .temp-step:nth-child(2) { border-right: 0; }
+      .temp-step { border-bottom: 1px solid var(--line); }
+      .temp-step:last-child { border-bottom: 0; }
+      .itinerary { grid-template-columns: 88px minmax(0, 1fr); }
+      .itinerary > div { padding: 11px; }
+      .day-focus { grid-template-columns: 1fr; }
+      .day-photo { min-height: 220px; }
+      .day-photo img { max-height: 240px; }
+      .day-detail { padding: 16px; }
+      .day-detail h3 { font-size: 21px; }
+      .day-facts { grid-template-columns: 1fr; }
+      .route-map { min-height: 360px; }
+      .google-map-frame { height: 420px; }
+      .tile-route-map { height: 440px; }
+      .route-map text { font-size: 15px; }
+      .route-map .sub-label { font-size: 12px; }
+      .route-overlay text { font-size: 13px; }
+      .route-overlay .sub-label { font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">검증 기준: 2026.05.16~17 KST · Trip.com 실측가 + BOM 장기 기후 평균</p>
+      <h1>시드니 가족여행 숙소 조합 계산기</h1>
+      <p class="hero-copy">
+        핵심 결정은 첫날부터 Park Hyatt다. 아버지·어머니는 7/23 도착 즉시 Park Hyatt로 직행하고,
+        정희범팀 3명(나·아내·태리)은 7/23 오후·저녁 대한항공 등으로 출발해 7/24 Park Hyatt에서 합류하는 구조로 다시 잡았다.
+      </p>
+      <div class="hero-metrics">
+        <div class="hero-metric">
+          <span>항공권 기준가</span>
+          <strong>약 2,661만원</strong>
+          <span>기존 OZ 기준. 정희범팀 KE 후보 재견적 필요</span>
+        </div>
+        <div class="hero-metric">
+          <span>호텔 결정안</span>
+          <strong>약 2,093만원</strong>
+          <span>누나네 7/31 금요일 투숙 확정 포함</span>
+        </div>
+        <div class="hero-metric">
+          <span>호텔 안정안</span>
+          <strong>약 2,409만원</strong>
+          <span>2방 안정 + 금요일 투숙 확정</span>
+        </div>
+        <div class="hero-metric">
+          <span>현지비 포함 예상</span>
+          <strong>약 6,554~6,870만원+</strong>
+          <span>KE 재견적 전, 식사·차량·투어 포함</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section>
+      <h2>현재 결론</h2>
+      <p class="lead">
+        Coogee 첫 2박안은 접고, 아버지·어머니는 첫날부터 Park Hyatt로 직행한다.
+        정희범팀 3명(나·아내·태리)은 7/23 오후·저녁 대한항공 등으로 출발해 7/24 도착 후 Park Hyatt에서 합류하는 안이 기준이다.
+        이후 토·일 Park Hyatt, 월·화 Taronga, 수·목 InterContinental Sydney로 이어간다.
+      </p>
+      <div class="notice">
+        항공 총액은 아직 기존 OZ 기준 예산이다. 정희범팀 3명(나·아내·태리)은 대한항공 등 7/23 오후·저녁편 가격과 수하물·좌석·환불조건을 재견적한 뒤 잠가야 한다.
+        누나네는 2026.07.31 금요일 InterContinental Sydney에 투숙하고 2026.08.01 토요일 나가는 것으로 확정 반영했다.
+      </div>
+    </section>
+
+    <section>
+      <h2>가족 회의용 결정 요약</h2>
+      <div class="decision-grid">
+        <article class="decision-card primary">
+          <span>현재 추천안</span>
+          <strong id="summaryScenario">Park Hyatt 직행 + 7/24 합류</strong>
+          <p>부모님은 첫날 이동을 최소화하고, 정희범팀은 다음날 합류해 Park Hyatt 위치값을 바로 쓰는 조합.</p>
+        </article>
+        <article class="decision-card">
+          <span>현지비 포함 총액</span>
+          <strong id="summaryTotal">-</strong>
+          <p>식사·차량·입장권·환율 버퍼까지 포함한 가족 전체 의사결정 금액.</p>
+        </article>
+        <article class="decision-card">
+          <span>1인 평균</span>
+          <strong id="summaryPerPerson">-</strong>
+          <p>9명 기준. 누나네 금요일 투숙은 기본 포함했고, 방 구성 변경 시 즉시 바뀐다.</p>
+        </article>
+        <article class="decision-card">
+          <span>다음 잠금 순서</span>
+          <strong>KE 후보 → Park 객실 → ETA</strong>
+          <p>정희범팀 항공 재견적, Park Hyatt 7/23~25 객실박 수, 전원 ETA 승인 순서로 확인.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>숙소 조합 계산기</h2>
+      <div class="calculator">
+        <aside class="controls" aria-label="숙소 계산 조건">
+          <div class="field">
+            <label for="firstBase">첫 2박</label>
+            <select id="firstBase">
+              <option value="parkStaggered">Park Hyatt 직행 + 7/24 합류</option>
+              <option value="park">Park Hyatt 전원 7/23 비교</option>
+              <option value="coogee">Coogee 이전안 비교</option>
+            </select>
+            <p class="hint">결정안은 부모님 2박 + 정희범팀 7/24 합류 1박 기준.</p>
+          </div>
+
+          <div class="field">
+            <label for="roomMode">방 구성</label>
+            <select id="roomMode">
+              <option value="cheap">1방 절약</option>
+              <option value="comfort">2방 안정</option>
+            </select>
+            <p class="hint">2방 권장 구간만 안정안에 반영.</p>
+          </div>
+
+          <div class="field">
+            <label for="sisterFriday">7/31 누나네</label>
+            <select id="sisterFriday" disabled>
+              <option value="yes">금요일 투숙 확정</option>
+            </select>
+            <p class="hint">계산에는 항상 포함. 항공편명과 출발시각만 재확인.</p>
+          </div>
+
+          <div class="field">
+            <label for="localBudget">현지비</label>
+            <input id="localBudget" type="number" min="0" step="100000" inputmode="numeric" value="18000000">
+            <p class="hint">식사, 차량, 입장권, 투어, 환율 버퍼.</p>
+          </div>
+        </aside>
+
+        <section class="result-panel" aria-label="계산 결과" aria-live="polite">
+          <div class="result-grid">
+            <div class="result-card">
+              <span>호텔 합계</span>
+              <strong id="hotelTotal">-</strong>
+            </div>
+            <div class="result-card">
+              <span>항공 + 호텔</span>
+              <strong id="airHotelTotal">-</strong>
+            </div>
+            <div class="result-card">
+              <span>현지비 포함</span>
+              <strong id="grandTotal">-</strong>
+            </div>
+            <div class="result-card">
+              <span>1인 평균</span>
+              <strong id="perPerson">-</strong>
+            </div>
+          </div>
+
+          <div class="table-wrap" style="margin-top:14px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>구간</th>
+                  <th>숙소</th>
+                  <th>팀</th>
+                  <th class="num">금액</th>
+                  <th>메모</th>
+                </tr>
+              </thead>
+              <tbody id="segmentRows"></tbody>
+            </table>
+          </div>
+          <p class="small" style="margin-top:10px;">
+            호텔 금액은 Trip.com 검색가 기준 추정치다. Park Hyatt 합류안의 첫 구간은 기존 2객실 2박 가격을 객실박 기준으로 단순 환산했으므로 예약 전 재견적이 필요하다.
+          </p>
+        </section>
+      </div>
+    </section>
+
+    <section>
+      <h2>4개 숙소 카드</h2>
+      <div class="hotel-grid">
+        <article class="hotel-card">
+          <img src="https://ak-d.tripcdn.com/images/0203b120008thak4u61B6_R_960_660_R5_D.jpg" alt="Park Hyatt Sydney">
+          <div class="hotel-body">
+            <h3>Park Hyatt Sydney</h3>
+            <p class="small">장점: 말도 안되는 위치. 단점: 100만원대 가격.</p>
+            <div class="hotel-meta">
+              <span class="tag red">위치 최강</span>
+              <span class="tag warn">가격 고위험</span>
+            </div>
+            <p class="price-line">Trip.com 실측: 정희범팀 8박 10,836,008원, 부모님 8박 10,836,008원, 누나네 6박 15,112,764원부터.</p>
+            <a class="hotel-link" href="https://kr.trip.com/hotels/the-rocks-hotel-detail-734386/park-hyatt-sydney/?rankingId=100200213458&tid=H0008_10650080900_best&locale=ko-KR&curr=KRW">가격 보기</a>
+          </div>
+        </article>
+
+        <article class="hotel-card">
+          <img src="https://ak-d.tripcdn.com/images/1mc1a12000c2ctq860E8F_R_960_660_R5_D.jpg" alt="InterContinental Sydney">
+          <div class="hotel-body">
+            <h3>InterContinental Sydney</h3>
+            <p class="small">장점: 가장 깔끔 안정적, 위치 좋음. 단점: 특별한 단점 적음.</p>
+            <div class="hotel-meta">
+              <span class="tag good">안정적</span>
+              <span class="tag blue">마지막날 적합</span>
+            </div>
+            <p class="price-line">Trip.com 실측: 정희범팀 8박 3,857,714원, 부모님 8박 3,584,054원, 누나네 6박 2,908,532원부터.</p>
+            <a class="hotel-link" href="https://kr.trip.com/hotels/sydney-hotel-detail-2190088/intercontinental-sydney/?rankingId=100200255168">가격 보기</a>
+          </div>
+        </article>
+
+        <article class="hotel-card">
+          <img src="https://ak-d.tripcdn.com/images/1mc4612000mr7sj0sB835_R_960_660_R5_D.jpg" alt="InterContinental Sydney Coogee Beach">
+          <div class="hotel-body">
+            <h3>InterContinental Coogee Beach</h3>
+            <p class="small">장점: 바다가 옆. 단점: 주요 관광지와 멀음.</p>
+            <div class="hotel-meta">
+              <span class="tag good">가성비</span>
+              <span class="tag warn">CBD 이동</span>
+            </div>
+            <p class="price-line">Trip.com 실측: 정희범팀 8박 3,841,842원, 부모님 8박 3,811,642원, 누나네 6박 3,567,816원부터.</p>
+            <a class="hotel-link" href="https://kr.trip.com/hotels/coogee-hotel-detail-2196216/intercontinental-hotels-sydney-coogee-beach-by-ihg/?rankingId=100200255168">가격 보기</a>
+          </div>
+        </article>
+
+        <article class="hotel-card">
+          <img src="https://ak-d.tripcdn.com/images/1mc5z12000cdbkoo6C7CD_R_960_660_R5_D.jpg" alt="Wildlife Retreat at Taronga">
+          <div class="hotel-body">
+            <h3>Wildlife Retreat at Taronga</h3>
+            <p class="small">장점: 아이들이 너무 좋아할 동물원 호텔. 단점: 방이 엄청 코지하진 않음.</p>
+            <div class="hotel-meta">
+              <span class="tag good">아이 체험</span>
+              <span class="tag warn">방 크기 체크</span>
+            </div>
+            <p class="price-line">Trip.com 실측: 부모님 8박 4,054,310원, 누나네 6박 3,204,052원부터. 정희범팀은 동일급 8박 4,054,310원으로 추정 반영.</p>
+            <a class="hotel-link" href="https://kr.trip.com/hotels/mosman-hotel-detail-23934327/wildlife-retreat-at-taronga/?rankingId=100200187323">가격 보기</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>예약 전 객실·가격 체크리스트</h2>
+      <p class="lead">
+        계산기는 후보를 좁히는 도구이고, 실제 예약 전에는 아래 항목을 호텔·OTA 양쪽에서 다시 잠가야 한다.
+      </p>
+      <div class="check-grid" style="margin-top:16px;">
+        <article class="check-card">
+          <span>객실 점유</span>
+          <h3>누나네 1방 가능 여부</h3>
+          <ul class="check-list">
+            <li>2성인+2아동 점유 허용</li>
+            <li>더블 2개 또는 소파베드 보장</li>
+            <li>종현 나이 기준 아동 요금 적용</li>
+          </ul>
+        </article>
+        <article class="check-card">
+          <span>부모님 편의</span>
+          <h3>욕실·동선·층수</h3>
+          <ul class="check-list">
+            <li>샤워부스/욕조 형태</li>
+            <li>엘리베이터 가까운 방 요청</li>
+            <li>커넥팅룸 또는 인접룸 가능성</li>
+          </ul>
+        </article>
+        <article class="check-card">
+          <span>가격 조건</span>
+          <h3>총액 재확인</h3>
+          <ul class="check-list">
+            <li>세금·수수료·보증금 포함 여부</li>
+            <li>조식 포함/불포함</li>
+            <li>결제 통화와 환불 가능 시한</li>
+          </ul>
+        </article>
+        <article class="check-card">
+          <span>split-stay</span>
+          <h3>이동일 운영</h3>
+          <ul class="check-list">
+            <li>얼리 체크인·레이트 체크아웃 요청</li>
+            <li>짐 보관 가능 시간</li>
+            <li>9명+캐리어 전용차 크기 확인</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>ETA·입국 준비</h2>
+      <div class="check-grid">
+        <article class="check-card">
+          <span>대상</span>
+          <h3>대한민국 여권자</h3>
+          <p>관광·가족방문 목적 3개월 이하 체류는 Australian ETA App으로 ETA를 신청하는 흐름이 맞다.</p>
+        </article>
+        <article class="check-card">
+          <span>전원 확인</span>
+          <h3>여권 정보</h3>
+          <ul class="check-list">
+            <li>여권 영문명·생년월일</li>
+            <li>여권 만료일</li>
+            <li>ETA 승인 이메일/앱 화면</li>
+          </ul>
+        </article>
+        <article class="check-card">
+          <span>리스크</span>
+          <h3>오답·추가심사</h3>
+          <p>범죄기록 질문 등에서 추가 자료 요청이 나오면 시간이 걸릴 수 있으므로 출발 4주 전까지 전원 완료가 안전하다.</p>
+        </article>
+        <article class="check-card">
+          <span>현장 백업</span>
+          <h3>사본 묶음</h3>
+          <ul class="check-list">
+            <li>여권·ETA·보험증권 PDF</li>
+            <li>복용약 영문명</li>
+            <li>가족별 비상연락망</li>
+          </ul>
+        </article>
+      </div>
+      <div class="notice warn">
+        ETA는 호주 체류 중 추가 신청이 불가하고, 잘못 승인된 정보는 새 ETA로 다시 신청해야 한다. 발권 후 미루지 말고 바로 처리한다.
+      </div>
+    </section>
+
+    <section>
+      <h2>날짜별 여행 배치</h2>
+      <div class="itinerary">
+        <div class="date-cell">7/23 목</div>
+        <div>
+          <div class="day-title">부모님 Park Hyatt 직행, 정희범팀 오후·저녁 출국</div>
+          <p class="day-note">부모님은 OZ601 도착 후 전용차로 Park Hyatt에 바로 들어간다. 정희범팀은 이날 오후·저녁 대한항공 등으로 출발해 기내 숙박으로 다음날 합류한다.</p>
+          <p class="rain-note">날씨 영향: 부모님은 공항→호텔만 움직인다. 어머니 피로도 관리가 최우선이다.</p>
+        </div>
+
+        <div class="date-cell">7/24 금</div>
+        <div>
+          <div class="day-title">정희범팀 시드니 도착, Park Hyatt 합류</div>
+          <p class="day-note">정희범팀은 도착 후 Park Hyatt로 이동해 부모님과 합류한다. 체크인 전이면 짐 보관 후 Circular Quay, The Rocks, 오페라하우스 외관만 짧게 본다.</p>
+          <p class="rain-note">비·강풍이면 호텔 라운지, MCA, The Rocks 카페 중심으로 낮춘다. 해안 절벽길은 이 일정에서는 빼는 게 맞다.</p>
+        </div>
+
+        <div class="date-cell">7/25 토</div>
+        <div>
+          <div class="day-title">누나네 합류, The Rocks + 하버브리지 전망</div>
+          <p class="day-note">이미 Park Hyatt에 있으므로 이동일 부담이 줄어든다. 누나네 도착 전후로 Circular Quay, The Rocks, Harbour Bridge 주변만 가볍게 돈다.</p>
+          <p class="rain-note">날씨가 좋으면 오페라하우스 야경. 비가 오면 호텔 주변 저녁과 로비 휴식 중심.</p>
+        </div>
+
+        <div class="date-cell">7/26 일</div>
+        <div>
+          <div class="day-title">Opera House + Royal Botanic Garden</div>
+          <p class="day-note">Park Hyatt 위치를 쓰는 핵심일. 오페라하우스 외관, 가능하면 1시간 투어, Royal Botanic Garden, Mrs Macquarie's Chair를 묶는다.</p>
+          <p class="rain-note">오페라하우스 투어는 계단과 보행량이 있으니 부모님 컨디션을 보고, 힘들면 Mobility Access Tour 여부를 확인한다.</p>
+        </div>
+
+        <div class="date-cell">7/27 월</div>
+        <div>
+          <div class="day-title">Wildlife Retreat at Taronga 체크인 + Taronga Zoo</div>
+          <p class="day-note">아이들 만족도 최우선일. 오전 이동 후 동물원 핵심 구역, 체크인, 리트리트 프로그램을 붙인다. Taronga는 언덕이 있으므로 편한 신발과 휴식 지점이 중요하다.</p>
+          <p class="rain-note">비가 오면 야외 동선을 줄이고 숙소 프로그램과 카페 휴식 위주로 전환한다.</p>
+        </div>
+
+        <div class="date-cell">7/28 화</div>
+        <div>
+          <div class="day-title">Taronga 여유일 + Balmoral 또는 Manly 선택</div>
+          <p class="day-note">맑고 바람이 약하면 Balmoral Beach, Chowder Bay, 또는 Manly ferry를 짧게 넣는다. 아이들은 Taronga 2일차가 오히려 더 좋을 수 있다.</p>
+          <p class="rain-note">비·강풍이면 ferry를 줄이고 Art Gallery NSW, Australian Museum, SEA LIFE Sydney 중 하나로 이동한다.</p>
+        </div>
+
+        <div class="date-cell">7/29 수</div>
+        <div>
+          <div class="day-title">InterContinental Sydney로 이동, CBD 실내 동선</div>
+          <p class="day-note">QVB, Pitt Street, Art Gallery NSW, Hyde Park를 낮은 피로도로 배치한다. 아이들은 Darling Harbour/SEA LIFE 옵션이 좋다.</p>
+          <p class="rain-note">겨울 비가 오면 이날을 실내 핵심일로 쓰면 된다.</p>
+        </div>
+
+        <div class="date-cell">7/30 목</div>
+        <div>
+          <div class="day-title">마지막 풀데이: Blue Mountains 또는 항구 저강도 코스</div>
+          <p class="day-note">맑고 부모님 컨디션이 좋으면 전용차로 Blue Mountains + Scenic World. 피곤하거나 비가 오면 The Rocks, MCA, Opera House 주변 식사로 낮춘다.</p>
+          <p class="rain-note">Blue Mountains는 안개·비면 만족도가 급락할 수 있어 전날 예보 보고 확정하는 날이다.</p>
+        </div>
+
+        <div class="date-cell">7/31 금</div>
+        <div>
+          <div class="day-title">정희범팀 + 부모님 귀국 준비, 누나네는 금요일 투숙</div>
+          <p class="day-note">OZ602 21:00 시드니 출발, 8/1 06:35 인천 도착. 체크아웃 후 짐 맡기고 QVB, Darling Harbour, 호텔 라운지 중심으로 움직인다.</p>
+          <p class="rain-note">누나네는 금요일 InterContinental Sydney 투숙 확정이므로 SEA LIFE Sydney, Australian Museum, 쇼핑을 토요일 카드로 남긴다.</p>
+        </div>
+      </div>
+
+      <div class="day-planner" aria-label="날짜별 선택형 상세 설명">
+        <div class="day-tabs" id="dayTabs" role="tablist" aria-label="날짜 선택"></div>
+        <article class="day-focus">
+          <figure class="day-photo">
+            <img id="dayPhoto" src="https://ak-d.tripcdn.com/images/0203b120008thak4u61B6_R_960_660_R5_D.jpg" alt="Park Hyatt Sydney">
+            <figcaption id="dayCaption">Park Hyatt 첫날 회복일</figcaption>
+          </figure>
+          <div class="day-detail">
+            <span class="tag blue" id="dayBadge">7/23 목</span>
+            <h3 id="dayTitle">부모님 Park Hyatt 직행, 정희범팀 오후·저녁 출국</h3>
+            <p class="day-summary" id="daySummary">첫날은 부모님 공항 이동과 수면 회복만 성공하면 된다. 정희범팀은 대한항공 등 야간편으로 다음날 도착해 Park Hyatt에서 합류한다.</p>
+            <dl class="day-facts">
+              <div class="day-fact">
+                <dt>숙소/거점</dt>
+                <dd id="dayBase">Park Hyatt Sydney</dd>
+              </div>
+              <div class="day-fact">
+                <dt>활동 강도</dt>
+                <dd id="dayPace">최저</dd>
+              </div>
+              <div class="day-fact">
+                <dt>날씨 판단</dt>
+                <dd id="dayWeather">비 영향 낮음</dd>
+              </div>
+            </dl>
+            <div class="route-points" id="dayPoints"></div>
+            <p class="day-why" id="dayWhy">부모님은 첫날 호텔을 옮기지 않는 것이 전체 일정 안정성을 높인다. 정희범팀은 다음날 합류라 첫날 객실박도 줄일 수 있다.</p>
+            <div class="day-actions">
+              <a class="map-link" id="dayMap" href="https://www.google.com/maps/dir/?api=1&amp;origin=Sydney%20Airport&amp;destination=Park%20Hyatt%20Sydney&amp;travelmode=driving">Google Maps 동선</a>
+              <a class="map-link" id="dayAlt" href="https://www.google.com/maps/search/?api=1&amp;query=The%20Rocks%20restaurants%20Sydney">주변 식사/대체</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="day-ops-grid" id="dayOpsGrid" aria-label="날짜별 Plan A B C와 주변 식당 카페 추천" style="margin-top:18px;"></div>
+
+      <div class="map-stage" style="margin-top:18px;">
+        <div class="tile-route-map" id="sydneyRouteMap" role="img" aria-label="실제 지도 타일 위에 표시한 시드니 숙소와 관광 동선">
+          <div class="tile-layer" id="sydneyRouteTiles" aria-hidden="true"></div>
+          <svg class="route-overlay" id="sydneyRouteOverlay" aria-hidden="true"></svg>
+          <div class="map-attribution">
+            © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · © <a href="https://carto.com/attributions">CARTO</a>
+          </div>
+        </div>
+        <div class="map-legend">
+          <span class="legend-item"><span class="legend-line"></span>숙소 이동 핵심 동선</span>
+          <span class="legend-item"><span class="legend-line side"></span>Bondi·Coogee·Watsons Bay 선택 코스</span>
+          <span class="legend-item"><span class="legend-line blue"></span>하버·CBD 세부 동선</span>
+          <a class="map-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=Sydney%20Airport&amp;destination=Sydney%20Airport&amp;waypoints=Park%20Hyatt%20Sydney%7CWildlife%20Retreat%20at%20Taronga%7CInterContinental%20Sydney&amp;travelmode=driving">전체 경로 열기</a>
+          <a class="map-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=InterContinental%20Sydney&amp;destination=InterContinental%20Sydney&amp;waypoints=Scenic%20World%20Blue%20Mountains%7CEcho%20Point%20Lookout&amp;travelmode=driving">Blue Mountains 별도</a>
+          <a class="map-link" href="2026-05-16-시드니-아시아나-지도-오버레이.png">PNG 보기</a>
+        </div>
+      </div>
+
+      <div class="route-grid" aria-label="날짜별 히어로 사진과 Google Maps 동선">
+        <article class="route-card">
+          <img loading="lazy" src="https://ak-d.tripcdn.com/images/0203b120008thak4u61B6_R_960_660_R5_D.jpg" alt="Park Hyatt Sydney">
+          <div class="route-body">
+            <span class="tag blue">7/23 목</span>
+            <h3>부모님 Park Hyatt 직행</h3>
+            <div class="route-points">
+              <span class="route-point">SYD 공항</span>
+              <span class="route-point">Park Hyatt</span>
+              <span class="route-point">호텔 저녁</span>
+              <span class="route-point">정희범팀 출국</span>
+            </div>
+            <p class="route-note">부모님은 공항에서 바로 호텔. 정희범팀은 오후·저녁 대한항공 등으로 출발.</p>
+            <a class="map-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=Sydney%20Airport&amp;destination=Park%20Hyatt%20Sydney&amp;travelmode=driving">Park 동선</a>
+          </div>
+        </article>
+
+        <article class="route-card">
+          <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20(AU)%2C%20View%20from%20Opera%20House%20--%202019%20--%203073-8.jpg?width=1200" alt="Sydney Harbour from Opera House">
+          <div class="route-body">
+            <span class="tag good">7/24 금</span>
+            <h3>정희범팀 Park Hyatt 합류</h3>
+            <div class="route-points">
+              <span class="route-point">SYD 공항</span>
+              <span class="route-point">Park Hyatt</span>
+              <span class="route-point">Circular Quay</span>
+              <span class="route-point">The Rocks</span>
+            </div>
+            <p class="route-note">도착 후 짐 보관 또는 체크인. 항구 주변만 짧게 쓰는 합류일.</p>
+            <a class="map-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=Sydney%20Airport&amp;destination=Park%20Hyatt%20Sydney&amp;waypoints=Circular%20Quay%20Sydney%7CThe%20Rocks%20Sydney&amp;travelmode=driving">Google Maps</a>
+          </div>
+        </article>
+
+        <article class="route-card">
+          <img loading="lazy" src="https://ak-d.tripcdn.com/images/0203b120008thak4u61B6_R_960_660_R5_D.jpg" alt="Park Hyatt Sydney">
+          <div class="route-body">
+            <span class="tag red">7/25 토</span>
+            <h3>누나네 합류 + The Rocks 야경</h3>
+            <div class="route-points">
+              <span class="route-point">Park Hyatt</span>
+              <span class="route-point">The Rocks</span>
+              <span class="route-point">Harbour Bridge</span>
+            </div>
+            <p class="route-note">이미 Park Hyatt에 있으므로 숙소 이동 없이 누나네 합류 컨디션에 맞춘다.</p>
+            <a class="map-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=Park%20Hyatt%20Sydney&amp;destination=Park%20Hyatt%20Sydney&amp;waypoints=The%20Rocks%20Sydney%7CSydney%20Harbour%20Bridge&amp;travelmode=walking">Google Maps</a>
+          </div>
+        </article>
+
+        <article class="route-card">
+          <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20Opera%20House%20From%20Botanic%20Garden.jpg?width=1200" alt="Sydney Opera House and Royal Botanic Garden">
+          <div class="route-body">
+            <span class="tag good">7/26 일</span>
+            <h3>Opera House + Royal Botanic Garden</h3>
+            <div class="route-points">
+              <span class="route-point">Park Hyatt</span>
+              <span class="route-point">Opera House</span>
+              <span class="route-point">Botanic Garden</span>
+              <span class="route-point">Mrs Macquarie</span>
+            </div>
+            <p class="route-note">Park Hyatt 위치값을 쓰는 핵심일. 걷는 거리는 부모님 컨디션 따라 조절.</p>
+            <a class="map-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=Park%20Hyatt%20Sydney&amp;destination=Park%20Hyatt%20Sydney&amp;waypoints=Sydney%20Opera%20House%7CRoyal%20Botanic%20Garden%20Sydney%7CMrs%20Macquarie%27s%20Chair&amp;travelmode=walking">Google Maps</a>
+          </div>
+        </article>
+
+        <article class="route-card">
+          <img loading="lazy" src="https://ak-d.tripcdn.com/images/1mc5z12000cdbkoo6C7CD_R_960_660_R5_D.jpg" alt="Wildlife Retreat at Taronga">
+          <div class="route-body">
+            <span class="tag good">7/27 월</span>
+            <h3>Taronga 체크인 + 동물원 집중</h3>
+            <div class="route-points">
+              <span class="route-point">Park Hyatt</span>
+              <span class="route-point">Taronga Zoo</span>
+              <span class="route-point">Wildlife Retreat</span>
+            </div>
+            <p class="route-note">아이들 만족도 최우선일. 언덕과 휴식 지점 체크.</p>
+            <a class="map-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=Park%20Hyatt%20Sydney&amp;destination=Wildlife%20Retreat%20at%20Taronga&amp;waypoints=Taronga%20Zoo%20Sydney&amp;travelmode=driving">Google Maps</a>
+          </div>
+        </article>
+
+        <article class="route-card">
+          <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/CSIRO%20ScienceImage%208274%20The%20Manly%20ferry%20Freshwater.jpg?width=1200" alt="Sydney Manly ferry">
+          <div class="route-body">
+            <span class="tag blue">7/28 화</span>
+            <h3>Taronga 여유 + Balmoral 또는 Manly</h3>
+            <div class="route-points">
+              <span class="route-point">Wildlife Retreat</span>
+              <span class="route-point">Balmoral</span>
+              <span class="route-point">Chowder Bay</span>
+              <span class="route-point">Manly</span>
+            </div>
+            <p class="route-note">맑고 바람 약할 때만 페리/해변 선택. 비오면 실내로 전환.</p>
+            <a class="map-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=Wildlife%20Retreat%20at%20Taronga&amp;destination=Wildlife%20Retreat%20at%20Taronga&amp;waypoints=Balmoral%20Beach%20Sydney%7CChowder%20Bay%20Sydney%7CManly%20Wharf&amp;travelmode=driving">Google Maps</a>
+          </div>
+        </article>
+
+        <article class="route-card">
+          <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20(AU)%2C%20Queen%20Victoria%20Building%20--%202019%20--%203580%20(cropped)%20-%202.jpg?width=1200" alt="Queen Victoria Building Sydney">
+          <div class="route-body">
+            <span class="tag warn">7/29 수</span>
+            <h3>InterContinental 이동 + CBD 실내 동선</h3>
+            <div class="route-points">
+              <span class="route-point">InterContinental</span>
+              <span class="route-point">QVB</span>
+              <span class="route-point">Art Gallery</span>
+              <span class="route-point">SEA LIFE</span>
+            </div>
+            <p class="route-note">짐 맡긴 뒤 비가 와도 흔들리지 않는 도심 동선.</p>
+            <a class="map-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=InterContinental%20Sydney&amp;destination=InterContinental%20Sydney&amp;waypoints=Queen%20Victoria%20Building%20Sydney%7CArt%20Gallery%20of%20New%20South%20Wales%7CSEA%20LIFE%20Sydney%20Aquarium&amp;travelmode=walking">Google Maps</a>
+          </div>
+        </article>
+
+        <article class="route-card">
+          <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Blue%20mountains%20-%20three%20sisters.jpg?width=1200" alt="Blue Mountains Three Sisters">
+          <div class="route-body">
+            <span class="tag blue">7/30 목</span>
+            <h3>Blue Mountains 또는 항구 저강도 코스</h3>
+            <div class="route-points">
+              <span class="route-point">InterContinental</span>
+              <span class="route-point">Scenic World</span>
+              <span class="route-point">Echo Point</span>
+              <span class="route-point">InterContinental</span>
+            </div>
+            <p class="route-note">안개·비면 취소 후보. 맑고 컨디션 좋을 때만 전용차 데이투어.</p>
+            <a class="map-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=InterContinental%20Sydney&amp;destination=InterContinental%20Sydney&amp;waypoints=Scenic%20World%20Blue%20Mountains%7CEcho%20Point%20Lookout&amp;travelmode=driving">Google Maps</a>
+          </div>
+        </article>
+
+        <article class="route-card">
+          <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Art%20Gallery%20of%20New%20South%20Wales%20fa%C3%A7ade.jpg?width=1200" alt="Art Gallery of New South Wales">
+          <div class="route-body">
+            <span class="tag warn">7/31 금</span>
+            <h3>체크아웃 + QVB/Darling Harbour + 공항</h3>
+            <div class="route-points">
+              <span class="route-point">InterContinental</span>
+              <span class="route-point">QVB</span>
+              <span class="route-point">Darling Harbour</span>
+              <span class="route-point">SYD 공항</span>
+            </div>
+            <p class="route-note">밤 비행 전 체력 보존. 누나네는 금요일 투숙 확정이라 박물관/SEA LIFE를 토요일로 남긴다.</p>
+            <a class="map-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=InterContinental%20Sydney&amp;destination=Sydney%20Airport&amp;waypoints=Queen%20Victoria%20Building%20Sydney%7CDarling%20Harbour%20Sydney%7CSEA%20LIFE%20Sydney%20Aquarium&amp;travelmode=driving">Google Maps</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>관광명소 SWOT 카드</h2>
+      <div class="swot-grid">
+        <article class="swot-card">
+          <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20Opera%20House%20From%20Botanic%20Garden.jpg?width=1200" alt="Royal Botanic Garden에서 보는 Sydney Opera House">
+          <div class="swot-body">
+            <h3>Opera House + Royal Botanic Garden</h3>
+            <div class="swot-list">
+              <div class="swot-row"><strong>S</strong><span>Park Hyatt 숙박일에 이동 효율이 압도적.</span></div>
+              <div class="swot-row"><strong>W</strong><span>공식 투어는 계단과 보행량이 있어 부모님 컨디션 체크 필요.</span></div>
+              <div class="swot-row"><strong>O</strong><span>비가 와도 투어, 실내 식사, 야경으로 대체 가능.</span></div>
+              <div class="swot-row"><strong>T</strong><span>주말 혼잡과 겨울 바람이 변수.</span></div>
+            </div>
+            <a class="swot-link" href="https://www.sydneyoperahouse.com/tours/sydney-opera-house-tour">공식 링크</a>
+            <a class="swot-link" href="https://www.botanicgardens.org.au/royal-botanic-garden-sydney">정원 링크</a>
+          </div>
+        </article>
+
+        <article class="swot-card">
+          <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20(AU)%2C%20Bondi%20To%20Bronte%20Coastal%20Walk%20--%202019%20--%202379.jpg?width=1200" alt="Bondi to Coogee 해안 산책로">
+          <div class="swot-body">
+            <h3>Bondi to Coogee Coastal Walk</h3>
+            <div class="swot-list">
+              <div class="swot-row"><strong>S</strong><span>Park Hyatt 기준에서도 맑은 날 선택 코스로는 풍경이 좋음.</span></div>
+              <div class="swot-row"><strong>W</strong><span>6km 완주는 어린아이와 부모님에게 길 수 있음.</span></div>
+              <div class="swot-row"><strong>O</strong><span>맑은 날 짧은 구간만 걸어도 만족도가 높음.</span></div>
+              <div class="swot-row"><strong>T</strong><span>비·강풍에는 노출 동선이라 취소가 맞음.</span></div>
+            </div>
+            <a class="swot-link" href="https://www.nsw.gov.au/visiting-and-exploring-nsw/locations-and-attractions/bondi-to-coogee-coastal-walk">공식 링크</a>
+          </div>
+        </article>
+
+        <article class="swot-card">
+          <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20Harbour%20viewed%20from%20Taronga%20Zoo.jpg?width=1200" alt="Taronga Zoo에서 보는 Sydney Harbour">
+          <div class="swot-body">
+            <h3>Taronga Zoo + Wildlife Retreat</h3>
+            <div class="swot-list">
+              <div class="swot-row"><strong>S</strong><span>아이들 만족도 최고 후보. 숙소와 콘텐츠가 결합됨.</span></div>
+              <div class="swot-row"><strong>W</strong><span>동물원 지형이 언덕이고 방 크기 만족도는 확인 필요.</span></div>
+              <div class="swot-row"><strong>O</strong><span>리트리트 프로그램으로 일반 동물원보다 기억에 남을 가능성 큼.</span></div>
+              <div class="swot-row"><strong>T</strong><span>비가 오면 야외 관람 효율 하락.</span></div>
+            </div>
+            <a class="swot-link" href="https://www.taronga.org.au/sydney-zoo/plan/visitor-information">공식 링크</a>
+          </div>
+        </article>
+
+        <article class="swot-card">
+          <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/CSIRO%20ScienceImage%208274%20The%20Manly%20ferry%20Freshwater.jpg?width=1200" alt="Sydney Manly ferry">
+          <div class="swot-body">
+            <h3>Manly Ferry 또는 Harbour Ferry</h3>
+            <div class="swot-list">
+              <div class="swot-row"><strong>S</strong><span>시드니 항구를 가장 쉽게 체감.</span></div>
+              <div class="swot-row"><strong>W</strong><span>겨울 바람이 세면 부모님 피로도가 올라감.</span></div>
+              <div class="swot-row"><strong>O</strong><span>Taronga 2일차 또는 Park Hyatt 숙박일에 짧게 넣기 좋음.</span></div>
+              <div class="swot-row"><strong>T</strong><span>강풍·우천 시 배 멀미와 지연 리스크.</span></div>
+            </div>
+            <a class="swot-link" href="https://transportnsw.info/routes/details/sydney-ferries/f1/090F1">노선 링크</a>
+          </div>
+        </article>
+
+        <article class="swot-card">
+          <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Blue%20mountains%20-%20three%20sisters.jpg?width=1200" alt="Blue Mountains Three Sisters">
+          <div class="swot-body">
+            <h3>Blue Mountains + Scenic World</h3>
+            <div class="swot-list">
+              <div class="swot-row"><strong>S</strong><span>도시 일정에서 벗어나는 하이엔드 전용차 데이투어.</span></div>
+              <div class="swot-row"><strong>W</strong><span>이동 시간이 길고 하루가 통째로 필요.</span></div>
+              <div class="swot-row"><strong>O</strong><span>맑은 겨울날이면 가족사진과 전망 만족도 높음.</span></div>
+              <div class="swot-row"><strong>T</strong><span>안개·비면 전망 가치가 급감.</span></div>
+            </div>
+            <a class="swot-link" href="https://www.scenicworld.com.au/attractions/scenic-skyway">공식 링크</a>
+          </div>
+        </article>
+
+        <article class="swot-card">
+          <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Art%20Gallery%20of%20New%20South%20Wales%20fa%C3%A7ade.jpg?width=1200" alt="Art Gallery of New South Wales">
+          <div class="swot-body">
+            <h3>Art Gallery NSW + Australian Museum</h3>
+            <div class="swot-list">
+              <div class="swot-row"><strong>S</strong><span>비 오는 날 가장 안정적인 실내 대안.</span></div>
+              <div class="swot-row"><strong>W</strong><span>아이들에게는 집중 시간이 짧을 수 있음.</span></div>
+              <div class="swot-row"><strong>O</strong><span>InterContinental Sydney 숙박일에 짧게 붙이기 좋음.</span></div>
+              <div class="swot-row"><strong>T</strong><span>특별전 예약/운영시간 확인 필요.</span></div>
+            </div>
+            <a class="swot-link" href="https://www.artgallery.nsw.gov.au/">공식 링크</a>
+            <a class="swot-link" href="https://australian.museum/visit/">박물관 링크</a>
+          </div>
+        </article>
+
+        <article class="swot-card">
+          <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20(AU)%2C%20Queen%20Victoria%20Building%20--%202019%20--%203580%20(cropped)%20-%202.jpg?width=1200" alt="Queen Victoria Building Sydney">
+          <div class="swot-body">
+            <h3>QVB + Darling Harbour + SEA LIFE</h3>
+            <div class="swot-list">
+              <div class="swot-row"><strong>S</strong><span>마지막날 짐 맡기고 쓰기 좋은 저위험 실내 코스.</span></div>
+              <div class="swot-row"><strong>W</strong><span>시드니만의 강한 감동은 Park Hyatt 주변보다 약함.</span></div>
+              <div class="swot-row"><strong>O</strong><span>비 오는 금요일 또는 누나네 토요일 카드로 좋음.</span></div>
+              <div class="swot-row"><strong>T</strong><span>주말/방학 혼잡과 입장권 가격 변동.</span></div>
+            </div>
+            <a class="swot-link" href="https://www.nsw.gov.au/visiting-and-exploring-nsw/locations-and-attractions/queen-victoria-building">QVB 링크</a>
+            <a class="swot-link" href="https://www.visitsealife.com/sydney/plan-your-day/">SEA LIFE 링크</a>
+          </div>
+        </article>
+
+        <article class="swot-card">
+          <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20(AU)%2C%20View%20from%20Opera%20House%20--%202019%20--%203073-8.jpg?width=1200" alt="The Rocks와 Sydney Harbour Bridge">
+          <div class="swot-body">
+            <h3>The Rocks + Harbour Bridge 주변</h3>
+            <div class="swot-list">
+              <div class="swot-row"><strong>S</strong><span>Park Hyatt에서 바로 걸어갈 수 있는 핵심 동네.</span></div>
+              <div class="swot-row"><strong>W</strong><span>돌길과 계단이 있어 오래 걷기는 피곤할 수 있음.</span></div>
+              <div class="swot-row"><strong>O</strong><span>토요일 누나네 합류 전후 가벼운 야경 코스로 적합.</span></div>
+              <div class="swot-row"><strong>T</strong><span>겨울 저녁 체감온도와 혼잡.</span></div>
+            </div>
+            <a class="swot-link" href="https://www.sydney.com/destinations/sydney/sydney-city/the-rocks">확인 링크</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>해당 날씨에 좋은 활동</h2>
+      <p class="lead">
+        7월 시드니는 겨울이다. BOM 장기 평균상 Observatory Hill 기준 7월 평균 최고 16.4도, 평균 최저 8.1도,
+        평균 강수량 96.3mm라서 낮에는 걸을 만하지만 아침·저녁과 항구 바람은 생각보다 쌀쌀하다.
+      </p>
+      <div class="temp-flow" aria-label="7월 시드니 일중 온도 변화 평균 흐름">
+        <div class="temp-flow-head">
+          <div>7월 일중 온도 변화 평균 흐름</div>
+          <span>BOM Observatory Hill 장기 평균 기준, 저녁 구간은 평균 최저·3pm 기온에서 보수적으로 추정</span>
+        </div>
+        <div class="temp-steps">
+          <div class="temp-step cool">
+            <span>새벽~이른 아침</span>
+            <strong>8~9도</strong>
+            <p>평균 최저 8.1도. 부모님은 얇은 패딩/바람막이 필요. 야외 출발을 늦추는 편이 좋다.</p>
+          </div>
+          <div class="temp-step cool">
+            <span>오전 9시 전후</span>
+            <strong>10~11도</strong>
+            <p>BOM 9am 평균 10.9도. 커피, 짧은 산책, 박물관 이동 시작에 적당한 시간대다.</p>
+          </div>
+          <div class="temp-step peak">
+            <span>오후 2~3시</span>
+            <strong>15~17도</strong>
+            <p>BOM 평균 최고와 3pm 평균이 16.4도. 해안 산책, 정원, 동물원, 페리는 이 구간이 가장 좋다.</p>
+          </div>
+          <div class="temp-step down">
+            <span>해질녘~저녁</span>
+            <strong>10~13도</strong>
+            <p>항구 바람 때문에 체감은 더 낮을 수 있다. 야경은 짧게 보고 저녁 식사나 호텔 라운지로 넘긴다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="weather-grid" style="margin-top:14px;">
+        <article class="weather-card">
+          <h3>맑고 바람 약함</h3>
+          <p>오후 15~17도 구간에 Coogee 산책, Opera House 외관, Royal Botanic Garden, Manly/Harbour ferry, Blue Mountains를 우선 배치한다. 사진과 만족도가 가장 잘 나온다.</p>
+        </article>
+        <article class="weather-card">
+          <h3>흐리고 쌀쌀함</h3>
+          <p>오전 10~11도, 저녁 10~13도 체감이면 The Rocks, 오페라하우스 투어, QVB, Art Gallery NSW처럼 실내와 짧은 야외를 섞는다.</p>
+        </article>
+        <article class="weather-card">
+          <h3>비</h3>
+          <p>비가 오면 16도 전후라도 체감이 떨어진다. Australian Museum, SEA LIFE Sydney, Art Gallery NSW, 호텔 애프터눈티/라운지로 전환한다.</p>
+        </article>
+        <article class="weather-card">
+          <h3>강풍 또는 많은 비</h3>
+          <p>기온보다 체감온도가 문제다. 페리, 해안 절벽길, 블루마운틴 전망 코스는 과감히 빼고 CBD 실내 동선과 택시 이동 위주로 낮춘다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>운영시간·예약 리스크</h2>
+      <div class="ops-grid">
+        <article class="ops-card">
+          <span>Taronga</span>
+          <h3>겨울 9:30~16:30</h3>
+          <p>7월은 겨울 운영이라 오후 체크인 후 핵심 구역을 보려면 빠듯하다. Taronga 날은 오전 이동, 숙소 프로그램 시간, 휴식 카페 위치를 먼저 고정한다.</p>
+        </article>
+        <article class="ops-card">
+          <span>Opera House Tour</span>
+          <h3>60분·보행/계단 부담</h3>
+          <p>일반 투어는 1시간, 최대 2.5km 보행과 약 300개 계단이 있다. 부모님 컨디션이 애매하면 Mobility Access Tour를 우선 확인한다.</p>
+        </article>
+        <article class="ops-card">
+          <span>Scenic World</span>
+          <h3>요일별 시간·날씨</h3>
+          <p>평일 10:00~16:00, 주말 9:00~17:00 흐름으로 보수 계산한다. 전날 안개·비·강풍이면 Blue Mountains는 항구 저강도 코스로 낮춘다.</p>
+        </article>
+        <article class="ops-card">
+          <span>식당·실내명소</span>
+          <h3>예약과 마감</h3>
+          <p>9명 식사는 walk-in 리스크가 크다. 추천 식당은 전날 영업시간·어린이 메뉴·예약 가능 여부를 확인하고, SEA LIFE·박물관은 timed ticket을 먼저 본다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>항공 기준</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>팀</th>
+              <th>일정</th>
+              <th>좌석</th>
+              <th class="num">Trip.com 실측가</th>
+              <th>메모</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>부모님 2명</td>
+              <td>7/23 OZ601, 7/31 OZ602</td>
+              <td>비즈니스</td>
+              <td class="num">US$6,832</td>
+              <td>도착 후 Park Hyatt 직행. US$3,416/인, 1,500원 환산 약 10,248,000원.</td>
+            </tr>
+            <tr>
+              <td>정희범팀 3명<br><span class="small">나·아내·태리</span></td>
+              <td>7/23 오후·저녁 대한항공 등, 7/31 귀국</td>
+              <td>일반석</td>
+              <td class="num">재견적 필요</td>
+              <td>2성인+1아동. 기존 OZ 기준 US$4,479는 예산표에만 임시 유지.</td>
+            </tr>
+            <tr>
+              <td>정은아팀 4명</td>
+              <td>7/25 OZ601, 7/31 OZ602</td>
+              <td>일반석</td>
+              <td class="num">US$6,428</td>
+              <td>US$1,607/인. 2성인+2아동, 종현 만 12세 미만 전제.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="notice warn">
+        현재 계산기의 항공 합계 26,608,500원은 기존 OZ 기준 임시 예산이다.
+        정희범팀 3명(나·아내·태리)을 대한항공 등 7/23 오후·저녁편으로 바꾸면 총액은 반드시 다시 계산해야 한다.
+      </div>
+    </section>
+
+    <section>
+      <h2>출처와 확인 링크</h2>
+      <div class="source-panel">
+        <p class="small">
+          가격은 Trip.com 동적 페이지를 2026.05.16~17 KST에 검색한 캡처값을 반영했다. 관광/날씨는 공식 또는 정부·운영사 페이지로 교차 확인했다.
+        </p>
+        <div class="source-grid">
+          <div>
+            <h3>항공·호텔</h3>
+            <ul>
+              <li><a href="https://flyasiana.com/C/AU/EN/customer/notice/detail?id=CM202601230002527916">Asiana OZ601/OZ602 2026 일정 공지</a></li>
+              <li><a href="https://www.koreanair.com/">Korean Air 공식 예약/운항 확인</a></li>
+              <li><a href="https://kr.trip.com/hotels/the-rocks-hotel-detail-734386/park-hyatt-sydney/?rankingId=100200213458&tid=H0008_10650080900_best&locale=ko-KR&curr=KRW">Trip.com Park Hyatt Sydney</a></li>
+              <li><a href="https://kr.trip.com/hotels/sydney-hotel-detail-2190088/intercontinental-sydney/?rankingId=100200255168">Trip.com InterContinental Sydney</a></li>
+              <li><a href="https://kr.trip.com/hotels/coogee-hotel-detail-2196216/intercontinental-hotels-sydney-coogee-beach-by-ihg/?rankingId=100200255168">Trip.com InterContinental Coogee Beach</a></li>
+              <li><a href="https://kr.trip.com/hotels/mosman-hotel-detail-23934327/wildlife-retreat-at-taronga/?rankingId=100200187323">Trip.com Wildlife Retreat at Taronga</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>관광</h3>
+            <ul>
+              <li><a href="https://www.sydneyoperahouse.com/tours/sydney-opera-house-tour">Sydney Opera House Tour</a></li>
+              <li><a href="https://www.botanicgardens.org.au/royal-botanic-garden-sydney">Royal Botanic Garden Sydney</a></li>
+              <li><a href="https://www.taronga.org.au/sydney-zoo/plan/visitor-information">Taronga Zoo visitor information</a></li>
+              <li><a href="https://www.nsw.gov.au/visiting-and-exploring-nsw/locations-and-attractions/bondi-to-coogee-coastal-walk">NSW Bondi to Coogee Coastal Walk</a></li>
+              <li><a href="https://www.scenicworld.com.au/attractions/scenic-skyway">Scenic World Skyway</a></li>
+              <li><a href="https://www.artgallery.nsw.gov.au/">Art Gallery of NSW</a></li>
+              <li><a href="https://australian.museum/visit/">Australian Museum</a></li>
+              <li><a href="https://www.nsw.gov.au/visiting-and-exploring-nsw/locations-and-attractions/queen-victoria-building">Queen Victoria Building</a></li>
+              <li><a href="https://www.visitsealife.com/sydney/plan-your-day/">SEA LIFE Sydney</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>날씨</h3>
+            <ul>
+              <li><a href="https://www.bom.gov.au/climate/averages/tables/cw_066062_All.shtml">BOM Sydney Observatory Hill climate statistics</a></li>
+              <li>BOM 기준 7월 평균 최고 16.4도, 평균 최저 8.1도, 9am 평균 10.9도, 3pm 평균 16.4도, 평균 강수량 96.3mm.</li>
+              <li>정확한 일자별 예보는 출발 1~2주 전 BOM/현지 예보로 다시 확정해야 한다.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>입국·운영·식사</h3>
+            <ul>
+              <li><a href="https://southkorea.embassy.gov.au/seol/ETA601.html">주한 호주대사관 ETA 안내</a></li>
+              <li><a href="https://www.ambulance.nsw.gov.au/our-services/accounts-and-fees/fees-for-interstate-and-overseas-residents">NSW Ambulance overseas visitor fees</a></li>
+              <li><a href="https://www.sydneyoperahouse.com/visit/eat-and-drink/opera-bar">Opera Bar venue information</a></li>
+              <li><a href="https://www.batherspavilion.com.au/menus/bistro/">Bathers' Bistro family dining</a></li>
+              <li><a href="https://thegrounds.com.au/dine-in/the-city/">The Grounds of the City</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>동선 주변 Top 100 음식점·카페·명소</h2>
+      <p class="lead">
+        숙소와 날짜별 동선을 기준으로 Circular Quay·The Rocks·Coogee·Bondi·Mosman·Manly·Blue Mountains까지 확장했다.
+        Google Maps, OpenTable, Time Out, Broadsheet, Urban List, Sydney.com 기준으로 현장에서 고르기 쉬운 후보 100개다.
+      </p>
+      <div class="notice">
+        각 카드는 영업시간·예약 가능 여부가 바뀔 수 있으므로 Google Maps와 예약 버튼에서 실시간 확인하는 전제다.
+        카드의 가족판단점수는 동선·아이/부모님 적합도·날씨·예약난도를 합친 내부 점수이고, 최신 Google 별점은 지도 버튼에서 확인한다.
+        히어로 사진은 장소명 기반 썸네일을 우선 사용하고, 이미지를 누르면 해당 장소 이미지 검색으로 바로 넘어간다.
+      </div>
+      <div class="poi-grid" id="poiGrid" aria-label="시드니 동선 주변 Top 100 카드"></div>
+
+      <div class="source-panel" style="margin-top:16px;">
+        <p class="small">
+          기준 링크:
+          <a href="https://www.timeout.com/sydney/restaurants/the-best-restaurants-in-sydney?sfns=mo">Time Out Sydney restaurants</a> ·
+          <a href="https://www.broadsheet.com.au/sydney">Broadsheet Sydney</a> ·
+          <a href="https://www.theurbanlist.com/sydney/a-list/circular-quay-restaurants">The Urban List Circular Quay</a> ·
+          <a href="https://www.opentable.com/n/sydney-nsw/sydney-cbd-restaurants?lang=en">OpenTable Sydney CBD</a> ·
+          <a href="https://www.sydney.com/articles/top-attractions-in-sydney">Sydney.com attractions</a> ·
+          <a href="https://www.broadsheet.com.au/national/food-and-drink/article/restaurant-booking-site-fork-shuts-down-its-australian-operations">TheFork Australia 종료 확인</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const airTotal = 26608500;
+    const partySize = 9;
+    const dayPlans = [
+      {
+        date: "7/23 목",
+        tagClass: "blue",
+        title: "부모님 Park Hyatt 직행, 정희범팀 오후·저녁 출국",
+        photo: "https://ak-d.tripcdn.com/images/0203b120008thak4u61B6_R_960_660_R5_D.jpg",
+        alt: "Park Hyatt Sydney",
+        caption: "부모님 첫날 회복 거점은 Park Hyatt로 고정",
+        base: "Park Hyatt Sydney / 정희범팀 기내",
+        pace: "최저",
+        weather: "비 영향 낮음",
+        points: ["SYD 공항", "Park Hyatt", "정희범팀 출국"],
+        summary: "부모님은 OZ601 도착 후 Park Hyatt로 바로 들어가고, 정희범팀은 7/23 오후·저녁 대한항공 등으로 출발한다. 이날은 부모님 수면 회복만 성공하면 된다.",
+        why: "첫날부터 부모님을 Park Hyatt에 고정하면 호텔 이동 피로가 사라진다. 정희범팀은 다음날 합류라 첫날 객실박도 줄일 수 있다.",
+        map: "https://www.google.com/maps/dir/?api=1&origin=Sydney%20Airport&destination=Park%20Hyatt%20Sydney&travelmode=driving",
+        altMap: "https://www.google.com/maps/search/?api=1&query=The%20Rocks%20restaurants%20Sydney",
+        altLabel: "The Rocks 식사"
+      },
+      {
+        date: "7/24 금",
+        tagClass: "good",
+        title: "정희범팀 도착 후 Park Hyatt 합류",
+        photo: "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20(AU)%2C%20View%20from%20Opera%20House%20--%202019%20--%203073-8.jpg?width=1200",
+        alt: "Sydney Harbour from Opera House",
+        caption: "Park Hyatt 합류 후 바로 쓰는 Circular Quay 동선",
+        base: "Park Hyatt Sydney",
+        pace: "낮음",
+        weather: "비 오면 호텔·MCA 중심",
+        points: ["SYD 공항", "Park Hyatt", "Circular Quay", "The Rocks"],
+        summary: "정희범팀은 도착 후 Park Hyatt에서 부모님과 합류한다. 체크인 전이면 짐만 맡기고 Circular Quay와 The Rocks 주변에서 낮은 강도로 움직인다.",
+        why: "도착 다음날 무리하면 전체 컨디션이 무너진다. Park Hyatt 위치를 활용해 멀리 가지 않는 것이 맞다.",
+        map: "https://www.google.com/maps/dir/?api=1&origin=Sydney%20Airport&destination=Park%20Hyatt%20Sydney&waypoints=Circular%20Quay%20Sydney%7CThe%20Rocks%20Sydney&travelmode=driving",
+        altMap: "https://www.google.com/maps/search/?api=1&query=Museum%20of%20Contemporary%20Art%20Australia%20Sydney",
+        altLabel: "비오면 MCA"
+      },
+      {
+        date: "7/25 토",
+        tagClass: "red",
+        title: "누나네 합류 + The Rocks 야경",
+        photo: "https://ak-d.tripcdn.com/images/0203b120008thak4u61B6_R_960_660_R5_D.jpg",
+        alt: "Park Hyatt Sydney",
+        caption: "Park Hyatt는 오페라하우스 앞 위치값이 핵심",
+        base: "Park Hyatt Sydney",
+        pace: "낮음",
+        weather: "저녁 바람 주의",
+        points: ["Park Hyatt", "The Rocks", "Harbour Bridge"],
+        summary: "누나네가 합류하는 날이다. 이미 Park Hyatt에 있으므로 이동일 부담 없이 The Rocks와 하버브리지 주변만 짧게 보고, 저녁에 합류 컨디션을 맞춘다.",
+        why: "Park Hyatt의 장점은 이동을 줄이는 데 있다. 멀리 가지 않고도 시드니 핵심 풍경이 바로 앞에 있다는 점을 쓰면 된다.",
+        map: "https://www.google.com/maps/dir/?api=1&origin=Park%20Hyatt%20Sydney&destination=Park%20Hyatt%20Sydney&waypoints=The%20Rocks%20Sydney%7CSydney%20Harbour%20Bridge&travelmode=walking",
+        altMap: "https://www.google.com/maps/search/?api=1&query=The%20Rocks%20restaurants%20Sydney",
+        altLabel: "The Rocks 식사"
+      },
+      {
+        date: "7/26 일",
+        tagClass: "good",
+        title: "Opera House + Royal Botanic Garden",
+        photo: "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20Opera%20House%20From%20Botanic%20Garden.jpg?width=1200",
+        alt: "Sydney Opera House and Royal Botanic Garden",
+        caption: "시드니 첫 방문자가 가장 직관적으로 만족하는 항구 코스",
+        base: "Park Hyatt Sydney",
+        pace: "보통",
+        weather: "맑으면 최고, 비 와도 투어 가능",
+        points: ["Opera House", "Botanic Garden", "Mrs Macquarie's Chair"],
+        summary: "오페라하우스 외관, 가능하면 공식 투어, Royal Botanic Garden, Mrs Macquarie's Chair를 묶는 날이다. 사진과 산책 만족도는 높지만 부모님 보행량은 중간에 끊어 조절해야 한다.",
+        why: "Park Hyatt 숙박비를 정당화하는 핵심일이다. 위치가 워낙 좋아 차를 타지 않고도 대표 명소를 소화할 수 있다.",
+        map: "https://www.google.com/maps/dir/?api=1&origin=Park%20Hyatt%20Sydney&destination=Park%20Hyatt%20Sydney&waypoints=Sydney%20Opera%20House%7CRoyal%20Botanic%20Garden%20Sydney%7CMrs%20Macquarie%27s%20Chair&travelmode=walking",
+        altMap: "https://www.google.com/maps/search/?api=1&query=Sydney%20Opera%20House%20tour",
+        altLabel: "투어 확인"
+      },
+      {
+        date: "7/27 월",
+        tagClass: "good",
+        title: "Taronga 체크인 + 동물원 집중",
+        photo: "https://ak-d.tripcdn.com/images/1mc5z12000cdbkoo6C7CD_R_960_660_R5_D.jpg",
+        alt: "Wildlife Retreat at Taronga",
+        caption: "아이들 만족도 최우선 숙소 이동일",
+        base: "Wildlife Retreat at Taronga",
+        pace: "보통",
+        weather: "비 오면 숙소 프로그램 중심",
+        points: ["Park Hyatt", "Taronga Zoo", "Wildlife Retreat"],
+        summary: "Wildlife Retreat는 숙소 자체가 콘텐츠다. 아이들에게는 동물원과 호텔이 붙어 있는 경험이 강하지만, Taronga는 언덕이 있어 하루 전체를 여유 있게 잡는 게 낫다.",
+        why: "이날은 어른의 명소보다 아이들의 기억을 만드는 날이다. 체크인과 동물원 관람을 무리 없이 붙이는 것이 핵심이다.",
+        map: "https://www.google.com/maps/dir/?api=1&origin=Park%20Hyatt%20Sydney&destination=Wildlife%20Retreat%20at%20Taronga&waypoints=Taronga%20Zoo%20Sydney&travelmode=driving",
+        altMap: "https://www.google.com/maps/search/?api=1&query=Taronga%20Zoo%20Sydney%20restaurants",
+        altLabel: "Taronga 내부"
+      },
+      {
+        date: "7/28 화",
+        tagClass: "blue",
+        title: "Taronga 여유 + Balmoral 또는 Manly",
+        photo: "https://commons.wikimedia.org/wiki/Special:FilePath/CSIRO%20ScienceImage%208274%20The%20Manly%20ferry%20Freshwater.jpg?width=1200",
+        alt: "Sydney Manly ferry",
+        caption: "날씨가 좋으면 페리와 북쪽 해변을 짧게 체험",
+        base: "Taronga / Mosman",
+        pace: "선택형",
+        weather: "강풍이면 축소",
+        points: ["Balmoral", "Chowder Bay", "Manly"],
+        summary: "Taronga 2일차는 완전히 비워두는 느낌이 좋다. 맑고 바람이 약하면 Balmoral이나 Manly를 넣고, 비가 오거나 부모님이 피곤하면 동물원/숙소 안에서 쉬어도 손해가 적다.",
+        why: "예비일 성격을 넣어야 아이들과 부모님 컨디션을 동시에 관리할 수 있다. 이 날은 확정보다 선택지가 중요한 날이다.",
+        map: "https://www.google.com/maps/dir/?api=1&origin=Wildlife%20Retreat%20at%20Taronga&destination=Wildlife%20Retreat%20at%20Taronga&waypoints=Balmoral%20Beach%20Sydney%7CChowder%20Bay%20Sydney%7CManly%20Wharf&travelmode=driving",
+        altMap: "https://www.google.com/maps/search/?api=1&query=Art%20Gallery%20of%20NSW",
+        altLabel: "비오면 미술관"
+      },
+      {
+        date: "7/29 수",
+        tagClass: "warn",
+        title: "InterContinental 이동 + CBD 실내 동선",
+        photo: "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20(AU)%2C%20Queen%20Victoria%20Building%20--%202019%20--%203580%20(cropped)%20-%202.jpg?width=1200",
+        alt: "Queen Victoria Building Sydney",
+        caption: "비가 와도 안정적인 도심 실내 동선",
+        base: "InterContinental Sydney",
+        pace: "낮음",
+        weather: "비오는 날 최적",
+        points: ["QVB", "Art Gallery", "Hyde Park", "SEA LIFE"],
+        summary: "QVB, Art Gallery NSW, Hyde Park, SEA LIFE를 컨디션에 맞게 고르는 날이다. InterContinental Sydney는 마지막 짐 정리와 도심 접근이 좋아 안정적인 마무리 거점이 된다.",
+        why: "이날은 이동과 체크인을 끼고 있으므로 실내·짧은 보행·택시 이동이 쉬운 장소 위주로 배치하는 게 맞다.",
+        map: "https://www.google.com/maps/dir/?api=1&origin=InterContinental%20Sydney&destination=InterContinental%20Sydney&waypoints=Queen%20Victoria%20Building%20Sydney%7CArt%20Gallery%20of%20New%20South%20Wales%7CSEA%20LIFE%20Sydney%20Aquarium&travelmode=walking",
+        altMap: "https://www.google.com/maps/search/?api=1&query=SEA%20LIFE%20Sydney%20Aquarium",
+        altLabel: "아이 실내 대안"
+      },
+      {
+        date: "7/30 목",
+        tagClass: "blue",
+        title: "Blue Mountains 또는 항구 저강도 코스",
+        photo: "https://commons.wikimedia.org/wiki/Special:FilePath/Blue%20mountains%20-%20three%20sisters.jpg?width=1200",
+        alt: "Blue Mountains Three Sisters",
+        caption: "맑은 날이면 도시 밖 하이라이트, 안개면 과감히 취소",
+        base: "InterContinental Sydney",
+        pace: "높음 또는 낮음",
+        weather: "안개·비 리스크 큼",
+        points: ["Scenic World", "Echo Point", "Leura"],
+        summary: "Blue Mountains는 날씨가 좋으면 강한 하이라이트가 되지만, 안개와 비가 오면 이동 대비 만족도가 떨어진다. 전날 예보를 보고 전용차 데이투어로 갈지, 항구 근처 저강도 코스로 낮출지 결정한다.",
+        why: "마지막 풀데이는 선택지가 갈린다. 가족 컨디션이 좋고 날씨가 맑을 때만 큰 이동을 넣는 구조가 안전하다.",
+        map: "https://www.google.com/maps/dir/?api=1&origin=InterContinental%20Sydney&destination=InterContinental%20Sydney&waypoints=Scenic%20World%20Blue%20Mountains%7CEcho%20Point%20Lookout&travelmode=driving",
+        altMap: "https://www.google.com/maps/search/?api=1&query=Museum%20of%20Contemporary%20Art%20Australia%20Sydney",
+        altLabel: "항구 실내 대안"
+      },
+      {
+        date: "7/31 금",
+        tagClass: "warn",
+        title: "체크아웃 + QVB/Darling Harbour + 공항, 누나네 투숙",
+        photo: "https://commons.wikimedia.org/wiki/Special:FilePath/Art%20Gallery%20of%20New%20South%20Wales%20fa%C3%A7ade.jpg?width=1200",
+        alt: "Art Gallery of New South Wales",
+        caption: "밤 비행 전에는 짐·식사·실내 휴식 중심, 누나네는 토요일 출발",
+        base: "InterContinental Sydney",
+        pace: "낮음",
+        weather: "실내 중심",
+        points: ["QVB", "Darling Harbour", "SEA LIFE", "SYD 공항"],
+        summary: "정희범팀과 부모님은 밤 비행 전 체력을 보존해야 한다. 호텔에 짐을 맡기고 QVB, Darling Harbour, 라운지 식사 정도로 낮춘다. 누나네는 금요일 투숙 확정이므로 아이들 실내 명소를 토요일 카드로 남긴다.",
+        why: "귀국일은 관광보다 비행 컨디션이 더 중요하다. 이동을 짧게 유지하고 식사·화장실·휴식이 쉬운 곳만 잡는 편이 좋다.",
+        map: "https://www.google.com/maps/dir/?api=1&origin=InterContinental%20Sydney&destination=Sydney%20Airport&waypoints=Queen%20Victoria%20Building%20Sydney%7CDarling%20Harbour%20Sydney%7CSEA%20LIFE%20Sydney%20Aquarium&travelmode=driving",
+        altMap: "https://www.google.com/maps/search/?api=1&query=Darling%20Harbour%20Sydney%20family%20restaurants",
+        altLabel: "마지막 식사"
+      }
+    ];
+
+    const dayOperations = [
+      {
+        date: "7/23 목",
+        title: "부모님 Park Hyatt 직행일 주변 추천",
+        note: "첫날은 부모님이 호텔에서 멀어지지 않는 게 핵심이라 The Rocks·Circular Quay 도보권과 늦은 도착 백업 위주로 잡았다.",
+        restaurants: [
+          { name: "City Extra Circular Quay", area: "Circular Quay", query: "City Extra Circular Quay", s: "늦은 시간 백업", w: "특별함 낮음", o: "도착 지연 대응", t: "관광지 혼잡", source: "Google Maps" },
+          { name: "The Rocks Cafe", area: "The Rocks", query: "The Rocks Cafe Sydney", s: "Park Hyatt 도보권", w: "관광지형", o: "부모님 첫 저녁", t: "운영시간", source: "Google Maps" },
+          { name: "Pancakes On The Rocks", area: "The Rocks", query: "Pancakes On The Rocks Sydney", s: "아이·어른 모두 쉬움", w: "대기 가능", o: "늦은 식사 백업", t: "혼잡", source: "Google Maps" }
+        ],
+        cafes: [
+          { name: "La Renaissance Patisserie", area: "The Rocks", query: "La Renaissance Patisserie The Rocks", s: "디저트·커피", w: "식사 대체 약함", o: "부모님 가벼운 휴식", t: "줄", source: "The Rocks/Google" },
+          { name: "MCA Cafe", area: "Circular Quay", query: "MCA Cafe Sydney", s: "하버 근처 실내", w: "운영시간 제한", o: "비오는 날", t: "마감", source: "Sydney.com/Google" },
+          { name: "Caffe Gigi", area: "Circular Quay", query: "Caffe Gigi Circular Quay", s: "호텔 근처", w: "좌석 제한", o: "짧은 커피", t: "혼잡", source: "Google Maps" }
+        ]
+      },
+      {
+        date: "7/24 금",
+        title: "정희범팀 Park Hyatt 합류일 주변 추천",
+        note: "도착 후 합류일이라 Park Hyatt에서 걷거나 택시 5분 안쪽인 Circular Quay·The Rocks 중심으로 잡았다.",
+        restaurants: [
+          { name: "Opera Bar", area: "Opera House", query: "Opera Bar Sydney", s: "하버뷰 즉시 체감", w: "바람·혼잡", o: "합류 후 가벼운 점심", t: "날씨", source: "Sydney Opera House" },
+          { name: "Ploos", area: "The Rocks", query: "Ploos Sydney", s: "공유식 좋음", w: "좌석 한정", o: "첫 가족 저녁", t: "예약 필요", source: "Broadsheet" },
+          { name: "Sake Restaurant & Bar", area: "The Rocks", query: "Sake Restaurant The Rocks", s: "안정적 일식", w: "시드니 고유성 약함", o: "비오는 날 저녁", t: "비용 상승", source: "OpenTable/Google" }
+        ],
+        cafes: [
+          { name: "La Renaissance Patisserie", area: "The Rocks", query: "La Renaissance Patisserie The Rocks", s: "디저트·커피", w: "식사 대체 약함", o: "합류 전후 휴식", t: "줄", source: "The Rocks/Google" },
+          { name: "The Tea Cosy", area: "The Rocks", query: "The Tea Cosy The Rocks", s: "부모님 친화", w: "영업시간 확인", o: "오후 티", t: "좌석", source: "Google Maps" },
+          { name: "MCA Cafe", area: "Circular Quay", query: "MCA Cafe Sydney", s: "실내·전망", w: "식사 목적성 낮음", o: "비오는 날", t: "운영시간", source: "Sydney.com/Google" }
+        ]
+      },
+      {
+        date: "7/25 토",
+        title: "Park Hyatt·The Rocks 합류일 주변 추천",
+        note: "누나네 합류일이라 Park Hyatt에서 걸어갈 수 있거나 택시 5분 안쪽인 The Rocks 중심으로 골랐다.",
+        restaurants: [
+          { name: "6HEAD", area: "The Rocks", query: "6HEAD Sydney", s: "스테이크·하버뷰", w: "무거운 식사", o: "다세대 저녁", t: "예약 필수", source: "OpenTable" },
+          { name: "Ploos", area: "The Rocks", query: "Ploos Sydney", s: "그리스식 공유", w: "좌석 한정", o: "Park Hyatt 근처", t: "피크타임", source: "Broadsheet" },
+          { name: "Sake Restaurant & Bar", area: "The Rocks", query: "Sake Restaurant The Rocks", s: "안정적 일식", w: "시드니 고유성 약함", o: "비오는 날", t: "가격 상승", source: "OpenTable" }
+        ],
+        cafes: [
+          { name: "La Renaissance Patisserie", area: "The Rocks", query: "La Renaissance Patisserie The Rocks", s: "디저트·커피", w: "식사 대체 약함", o: "합류 전 휴식", t: "줄", source: "The Rocks/Google" },
+          { name: "The Rocks Cafe", area: "The Rocks", query: "The Rocks Cafe Sydney", s: "가족형 메뉴", w: "특별함 낮음", o: "예약 없이 백업", t: "관광지 혼잡", source: "Google Maps" },
+          { name: "MCA Cafe", area: "Circular Quay", query: "MCA Cafe Sydney", s: "실내 휴식", w: "음식 목적성 낮음", o: "비오는 날", t: "운영시간", source: "Sydney.com" }
+        ]
+      },
+      {
+        date: "7/26 일",
+        title: "Opera House·Botanic Garden 주변 추천",
+        note: "Park Hyatt 위치값을 쓰는 날이라 오페라하우스·Circular Quay·Botanic Garden 반경으로 추천했다.",
+        restaurants: [
+          { name: "Bennelong", area: "Opera House", query: "Bennelong Sydney Opera House", s: "장소 상징성 최고", w: "고가·예약 난도", o: "부모님 특별식", t: "아이 피로", source: "Time Out" },
+          { name: "Opera Bar", area: "Opera House", query: "Opera Bar Sydney", s: "하버뷰 즉시 체감", w: "바람·혼잡", o: "가벼운 점심", t: "날씨", source: "Sydney.com" },
+          { name: "Cafe Sydney", area: "Circular Quay", query: "Cafe Sydney Circular Quay", s: "항구뷰 식사", w: "예약 필요", o: "가족 저녁", t: "테라스 날씨", source: "OpenTable" }
+        ],
+        cafes: [
+          { name: "Caffe Gigi", area: "East Circular Quay", query: "Caffe Gigi Circular Quay", s: "가까운 캐주얼", w: "좌석 제한", o: "투어 전후", t: "혼잡", source: "Google Maps" },
+          { name: "Bar Mammoni", area: "Circular Quay", query: "Bar Mammoni Sydney", s: "커피·간식", w: "대형 가족석 확인", o: "짧은 휴식", t: "영업시간", source: "Broadsheet" },
+          { name: "MCA Cafe", area: "Circular Quay", query: "MCA Cafe Sydney", s: "비오는 날 안정", w: "목적식 약함", o: "전시와 묶기", t: "운영시간", source: "Sydney.com" }
+        ]
+      },
+      {
+        date: "7/27 월",
+        title: "Taronga·Mosman 체크인일 주변 추천",
+        note: "아이 중심일이므로 동물원 내부, Chowder Bay, Balmoral까지 무리 없는 택시권으로 잡았다.",
+        restaurants: [
+          { name: "Bathers' Bistro", area: "Balmoral", query: "Bathers Bistro Balmoral", s: "가족형 해변 식사", w: "택시 이동 필요", o: "아이 메뉴", t: "예약", source: "Bathers 공식" },
+          { name: "Ripples Chowder Bay", area: "Chowder Bay", query: "Ripples Chowder Bay", s: "하버뷰", w: "선택지 제한", o: "Taronga 후 점심", t: "날씨·예약", source: "OpenTable" },
+          { name: "Ormeggio at The Spit", area: "Mosman", query: "Ormeggio at The Spit", s: "고급 워터프런트", w: "동선 우회·고가", o: "어른 특별식", t: "아이 적합성", source: "OpenTable" }
+        ],
+        cafes: [
+          { name: "Taronga Zoo Cafes", area: "Taronga Zoo", query: "Taronga Zoo Sydney cafe food", s: "이동 최소", w: "음식 기대치 낮음", o: "아이 컨디션 관리", t: "운영시간", source: "Taronga" },
+          { name: "Athol Hall Cafe", area: "Athol Bay", query: "Athol Hall Cafe Taronga", s: "동선 인접", w: "운영 확인 필요", o: "짧은 휴식", t: "휴무 가능", source: "로컬 검색" },
+          { name: "The Boathouse Balmoral", area: "Balmoral", query: "The Boathouse Balmoral", s: "해변 카페", w: "줄", o: "맑은 날", t: "날씨", source: "공식/Broadsheet" }
+        ]
+      },
+      {
+        date: "7/28 화",
+        title: "Balmoral·Manly 선택일 주변 추천",
+        note: "페리/해변 선택일이라 Balmoral에 머무르는 경우와 Manly로 넘어가는 경우를 둘 다 커버했다.",
+        restaurants: [
+          { name: "Bathers' Pavilion", area: "Balmoral", query: "Bathers' Pavilion Balmoral", s: "해변 고급식", w: "예약 필요", o: "부모님 만족", t: "주차·택시", source: "Urban List" },
+          { name: "Felons Seafood Manly", area: "Manly", query: "Felons Seafood Manly", s: "페리 후 쉬움", w: "혼잡", o: "Manly 선택 시", t: "대기", source: "Google Maps" },
+          { name: "Sake Manly", area: "Manly", query: "Sake Manly", s: "안정적 일식", w: "필수성 낮음", o: "비상 저녁", t: "예약", source: "OpenTable" }
+        ],
+        cafes: [
+          { name: "The Boathouse Balmoral", area: "Balmoral", query: "The Boathouse Balmoral", s: "아이 동반 쉬움", w: "줄", o: "해변 휴식", t: "날씨", source: "공식/Broadsheet" },
+          { name: "The Bower Manly", area: "Manly", query: "The Bower Manly", s: "바다뷰", w: "노출 좌석", o: "맑은 브런치", t: "바람", source: "Google Maps" },
+          { name: "Ruby Lane Wholefoods", area: "Manly", query: "Ruby Lane Wholefoods Manly", s: "건강식 조식", w: "캐주얼", o: "아이 가벼운 식사", t: "대기", source: "Google Maps" }
+        ]
+      },
+      {
+        date: "7/29 수",
+        title: "InterContinental·CBD 실내일 주변 추천",
+        note: "체크인과 실내 명소가 겹치는 날이라 QVB, Circular Quay, Art Gallery 접근성이 좋은 곳으로 골랐다.",
+        restaurants: [
+          { name: "Mr. Wong", area: "CBD", query: "Mr Wong Sydney", s: "대가족 공유식", w: "시끄럽고 예약 난도", o: "광동식 저녁", t: "대기", source: "Time Out" },
+          { name: "Grana", area: "CBD", query: "Grana Sydney", s: "파스타·빵 안정", w: "뷰 없음", o: "비오는 날", t: "피크 혼잡", source: "Broadsheet" },
+          { name: "Lana", area: "CBD", query: "Lana Restaurant Sydney", s: "세련된 도심식", w: "아이 취향 갈림", o: "어른 저녁", t: "메뉴 호불호", source: "OpenTable" }
+        ],
+        cafes: [
+          { name: "The Grounds of the City", area: "CBD/QVB", query: "The Grounds of the City Sydney", s: "실내 브런치", w: "9명은 문의 필요", o: "비오는 날", t: "혼잡", source: "공식/Google" },
+          { name: "The Tea Room QVB", area: "QVB", query: "The Tea Room QVB Sydney", s: "부모님 만족도", w: "가격·예약", o: "마지막 쇼핑", t: "좌석", source: "QVB 공식" },
+          { name: "Art Gallery Cafe", area: "Art Gallery NSW", query: "Art Gallery of NSW cafe Sydney", s: "전시와 결합", w: "식사 목적성 낮음", o: "우천 대체", t: "운영시간", source: "Art Gallery" }
+        ]
+      },
+      {
+        date: "7/30 목",
+        title: "Blue Mountains 조건부 데이 주변 추천",
+        note: "맑은 날 전용차로 갈 경우를 기준으로 Leura·Katoomba·Echo Point 주변 회복 지점을 넣었다.",
+        restaurants: [
+          { name: "Leura Garage", area: "Leura", query: "Leura Garage", s: "투어 중 식사 쉬움", w: "동선 우회", o: "점심 회복", t: "대기", source: "Google Maps" },
+          { name: "The Lookout Echo Point", area: "Echo Point", query: "The Lookout Echo Point", s: "전망 인접", w: "관광지형", o: "빠른 식사", t: "혼잡·날씨", source: "Google Maps" },
+          { name: "Darley's Restaurant", area: "Katoomba", query: "Darley's Restaurant Katoomba", s: "하이엔드 선택", w: "시간·가격 부담", o: "어른 만족", t: "예약 마감", source: "Google Maps" }
+        ],
+        cafes: [
+          { name: "Cassiopeia Specialty Coffee", area: "Katoomba", query: "Cassiopeia Specialty Coffee Katoomba", s: "커피 휴식", w: "좌석 제한", o: "이동 중 회복", t: "영업시간", source: "Google Maps" },
+          { name: "Anonymous Cafe", area: "Blackheath", query: "Anonymous Cafe Blackheath", s: "로컬 카페", w: "동선 우회", o: "블랙히스 포함 시", t: "휴무", source: "Google Maps" },
+          { name: "Blue Mountains Chocolate Company", area: "Katoomba", query: "Blue Mountains Chocolate Company Katoomba", s: "아이 간식", w: "식사 대체 약함", o: "추운 날 휴식", t: "혼잡", source: "Google Maps" }
+        ]
+      },
+      {
+        date: "7/31 금",
+        title: "InterContinental·Darling Harbour·공항일 주변 추천",
+        note: "밤 비행 전이라 짐 보관, 화장실, 택시 접근, 짧은 체류가 쉬운 CBD·Circular Quay·QVB 중심으로 잡았다.",
+        restaurants: [
+          { name: "City Extra Circular Quay", area: "Circular Quay", query: "City Extra Circular Quay", s: "시간 조절 백업", w: "특별함 낮음", o: "공항 전 식사", t: "관광지 혼잡", source: "Google Maps" },
+          { name: "Mary's Circular Quay", area: "Circular Quay", query: "Mary's Circular Quay", s: "캐주얼 버거", w: "고급감 없음", o: "아이 빠른 식사", t: "혼잡", source: "Sydney.com" },
+          { name: "The Grounds of the City", area: "CBD/QVB", query: "The Grounds of the City Sydney", s: "실내 안정", w: "예약·대기", o: "마지막 브런치", t: "시간 지연", source: "공식/Google" }
+        ],
+        cafes: [
+          { name: "Caffe Gigi", area: "Circular Quay", query: "Caffe Gigi Circular Quay", s: "호텔 근처", w: "좌석 제한", o: "가벼운 커피", t: "혼잡", source: "Google Maps" },
+          { name: "The Tea Room QVB", area: "QVB", query: "The Tea Room QVB Sydney", s: "실내·부모님 친화", w: "가격", o: "체크아웃 후", t: "예약", source: "QVB 공식" },
+          { name: "Gumption by Coffee Alchemy", area: "The Strand Arcade", query: "Gumption by Coffee Alchemy Sydney", s: "커피 강함", w: "좌석 제한", o: "짧은 카페인", t: "주말 혼잡", source: "Time Out/Google" }
+        ]
+      }
+    ];
+
+    const poiTop10 = [
+      { rank: 1, kind: "식당", tag: "good", name: "Coogee Pavilion", area: "Coogee", source: "Google Maps·로컬 가이드", query: "Coogee Pavilion", s: "첫날·해변일 가족 식사", w: "늘 붐빔", o: "아이 동반 쉬움", t: "대기" },
+      { rank: 2, kind: "카페", tag: "good", name: "La Renaissance Patisserie", area: "The Rocks", source: "The Rocks 공식", query: "La Renaissance Patisserie The Rocks", s: "Park Hyatt 근처 휴식", w: "식사 대체 약함", o: "부모님 커피·디저트", t: "줄" },
+      { rank: 3, kind: "식당", tag: "blue", name: "Opera Bar", area: "Opera House", source: "Sydney Opera House 공식", query: "Opera Bar Sydney", s: "하버뷰 즉시 체감", w: "바람·혼잡", o: "가벼운 점심", t: "날씨" },
+      { rank: 4, kind: "식당", tag: "good", name: "The Grounds of the City", area: "CBD", source: "공식 사이트", query: "The Grounds of the City Sydney", s: "QVB 근처 실내 안정", w: "9명은 문의 필요", o: "비오는 날", t: "피크 혼잡" },
+      { rank: 5, kind: "식당", tag: "good", name: "Bathers' Bistro", area: "Balmoral", source: "Bathers 공식", query: "Bathers Bistro Balmoral", s: "아이 메뉴·가족형", w: "동선 우회", o: "Balmoral 점심", t: "예약" },
+      { rank: 6, kind: "카페", tag: "blue", name: "The Boathouse Balmoral", area: "Balmoral", source: "공식 사이트", query: "The Boathouse Balmoral", s: "맑은 날 해변 카페", w: "날씨 노출", o: "Taronga 2일차", t: "임시 휴무 확인" },
+      { rank: 7, kind: "식당", tag: "blue", name: "City Extra Circular Quay", area: "Circular Quay", source: "공식 사이트", query: "City Extra Circular Quay", s: "24시간 백업", w: "특별함은 낮음", o: "항공 지연·마지막날", t: "관광지 혼잡" },
+      { rank: 8, kind: "명소", tag: "good", name: "Australian Museum", area: "CBD", source: "Sydney.com·Google Maps", query: "Australian Museum Sydney", s: "우천 실내 강함", w: "특별전 비용", o: "아이 백업", t: "운영시간" },
+      { rank: 9, kind: "명소", tag: "good", name: "SEA LIFE Sydney Aquarium", area: "Darling Harbour", source: "Sydney.com·Google Maps", query: "SEA LIFE Sydney Aquarium", s: "아이 만족도 안정", w: "입장료", o: "비오는 날", t: "대기" },
+      { rank: 10, kind: "명소", tag: "good", name: "Scenic World", area: "Blue Mountains", source: "공식 사이트", query: "Scenic World Blue Mountains", s: "맑은 날 하이라이트", w: "장거리 이동", o: "가족사진", t: "안개·마감" }
+    ];
+
+    const poiTop50 = [
+      { rank: 1, kind: "식당", tag: "red", name: "Bennelong", area: "Opera House", source: "Time Out·Google Maps", query: "Bennelong Sydney Opera House", s: "오페라하우스 안의 상징성", w: "예약·가격 부담", o: "부모님 특별식", t: "좌석 마감" },
+      { rank: 2, kind: "식당", tag: "red", name: "Quay", area: "The Rocks", source: "로컬 파인다이닝·Google Maps", query: "Quay Restaurant Sydney", s: "하버뷰 파인다이닝", w: "매우 고가", o: "기념일 저녁", t: "아이 동반 난도" },
+      { rank: 3, kind: "식당", tag: "red", name: "Aria", area: "Circular Quay", source: "OpenTable·Google Maps", query: "Aria Restaurant Sydney", s: "오페라하우스 전망", w: "비싼 코스", o: "부모님 저녁", t: "예약 경쟁" },
+      { rank: 4, kind: "식당", tag: "good", name: "Cafe Sydney", area: "Circular Quay", source: "OpenTable·Google Maps", query: "Cafe Sydney", s: "항구뷰와 접근성", w: "테라스 날씨 변수", o: "가족 저녁", t: "피크타임 혼잡" },
+      { rank: 5, kind: "식당", tag: "good", name: "6HEAD", area: "The Rocks", source: "OpenTable·Google Maps", query: "6HEAD Sydney", s: "스테이크·하버뷰", w: "무거운 식사", o: "다세대 식사", t: "저녁 가격" },
+      { rank: 6, kind: "식당", tag: "blue", name: "Opera Bar", area: "Opera House", source: "Sydney.com·Google Maps", query: "Opera Bar Sydney", s: "풍경이 압도적", w: "붐비고 바람 탐", o: "가벼운 점심", t: "날씨 리스크" },
+      { rank: 7, kind: "식당", tag: "good", name: "Ploos", area: "The Rocks", source: "Broadsheet·Google Maps", query: "Ploos Sydney", s: "그리스식 공유 메뉴", w: "좌석 한정", o: "Park Hyatt 근처", t: "예약 필요" },
+      { rank: 8, kind: "식당", tag: "blue", name: "Sake Restaurant & Bar", area: "The Rocks", source: "OpenTable·Google Maps", query: "Sake Restaurant The Rocks", s: "안정적 일식", w: "시드니 고유성 약함", o: "비오는 날 저녁", t: "비용 상승" },
+      { rank: 9, kind: "식당", tag: "blue", name: "The Glenmore Rooftop", area: "The Rocks", source: "Broadsheet·Google Maps", query: "The Glenmore Rooftop Sydney", s: "캐주얼 루프탑", w: "계단·혼잡", o: "짧은 점심", t: "바람" },
+      { rank: 10, kind: "카페", tag: "good", name: "La Renaissance Patisserie", area: "The Rocks", source: "Google Maps·로컬 가이드", query: "La Renaissance Patisserie The Rocks", s: "가벼운 디저트", w: "식사 대체는 약함", o: "아침 커피", t: "줄" },
+      { rank: 11, kind: "카페", tag: "blue", name: "The Rocks Cafe", area: "The Rocks", source: "Google Maps", query: "The Rocks Cafe Sydney", s: "가족형 쉬운 선택", w: "특별함은 낮음", o: "비상 식사", t: "관광지 가격" },
+      { rank: 12, kind: "카페", tag: "warn", name: "MCA Cafe", area: "Circular Quay", source: "Sydney.com·Google Maps", query: "MCA Cafe Sydney", s: "비오는 날 휴식", w: "음식 목적성 낮음", o: "전시와 묶기", t: "운영시간" },
+      { rank: 13, kind: "식당", tag: "good", name: "Whalebridge", area: "Circular Quay", source: "Urban List·Google Maps", query: "Whalebridge Sydney", s: "프렌치·워터프런트", w: "가격대 있음", o: "항구 저녁", t: "예약" },
+      { rank: 14, kind: "식당", tag: "blue", name: "Grana", area: "CBD", source: "Broadsheet·Google Maps", query: "Grana Sydney", s: "파스타·빵 안정감", w: "뷰는 약함", o: "비오는 날", t: "피크 혼잡" },
+      { rank: 15, kind: "식당", tag: "blue", name: "Lana", area: "CBD", source: "OpenTable·Google Maps", query: "Lana Restaurant Sydney", s: "세련된 도심 식사", w: "아이 취향 갈림", o: "어른 저녁", t: "메뉴 호불호" },
+      { rank: 16, kind: "식당", tag: "good", name: "Mr. Wong", area: "CBD", source: "Time Out·Google Maps", query: "Mr Wong Sydney", s: "대가족 공유식 좋음", w: "시끄럽고 예약 어려움", o: "광동식 만찬", t: "대기" },
+      { rank: 17, kind: "식당", tag: "red", name: "Restaurant Hubert", area: "CBD", source: "Time Out·Google Maps", query: "Restaurant Hubert Sydney", s: "분위기 강함", w: "어둡고 어른용", o: "부부/어른 저녁", t: "아이 적합성" },
+      { rank: 18, kind: "식당", tag: "red", name: "Rockpool Bar & Grill", area: "CBD", source: "OpenTable·Google Maps", query: "Rockpool Bar and Grill Sydney", s: "고급 스테이크", w: "가격 높음", o: "특별 저녁", t: "무거운 식사" },
+      { rank: 19, kind: "식당", tag: "good", name: "Coogee Pavilion", area: "Coogee", source: "Google Maps·로컬 가이드", query: "Coogee Pavilion", s: "해변 가족 베이스", w: "항상 붐빔", o: "첫날 저녁", t: "대기" },
+      { rank: 20, kind: "식당", tag: "red", name: "Mimi's", area: "Coogee", source: "Time Out·Google Maps", query: "Mimi's Coogee", s: "Coogee 하이엔드", w: "비싸고 예약 필수", o: "부모님 점심", t: "좌석 마감" },
+      { rank: 21, kind: "식당", tag: "good", name: "Una Mas", area: "Coogee", source: "Google Maps", query: "Una Mas Coogee", s: "지중해식 가벼움", w: "좌석 제한", o: "해변 저녁", t: "예약" },
+      { rank: 22, kind: "식당", tag: "blue", name: "Will's", area: "Coogee", source: "Google Maps", query: "Will's Coogee", s: "로컬 느낌", w: "규모 작음", o: "조용한 저녁", t: "좌석" },
+      { rank: 23, kind: "식당", tag: "good", name: "Sugarcane Coogee", area: "Coogee", source: "Google Maps", query: "Sugarcane Coogee", s: "공유식·아이 대응", w: "소음 가능", o: "비오는 저녁", t: "혼잡" },
+      { rank: 24, kind: "식당", tag: "blue", name: "Osteria Coogee", area: "Coogee", source: "Google Maps", query: "Osteria Coogee", s: "이탈리안 안정감", w: "목적성은 낮음", o: "아이 식사", t: "피크 대기" },
+      { rank: 25, kind: "카페", tag: "good", name: "Fabbrica Bread Shop", area: "Coogee", source: "Broadsheet·Google Maps", query: "Fabbrica Bread Shop Coogee", s: "빵·아침 강함", w: "식사는 가벼움", o: "출발 전 조식", t: "품절" },
+      { rank: 26, kind: "식당", tag: "red", name: "Bondi Icebergs Dining Room", area: "Bondi", source: "Time Out·Google Maps", query: "Bondi Icebergs Dining Room and Bar", s: "대표 해변뷰", w: "가격·날씨 변수", o: "해안 산책 점심", t: "예약" },
+      { rank: 27, kind: "식당", tag: "good", name: "Sean's Panorama", area: "Bondi", source: "Time Out·Google Maps", query: "Sean's Panorama Bondi", s: "오래된 로컬 명성", w: "취향 갈림", o: "Bondi 점심", t: "좌석 한정" },
+      { rank: 28, kind: "식당", tag: "blue", name: "North Bondi Fish", area: "Bondi", source: "Google Maps", query: "North Bondi Fish", s: "해변 해산물", w: "바람·혼잡", o: "가벼운 런치", t: "날씨" },
+      { rank: 29, kind: "카페", tag: "good", name: "Speedos Cafe", area: "Bondi", source: "Google Maps", query: "Speedos Cafe Bondi", s: "브런치·사진", w: "대기", o: "캐주얼 시작", t: "주말 혼잡" },
+      { rank: 30, kind: "식당", tag: "blue", name: "Doyles on the Beach", area: "Watsons Bay", source: "Sydney.com·Google Maps", query: "Doyles on the Beach Watsons Bay", s: "클래식 해산물", w: "관광지 느낌", o: "Watsons Bay 점심", t: "바람" },
+      { rank: 31, kind: "명소", tag: "good", name: "Taronga Zoo", area: "Mosman", source: "Sydney.com·Google Maps", query: "Taronga Zoo Sydney", s: "아이 만족도 최고", w: "언덕 많음", o: "숙소와 결합", t: "비" },
+      { rank: 32, kind: "명소", tag: "good", name: "Wildlife Retreat at Taronga", area: "Mosman", source: "Google Maps", query: "Wildlife Retreat at Taronga", s: "숙박 자체가 체험", w: "방 크기 확인", o: "아이 기억", t: "패키지 제한" },
+      { rank: 33, kind: "식당", tag: "red", name: "Bathers' Pavilion", area: "Balmoral", source: "OpenTable·Google Maps", query: "Bathers' Pavilion Balmoral", s: "해변+고급식", w: "예약 필요", o: "Balmoral 점심", t: "주차·좌석" },
+      { rank: 34, kind: "카페", tag: "good", name: "The Boathouse Balmoral", area: "Balmoral", source: "Google Maps", query: "The Boathouse Balmoral", s: "가족형 해변 카페", w: "줄", o: "아이 동반", t: "날씨" },
+      { rank: 35, kind: "식당", tag: "blue", name: "Ripples Chowder Bay", area: "Chowder Bay", source: "OpenTable·Google Maps", query: "Ripples Chowder Bay", s: "하버뷰", w: "선택지 제한", o: "경치 점심", t: "예약" },
+      { rank: 36, kind: "식당", tag: "red", name: "Ormeggio at The Spit", area: "Mosman", source: "OpenTable·Google Maps", query: "Ormeggio at The Spit", s: "워터프런트 이탈리안", w: "동선 우회·고가", o: "어른 특별식", t: "예약" },
+      { rank: 37, kind: "식당", tag: "blue", name: "Felons Seafood Manly", area: "Manly", source: "Google Maps", query: "Felons Seafood Manly", s: "페리 후 쉬운 해산물", w: "혼잡", o: "Manly 당일", t: "대기" },
+      { rank: 38, kind: "식당", tag: "blue", name: "Sake Manly", area: "Manly", source: "OpenTable·Google Maps", query: "Sake Manly", s: "검증된 일식", w: "필수성은 낮음", o: "비상 저녁", t: "예약" },
+      { rank: 39, kind: "카페", tag: "good", name: "The Bower", area: "Manly", source: "Google Maps", query: "The Bower Manly", s: "바다뷰 캐주얼", w: "노출 좌석", o: "맑은 브런치", t: "바람" },
+      { rank: 40, kind: "카페", tag: "blue", name: "Ruby Lane Wholefoods", area: "Manly", source: "Google Maps", query: "Ruby Lane Wholefoods Manly", s: "건강식 조식", w: "캐주얼", o: "가벼운 식사", t: "대기" },
+      { rank: 41, kind: "명소", tag: "warn", name: "Queen Victoria Building", area: "CBD", source: "Sydney.com·Google Maps", query: "Queen Victoria Building Sydney", s: "비오는 날 안정", w: "쇼핑 중심", o: "마지막날", t: "혼잡" },
+      { rank: 42, kind: "명소", tag: "warn", name: "Art Gallery of NSW", area: "Domain", source: "Sydney.com·Google Maps", query: "Art Gallery of New South Wales", s: "실내 대안 강함", w: "아이 집중도", o: "비오는 날", t: "운영시간" },
+      { rank: 43, kind: "명소", tag: "good", name: "Australian Museum", area: "CBD", source: "Sydney.com·Google Maps", query: "Australian Museum Sydney", s: "아이 실내 강함", w: "혼잡 가능", o: "우천 대체", t: "특별전 비용" },
+      { rank: 44, kind: "명소", tag: "good", name: "SEA LIFE Sydney Aquarium", area: "Darling Harbour", source: "Sydney.com·Google Maps", query: "SEA LIFE Sydney Aquarium", s: "7살 만족도 높음", w: "관광지 가격", o: "마지막날", t: "입장 대기" },
+      { rank: 45, kind: "명소", tag: "blue", name: "Darling Harbour / Tumbalong Park", area: "CBD", source: "Sydney.com·Google Maps", query: "Tumbalong Park Darling Harbour", s: "아이 놀 공간", w: "관광지 느낌", o: "저강도 오후", t: "비·바람" },
+      { rank: 46, kind: "명소", tag: "blue", name: "Hyde Park + St Mary's Cathedral", area: "CBD", source: "Google Maps", query: "Hyde Park St Mary's Cathedral Sydney", s: "짧고 무료", w: "날씨 노출", o: "QVB와 연결", t: "비" },
+      { rank: 47, kind: "명소", tag: "good", name: "Scenic World", area: "Blue Mountains", source: "Sydney.com·Google Maps", query: "Scenic World Blue Mountains", s: "가족형 대표 명소", w: "이동 길다", o: "맑은 날 하이라이트", t: "안개" },
+      { rank: 48, kind: "명소", tag: "good", name: "Echo Point + Three Sisters", area: "Blue Mountains", source: "Sydney.com·Google Maps", query: "Echo Point Lookout Three Sisters", s: "상징 전망", w: "날씨 의존", o: "가족사진", t: "강풍·안개" },
+      { rank: 49, kind: "식당", tag: "blue", name: "Leura Garage", area: "Blue Mountains", source: "Google Maps", query: "Leura Garage", s: "투어 중 식사 쉬움", w: "동선 우회", o: "점심 회복", t: "대기" },
+      { rank: 50, kind: "카페", tag: "warn", name: "The Lookout Echo Point", area: "Blue Mountains", source: "Google Maps", query: "The Lookout Echo Point", s: "전망 인접", w: "관광지형", o: "빠른 점심", t: "혼잡·날씨" }
+    ];
+
+    const poiExtra50 = [
+      { rank: 51, kind: "식당", tag: "good", name: "Rick Stein at Coogee Beach", area: "Coogee", source: "Google Maps·호텔권", query: "Rick Stein at Coogee Beach", s: "Coogee 선택 코스의 해산물", w: "가격대 있음", o: "동부 해안일 점심", t: "예약 마감" },
+      { rank: 52, kind: "식당", tag: "blue", name: "Shutters Coogee", area: "Coogee", source: "Google Maps·호텔권", query: "Shutters Coogee", s: "호텔권에서 안정적", w: "목적성은 낮음", o: "첫날 피로 회복", t: "영업 변경" },
+      { rank: 53, kind: "카페", tag: "good", name: "Barzura", area: "Coogee", source: "Google Maps·로컬", query: "Barzura Coogee", s: "해변 앞 아침", w: "피크 대기", o: "산책 전 커피", t: "바람" },
+      { rank: 54, kind: "카페", tag: "blue", name: "Gusto Espresso Bar", area: "Coogee", source: "Google Maps·로컬", query: "Gusto Espresso Bar Coogee", s: "짧은 커피 동선", w: "좌석 제한", o: "테이크아웃", t: "영업시간" },
+      { rank: 55, kind: "카페", tag: "blue", name: "The Little Kitchen", area: "Coogee", source: "Google Maps·로컬", query: "The Little Kitchen Coogee", s: "브런치형", w: "규모 작음", o: "느린 오전", t: "대기" },
+      { rank: 56, kind: "식당", tag: "blue", name: "Estate Coogee Beach", area: "Coogee", source: "Google Maps", query: "Estate Coogee Beach", s: "해변 캐주얼", w: "날씨 영향", o: "아이 식사", t: "혼잡" },
+      { rank: 57, kind: "식당", tag: "good", name: "Totti's Bondi", area: "Bondi", source: "Broadsheet·Google Maps", query: "Totti's Bondi", s: "공유식 가족 친화", w: "예약 경쟁", o: "Bondi 산책 후", t: "대기" },
+      { rank: 58, kind: "카페", tag: "good", name: "Bills Bondi Beach", area: "Bondi", source: "Google Maps·로컬", query: "Bills Bondi Beach", s: "브런치 안정감", w: "관광객 많음", o: "아침 일정", t: "대기" },
+      { rank: 59, kind: "카페", tag: "blue", name: "Porch and Parlour", area: "Bondi", source: "Broadsheet·Google Maps", query: "Porch and Parlour Bondi", s: "로컬 브런치", w: "좌석 제한", o: "North Bondi 산책", t: "혼잡" },
+      { rank: 60, kind: "카페", tag: "blue", name: "The Depot Bondi", area: "Bondi", source: "Google Maps", query: "The Depot Bondi", s: "캐주얼 조식", w: "특별함 낮음", o: "빠른 시작", t: "주말 혼잡" },
+      { rank: 61, kind: "식당", tag: "blue", name: "Promenade Bondi Beach", area: "Bondi", source: "Google Maps", query: "Promenade Bondi Beach", s: "바다 앞 식사", w: "날씨 변수", o: "해변일 점심", t: "바람" },
+      { rank: 62, kind: "카페", tag: "good", name: "Shuk Bondi", area: "Bondi", source: "Google Maps·로컬", query: "Shuk Bondi", s: "가족 브런치 좋음", w: "동선 우회", o: "비치 전후", t: "대기" },
+      { rank: 63, kind: "식당", tag: "good", name: "Bar Patron", area: "Circular Quay", source: "Time Out·Google Maps", query: "Bar Patron Circular Quay", s: "하버권 멕시칸", w: "어른 취향", o: "저녁 백업", t: "소음" },
+      { rank: 64, kind: "식당", tag: "good", name: "Hinchcliff House", area: "Circular Quay", source: "Broadsheet·Google Maps", query: "Hinchcliff House Sydney", s: "여러 콘셉트 선택", w: "층별 예약 확인", o: "비오는 날", t: "예약" },
+      { rank: 65, kind: "식당", tag: "blue", name: "Apollonia", area: "Circular Quay", source: "Broadsheet·Google Maps", query: "Apollonia Sydney", s: "분위기 강함", w: "가족 전체엔 좁을 수 있음", o: "어른 저녁", t: "좌석" },
+      { rank: 66, kind: "식당", tag: "red", name: "Shell House Dining Room & Terrace", area: "CBD", source: "Time Out·Google Maps", query: "Shell House Dining Room Sydney", s: "도심 하이엔드", w: "고가·어른용", o: "마지막 저녁", t: "예약" },
+      { rank: 67, kind: "식당", tag: "red", name: "The Gidley", area: "CBD", source: "Time Out·Google Maps", query: "The Gidley Sydney", s: "스테이크 강함", w: "어둡고 무거움", o: "어른 특별식", t: "아이 동반" },
+      { rank: 68, kind: "식당", tag: "red", name: "Bistecca", area: "CBD", source: "Time Out·Google Maps", query: "Bistecca Sydney", s: "스테이크 목적성", w: "가족 9명 난도", o: "어른 저녁", t: "예약" },
+      { rank: 69, kind: "카페", tag: "good", name: "The Tea Room QVB", area: "CBD/QVB", source: "QVB·Google Maps", query: "The Tea Room QVB Sydney", s: "실내·부모님 친화", w: "가격", o: "우천 애프터눈티", t: "예약" },
+      { rank: 70, kind: "카페", tag: "good", name: "The Grounds of the City", area: "CBD/QVB", source: "공식·Google Maps", query: "The Grounds of the City Sydney", s: "실내 안정", w: "대기", o: "마지막날 브런치", t: "혼잡" },
+      { rank: 71, kind: "카페", tag: "blue", name: "Gumption by Coffee Alchemy", area: "The Strand Arcade", source: "Google Maps·로컬", query: "Gumption by Coffee Alchemy Sydney", s: "커피 품질", w: "좌석 제한", o: "쇼핑 중 휴식", t: "줄" },
+      { rank: 72, kind: "카페", tag: "blue", name: "Regiment CBD", area: "CBD", source: "Google Maps·로컬", query: "Regiment CBD Sydney", s: "스페셜티 커피", w: "간단함", o: "이동 중 카페인", t: "영업시간" },
+      { rank: 73, kind: "카페", tag: "blue", name: "Single O CBD", area: "CBD", source: "Google Maps·로컬", query: "Single O CBD Sydney", s: "커피 목적성", w: "좌석 적음", o: "체크아웃 전", t: "평일 중심" },
+      { rank: 74, kind: "식당", tag: "blue", name: "Mary's Circular Quay", area: "Circular Quay", source: "Google Maps", query: "Mary's Circular Quay", s: "아이 버거 백업", w: "고급감 낮음", o: "빠른 식사", t: "혼잡" },
+      { rank: 75, kind: "식당", tag: "warn", name: "City Extra Circular Quay", area: "Circular Quay", source: "Google Maps", query: "City Extra Circular Quay", s: "시간 조절 쉬움", w: "특별함 낮음", o: "항공 지연 백업", t: "관광지 가격" },
+      { rank: 76, kind: "식당", tag: "blue", name: "Tapavino", area: "Circular Quay", source: "OpenTable·Google Maps", query: "Tapavino Circular Quay", s: "공유식 타파스", w: "아이 취향 갈림", o: "비오는 저녁", t: "소음" },
+      { rank: 77, kind: "식당", tag: "good", name: "Public Dining Room", area: "Balmoral", source: "OpenTable·Google Maps", query: "Public Dining Room Balmoral", s: "해변 앞 가족식", w: "가격대", o: "Balmoral 점심", t: "예약" },
+      { rank: 78, kind: "식당", tag: "good", name: "Chiosco by Ormeggio", area: "The Spit", source: "OpenTable·Google Maps", query: "Chiosco by Ormeggio The Spit", s: "워터프런트 캐주얼", w: "차량 필요", o: "Taronga 전후", t: "주차" },
+      { rank: 79, kind: "식당", tag: "blue", name: "Mosman Rowers", area: "Mosman", source: "Google Maps·로컬", query: "Mosman Rowers", s: "하버뷰 캐주얼", w: "목적성은 낮음", o: "숙소 근처 백업", t: "혼잡" },
+      { rank: 80, kind: "카페", tag: "blue", name: "Burnt Orange", area: "Mosman", source: "Google Maps·로컬", query: "Burnt Orange Mosman", s: "브런치·쇼핑 결합", w: "동선 우회", o: "느린 오전", t: "예약" },
+      { rank: 81, kind: "카페", tag: "blue", name: "Frenchy's Cafe", area: "Mosman", source: "Google Maps·로컬", query: "Frenchy's Cafe Mosman", s: "로컬 카페", w: "좌석 제한", o: "Taronga 전 커피", t: "휴무" },
+      { rank: 82, kind: "식당", tag: "blue", name: "The Fernery", area: "Mosman", source: "Google Maps·로컬", query: "The Fernery Mosman", s: "루프탑·캐주얼", w: "날씨 변수", o: "가벼운 저녁", t: "바람" },
+      { rank: 83, kind: "식당", tag: "blue", name: "Bistro Mosman", area: "Mosman", source: "Google Maps·로컬", query: "Bistro Mosman", s: "프렌치 비스트로", w: "아이 호불호", o: "부모님 저녁", t: "예약" },
+      { rank: 84, kind: "식당", tag: "good", name: "Hugo's Manly", area: "Manly", source: "OpenTable·Google Maps", query: "Hugo's Manly", s: "페리 도착 후 바로", w: "혼잡·가격", o: "해변 저녁", t: "예약" },
+      { rank: 85, kind: "식당", tag: "good", name: "Queen Chow Manly", area: "Manly", source: "Broadsheet·Google Maps", query: "Queen Chow Manly", s: "공유식 중식", w: "시끄러움", o: "대가족 식사", t: "예약" },
+      { rank: 86, kind: "식당", tag: "blue", name: "Garfish Manly", area: "Manly", source: "Google Maps", query: "Garfish Manly", s: "해산물 안정", w: "가격", o: "페리 데이 점심", t: "좌석" },
+      { rank: 87, kind: "식당", tag: "blue", name: "Manly Wharf Bar", area: "Manly", source: "Google Maps", query: "Manly Wharf Bar", s: "접근성 최고", w: "붐빔", o: "페리 직전", t: "소음" },
+      { rank: 88, kind: "식당", tag: "blue", name: "Chica Bonita Manly", area: "Manly", source: "Google Maps·로컬", query: "Chica Bonita Manly", s: "캐주얼 멕시칸", w: "좌석 작음", o: "아이 빠른 식사", t: "대기" },
+      { rank: 89, kind: "카페", tag: "good", name: "Rollers Bakehouse", area: "Manly", source: "Google Maps·로컬", query: "Rollers Bakehouse Manly", s: "베이커리 만족도", w: "식사 대체 약함", o: "아침 간식", t: "품절" },
+      { rank: 90, kind: "식당", tag: "red", name: "Darley's Restaurant", area: "Blue Mountains", source: "Google Maps·로컬", query: "Darley's Restaurant Katoomba", s: "블루마운틴 하이엔드", w: "시간·가격 부담", o: "부모님 특별식", t: "예약" },
+      { rank: 91, kind: "식당", tag: "good", name: "Echoes Restaurant", area: "Blue Mountains", source: "Google Maps", query: "Echoes Restaurant Katoomba", s: "전망 식사", w: "날씨 의존", o: "맑은 날 점심", t: "안개" },
+      { rank: 92, kind: "식당", tag: "good", name: "Ates Blackheath", area: "Blue Mountains", source: "Google Maps·로컬", query: "Ates Blackheath", s: "로컬 명성", w: "동선 우회", o: "Blackheath 포함 시", t: "예약" },
+      { rank: 93, kind: "식당", tag: "blue", name: "Blaq", area: "Blue Mountains", source: "Google Maps", query: "Blaq Blackheath", s: "호텔 레스토랑 안정", w: "관광동선과 거리", o: "비오는 저녁", t: "좌석" },
+      { rank: 94, kind: "식당", tag: "blue", name: "Pins on Lurline", area: "Blue Mountains", source: "Google Maps", query: "Pins on Lurline Katoomba", s: "Katoomba 식사", w: "목적성 낮음", o: "투어 후 회복", t: "휴무" },
+      { rank: 95, kind: "식당", tag: "blue", name: "Bootlegger Bar Katoomba", area: "Blue Mountains", source: "Google Maps", query: "Bootlegger Bar Katoomba", s: "캐주얼 바비큐", w: "소음 가능", o: "가벼운 저녁", t: "대기" },
+      { rank: 96, kind: "카페", tag: "blue", name: "Cassiopeia Specialty Coffee", area: "Blue Mountains", source: "Google Maps", query: "Cassiopeia Specialty Coffee Katoomba", s: "커피 휴식", w: "좌석 제한", o: "추운 날 회복", t: "영업시간" },
+      { rank: 97, kind: "카페", tag: "blue", name: "Anonymous Cafe", area: "Blue Mountains", source: "Google Maps", query: "Anonymous Cafe Blackheath", s: "로컬 카페", w: "동선 우회", o: "Blackheath 휴식", t: "휴무" },
+      { rank: 98, kind: "카페", tag: "good", name: "Blue Mountains Chocolate Company", area: "Blue Mountains", source: "Google Maps", query: "Blue Mountains Chocolate Company Katoomba", s: "아이 간식", w: "식사 대체 약함", o: "추운 날 실내", t: "혼잡" },
+      { rank: 99, kind: "카페", tag: "warn", name: "Hydro Majestic Afternoon Tea", area: "Blue Mountains", source: "Google Maps", query: "Hydro Majestic Afternoon Tea Medlow Bath", s: "부모님 만족감", w: "동선 길어짐", o: "비오는 날", t: "예약" },
+      { rank: 100, kind: "식당", tag: "blue", name: "Mountain Culture Beer Co", area: "Blue Mountains", source: "Google Maps·로컬", query: "Mountain Culture Beer Co Katoomba", s: "캐주얼 회복", w: "어른 취향", o: "투어 후 간단식", t: "혼잡" }
+    ];
+
+    const poiTop100 = poiTop50.concat(poiExtra50);
+
+    const costs = {
+      first: {
+        parkStaggered: {
+          label: "7/23 목-7/25 토",
+          hotel: "Park Hyatt Sydney",
+          teams: "부모님 2박 + 정희범팀 7/24 합류 1박",
+          amount: 4063503,
+          memo: "결정안. 기존 Park Hyatt 2객실 2박가를 객실박 기준으로 단순 환산, 재견적 필요."
+        },
+        coogee: {
+          label: "7/23 목-7/25 토",
+          hotel: "InterContinental Coogee Beach",
+          teams: "정희범팀 + 부모님",
+          amount: 1913372,
+          memo: "이전 비교안. 새 결정에서는 기준안이 아님."
+        },
+        park: {
+          label: "7/23 목-7/25 토",
+          hotel: "Park Hyatt Sydney",
+          teams: "정희범팀 + 부모님",
+          amount: 5418004,
+          memo: "전원 7/23 도착 비교안. 정희범팀 7/24 합류 결정 전 기준."
+        }
+      },
+      parkWeekend: {
+        label: "7/25 토-7/27 월",
+        hotel: "Park Hyatt Sydney",
+        teams: "전원",
+        cheap: 10455592,
+        comfort: 11091472,
+        memoCheap: "누나네 1방 기준.",
+        memoComfort: "누나네 2방 기준. 비용 상승 폭 큼."
+      },
+      taronga: {
+        label: "7/27 월-7/29 수",
+        hotel: "Wildlife Retreat at Taronga",
+        teams: "전원",
+        cheap: 3095173,
+        comfort: 4163191,
+        memoCheap: "체험 우선. 누나네 1방 기준.",
+        memoComfort: "누나네 2방 기준. 방 크기 불안 감소."
+      },
+      inter: {
+        label: "7/29 수-7/31 금",
+        hotel: "InterContinental Sydney",
+        teams: "전원",
+        cheap: 2829954,
+        comfort: 3799464,
+        memoCheap: "마지막 동선 안정. 누나네 1방 기준.",
+        memoComfort: "누나네 2방 기준. 짐 정리 여유."
+      },
+      sisterFri: {
+        label: "7/31 금-8/1 토",
+        hotel: "InterContinental Sydney",
+        teams: "누나네",
+        cheap: 484755,
+        comfort: 969511,
+        memoCheap: "확정. 8/1 토요일 출발 기준.",
+        memoComfort: "확정. 8/1 토요일 출발 + 2방 기준."
+      }
+    };
+
+    const formatter = new Intl.NumberFormat("ko-KR");
+    const firstBase = document.getElementById("firstBase");
+    const roomMode = document.getElementById("roomMode");
+    const sisterFriday = document.getElementById("sisterFriday");
+    const localBudget = document.getElementById("localBudget");
+    const hotelTotal = document.getElementById("hotelTotal");
+    const airHotelTotal = document.getElementById("airHotelTotal");
+    const grandTotal = document.getElementById("grandTotal");
+    const perPerson = document.getElementById("perPerson");
+    const segmentRows = document.getElementById("segmentRows");
+    const summaryScenario = document.getElementById("summaryScenario");
+    const summaryTotal = document.getElementById("summaryTotal");
+    const summaryPerPerson = document.getElementById("summaryPerPerson");
+
+    function won(value) {
+      return formatter.format(Math.round(value)) + "원";
+    }
+
+    function row(segment, amount, memo) {
+      return `
+        <tr>
+          <td>${segment.label}</td>
+          <td>${segment.hotel}</td>
+          <td>${segment.teams}</td>
+          <td class="num">${won(amount)}</td>
+          <td>${memo}</td>
+        </tr>
+      `;
+    }
+
+    function renderDayPlan(index) {
+      const plan = dayPlans[index];
+      if (!plan) return;
+
+      const tabs = document.querySelectorAll(".day-tab");
+      tabs.forEach((tab, tabIndex) => {
+        tab.setAttribute("aria-selected", String(tabIndex === index));
+      });
+
+      document.getElementById("dayPhoto").src = plan.photo;
+      document.getElementById("dayPhoto").alt = plan.alt;
+      document.getElementById("dayCaption").textContent = plan.caption;
+      const badge = document.getElementById("dayBadge");
+      badge.className = "tag " + plan.tagClass;
+      badge.textContent = plan.date;
+      document.getElementById("dayTitle").textContent = plan.title;
+      document.getElementById("daySummary").textContent = plan.summary;
+      document.getElementById("dayBase").textContent = plan.base;
+      document.getElementById("dayPace").textContent = plan.pace;
+      document.getElementById("dayWeather").textContent = plan.weather;
+      document.getElementById("dayPoints").innerHTML = plan.points.map((point) => `<span class="route-point">${point}</span>`).join("");
+      document.getElementById("dayWhy").textContent = plan.why;
+      document.getElementById("dayMap").href = plan.map;
+      document.getElementById("dayAlt").href = plan.altMap;
+      document.getElementById("dayAlt").textContent = plan.altLabel;
+      renderDayOperations(index);
+    }
+
+    function initDayPlanner() {
+      const tabs = document.getElementById("dayTabs");
+      if (!tabs) return;
+      tabs.innerHTML = dayPlans.map((plan, index) => `
+        <button class="day-tab" type="button" role="tab" aria-selected="${index === 0}" data-day-index="${index}">
+          ${plan.date}
+        </button>
+      `).join("");
+      tabs.addEventListener("click", (event) => {
+        const button = event.target.closest(".day-tab");
+        if (!button) return;
+        renderDayPlan(Number(button.dataset.dayIndex));
+      });
+      renderDayPlan(0);
+    }
+
+    function bookingSearch(item) {
+      return item.booking || "https://www.google.com/search?q=" + encodeURIComponent(item.query + " booking official Sydney");
+    }
+
+    function foodCard(item, type, typeClass) {
+      const photo = foodHero(item, type);
+      return `
+        <article class="day-ops-card food-card">
+          <a class="food-photo" href="${imageSearch(item.query)}">
+            <img loading="lazy" src="${photo.src}" alt="${item.name} ${photo.label}" onerror="this.onerror=null;this.src='${photo.fallback}'">
+            <span>${photo.label}</span>
+          </a>
+          <div class="food-card-body">
+            <div class="food-card-head">
+              <span class="tag ${typeClass}">${type}</span>
+              <span class="food-area">${item.area}</span>
+            </div>
+            <h4>${item.name}</h4>
+            <div class="food-swot">
+              <div><strong>S</strong><span>${item.s}</span></div>
+              <div><strong>W</strong><span>${item.w}</span></div>
+              <div><strong>O</strong><span>${item.o}</span></div>
+              <div><strong>T</strong><span>${item.t}</span></div>
+            </div>
+            <p>${item.source}</p>
+            <div class="food-actions">
+              <a class="mini-link" href="${googleMapSearch(item.query)}">지도·영업시간</a>
+              <a class="mini-link" href="${bookingSearch(item)}">예약/공식</a>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderDayOperations(index = 0) {
+      const grid = document.getElementById("dayOpsGrid");
+      if (!grid) return;
+      const day = dayOperations[index] || dayOperations[0];
+      const restaurants = day.restaurants.map((item) => foodCard(item, "식당", "red")).join("");
+      const cafes = day.cafes.map((item) => foodCard(item, "카페", "blue")).join("");
+      grid.innerHTML = `
+        <div class="day-food-head">
+          <span class="tag good">${day.date}</span>
+          <h3>${day.title}</h3>
+          <p>${day.note}</p>
+        </div>
+        ${restaurants}
+        ${cafes}
+      `;
+    }
+
+    function googleMapSearch(query) {
+      return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query);
+    }
+
+    const poiPhotoLibrary = {
+      restaurant: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80",
+      cafe: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80",
+      opera: "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20Opera%20House%20From%20Botanic%20Garden.jpg?width=900",
+      harbour: "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20(AU)%2C%20View%20from%20Opera%20House%20--%202019%20--%203073-8.jpg?width=900",
+      coogee: "https://commons.wikimedia.org/wiki/Special:FilePath/%281%29Coogee%20Beach.jpg?width=900",
+      bondi: "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20(AU)%2C%20Bondi%20To%20Bronte%20Coastal%20Walk%20--%202019%20--%202379.jpg?width=900",
+      watsons: "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20%28AU%29%2C%20Watsons%20Bay%20--%202019%20--%203213.jpg?width=900",
+      taronga: "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20Harbour%20viewed%20from%20Taronga%20Zoo.jpg?width=900",
+      balmoral: "https://commons.wikimedia.org/wiki/Special:FilePath/Balmoral%20Beach%20in%20Sydney%2C%20Australia%202017.jpg?width=900",
+      manly: "https://commons.wikimedia.org/wiki/Special:FilePath/Summer%20days%20at%20Manly%20Beach.jpg?width=900",
+      qvb: "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20(AU)%2C%20Queen%20Victoria%20Building%20--%202019%20--%203580%20(cropped)%20-%202.jpg?width=900",
+      darling: "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20%28AU%29%2C%20Darling%20Harbour%20--%202019%20--%203199-201.jpg?width=900",
+      gallery: "https://commons.wikimedia.org/wiki/Special:FilePath/Art%20Gallery%20of%20New%20South%20Wales%20fa%C3%A7ade.jpg?width=900",
+      museum: "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20%28AU%29%2C%20View%20from%20Sydney%20Tower%2C%20Australian%20Museum%20--%202019%20--%203123.jpg?width=900",
+      sealife: "https://commons.wikimedia.org/wiki/Special:FilePath/2007-12-01%20Sydney%20Aquarium.jpg?width=900",
+      hyde: "https://commons.wikimedia.org/wiki/Special:FilePath/St%20Mary%27s%20Cathedral%20as%20viewed%20from%20Hyde%20Park%2C%20Sydney.jpg?width=900",
+      blue: "https://commons.wikimedia.org/wiki/Special:FilePath/Blue%20mountains%20-%20three%20sisters.jpg?width=900"
+    };
+
+    function imageSearch(query) {
+      return "https://www.google.com/search?tbm=isch&q=" + encodeURIComponent(query + " Sydney");
+    }
+
+    function venueThumbnail(query) {
+      return "https://tse1.mm.bing.net/th?q=" + encodeURIComponent(query + " Sydney") + "&w=900&h=560&c=7&rs=1&p=0";
+    }
+
+    function areaFallbackPhoto(poi) {
+      const area = poi.area.toLowerCase();
+      const name = poi.name.toLowerCase();
+      const exact = poi.kind === "명소" ? "장소 대표 사진" : "주변 구역 대표 사진";
+
+      if (poi.kind === "카페") return { src: poiPhotoLibrary.cafe, label: "카페·커피 대표 사진" };
+      if (poi.kind === "식당") return { src: poiPhotoLibrary.restaurant, label: "식당·음식 대표 사진" };
+      if (name.includes("sea life")) return { src: poiPhotoLibrary.sealife, label: "SEA LIFE 주변 대표 사진" };
+      if (name.includes("australian museum")) return { src: poiPhotoLibrary.museum, label: "Australian Museum 주변 대표 사진" };
+      if (name.includes("hyde") || name.includes("st mary")) return { src: poiPhotoLibrary.hyde, label: "Hyde Park·St Mary's 대표 사진" };
+      if (name.includes("queen victoria")) return { src: poiPhotoLibrary.qvb, label: "QVB 장소 대표 사진" };
+      if (name.includes("darling") || area.includes("darling")) return { src: poiPhotoLibrary.darling, label: "Darling Harbour 구역 대표 사진" };
+      if (area.includes("coogee")) return { src: poiPhotoLibrary.coogee, label: exact + " · Coogee" };
+      if (area.includes("watsons")) return { src: poiPhotoLibrary.watsons, label: exact + " · Watsons Bay" };
+      if (area.includes("bondi")) return { src: poiPhotoLibrary.bondi, label: exact + " · Bondi" };
+      if (area.includes("balmoral")) return { src: poiPhotoLibrary.balmoral, label: exact + " · Balmoral" };
+      if (area.includes("manly")) return { src: poiPhotoLibrary.manly, label: exact + " · Manly" };
+      if (area.includes("blue") || area.includes("katoomba") || area.includes("blackheath") || area.includes("medlow")) return { src: poiPhotoLibrary.blue, label: exact + " · Blue Mountains" };
+      if (area.includes("mosman") || area.includes("chowder") || area.includes("spit") || name.includes("taronga")) return { src: poiPhotoLibrary.taronga, label: exact + " · Mosman/Taronga" };
+      if (area.includes("domain") || name.includes("gallery")) return { src: poiPhotoLibrary.gallery, label: exact + " · Domain" };
+      if (area.includes("opera")) return { src: poiPhotoLibrary.opera, label: exact + " · Opera House" };
+      if (area.includes("circular") || area.includes("rocks")) return { src: poiPhotoLibrary.harbour, label: exact + " · Harbour/The Rocks" };
+      if (area.includes("cbd") || area.includes("qvb") || area.includes("strand")) return { src: poiPhotoLibrary.qvb, label: exact + " · CBD" };
+      return { src: poiPhotoLibrary.harbour, label: exact + " · Sydney Harbour" };
+    }
+
+    function foodHero(item, type) {
+      const fallback = areaFallbackPhoto({ name: item.name, area: item.area, kind: type });
+      return {
+        src: venueThumbnail(item.query),
+        fallback: fallback.src,
+        label: "매장명 기반 사진 썸네일"
+      };
+    }
+
+    const poiOfficialLinks = {
+      "Opera Bar": "https://www.sydneyoperahouse.com/visit/eat-and-drink/opera-bar",
+      "Bathers' Bistro": "https://www.batherspavilion.com.au/menus/bistro/",
+      "The Boathouse Balmoral": "https://www.theboathousegroup.com.au/venues/the-boathouse-balmoral",
+      "The Grounds of the City": "https://thegrounds.com.au/dine-in/the-city/",
+      "City Extra Circular Quay": "https://cityextra.com.au/",
+      "Taronga Zoo": "https://www.taronga.org.au/sydney-zoo/plan/visitor-information",
+      "Wildlife Retreat at Taronga": "https://www.taronga.org.au/sydney-zoo/accommodation/wildlife-retreat",
+      "Queen Victoria Building": "https://www.nsw.gov.au/visiting-and-exploring-nsw/locations-and-attractions/queen-victoria-building",
+      "Art Gallery of NSW": "https://www.artgallery.nsw.gov.au/",
+      "Australian Museum": "https://australian.museum/visit/",
+      "SEA LIFE Sydney Aquarium": "https://www.visitsealife.com/sydney/plan-your-day/",
+      "Darling Harbour / Tumbalong Park": "https://www.darlingharbour.com/",
+      "Scenic World": "https://www.scenicworld.com.au/",
+      "Echo Point + Three Sisters": "https://www.nsw.gov.au/visiting-and-exploring-nsw/locations-and-attractions/blue-mountains"
+    };
+
+    function poiHero(poi) {
+      const fallback = areaFallbackPhoto(poi);
+      return {
+        src: venueThumbnail(poi.query),
+        fallback: fallback.src,
+        label: "장소명 기반 사진 썸네일"
+      };
+    }
+
+    function poiAction(poi) {
+      if (poiOfficialLinks[poi.name]) {
+        return { label: poi.kind === "명소" ? "공식/입장 확인" : "공식 정보", url: poiOfficialLinks[poi.name] };
+      }
+      if (poi.kind === "식당") {
+        return {
+          label: "예약 루트",
+          url: "https://www.google.com/search?q=" + encodeURIComponent(poi.query + " reservation OpenTable Sydney")
+        };
+      }
+      if (poi.kind === "카페") {
+        return {
+          label: "영업 확인",
+          url: "https://www.google.com/search?q=" + encodeURIComponent(poi.query + " opening hours official")
+        };
+      }
+      return {
+        label: "공식/티켓 확인",
+        url: "https://www.google.com/search?q=" + encodeURIComponent(poi.query + " tickets official")
+      };
+    }
+
+    function poiDecisionMeta(poi) {
+      const base = { good: 4.7, blue: 4.3, warn: 3.9, red: 3.7 }[poi.tag] || 4.1;
+      const area = poi.area.toLowerCase();
+      const name = poi.name.toLowerCase();
+      let score = base;
+      if (area.includes("rocks") || area.includes("circular") || area.includes("opera")) score += 0.1;
+      if (name.includes("city extra") || name.includes("sea life") || name.includes("australian museum")) score += 0.1;
+      if (poi.t.includes("예약") || poi.w.includes("고가") || poi.w.includes("비싸")) score -= 0.1;
+      score = Math.max(3.5, Math.min(4.9, score));
+
+      const routeFit =
+        area.includes("rocks") || area.includes("circular") || area.includes("opera") ? "상" :
+        area.includes("cbd") || area.includes("qvb") || area.includes("darling") || area.includes("mosman") ? "중상" :
+        area.includes("blue") || area.includes("bondi") || area.includes("coogee") ? "선택" : "중";
+
+      const bookingRisk =
+        poi.t.includes("예약") || poi.w.includes("예약") || poi.t.includes("마감") ? "예약" :
+        poi.w.includes("대기") || poi.t.includes("혼잡") || poi.t.includes("대기") ? "대기" : "보통";
+
+      return {
+        score: score.toFixed(1),
+        routeFit,
+        bookingRisk
+      };
+    }
+
+    function poiCardMarkup(poi) {
+        const action = poiAction(poi);
+        const hero = poiHero(poi);
+        const meta = poiDecisionMeta(poi);
+        return `
+          <article class="poi-card">
+            <a class="poi-photo" href="${imageSearch(poi.query)}">
+              <img loading="lazy" src="${hero.src}" alt="${poi.name} ${hero.label}" onerror="this.onerror=null;this.src='${hero.fallback}'">
+              <span class="poi-rank">#${poi.rank}</span>
+              <span class="poi-photo-label">${hero.label}</span>
+            </a>
+            <div class="poi-body">
+              <div class="poi-head">
+                <span class="tag ${poi.tag}">${poi.kind}</span>
+                <span class="poi-area">${poi.area}</span>
+              </div>
+              <h3>${poi.name}</h3>
+              <div class="poi-rating" aria-label="가족 판단 기준">
+                <span><strong>${meta.score}/5</strong><em>가족판단점수</em></span>
+                <span><strong>${meta.routeFit}</strong><em>동선적합</em></span>
+                <span><strong>${meta.bookingRisk}</strong><em>예약/대기</em></span>
+              </div>
+              <div class="poi-swot">
+                <div><strong>S</strong><span>${poi.s}</span></div>
+                <div><strong>W</strong><span>${poi.w}</span></div>
+                <div><strong>O</strong><span>${poi.o}</span></div>
+                <div><strong>T</strong><span>${poi.t}</span></div>
+              </div>
+              <p class="poi-source">${poi.source}</p>
+              <div class="poi-actions">
+                <a class="poi-link" href="${googleMapSearch(poi.query)}">지도 보기</a>
+                <a class="poi-link secondary" href="${action.url}">${action.label}</a>
+              </div>
+            </div>
+          </article>
+        `;
+    }
+
+    function renderPoiCards() {
+      const quickGrid = document.getElementById("poiGrid");
+      if (quickGrid) quickGrid.innerHTML = poiTop100.map(poiCardMarkup).join("");
+    }
+
+    function render() {
+      const mode = roomMode.value;
+      const local = Number(localBudget.value || 0);
+      const first = costs.first[firstBase.value];
+      const park = costs.parkWeekend;
+      const taronga = costs.taronga;
+      const inter = costs.inter;
+      const fri = costs.sisterFri;
+
+      const parkAmount = park[mode];
+      const tarongaAmount = taronga[mode];
+      const interAmount = inter[mode];
+      const friAmount = sisterFriday.value === "yes" ? fri[mode] : 0;
+
+      const segments = [
+        row(first, first.amount, first.memo),
+        row(park, parkAmount, mode === "comfort" ? park.memoComfort : park.memoCheap),
+        row(taronga, tarongaAmount, mode === "comfort" ? taronga.memoComfort : taronga.memoCheap),
+        row(inter, interAmount, mode === "comfort" ? inter.memoComfort : inter.memoCheap)
+      ];
+
+      if (sisterFriday.value === "yes") {
+        segments.push(row(fri, friAmount, mode === "comfort" ? fri.memoComfort : fri.memoCheap));
+      }
+
+      const hotel = first.amount + parkAmount + tarongaAmount + interAmount + friAmount;
+      const airHotel = hotel + airTotal;
+      const grand = airHotel + local;
+
+      segmentRows.innerHTML = segments.join("");
+      hotelTotal.textContent = won(hotel);
+      airHotelTotal.textContent = won(airHotel);
+      grandTotal.textContent = won(grand);
+      perPerson.textContent = won(grand / partySize);
+      if (summaryScenario) {
+        const baseLabels = {
+          parkStaggered: "Park Hyatt 직행/7·24 합류",
+          park: "Park Hyatt 전원 7/23",
+          coogee: "Coogee 이전안"
+        };
+        const baseLabel = baseLabels[firstBase.value] || "Park Hyatt 직행/7·24 합류";
+        const roomLabel = mode === "comfort" ? "2방 안정" : "1방 절약";
+        const extraLabel = sisterFriday.value === "yes" ? " + 누나네 금요투숙" : "";
+        summaryScenario.textContent = `${baseLabel} + ${roomLabel}${extraLabel}`;
+      }
+      if (summaryTotal) summaryTotal.textContent = won(grand);
+      if (summaryPerPerson) summaryPerPerson.textContent = won(grand / partySize);
+    }
+
+    firstBase.addEventListener("change", render);
+    roomMode.addEventListener("change", render);
+    sisterFriday.addEventListener("change", render);
+    localBudget.addEventListener("input", render);
+    initDayPlanner();
+    renderDayOperations();
+    renderPoiCards();
+    render();
+
+    const routeMapPoints = {
+      airport: { label: ["SYD 공항"], lat: -33.9399, lon: 151.1753, type: "major", dx: -58, dy: 30 },
+      coogee: { label: ["Coogee", "선택 코스"], lat: -33.9205, lon: 151.2556, type: "side", dx: 16, dy: 2 },
+      bondi: { label: ["Bondi"], lat: -33.8908, lon: 151.2743, type: "side", dx: 14, dy: -8, mobileLabel: false },
+      watsons: { label: ["Watsons Bay"], lat: -33.8437, lon: 151.2827, type: "side", dx: 14, dy: -8, mobileLabel: false },
+      park: { label: ["Park Hyatt", "7/23~27"], lat: -33.8552, lon: 151.2157, type: "major", dx: -104, dy: -18 },
+      opera: { label: ["Opera"], lat: -33.8568, lon: 151.2153, type: "side", dx: 15, dy: -14, mobileLabel: false },
+      botanic: { label: ["Botanic"], lat: -33.8642, lon: 151.2166, type: "side", dx: 15, dy: 19, mobileLabel: false },
+      taronga: { label: ["Taronga", "7/27~29"], lat: -33.8426, lon: 151.2418, type: "major", dx: 16, dy: -12 },
+      balmoral: { label: ["Balmoral"], lat: -33.8246, lon: 151.2535, type: "blue", dx: 15, dy: -10, mobileLabel: false },
+      manly: { label: ["Manly"], lat: -33.7971, lon: 151.2878, type: "blue", dx: -54, dy: -14 },
+      inter: { label: ["InterContinental", "7/29~31"], lat: -33.8613, lon: 151.2129, type: "major", dx: 16, dy: 8 },
+      qvb: { label: ["QVB"], lat: -33.8718, lon: 151.2068, type: "blue", dx: -42, dy: 28, mobileLabel: false },
+      artGallery: { label: ["Art Gallery"], lat: -33.8688, lon: 151.2175, type: "blue", dx: 16, dy: 7, mobileLabel: false },
+      seaLife: { label: ["SEA LIFE"], lat: -33.8696, lon: 151.2020, type: "blue", dx: -72, dy: 16, mobileLabel: false }
+    };
+
+    const routeMapRoutes = [
+      { className: "route-main", ids: ["airport", "park", "taronga", "inter", "airport"] },
+      { className: "route-side", ids: ["park", "bondi", "coogee", "watsons"] },
+      { className: "route-blue", ids: ["park", "opera", "botanic", "inter"] },
+      { className: "route-blue", ids: ["taronga", "balmoral", "manly"] },
+      { className: "route-blue", ids: ["inter", "qvb", "seaLife", "inter", "artGallery"] }
+    ];
+
+    function projectPoint(point, zoom) {
+      const tileSize = 256;
+      const scale = tileSize * Math.pow(2, zoom);
+      const sinLat = Math.sin(point.lat * Math.PI / 180);
+      return {
+        x: (point.lon + 180) / 360 * scale,
+        y: (0.5 - Math.log((1 + sinLat) / (1 - sinLat)) / (4 * Math.PI)) * scale
+      };
+    }
+
+    function boundsForZoom(points, zoom) {
+      return points.reduce((bounds, point) => {
+        const projected = projectPoint(point, zoom);
+        return {
+          minX: Math.min(bounds.minX, projected.x),
+          maxX: Math.max(bounds.maxX, projected.x),
+          minY: Math.min(bounds.minY, projected.y),
+          maxY: Math.max(bounds.maxY, projected.y)
+        };
+      }, { minX: Infinity, maxX: -Infinity, minY: Infinity, maxY: -Infinity });
+    }
+
+    function fitZoom(points, width, height) {
+      const padding = width < 700 ? 28 : 56;
+      const z0 = boundsForZoom(points, 0);
+      const dx = Math.max(z0.maxX - z0.minX, 0.0001);
+      const dy = Math.max(z0.maxY - z0.minY, 0.0001);
+      const scale = Math.min((width - padding * 2) / dx, (height - padding * 2) / dy);
+      return Math.max(7, Math.min(12, Math.floor(Math.log2(scale))));
+    }
+
+    function svgElement(tag, attributes) {
+      const element = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      Object.entries(attributes || {}).forEach(([key, value]) => element.setAttribute(key, value));
+      return element;
+    }
+
+    function drawRouteMap() {
+      const map = document.getElementById("sydneyRouteMap");
+      const tileLayer = document.getElementById("sydneyRouteTiles");
+      const overlay = document.getElementById("sydneyRouteOverlay");
+      if (!map || !tileLayer || !overlay) return;
+
+      const width = map.clientWidth;
+      const height = map.clientHeight;
+      if (!width || !height) return;
+
+      const points = Object.values(routeMapPoints);
+      const zoom = fitZoom(points, width, height);
+      const bounds = boundsForZoom(points, zoom);
+      const center = {
+        x: (bounds.minX + bounds.maxX) / 2,
+        y: (bounds.minY + bounds.maxY) / 2
+      };
+      const origin = {
+        x: center.x - width / 2,
+        y: center.y - height / 2
+      };
+      const tileSize = 256;
+      const tileCount = Math.pow(2, zoom);
+      const minTileX = Math.floor(origin.x / tileSize);
+      const maxTileX = Math.floor((origin.x + width) / tileSize);
+      const minTileY = Math.floor(origin.y / tileSize);
+      const maxTileY = Math.floor((origin.y + height) / tileSize);
+      const subdomains = ["a", "b", "c", "d"];
+      const tileFragment = document.createDocumentFragment();
+
+      tileLayer.textContent = "";
+      for (let x = minTileX; x <= maxTileX; x += 1) {
+        for (let y = minTileY; y <= maxTileY; y += 1) {
+          if (y < 0 || y >= tileCount) continue;
+          const wrappedX = ((x % tileCount) + tileCount) % tileCount;
+          const subdomain = subdomains[Math.abs(x + y) % subdomains.length];
+          const img = document.createElement("img");
+          img.alt = "";
+          img.decoding = "async";
+          img.loading = "lazy";
+          img.src = `https://${subdomain}.basemaps.cartocdn.com/rastertiles/voyager/${zoom}/${wrappedX}/${y}.png`;
+          img.style.left = `${Math.round(x * tileSize - origin.x)}px`;
+          img.style.top = `${Math.round(y * tileSize - origin.y)}px`;
+          tileFragment.appendChild(img);
+        }
+      }
+      tileLayer.appendChild(tileFragment);
+
+      function screenPoint(id) {
+        const projected = projectPoint(routeMapPoints[id], zoom);
+        return {
+          x: projected.x - origin.x,
+          y: projected.y - origin.y
+        };
+      }
+
+      function routePath(ids) {
+        return ids.map((id, index) => {
+          const point = screenPoint(id);
+          return `${index === 0 ? "M" : "L"} ${point.x.toFixed(1)} ${point.y.toFixed(1)}`;
+        }).join(" ");
+      }
+
+      overlay.textContent = "";
+      overlay.setAttribute("viewBox", `0 0 ${width} ${height}`);
+
+      const routeGroup = svgElement("g");
+      routeMapRoutes.forEach((route) => {
+        const d = routePath(route.ids);
+        routeGroup.appendChild(svgElement("path", { class: "route-halo", d }));
+        routeGroup.appendChild(svgElement("path", { class: route.className, d }));
+      });
+      overlay.appendChild(routeGroup);
+
+      const pinGroup = svgElement("g");
+      Object.entries(routeMapPoints).forEach(([id, point]) => {
+        const position = screenPoint(id);
+        const pin = svgElement("g", {
+          class: `map-pin ${point.type || ""}`,
+          transform: `translate(${position.x.toFixed(1)} ${position.y.toFixed(1)})`
+        });
+        pin.appendChild(svgElement("circle", { r: point.type === "major" ? 10 : 7 }));
+
+        if (point.mobileLabel !== false || width >= 700) {
+          const text = svgElement("text", { x: point.dx, y: point.dy });
+          point.label.forEach((line, index) => {
+            const tspan = svgElement("tspan", {
+              x: point.dx,
+              dy: index === 0 ? 0 : 16,
+              class: index === 0 ? "" : "sub-label"
+            });
+            tspan.textContent = line;
+            text.appendChild(tspan);
+          });
+          pin.appendChild(text);
+        }
+
+        pinGroup.appendChild(pin);
+      });
+      overlay.appendChild(pinGroup);
+    }
+
+    let routeMapResizeTimer;
+    window.addEventListener("resize", () => {
+      window.clearTimeout(routeMapResizeTimer);
+      routeMapResizeTimer = window.setTimeout(drawRouteMap, 120);
+    });
+    drawRouteMap();
+  </script>
+</body>
+</html>
