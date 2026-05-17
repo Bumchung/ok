@@ -146,6 +146,140 @@
       color: #4f421f;
     }
 
+    .ask-board-section {
+      margin-top: 0;
+      scroll-margin-top: 18px;
+    }
+
+    .ask-board-shell {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .ask-board-head {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 14px;
+      border-bottom: 1px solid var(--line);
+      padding: 16px;
+      background: #f8fbfb;
+    }
+
+    .ask-board-head h2 {
+      margin: 0;
+    }
+
+    .ask-board-head p {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .ask-board-count {
+      flex: 0 0 auto;
+      border: 1px solid rgba(14, 111, 115, 0.24);
+      border-radius: 999px;
+      background: #eef8f7;
+      color: var(--accent);
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .ask-board-list {
+      display: grid;
+    }
+
+    .ask-board-item {
+      display: grid;
+      gap: 9px;
+      border-top: 1px solid var(--line);
+      padding: 15px 16px;
+    }
+
+    .ask-board-item:first-child {
+      border-top: 0;
+    }
+
+    .ask-board-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .ask-board-status {
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: #eef1f5;
+      color: #435160;
+    }
+
+    .ask-board-status.is-pending {
+      background: #fff8e8;
+      color: var(--gold);
+    }
+
+    .ask-board-status.is-ready {
+      background: #eef8f1;
+      color: var(--green);
+    }
+
+    .ask-board-status.is-failed {
+      background: #fff1ef;
+      color: var(--red);
+    }
+
+    .ask-board-question {
+      margin: 0;
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .ask-board-answer {
+      max-height: 240px;
+      overflow: auto;
+      color: #2f3944;
+      font-size: 13px;
+      white-space: pre-wrap;
+    }
+
+    .ask-board-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .ask-board-links a {
+      min-height: 28px;
+      border: 1px solid rgba(126, 140, 154, 0.34);
+      border-radius: 999px;
+      background: #fff;
+      padding: 5px 9px;
+      font-size: 11px;
+      font-weight: 900;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    .ask-board-empty {
+      padding: 16px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
     .decision-grid,
     .check-grid,
     .ops-grid {
@@ -1973,6 +2107,16 @@
       .ask-mode {
         width: 100%;
       }
+      .ask-board-head {
+        display: block;
+      }
+      .ask-board-count {
+        display: inline-flex;
+        margin-top: 9px;
+      }
+      .ask-board-item {
+        padding: 13px;
+      }
       .ask-button {
         min-width: 58px;
         padding: 0 10px;
@@ -2015,6 +2159,19 @@
   </header>
 
   <main class="page">
+    <section class="ask-board-section" id="askBoardSection" aria-labelledby="askBoardTitle">
+      <div class="ask-board-shell" id="askBoard">
+        <div class="ask-board-head">
+          <div>
+            <h2 id="askBoardTitle">Q&A 게시판</h2>
+            <p>2분 30초 안에 끝나지 않은 질문은 대기창을 닫고, 확인된 답변을 이곳 맨 위에 올립니다.</p>
+          </div>
+          <span class="ask-board-count" id="askBoardCount">대기 0</span>
+        </div>
+        <div class="ask-board-list" id="askBoardList" aria-live="polite"></div>
+      </div>
+    </section>
+
     <section>
       <h2>현재 결론</h2>
       <p class="lead">
@@ -2894,7 +3051,7 @@
           <label><input type="radio" name="askMode" value="bridge">Codex/Claude</label>
         </div>
         <p class="ask-privacy" id="askPrivacy" hidden>
-          Codex/Claude 모드는 질문과 관련 페이지 근거를 로컬/서버 브리지로 보내 외부 모델 검색을 기다립니다. 보통 30초 안팎, 길면 2분 30초까지 걸릴 수 있습니다.
+          Codex/Claude 모드는 질문과 관련 페이지 근거를 로컬/서버 브리지로 보냅니다. 2분 30초를 넘기면 대기창을 닫고 Q&A 게시판으로 넘깁니다.
         </p>
         <div class="ask-suggestions" aria-label="가족 여행 빠른 질문">
           <button class="ask-suggestion" type="button" data-question="오늘 비 오면 부모님과 아이들 데리고 어디 가는 게 제일 안전해?">비 오는 날 대안</button>
@@ -3921,13 +4078,16 @@
     }
 
     const ASSISTANT_LOCAL_BRIDGE = "http://127.0.0.1:8788/ask";
-    const ASSISTANT_BRIDGE_TIMEOUT_MS = 150000;
+    const ASSISTANT_HANDOFF_MS = 150000;
+    const ASSISTANT_BRIDGE_HARD_TIMEOUT_MS = 630000;
+    const ASSISTANT_BOARD_STORAGE_KEY = "sydney-family-trip-qna-board-v1";
+    const ASSISTANT_BOARD_MAX_ITEMS = 8;
     const ASSISTANT_BRIDGE_STATUS = [
       "Codex와 Claude에 같은 질문을 보내고 있습니다.",
       "페이지 내부 근거와 웹 검색 결과를 함께 맞춰보고 있습니다.",
       "공식 관광지, 지도, 예약 사이트 출처를 우선 확인합니다.",
       "두 모델 답변과 출처를 병합할 준비를 하고 있습니다.",
-      "응답이 길어지는 중입니다. 창을 닫지 않으면 완료되는 즉시 결과로 바뀝니다."
+      "응답이 길어지면 Q&A 게시판으로 넘기고 입력창을 다시 열겠습니다."
     ];
 
     // Keep model credentials off GitHub Pages; call only a server-side bridge URL when external mode is selected.
@@ -4134,6 +4294,188 @@
       }
     }
 
+    function assistantStorageItems() {
+      try {
+        const parsed = JSON.parse(window.localStorage.getItem(ASSISTANT_BOARD_STORAGE_KEY) || "[]");
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveAssistantStorageItems(items) {
+      try {
+        window.localStorage.setItem(
+          ASSISTANT_BOARD_STORAGE_KEY,
+          JSON.stringify(items.slice(0, ASSISTANT_BOARD_MAX_ITEMS))
+        );
+      } catch (error) {
+        // Ignore storage quota or private-mode failures; the live board still renders for this session.
+      }
+    }
+
+    function compactAssistantMatches(matches) {
+      return matches.slice(0, 4).map((item) => ({
+        kind: item.kind,
+        title: item.title,
+        subtitle: item.subtitle,
+        body: assistantSnippet(item.body, 180),
+        url: item.url
+      }));
+    }
+
+    function compactAssistantSources(sources) {
+      return normalizeBridgeSources(sources).slice(0, 5).map((source) => ({
+        title: source.title,
+        url: source.url,
+        snippet: assistantSnippet(source.snippet, 150),
+        provider: source.provider
+      }));
+    }
+
+    function assistantBoardStatusLabel(status) {
+      if (status === "ready") return "준비 완료";
+      if (status === "failed") return "확인 필요";
+      return "점검 중";
+    }
+
+    function formatAssistantBoardTime(value) {
+      const date = new Date(value || Date.now());
+      if (Number.isNaN(date.getTime())) return "";
+      return date.toLocaleString("ko-KR", {
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    }
+
+    function renderAssistantBoard() {
+      const list = document.getElementById("askBoardList");
+      const count = document.getElementById("askBoardCount");
+      if (!list) return;
+      const items = assistantStorageItems();
+      list.textContent = "";
+      const pendingCount = items.filter((item) => item.status === "pending").length;
+      if (count) count.textContent = pendingCount ? `대기 ${pendingCount}` : `답변 ${items.length}`;
+      if (!items.length) {
+        const empty = document.createElement("div");
+        empty.className = "ask-board-empty";
+        empty.textContent = "아직 게시된 Q&A가 없습니다.";
+        list.appendChild(empty);
+        return;
+      }
+      items.forEach((item) => {
+        const article = document.createElement("article");
+        article.className = `ask-board-item is-${item.status || "pending"}`;
+        const meta = document.createElement("div");
+        meta.className = "ask-board-meta";
+        const status = document.createElement("span");
+        status.className = `ask-board-status is-${item.status || "pending"}`;
+        status.textContent = assistantBoardStatusLabel(item.status);
+        const time = document.createElement("span");
+        time.textContent = formatAssistantBoardTime(item.updatedAt || item.createdAt);
+        const provider = document.createElement("span");
+        provider.textContent = item.provider || "Codex/Claude";
+        meta.append(status, time, provider);
+
+        const question = document.createElement("h3");
+        question.className = "ask-board-question";
+        question.textContent = item.question || "질문";
+
+        const answer = document.createElement("div");
+        answer.className = "ask-board-answer";
+        answer.textContent = item.answer || "제가 답변하면 맨 위에 준비해놓겠습니다.";
+
+        article.append(meta, question, answer);
+
+        const links = (Array.isArray(item.sources) && item.sources.length ? item.sources : item.matches || []).filter((link) => link.url);
+        if (links.length) {
+          const linkWrap = document.createElement("div");
+          linkWrap.className = "ask-board-links";
+          links.slice(0, 5).forEach((link) => {
+            const anchor = document.createElement("a");
+            anchor.href = link.url;
+            anchor.target = "_blank";
+            anchor.rel = "noopener noreferrer";
+            anchor.textContent = link.title || link.url;
+            linkWrap.appendChild(anchor);
+          });
+          article.appendChild(linkWrap);
+        }
+        list.appendChild(article);
+      });
+    }
+
+    function upsertAssistantBoardItem(item) {
+      const items = assistantStorageItems();
+      const existingIndex = items.findIndex((entry) => entry.id === item.id);
+      if (existingIndex >= 0) {
+        items[existingIndex] = { ...items[existingIndex], ...item };
+      } else {
+        items.unshift(item);
+      }
+      items.sort((a, b) => Number(b.updatedAt || b.createdAt || 0) - Number(a.updatedAt || a.createdAt || 0));
+      saveAssistantStorageItems(items);
+      renderAssistantBoard();
+    }
+
+    function createAssistantPendingBoardItem(question, matches, startedAt) {
+      const now = Date.now();
+      const item = {
+        id: `qa-${now}-${Math.random().toString(36).slice(2, 8)}`,
+        status: "pending",
+        question,
+        answer: "2분 30초를 넘겨 대기창은 닫았습니다. 제가 답변하면 맨 위에 준비해놓겠습니다.",
+        provider: "Codex/Claude 점검",
+        sources: [],
+        matches: compactAssistantMatches(matches),
+        createdAt: startedAt || now,
+        updatedAt: now
+      };
+      upsertAssistantBoardItem(item);
+      return item;
+    }
+
+    function completeAssistantBoardItem(id, result, matches, startedAt) {
+      const answer = String(result.answer || "").trim() || localAssistantAnswer("", matches);
+      upsertAssistantBoardItem({
+        id,
+        status: "ready",
+        answer,
+        provider: result.provider || "Codex/Claude",
+        sources: compactAssistantSources(result.sources || []),
+        matches: compactAssistantMatches(matches),
+        elapsedMs: result.elapsedMs || Date.now() - startedAt,
+        updatedAt: Date.now()
+      });
+    }
+
+    function failAssistantBoardItem(id, question, matches, error, startedAt) {
+      upsertAssistantBoardItem({
+        id,
+        status: "failed",
+        answer: [
+          "외부 검색이 시간 안에 확정되지 않아 페이지 내부 기준 답변을 먼저 올립니다.",
+          localAssistantAnswer(question, matches, "bridge-error"),
+          `확인 메모: ${String(error && error.message ? error.message : error || "브리지 응답 실패").slice(0, 180)}`
+        ].join("\n\n"),
+        provider: "페이지 내부 검색",
+        sources: [],
+        matches: compactAssistantMatches(matches),
+        elapsedMs: Date.now() - startedAt,
+        updatedAt: Date.now()
+      });
+    }
+
+    function scrollAssistantBoardIntoView() {
+      const board = document.getElementById("askBoardSection");
+      if (!board) return;
+      window.setTimeout(() => {
+        board.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 180);
+    }
+
     let assistantProgressTimers = [];
     let assistantSearchRunId = 0;
 
@@ -4165,7 +4507,7 @@
 
     function assistantProgressMeta(startedAt, hasBridge) {
       const elapsed = Date.now() - startedAt;
-      const target = hasBridge ? ASSISTANT_BRIDGE_TIMEOUT_MS : 1800;
+      const target = hasBridge ? ASSISTANT_HANDOFF_MS : 1800;
       const percent = Math.min(95, Math.max(8, Math.round((elapsed / target) * 95)));
       const remaining = Math.max(0, target - elapsed);
       const statusIndex = hasBridge
@@ -4185,7 +4527,7 @@
     function assistantActiveStep(startedAt, hasBridge) {
       const elapsed = Date.now() - startedAt;
       const marks = hasBridge
-        ? [0, 700, 1600, 2800, ASSISTANT_BRIDGE_TIMEOUT_MS * 0.86]
+        ? [0, 700, 1600, 2800, ASSISTANT_HANDOFF_MS * 0.86]
         : [0, 240, 560, 980, 1500];
       return marks.reduce((active, mark, index) => elapsed >= mark ? index : active, 0);
     }
@@ -4340,7 +4682,7 @@
     async function askAssistantBridge(question, matches, endpoint) {
       if (!endpoint) return { answer: "", sources: [], provider: "" };
       const controller = new AbortController();
-      const timeout = window.setTimeout(() => controller.abort(), ASSISTANT_BRIDGE_TIMEOUT_MS);
+      const timeout = window.setTimeout(() => controller.abort(), ASSISTANT_BRIDGE_HARD_TIMEOUT_MS);
       try {
         const response = await fetch(endpoint, {
           method: "POST",
@@ -4367,6 +4709,22 @@
       } finally {
         window.clearTimeout(timeout);
       }
+    }
+
+    function renderAssistantHandoff(question, matches, boardItem) {
+      const answer = document.getElementById("askAnswer");
+      if (!answer) return;
+      setAssistantSearching(false);
+      answer.textContent = "";
+      answer.hidden = false;
+      appendAssistantClose(answer);
+      appendAssistantParagraph(answer, "2분 30초를 넘겨 여기서 대기창은 마칩니다. 제가 답변하면 맨 위 Q&A 게시판에 준비해놓겠습니다.");
+      appendAssistantWarning(answer, "브리지 확인은 백그라운드에서 계속 진행 중입니다.");
+      if (matches.length) {
+        appendAssistantSectionTitle(answer, "우선 잡아둔 페이지 내부 근거");
+        appendAssistantResults(answer, matches.slice(0, 3));
+      }
+      if (boardItem) scrollAssistantBoardIntoView();
     }
 
     function assistantSnippet(text, maxLength = 170) {
@@ -4528,6 +4886,7 @@
     }
 
     function initAssistantDock() {
+      renderAssistantBoard();
       initAssistantMode();
       const form = document.getElementById("askForm");
       const input = document.getElementById("askInput");
@@ -4571,7 +4930,37 @@
             }, matches, "no-bridge");
             return;
           }
-          const bridgeResult = await askAssistantBridge(question, matches, endpoint);
+          const bridgePromise = askAssistantBridge(question, matches, endpoint);
+          const bridgeOutcomePromise = bridgePromise.then(
+            (result) => ({ type: "result", result }),
+            (error) => ({ type: "error", error })
+          );
+          const firstOutcome = await Promise.race([
+            bridgeOutcomePromise,
+            assistantDelay(ASSISTANT_HANDOFF_MS).then(() => ({ type: "handoff" }))
+          ]);
+          if (firstOutcome.type === "handoff") {
+            if (runId !== assistantSearchRunId) return;
+            const boardItem = createAssistantPendingBoardItem(question, matches, startedAt);
+            renderAssistantHandoff(question, matches, boardItem);
+            bridgeOutcomePromise.then((outcome) => {
+              if (outcome.type === "result") {
+                const result = outcome.result || { answer: "", sources: [], provider: "" };
+                const hasBridgeContent = result.answer || result.sources.length;
+                completeAssistantBoardItem(boardItem.id, hasBridgeContent ? result : {
+                  answer: localAssistantAnswer(question, matches),
+                  sources: [],
+                  provider: "페이지 내부 검색",
+                  elapsedMs: Date.now() - startedAt
+                }, matches, startedAt);
+              } else {
+                failAssistantBoardItem(boardItem.id, question, matches, outcome.error, startedAt);
+              }
+            });
+            return;
+          }
+          if (firstOutcome.type === "error") throw firstOutcome.error;
+          const bridgeResult = firstOutcome.result;
           await waitForMinimumAssistantProgress(startedAt);
           if (runId !== assistantSearchRunId) return;
           const hasBridgeContent = bridgeResult.answer || bridgeResult.sources.length;

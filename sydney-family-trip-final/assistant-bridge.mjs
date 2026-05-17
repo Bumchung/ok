@@ -8,7 +8,7 @@ import { join } from "node:path";
 const HOST = process.env.SYDNEY_ASSISTANT_HOST || "127.0.0.1";
 const PORT = Number(process.env.SYDNEY_ASSISTANT_PORT || 8788);
 const TOKEN = process.env.SYDNEY_ASSISTANT_TOKEN || "";
-const TIMEOUT_MS = Number(process.env.SYDNEY_ASSISTANT_TIMEOUT_MS || 150000);
+const TIMEOUT_MS = Number(process.env.SYDNEY_ASSISTANT_TIMEOUT_MS || 600000);
 const HOME_DIR = process.env.HOME || homedir() || "/Users/heebumchung";
 const DEFAULT_PATH = [
   join(HOME_DIR, ".nvm/versions/node/v22.22.0/bin"),
