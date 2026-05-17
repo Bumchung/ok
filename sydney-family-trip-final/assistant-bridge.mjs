@@ -2,13 +2,22 @@
 import { createServer } from "node:http";
 import { spawn } from "node:child_process";
 import { mkdtemp, readFile, rm } from "node:fs/promises";
-import { tmpdir } from "node:os";
+import { homedir, tmpdir } from "node:os";
 import { join } from "node:path";
 
 const HOST = process.env.SYDNEY_ASSISTANT_HOST || "127.0.0.1";
 const PORT = Number(process.env.SYDNEY_ASSISTANT_PORT || 8788);
 const TOKEN = process.env.SYDNEY_ASSISTANT_TOKEN || "";
 const TIMEOUT_MS = Number(process.env.SYDNEY_ASSISTANT_TIMEOUT_MS || 75000);
+const HOME_DIR = process.env.HOME || homedir() || "/Users/heebumchung";
+const DEFAULT_PATH = [
+  join(HOME_DIR, ".nvm/versions/node/v22.22.0/bin"),
+  "/Applications/cmux.app/Contents/Resources/bin",
+  "/opt/homebrew/bin",
+  "/usr/local/bin",
+  "/usr/bin",
+  "/bin"
+].join(":");
 const PAGE_URL = "https://bumchung.github.io/ok/sydney-family-trip-final/";
 const DEFAULT_ORIGINS = "https://bumchung.github.io,http://127.0.0.1:8788,http://localhost:8788";
 const ALLOWED_ORIGINS = new Set(
@@ -134,7 +143,16 @@ function runProcess(command, args, input, timeoutMs = TIMEOUT_MS) {
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, {
       cwd: process.cwd(),
-      env: { ...process.env, NO_COLOR: "1" },
+      env: {
+        ...process.env,
+        HOME: HOME_DIR,
+        USER: process.env.USER || "heebumchung",
+        LOGNAME: process.env.LOGNAME || "heebumchung",
+        SHELL: process.env.SHELL || "/bin/zsh",
+        CODEX_HOME: process.env.CODEX_HOME || join(HOME_DIR, ".codex"),
+        PATH: process.env.PATH || DEFAULT_PATH,
+        NO_COLOR: "1"
+      },
       stdio: ["pipe", "pipe", "pipe"]
     });
     let stdout = "";
@@ -242,38 +260,53 @@ function normalizeSources(value, provider, fallbackText = "") {
 
 function parseProviderOutput(provider, rawText) {
   const outer = parseJsonFromText(rawText);
+  const structured = outer && typeof outer.structured_output === "object" && outer.structured_output
+    ? outer.structured_output
+    : null;
   const resultText = outer && typeof outer.result === "string" ? outer.result : rawText;
-  const parsed = parseJsonFromText(resultText) || outer || {};
-  const answer = String(parsed.answer || parsed.text || parsed.message || resultText || "").trim();
+  const parsed = structured || parseJsonFromText(resultText) || outer || {};
+  const answerJson = typeof parsed.answer === "string" ? parseJsonFromText(parsed.answer) : null;
+  const answerValue = answerJson && answerJson.answer
+    ? answerJson.answer
+    : parsed.answer || parsed.text || parsed.message || resultText || "";
+  const answer = typeof answerValue === "string"
+    ? answerValue.trim()
+    : JSON.stringify(answerValue);
   return {
     provider,
     answer,
-    sources: normalizeSources(parsed.sources || parsed.citations || parsed.references, provider, resultText)
+    sources: normalizeSources(
+      parsed.sources || parsed.citations || parsed.references || (answerJson && answerJson.sources),
+      provider,
+      resultText
+    )
   };
 }
 
 async function runCodex(payload) {
   const dir = await mkdtemp(join(tmpdir(), "sydney-assistant-"));
   const outputFile = join(dir, "codex-answer.txt");
+  const prompt = buildPrompt("Codex", payload);
   try {
+    const codexArgs = [
+      "--search",
+      "--ask-for-approval",
+      "never",
+      "exec",
+      "--sandbox",
+      "read-only",
+      "--ephemeral",
+      "--skip-git-repo-check",
+      "--color",
+      "never",
+      "--output-last-message",
+      outputFile,
+      prompt
+    ];
     await runProcess(
       "codex",
-      [
-        "exec",
-        "--search",
-        "--sandbox",
-        "read-only",
-        "--ask-for-approval",
-        "never",
-        "--ephemeral",
-        "--skip-git-repo-check",
-        "--color",
-        "never",
-        "--output-last-message",
-        outputFile,
-        "-"
-      ],
-      buildPrompt("Codex", payload)
+      codexArgs,
+      ""
     );
     const answer = await readFile(outputFile, "utf8");
     return parseProviderOutput("Codex", answer);
