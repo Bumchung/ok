@@ -1478,16 +1478,29 @@
       font-weight: 900;
     }
 
+    .ask-answer p {
+      margin: 0;
+      white-space: pre-wrap;
+    }
+
     .ask-answer a {
       min-height: auto;
       color: #075f86;
       font-weight: 900;
       text-decoration: none;
+      overflow-wrap: anywhere;
     }
 
     .ask-answer p + p,
+    .ask-section-title,
     .ask-results {
       margin-top: 8px;
+    }
+
+    .ask-section-title {
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 900;
     }
 
     .ask-results {
@@ -1500,11 +1513,22 @@
       padding-left: 9px;
     }
 
+    .ask-source {
+      border-left-color: #d3a84d;
+    }
+
     .ask-result span {
       display: block;
       color: var(--muted);
       font-size: 11px;
       font-weight: 800;
+      overflow-wrap: anywhere;
+    }
+
+    .ask-result p {
+      margin-top: 2px;
+      color: #3f4854;
+      font-size: 12px;
     }
 
     .ask-form {
@@ -3558,6 +3582,13 @@
     // Keep model credentials off GitHub Pages; call only a server-side bridge URL when one is configured.
     function assistantEndpoint() {
       try {
+        const params = new URLSearchParams(window.location.search);
+        const queryEndpoint = params.get("assistantEndpoint");
+        const assistantMode = params.get("assistant");
+        if (queryEndpoint) return queryEndpoint.trim();
+        if (["local", "codex", "claude"].includes(String(assistantMode || "").toLowerCase())) {
+          return "http://127.0.0.1:8788/ask";
+        }
         return String(window.SYDNEY_ASSISTANT_ENDPOINT || window.localStorage.getItem("SYDNEY_ASSISTANT_ENDPOINT") || "").trim();
       } catch (error) {
         return String(window.SYDNEY_ASSISTANT_ENDPOINT || "").trim();
@@ -3654,11 +3685,43 @@
         .map((entry) => entry.item);
     }
 
+    function normalizeBridgeSources(value) {
+      const rawSources = Array.isArray(value) ? value : [];
+      return rawSources
+        .map((source, index) => {
+          if (typeof source === "string") {
+            return { title: source, url: source, snippet: "" };
+          }
+          return {
+            title: String(source.title || source.name || source.url || `출처 ${index + 1}`).trim(),
+            url: String(source.url || source.href || source.link || "").trim(),
+            snippet: String(source.snippet || source.summary || source.text || source.description || "").trim(),
+            provider: String(source.provider || source.source || "").trim()
+          };
+        })
+        .filter((source) => /^https?:\/\//i.test(source.url));
+    }
+
+    function parseAssistantBridgeResponse(raw) {
+      const text = String(raw || "").trim();
+      if (!text) return { answer: "", sources: [], provider: "" };
+      try {
+        const parsed = JSON.parse(text);
+        return {
+          answer: String(parsed.answer || parsed.text || parsed.message || "").trim(),
+          sources: normalizeBridgeSources(parsed.sources || parsed.citations || parsed.references),
+          provider: String(parsed.provider || parsed.model || parsed.engine || "").trim()
+        };
+      } catch (error) {
+        return { answer: text, sources: [], provider: "" };
+      }
+    }
+
     async function askAssistantBridge(question, matches) {
       const endpoint = assistantEndpoint();
-      if (!endpoint) return "";
+      if (!endpoint) return { answer: "", sources: [], provider: "" };
       const controller = new AbortController();
-      const timeout = window.setTimeout(() => controller.abort(), 14000);
+      const timeout = window.setTimeout(() => controller.abort(), 80000);
       try {
         const response = await fetch(endpoint, {
           method: "POST",
@@ -3666,6 +3729,9 @@
           body: JSON.stringify({
             page: "sydney-family-trip-final",
             question,
+            providers: ["codex", "claude"],
+            requireSources: true,
+            sourceFormat: "Return JSON: { answer: string, provider: string, sources: [{ title: string, url: string, snippet: string, provider?: string }] }",
             context: matches.map((item) => ({
               kind: item.kind,
               title: item.title,
@@ -3678,12 +3744,7 @@
         });
         const raw = await response.text();
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        try {
-          const parsed = JSON.parse(raw);
-          return String(parsed.answer || parsed.text || parsed.message || "").trim();
-        } catch (error) {
-          return raw.trim();
-        }
+        return parseAssistantBridgeResponse(raw);
       } finally {
         window.clearTimeout(timeout);
       }
@@ -3695,42 +3756,72 @@
       container.appendChild(paragraph);
     }
 
-    function appendAssistantResults(container, matches) {
+    function appendAssistantSectionTitle(container, text) {
+      const title = document.createElement("div");
+      title.className = "ask-section-title";
+      title.textContent = text;
+      container.appendChild(title);
+    }
+
+    function appendAssistantResults(container, matches, options = {}) {
       if (!matches.length) return;
       const results = document.createElement("div");
       results.className = "ask-results";
       matches.forEach((item) => {
         const result = document.createElement("div");
-        result.className = "ask-result";
-        const link = document.createElement("a");
-        link.href = item.url;
-        link.textContent = item.title;
+        result.className = `ask-result${options.source ? " ask-source" : ""}`;
+        const link = item.url ? document.createElement("a") : document.createElement("strong");
+        if (item.url) {
+          link.href = item.url;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+        }
+        link.textContent = item.title || item.url || "출처";
         const meta = document.createElement("span");
-        meta.textContent = `${item.kind} · ${item.subtitle}`;
+        meta.textContent = options.source
+          ? [item.provider, item.url].filter(Boolean).join(" · ")
+          : `${item.kind} · ${item.subtitle}`;
         const body = document.createElement("p");
-        body.textContent = item.body.length > 128 ? `${item.body.slice(0, 128)}...` : item.body;
+        const bodyText = item.body || item.snippet || "";
+        body.textContent = bodyText.length > 128 ? `${bodyText.slice(0, 128)}...` : bodyText;
         result.append(link, meta, body);
         results.appendChild(result);
       });
       container.appendChild(results);
     }
 
-    function renderAssistantAnswer(answerText, matches, usedBridge) {
+    function renderAssistantAnswer(bridgeResult, matches, mode) {
       const answer = document.getElementById("askAnswer");
       if (!answer) return;
       answer.textContent = "";
       answer.hidden = false;
-      if (answerText) {
-        appendAssistantParagraph(answer, answerText);
+      const result = typeof bridgeResult === "string"
+        ? { answer: bridgeResult, sources: [], provider: "" }
+        : bridgeResult || { answer: "", sources: [], provider: "" };
+      if (result.answer) {
+        appendAssistantParagraph(answer, result.answer);
+      } else if (mode === "no-bridge") {
+        appendAssistantParagraph(answer, "Codex/Claude 검색 서버가 아직 연결되어 있지 않아 지금은 페이지 내부 데이터만 보여드립니다.");
       } else if (matches.length) {
         appendAssistantParagraph(answer, `이 페이지 기준으로는 ${matches[0].title} 쪽이 가장 가깝습니다.`);
       } else {
         appendAssistantParagraph(answer, "이 페이지 안에서는 바로 맞는 항목을 찾지 못했습니다. 장소명, 날짜, 비/아이/예약 같은 조건을 넣으면 더 잘 좁혀집니다.");
       }
-      if (usedBridge && matches.length) {
-        appendAssistantParagraph(answer, "관련 페이지 근거:");
+
+      if (result.sources.length) {
+        appendAssistantSectionTitle(answer, `${result.provider || "Codex/Claude"} 검색 출처`);
+        appendAssistantResults(answer, result.sources.map((source) => ({
+          title: source.title,
+          url: source.url,
+          snippet: source.snippet,
+          provider: source.provider || result.provider || "외부 검색"
+        })), { source: true });
       }
-      appendAssistantResults(answer, matches);
+
+      if (matches.length) {
+        appendAssistantSectionTitle(answer, "페이지 내부 근거");
+        appendAssistantResults(answer, matches);
+      }
     }
 
     function initAssistantDock() {
@@ -3749,10 +3840,18 @@
         button.disabled = true;
         button.textContent = "검색";
         try {
-          const bridgeAnswer = await askAssistantBridge(question, matches);
-          renderAssistantAnswer(bridgeAnswer, matches, Boolean(bridgeAnswer));
+          if (!assistantEndpoint()) {
+            renderAssistantAnswer({ answer: "", sources: [], provider: "" }, matches, "no-bridge");
+            return;
+          }
+          const bridgeResult = await askAssistantBridge(question, matches);
+          renderAssistantAnswer(bridgeResult, matches, bridgeResult.answer || bridgeResult.sources.length ? "bridge" : "fallback");
         } catch (error) {
-          renderAssistantAnswer("연결된 답변 서버가 응답하지 않아 페이지 데이터 검색 결과로 보여드립니다.", matches, false);
+          renderAssistantAnswer({
+            answer: "연결된 답변 서버가 응답하지 않아 페이지 데이터 검색 결과로 보여드립니다.",
+            sources: [],
+            provider: ""
+          }, matches, "fallback");
         } finally {
           button.disabled = false;
           button.textContent = "질문";
