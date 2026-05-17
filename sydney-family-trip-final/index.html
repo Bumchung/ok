@@ -1799,6 +1799,43 @@
       display: none;
     }
 
+    .ask-suggestions {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 1px;
+      scrollbar-width: none;
+    }
+
+    .ask-suggestions::-webkit-scrollbar {
+      display: none;
+    }
+
+    .ask-suggestion {
+      flex: 0 0 auto;
+      max-width: min(260px, 76vw);
+      height: 30px;
+      border: 1px solid rgba(126, 140, 154, 0.34);
+      border-radius: 999px;
+      background: #fff;
+      color: #3f4854;
+      padding: 0 10px;
+      font-size: 11px;
+      font-weight: 900;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .ask-suggestion:hover,
+    .ask-suggestion:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+      outline: none;
+    }
+
     .ask-input {
       height: 42px;
       border-color: #bfc8d3;
@@ -2859,6 +2896,13 @@
         <p class="ask-privacy" id="askPrivacy" hidden>
           Codex/Claude 모드는 질문과 관련 페이지 근거를 로컬/서버 브리지로 보내 외부 모델 검색을 기다립니다. 보통 30초 안팎, 길면 2분 30초까지 걸릴 수 있습니다.
         </p>
+        <div class="ask-suggestions" aria-label="가족 여행 빠른 질문">
+          <button class="ask-suggestion" type="button" data-question="오늘 비 오면 부모님과 아이들 데리고 어디 가는 게 제일 안전해?">비 오는 날 대안</button>
+          <button class="ask-suggestion" type="button" data-question="InterContinental Sydney로 옮기는 날 점심이나 카페는 어디가 좋아?">호텔 이동일 점심</button>
+          <button class="ask-suggestion" type="button" data-question="Taronga Zoo 가는 날 비가 오거나 아이가 지치면 어떻게 바꾸지?">Taronga 변경</button>
+          <button class="ask-suggestion" type="button" data-question="Coogee 근처에서 조식 포함 호텔 예약은 Trip.com이랑 IHG 중 어디가 나아?">IHG 예약 판단</button>
+          <button class="ask-suggestion" type="button" data-question="마지막 날 공항 가기 전 짐 들고 가족 9명이 할 만한 코스 추천해줘">공항 전 코스</button>
+        </div>
         <input class="ask-input" id="askInput" type="search" autocomplete="off" placeholder="시드니 여행에서 무엇이든 검색" aria-label="시드니 여행에서 무엇이든 검색">
         <button class="ask-button" id="askButton" type="submit">검색</button>
       </form>
@@ -4464,6 +4508,13 @@
       if (!form || !input || !button) return;
       form.querySelectorAll('input[name="askMode"]').forEach((modeInput) => {
         modeInput.addEventListener("change", updateAssistantModeNotice);
+      });
+      form.querySelectorAll(".ask-suggestion").forEach((suggestion) => {
+        suggestion.addEventListener("click", () => {
+          if (button.disabled) return;
+          input.value = suggestion.dataset.question || suggestion.textContent.trim();
+          form.requestSubmit();
+        });
       });
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
