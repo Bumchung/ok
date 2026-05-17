@@ -1786,6 +1786,19 @@
       box-shadow: 0 1px 4px rgba(20, 31, 45, 0.14);
     }
 
+    .ask-privacy {
+      grid-column: 1 / -1;
+      margin: -2px 2px 0;
+      color: #5c6875;
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .ask-privacy[hidden] {
+      display: none;
+    }
+
     .ask-input {
       height: 42px;
       border-color: #bfc8d3;
@@ -2843,6 +2856,9 @@
           <label><input type="radio" name="askMode" value="page" checked>페이지 내부</label>
           <label><input type="radio" name="askMode" value="bridge">Codex/Claude</label>
         </div>
+        <p class="ask-privacy" id="askPrivacy" hidden>
+          Codex/Claude 모드는 질문과 관련 페이지 근거를 로컬/서버 브리지로 보내 외부 모델 검색을 기다립니다. 보통 30초 안팎, 길면 2분 30초까지 걸릴 수 있습니다.
+        </p>
         <input class="ask-input" id="askInput" type="search" autocomplete="off" placeholder="시드니 여행에서 무엇이든 검색" aria-label="시드니 여행에서 무엇이든 검색">
         <button class="ask-button" id="askButton" type="submit">검색</button>
       </form>
@@ -3918,6 +3934,13 @@
       const value = shouldUseBridge ? "bridge" : "page";
       const target = document.querySelector(`input[name="askMode"][value="${value}"]`);
       if (target) target.checked = true;
+      updateAssistantModeNotice();
+    }
+
+    function updateAssistantModeNotice() {
+      const privacy = document.getElementById("askPrivacy");
+      if (!privacy) return;
+      privacy.hidden = assistantSearchMode() !== "bridge";
     }
 
     function normalizeAssistantText(value) {
@@ -4439,6 +4462,9 @@
       const input = document.getElementById("askInput");
       const button = document.getElementById("askButton");
       if (!form || !input || !button) return;
+      form.querySelectorAll('input[name="askMode"]').forEach((modeInput) => {
+        modeInput.addEventListener("change", updateAssistantModeNotice);
+      });
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
         const question = input.value.trim();
