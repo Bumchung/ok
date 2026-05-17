@@ -4374,18 +4374,45 @@
       return clean.length > maxLength ? `${clean.slice(0, maxLength)}...` : clean;
     }
 
+    function localAssistantChecklist(question) {
+      const text = normalizeAssistantText(question);
+      if (/ihg|trip|호텔|조식|예약|취소|회원/.test(text)) {
+        return "출발 전 확인: 같은 룸타입, 같은 인원, 조식 포함 여부, 무료취소 시한, 세금/서비스료 포함 총액을 한 화면에서 맞춰본 뒤 IHG 공식 회원가를 우선합니다.";
+      }
+      if (/비|우천|rain|실내/.test(text)) {
+        return "출발 전 확인: 당일 영업시간, 특별전/입장권, 택시 승하차 지점, 유모차·부모님 휴식 동선을 먼저 봅니다.";
+      }
+      if (/공항|짐|체크아웃|마지막/.test(text)) {
+        return "출발 전 확인: 호텔 짐 보관, 공항 이동 예상 시간, 택시 2대 분리 여부, 마지막 식사 장소의 대기 시간을 확인합니다.";
+      }
+      if (/taronga|동물원|zoo|피곤|아이/.test(text)) {
+        return "출발 전 확인: 페리/택시 이동 시간, 아이 체력, 비 예보, 중간 철수 시 돌아올 교통편을 같이 잡습니다.";
+      }
+      return "출발 전 확인: 영업시간, 예약 가능 여부, 택시 이동 시간, 아이와 부모님이 앉아 쉴 수 있는지를 당일 오전에 다시 확인합니다.";
+    }
+
+    function assistantObjectParticle(value) {
+      const text = String(value || "").trim();
+      const last = text.charCodeAt(text.length - 1);
+      if (last < 0xac00 || last > 0xd7a3) return "를";
+      return (last - 0xac00) % 28 ? "을" : "를";
+    }
+
     function localAssistantAnswer(question, matches, reason = "") {
       if (!matches.length) {
         return "페이지 내부 데이터를 끝까지 확인했지만 바로 맞는 항목을 찾지 못했습니다. 장소명, 날짜, 비/아이/예약 같은 조건을 더 넣으면 결과가 잘 좁혀집니다.";
       }
       const top = matches[0];
-      const otherTitles = matches.slice(1, 4).map((item) => item.title).join(", ");
+      const alternatives = matches.slice(1, 4).map((item) => item.title);
       const intro = reason === "bridge-error"
         ? "Codex/Claude 연결이 끊겨도 페이지 내부 데이터로 계속 정리합니다."
         : "페이지 내부 데이터 기준으로 정리합니다.";
-      const summary = `가장 가까운 항목은 ${top.title}입니다. ${assistantSnippet(top.body)}`;
-      const next = otherTitles ? `함께 볼 후보는 ${otherTitles}입니다.` : "";
-      return [intro, summary, next].filter(Boolean).join("\n\n");
+      const decision = `결론: 지금 질문에는 ${top.title}${assistantObjectParticle(top.title)} 1순위로 봅니다. ${top.subtitle ? `${top.subtitle} 맥락과 가장 가깝습니다.` : ""}`.trim();
+      const reasonText = `이유: ${assistantSnippet(top.body, 220)}`;
+      const backup = alternatives.length
+        ? `대안: ${alternatives.join(" → ")} 순서로 보면서 날씨와 체력에 맞춰 줄이면 됩니다.`
+        : "";
+      return [intro, decision, reasonText, backup, localAssistantChecklist(question)].filter(Boolean).join("\n\n");
     }
 
     function appendAssistantParagraph(container, text) {
