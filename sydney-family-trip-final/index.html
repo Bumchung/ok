@@ -1205,36 +1205,43 @@
     }
 
     .poi-rating {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 6px;
-      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 10px;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.25;
     }
 
     .poi-rating span {
       min-width: 0;
-      border: 1px solid #d7dde5;
-      border-radius: 7px;
-      background: #f8fafc;
-      padding: 7px;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 3px;
     }
 
     .poi-rating strong {
-      display: block;
       color: var(--ink);
-      font-size: 14px;
-      line-height: 1.1;
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1.15;
+      white-space: nowrap;
     }
 
     .poi-rating em {
-      display: block;
-      margin-top: 3px;
       color: var(--muted);
       font-size: 10px;
       font-style: normal;
-      font-weight: 900;
-      line-height: 1.25;
+      font-weight: 800;
+      line-height: 1.2;
     }
+
+    .poi-rating .good strong { color: var(--green); }
+    .poi-rating .warn strong { color: var(--gold); }
+    .poi-rating .red strong { color: var(--red); }
+    .poi-rating .blue strong { color: var(--blue); }
 
     .poi-link {
       display: inline-flex;
@@ -3361,10 +3368,17 @@
         poi.t.includes("예약") || poi.w.includes("예약") || poi.t.includes("마감") ? "예약" :
         poi.w.includes("대기") || poi.t.includes("혼잡") || poi.t.includes("대기") ? "대기" : "보통";
 
+      const scoreTone = score >= 4.6 ? "good" : score >= 4.2 ? "blue" : score >= 3.9 ? "warn" : "red";
+      const routeTone = routeFit === "상" || routeFit === "중상" ? "good" : routeFit === "선택" ? "blue" : "warn";
+      const bookingTone = bookingRisk === "예약" ? "red" : bookingRisk === "대기" ? "warn" : "good";
+
       return {
         score: score.toFixed(1),
         routeFit,
-        bookingRisk
+        bookingRisk,
+        scoreTone,
+        routeTone,
+        bookingTone
       };
     }
 
@@ -3387,10 +3401,10 @@
               </div>
               <h3>${poi.name}</h3>
               <div class="poi-rating" aria-label="가족 판단 기준">
-                <span><strong>${signal.verdict}</strong><em>${signal.text}</em></span>
-                <span><strong>${meta.score}/5</strong><em>가족판단점수</em></span>
-                <span><strong>${meta.routeFit}</strong><em>동선적합</em></span>
-                <span><strong>${meta.bookingRisk}</strong><em>예약/대기</em></span>
+                <span class="${poi.tag}"><strong>${signal.verdict}</strong><em>${signal.text}</em></span>
+                <span class="${meta.scoreTone}"><strong>${meta.score}/5</strong><em>가족판단점수</em></span>
+                <span class="${meta.routeTone}"><strong>${meta.routeFit}</strong><em>동선적합</em></span>
+                <span class="${meta.bookingTone}"><strong>${meta.bookingRisk}</strong><em>예약/대기</em></span>
               </div>
               <div class="poi-swot">
                 <div><strong>S</strong><span>${poi.s}</span></div>
