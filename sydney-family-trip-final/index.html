@@ -1699,6 +1699,43 @@
       padding: 10px;
     }
 
+    .ask-mode {
+      grid-column: 1 / -1;
+      display: inline-grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: min(320px, 100%);
+      border: 1px solid rgba(126, 140, 154, 0.38);
+      border-radius: 7px;
+      background: #f5f7f9;
+      padding: 3px;
+    }
+
+    .ask-mode input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .ask-mode label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      height: 30px;
+      border-radius: 5px;
+      color: #5c6875;
+      font-size: 12px;
+      font-weight: 900;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .ask-mode label:has(input:checked) {
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 1px 4px rgba(20, 31, 45, 0.14);
+    }
+
     .ask-input {
       height: 42px;
       border-color: #bfc8d3;
@@ -1832,6 +1869,9 @@
       .ask-form {
         gap: 7px;
         padding: 8px;
+      }
+      .ask-mode {
+        width: 100%;
       }
       .ask-button {
         min-width: 58px;
@@ -2749,6 +2789,10 @@
     <div class="ask-panel">
       <div class="ask-answer" id="askAnswer" aria-live="polite" hidden></div>
       <form class="ask-form" id="askForm">
+        <div class="ask-mode" role="radiogroup" aria-label="검색 방식">
+          <label><input type="radio" name="askMode" value="page" checked>페이지 내부</label>
+          <label><input type="radio" name="askMode" value="bridge">Codex/Claude</label>
+        </div>
         <input class="ask-input" id="askInput" type="search" autocomplete="off" placeholder="시드니 여행에서 무엇이든 검색" aria-label="시드니 여행에서 무엇이든 검색">
         <button class="ask-button" id="askButton" type="submit">검색</button>
       </form>
@@ -3766,21 +3810,56 @@
       if (quickGrid) quickGrid.innerHTML = poiTop100.map(poiCardMarkup).join("");
     }
 
-    // Keep model credentials off GitHub Pages; call only a server-side bridge URL when one is configured.
-    function assistantEndpoint() {
-      const localBridge = "http://127.0.0.1:8788/ask";
+    const ASSISTANT_LOCAL_BRIDGE = "http://127.0.0.1:8788/ask";
+
+    // Keep model credentials off GitHub Pages; call only a server-side bridge URL when external mode is selected.
+    function assistantConfiguredEndpoint() {
       try {
         const params = new URLSearchParams(window.location.search);
         const queryEndpoint = params.get("assistantEndpoint");
         const assistantMode = params.get("assistant");
         if (queryEndpoint) return queryEndpoint.trim();
         if (["local", "codex", "claude"].includes(String(assistantMode || "").toLowerCase())) {
-          return localBridge;
+          return ASSISTANT_LOCAL_BRIDGE;
         }
         return String(window.SYDNEY_ASSISTANT_ENDPOINT || window.localStorage.getItem("SYDNEY_ASSISTANT_ENDPOINT") || "").trim();
       } catch (error) {
         return "";
       }
+    }
+
+    function assistantUrlMode() {
+      try {
+        return String(new URLSearchParams(window.location.search).get("assistant") || "").toLowerCase();
+      } catch (error) {
+        return "";
+      }
+    }
+
+    function assistantSearchMode() {
+      const selected = document.querySelector('input[name="askMode"]:checked');
+      return selected ? selected.value : "page";
+    }
+
+    function assistantEndpoint(mode = assistantSearchMode()) {
+      if (mode !== "bridge") return "";
+      return assistantConfiguredEndpoint() || ASSISTANT_LOCAL_BRIDGE;
+    }
+
+    function initAssistantMode() {
+      const urlMode = assistantUrlMode();
+      const bridgeMode = ["local", "codex", "claude"].includes(urlMode);
+      const endpoint = (() => {
+        try {
+          return new URLSearchParams(window.location.search).get("assistantEndpoint");
+        } catch (error) {
+          return "";
+        }
+      })();
+      const shouldUseBridge = bridgeMode || Boolean(endpoint);
+      const value = shouldUseBridge ? "bridge" : "page";
+      const target = document.querySelector(`input[name="askMode"][value="${value}"]`);
+      if (target) target.checked = true;
     }
 
     function normalizeAssistantText(value) {
@@ -3972,9 +4051,9 @@
             : "질문과 가장 가까운 내부 근거를 찾고 있습니다."
         },
         {
-          title: hasBridge ? "외부 답변 브리지 확인" : "내부 검색 결과로 답변 준비",
+          title: hasBridge ? "Codex/Claude 검색" : "내부 검색 결과로 답변 준비",
           detail: hasBridge
-            ? "Codex/Claude 브리지 응답과 출처를 기다립니다."
+            ? "Codex와 Claude가 웹 출처와 페이지 근거를 함께 확인합니다."
             : "연결된 브리지가 없어 페이지 데이터만으로 정리합니다."
         },
         {
@@ -4074,7 +4153,7 @@
       const endpoint = assistantEndpoint();
       if (!endpoint) return { answer: "", sources: [], provider: "" };
       const controller = new AbortController();
-      const timeout = window.setTimeout(() => controller.abort(), 15000);
+      const timeout = window.setTimeout(() => controller.abort(), 75000);
       try {
         const response = await fetch(endpoint, {
           method: "POST",
@@ -4115,7 +4194,7 @@
       const top = matches[0];
       const otherTitles = matches.slice(1, 4).map((item) => item.title).join(", ");
       const intro = reason === "bridge-error"
-        ? "답변 서버 연결이 끊겨도 페이지 내부 데이터로 계속 정리합니다."
+        ? "Codex/Claude 연결이 끊겨도 페이지 내부 데이터로 계속 정리합니다."
         : "페이지 내부 데이터 기준으로 정리합니다.";
       const summary = `가장 가까운 항목은 ${top.title}입니다. ${assistantSnippet(top.body)}`;
       const next = otherTitles ? `함께 볼 후보는 ${otherTitles}입니다.` : "";
@@ -4220,6 +4299,7 @@
     }
 
     function initAssistantDock() {
+      initAssistantMode();
       const form = document.getElementById("askForm");
       const input = document.getElementById("askInput");
       const button = document.getElementById("askButton");
@@ -4235,9 +4315,10 @@
         assistantSearchRunId = runId;
         const startedAt = Date.now();
         const matches = assistantMatches(question);
-        const endpoint = assistantEndpoint();
+        const mode = assistantSearchMode();
+        const endpoint = assistantEndpoint(mode);
         button.disabled = true;
-        button.textContent = "검색 중";
+        button.textContent = mode === "bridge" ? "확인 중" : "검색 중";
         renderAssistantProgress(question, matches, 0, Boolean(endpoint));
         scheduleAssistantProgress(question, matches, Boolean(endpoint), runId);
         try {
