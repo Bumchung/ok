@@ -116,7 +116,7 @@
     .page {
       width: min(1180px, calc(100% - 40px));
       margin: 0 auto;
-      padding: 36px 0 70px;
+      padding: 36px 0 150px;
     }
 
     section { margin-top: 36px; }
@@ -1439,6 +1439,107 @@
       font-size: 13px;
     }
 
+    .ask-dock {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: max(12px, env(safe-area-inset-bottom));
+      z-index: 80;
+      padding: 0 14px;
+      pointer-events: none;
+    }
+
+    .ask-panel {
+      width: min(760px, 100%);
+      margin: 0 auto;
+      border: 1px solid rgba(126, 140, 154, 0.42);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 18px 54px rgba(20, 31, 45, 0.22);
+      overflow: hidden;
+      pointer-events: auto;
+      backdrop-filter: blur(14px);
+    }
+
+    .ask-answer {
+      max-height: 230px;
+      overflow: auto;
+      border-bottom: 1px solid var(--line);
+      padding: 12px 13px;
+      color: #2b3440;
+      font-size: 13px;
+      line-height: 1.48;
+    }
+
+    .ask-answer[hidden] { display: none; }
+
+    .ask-answer strong {
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .ask-answer a {
+      min-height: auto;
+      color: #075f86;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .ask-answer p + p,
+    .ask-results {
+      margin-top: 8px;
+    }
+
+    .ask-results {
+      display: grid;
+      gap: 7px;
+    }
+
+    .ask-result {
+      border-left: 3px solid #9fc4c7;
+      padding-left: 9px;
+    }
+
+    .ask-result span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .ask-form {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+      padding: 10px;
+    }
+
+    .ask-input {
+      height: 42px;
+      border-color: #bfc8d3;
+      font-size: 14px;
+    }
+
+    .ask-button {
+      min-width: 66px;
+      height: 42px;
+      border: 0;
+      border-radius: 7px;
+      background: var(--ink);
+      color: #fff;
+      padding: 0 13px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 900;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .ask-button:disabled {
+      cursor: wait;
+      opacity: 0.62;
+    }
+
     @media (max-width: 1040px) {
       .hero-metrics,
       .decision-grid,
@@ -1525,6 +1626,23 @@
       .route-map .sub-label { font-size: 12px; }
       .route-overlay text { font-size: 13px; }
       .route-overlay .sub-label { font-size: 11px; }
+      .page { padding-bottom: 170px; }
+      .ask-dock {
+        bottom: max(8px, env(safe-area-inset-bottom));
+        padding: 0 10px;
+      }
+      .ask-answer {
+        max-height: 210px;
+        font-size: 12px;
+      }
+      .ask-form {
+        gap: 7px;
+        padding: 8px;
+      }
+      .ask-button {
+        min-width: 58px;
+        padding: 0 10px;
+      }
     }
   </style>
 </head>
@@ -2415,6 +2533,16 @@
       </div>
     </section>
   </main>
+
+  <div class="ask-dock" role="region" aria-label="무엇이든 물어보세요">
+    <div class="ask-panel">
+      <div class="ask-answer" id="askAnswer" aria-live="polite" hidden></div>
+      <form class="ask-form" id="askForm">
+        <input class="ask-input" id="askInput" type="search" autocomplete="off" placeholder="무엇이든 물어보세요" aria-label="무엇이든 물어보세요">
+        <button class="ask-button" id="askButton" type="submit">질문</button>
+      </form>
+    </div>
+  </div>
 
   <script>
     const airTotal = 26608500;
@@ -3427,6 +3555,211 @@
       if (quickGrid) quickGrid.innerHTML = poiTop100.map(poiCardMarkup).join("");
     }
 
+    // Keep model credentials off GitHub Pages; call only a server-side bridge URL when one is configured.
+    function assistantEndpoint() {
+      try {
+        return String(window.SYDNEY_ASSISTANT_ENDPOINT || window.localStorage.getItem("SYDNEY_ASSISTANT_ENDPOINT") || "").trim();
+      } catch (error) {
+        return String(window.SYDNEY_ASSISTANT_ENDPOINT || "").trim();
+      }
+    }
+
+    function normalizeAssistantText(value) {
+      return String(value || "").toLowerCase().replace(/\s+/g, " ").trim();
+    }
+
+    function assistantTokens(question) {
+      return normalizeAssistantText(question)
+        .split(/[^0-9a-z가-힣]+/i)
+        .filter((token) => token.length >= 2);
+    }
+
+    function assistantSearchItems() {
+      const dayItems = dayPlans.map((day) => ({
+        kind: "일정",
+        title: day.title,
+        subtitle: `${day.date} · ${day.base}`,
+        body: [day.summary, day.why, day.weather, day.pace, day.points.join(" ")].join(" "),
+        url: day.map
+      }));
+      const operationItems = dayOperations.flatMap((day) => {
+        const restaurants = day.restaurants.map((item) => ({ item, kind: "식당" }));
+        const cafes = day.cafes.map((item) => ({ item, kind: "카페" }));
+        return restaurants.concat(cafes).map(({ item, kind }) => ({
+          kind,
+          title: item.name,
+          subtitle: `${day.date} · ${item.area}`,
+          body: [day.title, day.note, item.s, item.w, item.o, item.t, item.source].join(" "),
+          url: googleMapSearch(item.query)
+        }));
+      });
+      const poiItems = poiTop100.map((poi) => {
+        const meta = poiDecisionMeta(poi);
+        const signal = venueSignals[poi.rank - 1] || { text: "공개 평점 확인 필요", verdict: "확인 필요" };
+        return {
+          kind: poi.kind,
+          title: `#${poi.rank} ${poi.name}`,
+          subtitle: `${poi.area} · ${signal.verdict} · ${meta.score}/5`,
+          body: [signal.text, poi.s, poi.w, poi.o, poi.t, poi.source, meta.routeFit, meta.bookingRisk].join(" "),
+          url: googleMapSearch(poi.query)
+        };
+      });
+      return dayItems.concat(operationItems, poiItems);
+    }
+
+    function assistantScoreItem(item, tokens, questionText) {
+      const title = normalizeAssistantText(item.title);
+      const subtitle = normalizeAssistantText(item.subtitle);
+      const body = normalizeAssistantText(item.body);
+      const haystack = `${title} ${subtitle} ${body}`;
+      let score = 0;
+      tokens.forEach((token) => {
+        if (title.includes(token)) score += 7;
+        if (subtitle.includes(token)) score += 4;
+        if (body.includes(token)) score += 2;
+        if (haystack.includes(token)) score += 1;
+      });
+      const semanticBoosts = [
+        { keys: ["비", "우천"], targets: ["실내", "우천"], weight: 8 },
+        { keys: ["비", "우천"], targets: ["비"], weight: 2 },
+        { keys: ["아이", "애들", "어린이"], targets: ["아이", "어린이", "가족"], weight: 5 },
+        { keys: ["부모", "어머니", "아버지"], targets: ["부모", "어른", "회복"], weight: 4 },
+        { keys: ["예약", "대기"], targets: ["예약", "대기", "혼잡"], weight: 4 },
+        { keys: ["공항", "귀국", "마지막"], targets: ["공항", "귀국", "마지막", "체크아웃"], weight: 4 },
+        { keys: ["블루", "산", "mountain"], targets: ["blue", "mountain", "블루마운틴", "안개"], weight: 4 }
+      ];
+      semanticBoosts.forEach((boost) => {
+        if (boost.keys.some((key) => questionText.includes(key)) && boost.targets.some((target) => haystack.includes(target))) {
+          score += boost.weight;
+        }
+      });
+      if ((questionText.includes("비") || questionText.includes("우천")) && item.kind === "명소" && (haystack.includes("실내") || haystack.includes("우천"))) {
+        score += 6;
+      }
+      if ((questionText.includes("아이") || questionText.includes("어린이") || questionText.includes("애들")) && item.kind === "명소") {
+        score += 3;
+      }
+      return score;
+    }
+
+    function assistantMatches(question, limit = 5) {
+      const questionText = normalizeAssistantText(question);
+      const tokens = assistantTokens(question);
+      if (!questionText) return [];
+      return assistantSearchItems()
+        .map((item) => ({ item, score: assistantScoreItem(item, tokens, questionText) }))
+        .filter((entry) => entry.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, limit)
+        .map((entry) => entry.item);
+    }
+
+    async function askAssistantBridge(question, matches) {
+      const endpoint = assistantEndpoint();
+      if (!endpoint) return "";
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 14000);
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            page: "sydney-family-trip-final",
+            question,
+            context: matches.map((item) => ({
+              kind: item.kind,
+              title: item.title,
+              subtitle: item.subtitle,
+              body: item.body,
+              url: item.url
+            }))
+          }),
+          signal: controller.signal
+        });
+        const raw = await response.text();
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        try {
+          const parsed = JSON.parse(raw);
+          return String(parsed.answer || parsed.text || parsed.message || "").trim();
+        } catch (error) {
+          return raw.trim();
+        }
+      } finally {
+        window.clearTimeout(timeout);
+      }
+    }
+
+    function appendAssistantParagraph(container, text) {
+      const paragraph = document.createElement("p");
+      paragraph.textContent = text;
+      container.appendChild(paragraph);
+    }
+
+    function appendAssistantResults(container, matches) {
+      if (!matches.length) return;
+      const results = document.createElement("div");
+      results.className = "ask-results";
+      matches.forEach((item) => {
+        const result = document.createElement("div");
+        result.className = "ask-result";
+        const link = document.createElement("a");
+        link.href = item.url;
+        link.textContent = item.title;
+        const meta = document.createElement("span");
+        meta.textContent = `${item.kind} · ${item.subtitle}`;
+        const body = document.createElement("p");
+        body.textContent = item.body.length > 128 ? `${item.body.slice(0, 128)}...` : item.body;
+        result.append(link, meta, body);
+        results.appendChild(result);
+      });
+      container.appendChild(results);
+    }
+
+    function renderAssistantAnswer(answerText, matches, usedBridge) {
+      const answer = document.getElementById("askAnswer");
+      if (!answer) return;
+      answer.textContent = "";
+      answer.hidden = false;
+      if (answerText) {
+        appendAssistantParagraph(answer, answerText);
+      } else if (matches.length) {
+        appendAssistantParagraph(answer, `이 페이지 기준으로는 ${matches[0].title} 쪽이 가장 가깝습니다.`);
+      } else {
+        appendAssistantParagraph(answer, "이 페이지 안에서는 바로 맞는 항목을 찾지 못했습니다. 장소명, 날짜, 비/아이/예약 같은 조건을 넣으면 더 잘 좁혀집니다.");
+      }
+      if (usedBridge && matches.length) {
+        appendAssistantParagraph(answer, "관련 페이지 근거:");
+      }
+      appendAssistantResults(answer, matches);
+    }
+
+    function initAssistantDock() {
+      const form = document.getElementById("askForm");
+      const input = document.getElementById("askInput");
+      const button = document.getElementById("askButton");
+      if (!form || !input || !button) return;
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const question = input.value.trim();
+        if (!question) {
+          input.focus();
+          return;
+        }
+        const matches = assistantMatches(question);
+        button.disabled = true;
+        button.textContent = "검색";
+        try {
+          const bridgeAnswer = await askAssistantBridge(question, matches);
+          renderAssistantAnswer(bridgeAnswer, matches, Boolean(bridgeAnswer));
+        } catch (error) {
+          renderAssistantAnswer("연결된 답변 서버가 응답하지 않아 페이지 데이터 검색 결과로 보여드립니다.", matches, false);
+        } finally {
+          button.disabled = false;
+          button.textContent = "질문";
+        }
+      });
+    }
+
     function render() {
       const mode = roomMode.value;
       const local = Number(localBudget.value || 0);
@@ -3481,6 +3814,7 @@
     initDayPlanner();
     renderDayOperations();
     renderPoiCards();
+    initAssistantDock();
     render();
 
     const routeMapPoints = {
