@@ -1610,6 +1610,56 @@
       font-size: 12px;
     }
 
+    .ask-progress-meter {
+      display: grid;
+      gap: 7px;
+      border: 1px solid rgba(126, 140, 154, 0.24);
+      border-radius: 7px;
+      background: #f7fafb;
+      padding: 9px;
+    }
+
+    .ask-progress-bar {
+      height: 7px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #dbe5e8;
+    }
+
+    .ask-progress-fill {
+      width: var(--ask-progress, 8%);
+      height: 100%;
+      border-radius: inherit;
+      background: var(--accent);
+      transition: width 320ms ease;
+    }
+
+    .ask-progress-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 9px;
+      color: #435160;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .ask-progress-note {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .ask-warning {
+      border-left: 3px solid #d3a84d;
+      margin-top: 8px;
+      padding-left: 9px;
+      color: #5b4a18;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: pre-wrap;
+    }
+
     .ask-close {
       position: absolute;
       top: 8px;
@@ -3811,6 +3861,14 @@
     }
 
     const ASSISTANT_LOCAL_BRIDGE = "http://127.0.0.1:8788/ask";
+    const ASSISTANT_BRIDGE_TIMEOUT_MS = 150000;
+    const ASSISTANT_BRIDGE_STATUS = [
+      "Codex와 Claude에 같은 질문을 보내고 있습니다.",
+      "페이지 내부 근거와 웹 검색 결과를 함께 맞춰보고 있습니다.",
+      "공식 관광지, 지도, 예약 사이트 출처를 우선 확인합니다.",
+      "두 모델 답변과 출처를 병합할 준비를 하고 있습니다.",
+      "응답이 길어지는 중입니다. 창을 닫지 않으면 완료되는 즉시 결과로 바뀝니다."
+    ];
 
     // Keep model credentials off GitHub Pages; call only a server-side bridge URL when external mode is selected.
     function assistantConfiguredEndpoint() {
@@ -4000,10 +4058,12 @@
         return {
           answer: String(parsed.answer || parsed.text || parsed.message || "").trim(),
           sources: normalizeBridgeSources(parsed.sources || parsed.citations || parsed.references),
-          provider: String(parsed.provider || parsed.model || parsed.engine || "").trim()
+          provider: String(parsed.provider || parsed.model || parsed.engine || "").trim(),
+          errors: Array.isArray(parsed.errors) ? parsed.errors.map((item) => String(item || "").trim()).filter(Boolean) : [],
+          elapsedMs: Number(parsed.elapsedMs || 0)
         };
       } catch (error) {
-        return { answer: text, sources: [], provider: "" };
+        return { answer: text, sources: [], provider: "", errors: [], elapsedMs: 0 };
       }
     }
 
@@ -4011,7 +4071,10 @@
     let assistantSearchRunId = 0;
 
     function clearAssistantProgressTimers() {
-      assistantProgressTimers.forEach((timer) => window.clearTimeout(timer));
+      assistantProgressTimers.forEach((timer) => {
+        window.clearTimeout(timer);
+        window.clearInterval(timer);
+      });
       assistantProgressTimers = [];
     }
 
@@ -4022,6 +4085,42 @@
     async function waitForMinimumAssistantProgress(startedAt, minimumMs = 700) {
       const remaining = minimumMs - (Date.now() - startedAt);
       if (remaining > 0) await assistantDelay(remaining);
+    }
+
+    function formatAssistantDuration(ms) {
+      const totalSeconds = Math.max(0, Math.round(Number(ms || 0) / 1000));
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      if (minutes <= 0) return `${seconds}초`;
+      if (!seconds) return `${minutes}분`;
+      return `${minutes}분 ${seconds}초`;
+    }
+
+    function assistantProgressMeta(startedAt, hasBridge) {
+      const elapsed = Date.now() - startedAt;
+      const target = hasBridge ? ASSISTANT_BRIDGE_TIMEOUT_MS : 1800;
+      const percent = Math.min(95, Math.max(8, Math.round((elapsed / target) * 95)));
+      const remaining = Math.max(0, target - elapsed);
+      const statusIndex = hasBridge
+        ? Math.min(ASSISTANT_BRIDGE_STATUS.length - 1, Math.floor(elapsed / 18000))
+        : 0;
+      return {
+        percent,
+        elapsedText: formatAssistantDuration(elapsed),
+        remainingText: formatAssistantDuration(remaining),
+        targetText: formatAssistantDuration(target),
+        status: hasBridge
+          ? ASSISTANT_BRIDGE_STATUS[statusIndex]
+          : "페이지 내부 데이터만 훑어 빠르게 정리합니다."
+      };
+    }
+
+    function assistantActiveStep(startedAt, hasBridge) {
+      const elapsed = Date.now() - startedAt;
+      const marks = hasBridge
+        ? [0, 700, 1600, 2800, ASSISTANT_BRIDGE_TIMEOUT_MS * 0.86]
+        : [0, 240, 560, 980, 1500];
+      return marks.reduce((active, mark, index) => elapsed >= mark ? index : active, 0);
     }
 
     function setAssistantSearching(isSearching) {
@@ -4063,7 +4162,7 @@
       ];
     }
 
-    function renderAssistantProgress(question, matches, activeStep, hasBridge) {
+    function renderAssistantProgress(question, matches, activeStep, hasBridge, progressMeta = null) {
       const answer = document.getElementById("askAnswer");
       if (!answer) return;
       setAssistantSearching(true);
@@ -4133,27 +4232,48 @@
         preview.appendChild(empty);
       }
 
-      progress.append(head, stages, preview);
+      const meta = progressMeta || assistantProgressMeta(Date.now(), hasBridge);
+      const meter = document.createElement("div");
+      meter.className = "ask-progress-meter";
+      const bar = document.createElement("div");
+      bar.className = "ask-progress-bar";
+      const fill = document.createElement("div");
+      fill.className = "ask-progress-fill";
+      fill.style.setProperty("--ask-progress", `${meta.percent}%`);
+      bar.appendChild(fill);
+      const stats = document.createElement("div");
+      stats.className = "ask-progress-meta";
+      stats.innerHTML = `<span>경과 ${meta.elapsedText}</span><span>예상 최대 ${meta.targetText}</span><span>남은 약 ${meta.remainingText}</span>`;
+      const note = document.createElement("div");
+      note.className = "ask-progress-note";
+      note.textContent = meta.status;
+      meter.append(bar, stats, note);
+
+      progress.append(head, stages, meter, preview);
       answer.appendChild(progress);
     }
 
-    function scheduleAssistantProgress(question, matches, hasBridge, runId) {
+    function scheduleAssistantProgress(question, matches, hasBridge, runId, startedAt) {
       clearAssistantProgressTimers();
-      [1, 2, 3, 4].forEach((step, index) => {
-        const timer = window.setTimeout(() => {
-          if (runId === assistantSearchRunId) {
-            renderAssistantProgress(question, matches, step, hasBridge);
-          }
-        }, [240, 560, 980, 1500][index]);
-        assistantProgressTimers.push(timer);
-      });
+      const tick = () => {
+        if (runId === assistantSearchRunId) {
+          renderAssistantProgress(
+            question,
+            matches,
+            assistantActiveStep(startedAt, hasBridge),
+            hasBridge,
+            assistantProgressMeta(startedAt, hasBridge)
+          );
+        }
+      };
+      const timer = window.setInterval(tick, hasBridge ? 1000 : 320);
+      assistantProgressTimers.push(timer);
     }
 
-    async function askAssistantBridge(question, matches) {
-      const endpoint = assistantEndpoint();
+    async function askAssistantBridge(question, matches, endpoint) {
       if (!endpoint) return { answer: "", sources: [], provider: "" };
       const controller = new AbortController();
-      const timeout = window.setTimeout(() => controller.abort(), 75000);
+      const timeout = window.setTimeout(() => controller.abort(), ASSISTANT_BRIDGE_TIMEOUT_MS);
       try {
         const response = await fetch(endpoint, {
           method: "POST",
@@ -4205,6 +4325,13 @@
       const paragraph = document.createElement("p");
       paragraph.textContent = text;
       container.appendChild(paragraph);
+    }
+
+    function appendAssistantWarning(container, text) {
+      const warning = document.createElement("div");
+      warning.className = "ask-warning";
+      warning.textContent = text;
+      container.appendChild(warning);
     }
 
     function appendAssistantClose(container) {
@@ -4282,6 +4409,14 @@
         appendAssistantParagraph(answer, "이 페이지 안에서는 바로 맞는 항목을 찾지 못했습니다. 장소명, 날짜, 비/아이/예약 같은 조건을 넣으면 더 잘 좁혀집니다.");
       }
 
+      if (result.elapsedMs) {
+        appendAssistantWarning(answer, `Codex/Claude 응답 생성 시간: ${formatAssistantDuration(result.elapsedMs)}`);
+      }
+
+      if (Array.isArray(result.errors) && result.errors.length) {
+        appendAssistantWarning(answer, `일부 검색 경로는 실패했지만 가능한 결과를 표시했습니다.\n${result.errors.slice(0, 2).join("\n")}`);
+      }
+
       if (result.sources.length) {
         appendAssistantSectionTitle(answer, `${result.provider || "Codex/Claude"} 검색 출처`);
         appendAssistantResults(answer, result.sources.map((source) => ({
@@ -4319,8 +4454,8 @@
         const endpoint = assistantEndpoint(mode);
         button.disabled = true;
         button.textContent = mode === "bridge" ? "확인 중" : "검색 중";
-        renderAssistantProgress(question, matches, 0, Boolean(endpoint));
-        scheduleAssistantProgress(question, matches, Boolean(endpoint), runId);
+        renderAssistantProgress(question, matches, 0, Boolean(endpoint), assistantProgressMeta(startedAt, Boolean(endpoint)));
+        scheduleAssistantProgress(question, matches, Boolean(endpoint), runId, startedAt);
         try {
           if (!endpoint) {
             await waitForMinimumAssistantProgress(startedAt);
@@ -4332,7 +4467,7 @@
             }, matches, "no-bridge");
             return;
           }
-          const bridgeResult = await askAssistantBridge(question, matches);
+          const bridgeResult = await askAssistantBridge(question, matches, endpoint);
           await waitForMinimumAssistantProgress(startedAt);
           if (runId !== assistantSearchRunId) return;
           const hasBridgeContent = bridgeResult.answer || bridgeResult.sources.length;

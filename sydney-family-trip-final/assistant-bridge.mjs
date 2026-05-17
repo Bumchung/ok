@@ -8,7 +8,7 @@ import { join } from "node:path";
 const HOST = process.env.SYDNEY_ASSISTANT_HOST || "127.0.0.1";
 const PORT = Number(process.env.SYDNEY_ASSISTANT_PORT || 8788);
 const TOKEN = process.env.SYDNEY_ASSISTANT_TOKEN || "";
-const TIMEOUT_MS = Number(process.env.SYDNEY_ASSISTANT_TIMEOUT_MS || 75000);
+const TIMEOUT_MS = Number(process.env.SYDNEY_ASSISTANT_TIMEOUT_MS || 150000);
 const HOME_DIR = process.env.HOME || homedir() || "/Users/heebumchung";
 const DEFAULT_PATH = [
   join(HOME_DIR, ".nvm/versions/node/v22.22.0/bin"),
@@ -130,7 +130,8 @@ Requirements:
 - Use current public web sources when you rely on facts outside the page-local matches.
 - Prefer official venue, tourism, transport, booking, or map/listing pages.
 - Do not invent citations. Include only sources with real http or https URLs.
-- Answer in Korean, concise and practical for a family itinerary decision.
+- Answer in Korean, with a direct recommendation first, then practical reasons, tradeoffs, and what to check before moving.
+- Optimize for a multigenerational family trip with kids and parents: walking distance, rain backup, booking friction, meal timing, and taxi/public transport practicality matter.
 - Return JSON only, with this exact shape:
 {
   "answer": "short Korean answer",
@@ -354,6 +355,7 @@ function dedupeSources(results) {
 }
 
 async function answerQuestion(payload) {
+  const startedAt = Date.now();
   const requested = Array.isArray(payload.providers) && payload.providers.length
     ? payload.providers.map((provider) => String(provider).toLowerCase())
     : ["codex", "claude"];
@@ -380,7 +382,8 @@ async function answerQuestion(payload) {
     answer: results.map((result) => `${result.provider}: ${result.answer}`).join("\n\n"),
     provider: results.map((result) => result.provider).join("+"),
     sources: dedupeSources(results),
-    errors
+    errors: errors.map((error) => String(error || "").replace(/\s+/g, " ").slice(0, 260)),
+    elapsedMs: Date.now() - startedAt
   };
 }
 
