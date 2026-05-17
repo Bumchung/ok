@@ -3606,17 +3606,21 @@
 
     // Keep model credentials off GitHub Pages; call only a server-side bridge URL when one is configured.
     function assistantEndpoint() {
+      const localBridge = "http://127.0.0.1:8788/ask";
       try {
         const params = new URLSearchParams(window.location.search);
         const queryEndpoint = params.get("assistantEndpoint");
         const assistantMode = params.get("assistant");
         if (queryEndpoint) return queryEndpoint.trim();
         if (["local", "codex", "claude"].includes(String(assistantMode || "").toLowerCase())) {
-          return "http://127.0.0.1:8788/ask";
+          return localBridge;
+        }
+        if (window.location.hostname === "bumchung.github.io" || window.location.protocol === "file:") {
+          return localBridge;
         }
         return String(window.SYDNEY_ASSISTANT_ENDPOINT || window.localStorage.getItem("SYDNEY_ASSISTANT_ENDPOINT") || "").trim();
       } catch (error) {
-        return String(window.SYDNEY_ASSISTANT_ENDPOINT || "").trim();
+        return localBridge;
       }
     }
 
