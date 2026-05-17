@@ -1462,16 +1462,41 @@
     }
 
     .ask-answer {
+      position: relative;
       max-height: 230px;
       overflow: auto;
       border-bottom: 1px solid var(--line);
-      padding: 12px 13px;
+      padding: 12px 44px 12px 13px;
       color: #2b3440;
       font-size: 13px;
       line-height: 1.48;
     }
 
     .ask-answer[hidden] { display: none; }
+
+    .ask-close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(126, 140, 154, 0.38);
+      border-radius: 999px;
+      background: #fff;
+      color: #596574;
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .ask-close:hover,
+    .ask-close:focus-visible {
+      border-color: #7f8c9a;
+      color: var(--ink);
+    }
 
     .ask-answer strong {
       color: var(--ink);
@@ -3721,7 +3746,7 @@
       const endpoint = assistantEndpoint();
       if (!endpoint) return { answer: "", sources: [], provider: "" };
       const controller = new AbortController();
-      const timeout = window.setTimeout(() => controller.abort(), 80000);
+      const timeout = window.setTimeout(() => controller.abort(), 120000);
       try {
         const response = await fetch(endpoint, {
           method: "POST",
@@ -3754,6 +3779,19 @@
       const paragraph = document.createElement("p");
       paragraph.textContent = text;
       container.appendChild(paragraph);
+    }
+
+    function appendAssistantClose(container) {
+      const close = document.createElement("button");
+      close.className = "ask-close";
+      close.type = "button";
+      close.setAttribute("aria-label", "검색 결과 닫기");
+      close.textContent = "X";
+      close.addEventListener("click", () => {
+        container.textContent = "";
+        container.hidden = true;
+      });
+      container.appendChild(close);
     }
 
     function appendAssistantSectionTitle(container, text) {
@@ -3795,6 +3833,7 @@
       if (!answer) return;
       answer.textContent = "";
       answer.hidden = false;
+      appendAssistantClose(answer);
       const result = typeof bridgeResult === "string"
         ? { answer: bridgeResult, sources: [], provider: "" }
         : bridgeResult || { answer: "", sources: [], provider: "" };
