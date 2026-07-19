@@ -2,8 +2,14 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>bumbrain 시드니 여행 앱</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c2730">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="시드니 가족여행">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="description" content="시드니 가족여행 일정, 지도, 숙소, 준비사항을 한 번에 확인하는 모바일 여행 앱">
+  <title>시드니 가족여행 | 일정·지도·준비</title>
   <style>
     :root {
       color-scheme: light;
@@ -21,6 +27,18 @@
     }
 
     * { box-sizing: border-box; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
 
     html {
       overflow-x: hidden;
@@ -42,6 +60,36 @@
       min-height: 30px;
     }
     img { display: block; max-width: 100%; }
+
+    button,
+    input,
+    select {
+      font-family: inherit;
+    }
+
+    .skip-link {
+      position: fixed;
+      left: 12px;
+      top: 12px;
+      z-index: 120;
+      transform: translateY(-160%);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      padding: 10px 14px;
+      box-shadow: var(--shadow);
+      font-weight: 900;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .mobile-quick-nav,
+    .mobile-trip-hub,
+    .ask-fab {
+      display: none;
+    }
 
     .hero {
       min-height: 520px;
@@ -1633,6 +1681,67 @@
       font-size: 13px;
     }
 
+    .poi-toolbar {
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) minmax(150px, 220px) minmax(130px, 170px);
+      gap: 10px;
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+      padding: 12px;
+      box-shadow: 0 10px 30px rgba(19, 31, 48, 0.08);
+    }
+
+    .poi-toolbar input,
+    .poi-toolbar select {
+      height: 46px;
+    }
+
+    .poi-toolbar-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .poi-result-count {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .poi-show-more {
+      min-height: 44px;
+      border: 1px solid #cfd6df;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      padding: 0 15px;
+      font-size: 13px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .poi-show-more:hover,
+    .poi-show-more:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+      outline: none;
+    }
+
+    .poi-empty {
+      grid-column: 1 / -1;
+      border: 1px dashed #cfd6df;
+      border-radius: 10px;
+      background: #f8fafc;
+      padding: 24px;
+      color: var(--muted);
+      text-align: center;
+      font-weight: 800;
+    }
+
     .ask-dock {
       position: fixed;
       left: 0;
@@ -1963,6 +2072,10 @@
       pointer-events: none;
     }
 
+    .ask-mode[hidden] {
+      display: none;
+    }
+
     .ask-mode label {
       display: inline-flex;
       align-items: center;
@@ -2202,14 +2315,534 @@
         min-width: 58px;
         padding: 0 10px;
       }
+
+      .hero {
+        min-height: 0;
+        align-items: end;
+        grid-template-columns: minmax(0, 1fr);
+        background-position: center 42%;
+      }
+
+      .hero-inner {
+        width: calc(100% - 28px);
+        max-width: 1180px;
+        min-width: 0;
+        padding: max(64px, calc(env(safe-area-inset-top) + 42px)) 0 18px;
+      }
+
+      .eyebrow {
+        margin-bottom: 8px;
+        font-size: 11px;
+        line-height: 1.4;
+      }
+
+      h1 {
+        max-width: 320px;
+        font-size: clamp(30px, 9.2vw, 36px);
+        line-height: 1.05;
+      }
+
+      .hero-copy {
+        display: none;
+      }
+
+      .hero-metrics {
+        display: flex;
+        grid-template-columns: none;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        gap: 10px;
+        margin-top: 18px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+
+      .hero-metrics::-webkit-scrollbar,
+      .mobile-quick-nav::-webkit-scrollbar,
+      .day-tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .hero-metric {
+        flex: 0 0 min(76vw, 280px);
+        min-height: 96px;
+        padding: 12px 13px;
+        scroll-snap-align: start;
+      }
+
+      .hero-metric strong {
+        font-size: 20px;
+      }
+
+      .mobile-quick-nav {
+        position: sticky;
+        top: 0;
+        z-index: 70;
+        display: flex;
+        gap: 7px;
+        overflow-x: auto;
+        padding: 8px 14px;
+        padding-left: max(14px, env(safe-area-inset-left));
+        padding-right: max(14px, env(safe-area-inset-right));
+        border-bottom: 1px solid rgba(207, 214, 223, 0.9);
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 8px 22px rgba(19, 31, 48, 0.08);
+        backdrop-filter: blur(18px);
+        scrollbar-width: none;
+      }
+
+      .mobile-quick-nav a,
+      .mobile-quick-nav button {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        border: 1px solid #d7dde5;
+        border-radius: 999px;
+        background: #fff;
+        color: #33414e;
+        padding: 0 13px;
+        font-size: 12px;
+        font-weight: 900;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .mobile-quick-nav a:first-child {
+        border-color: rgba(14, 111, 115, 0.3);
+        background: #eef8f7;
+        color: var(--accent);
+      }
+
+      .mobile-trip-hub {
+        display: block;
+        width: min(100% - 28px, 1180px);
+        margin: 14px auto 0;
+        scroll-margin-top: 68px;
+      }
+
+      .trip-hub-card {
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 16px;
+        background:
+          radial-gradient(circle at 100% 0, rgba(85, 184, 178, 0.28), transparent 42%),
+          linear-gradient(145deg, #0c2730, #113b43 70%, #0e6f73);
+        color: #fff;
+        padding: 17px;
+        box-shadow: 0 18px 42px rgba(11, 39, 48, 0.2);
+      }
+
+      .trip-hub-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .trip-countdown {
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        border: 1px solid rgba(185, 242, 231, 0.34);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #c8fff3;
+        padding: 0 11px;
+        font-size: 13px;
+        font-weight: 950;
+        letter-spacing: 0.02em;
+      }
+
+      .trip-hub-period {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      .trip-hub-card h2 {
+        margin: 15px 0 0;
+        color: #fff;
+        font-size: 24px;
+        letter-spacing: -0.02em;
+      }
+
+      .trip-hub-plan {
+        margin-top: 7px;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .trip-hub-detail {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 10px;
+        margin-top: 10px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      .trip-hub-freshness {
+        margin-top: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
+        padding-top: 10px;
+        color: #ffe4a1;
+        font-size: 11px;
+        font-weight: 850;
+      }
+
+      .trip-hub-actions {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .trip-hub-actions a,
+      .trip-hub-actions button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        min-height: 46px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        padding: 0 8px;
+        font-size: 12px;
+        font-weight: 900;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .trip-hub-actions a:first-child {
+        border-color: #fff;
+        background: #fff;
+        color: #12333b;
+      }
+
+      .page {
+        padding-top: 4px;
+        padding-bottom: 32px;
+      }
+
+      .page > section {
+        scroll-margin-top: 68px;
+      }
+
+      section {
+        margin-top: 28px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .lead {
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .notice {
+        padding: 14px;
+        font-size: 14px;
+      }
+
+      #askBoardSection[data-empty="true"] {
+        display: none;
+      }
+
+      .decision-card,
+      .check-card,
+      .ops-card,
+      .day-ops-card,
+      .controls,
+      .result-panel,
+      .source-panel,
+      .hotel-card,
+      .swot-card,
+      .weather-card,
+      .itinerary,
+      .day-planner,
+      .map-stage,
+      .route-card,
+      .poi-card {
+        border-radius: 12px;
+        box-shadow: 0 10px 26px rgba(19, 31, 48, 0.08);
+      }
+
+      select,
+      input {
+        height: 48px;
+        font-size: 16px;
+      }
+
+      main a:not(.poi-photo),
+      .hotel-link,
+      .map-link,
+      .swot-link,
+      .mini-link,
+      .poi-link,
+      .source-panel a,
+      .ask-board-links a {
+        min-height: 44px;
+      }
+
+      .hotel-link,
+      .swot-link {
+        height: 44px;
+      }
+
+      .map-link,
+      .mini-link,
+      .poi-link {
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+
+      .itinerary {
+        grid-template-columns: 1fr;
+      }
+
+      .js .itinerary,
+      .js .route-grid {
+        display: none;
+      }
+
+      .itinerary > div {
+        padding: 13px 14px;
+      }
+
+      .itinerary .date-cell {
+        border-bottom: 0;
+        background: #eaf1f3;
+        padding-bottom: 5px;
+        color: var(--accent);
+        font-size: 13px;
+      }
+
+      .itinerary .date-cell + div {
+        padding-top: 7px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .day-tabs {
+        position: sticky;
+        top: 61px;
+        z-index: 8;
+        display: flex;
+        grid-template-columns: none;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 9px 10px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+
+      .day-tab {
+        flex: 0 0 auto;
+        width: auto;
+        min-width: 82px;
+        height: 46px;
+        scroll-snap-align: center;
+      }
+
+      .day-detail {
+        padding: 15px;
+      }
+
+      .day-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .day-actions .map-link {
+        margin-top: 0;
+      }
+
+      .poi-toolbar {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        border-radius: 12px;
+        padding: 10px;
+      }
+
+      .poi-toolbar .poi-search-field {
+        grid-column: 1 / -1;
+      }
+
+      .poi-toolbar-meta {
+        align-items: flex-start;
+      }
+
+      .poi-result-count {
+        padding-top: 8px;
+        line-height: 1.45;
+      }
+
+      .poi-card {
+        min-height: 0;
+        content-visibility: auto;
+        contain-intrinsic-size: 540px;
+      }
+
+      .food-photo span,
+      .poi-rating,
+      .poi-rating em {
+        font-size: 11px;
+      }
+
+      .food-public-rating,
+      .poi-source {
+        font-size: 12px;
+      }
+
+      .map-attribution {
+        right: 6px;
+        bottom: 6px;
+        padding: 0;
+      }
+
+      .map-attribution a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 0 6px;
+      }
+
+      .ask-dock {
+        left: auto;
+        right: max(14px, env(safe-area-inset-right));
+        bottom: max(12px, env(safe-area-inset-bottom));
+        display: grid;
+        width: auto;
+        gap: 8px;
+        justify-items: end;
+        padding: 0;
+      }
+
+      .ask-fab {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 52px;
+        height: 52px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 999px;
+        background: #15212d;
+        color: #fff;
+        padding: 0 15px;
+        box-shadow: 0 14px 34px rgba(20, 31, 45, 0.28);
+        font-size: 13px;
+        font-weight: 900;
+        cursor: pointer;
+        pointer-events: auto;
+      }
+
+      .ask-panel {
+        order: -1;
+        display: none;
+        width: min(362px, calc(100vw - 28px));
+        max-height: calc(100svh - 88px);
+        margin: 0;
+        border-radius: 14px;
+      }
+
+      .ask-dock.is-open {
+        left: max(14px, env(safe-area-inset-left));
+      }
+
+      .ask-dock.is-open .ask-panel {
+        display: block;
+      }
+
+      .ask-dock.is-open .ask-fab {
+        background: #fff;
+        color: var(--ink);
+        border-color: #cfd6df;
+      }
+
+      .ask-answer {
+        max-height: min(46svh, 360px);
+        font-size: 13px;
+      }
+
+      .ask-close {
+        top: 4px;
+        right: 4px;
+        width: 44px;
+        height: 44px;
+      }
+
+      .ask-form {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px;
+      }
+
+      .ask-input {
+        grid-column: 1;
+        grid-row: 1;
+        height: 48px;
+        font-size: 16px;
+      }
+
+      .ask-button {
+        grid-column: 2;
+        grid-row: 1;
+        min-width: 64px;
+        height: 48px;
+      }
+
+      .ask-mode {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        width: 100%;
+      }
+
+      .ask-mode.is-single {
+        display: none;
+      }
+
+      .ask-privacy {
+        grid-row: 3;
+      }
+
+      .ask-mode label:has(input:focus-visible) {
+        outline: 3px solid rgba(14, 111, 115, 0.28);
+        outline-offset: 2px;
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#tripCommand">여행 허브로 건너뛰기</a>
   <header class="hero">
     <div class="hero-inner">
       <p class="eyebrow">검증 기준: 2026.05.16~17 KST · Trip.com 실측가 + BOM 장기 기후 평균</p>
-      <h1>bumbrain 시드니 여행 앱</h1>
+      <h1>시드니 가족여행</h1>
       <p class="hero-copy">
         핵심 결정은 첫날부터 Park Hyatt다. 아버지·어머니는 7/23 도착 즉시 Park Hyatt로 직행하고,
         정희범팀 3명(나·아내·태리)은 7/23 오후·저녁 대한항공 등으로 출발해 7/24 Park Hyatt에서 합류하는 구조로 다시 잡았다.
@@ -2239,13 +2872,43 @@
     </div>
   </header>
 
+  <nav class="mobile-quick-nav" aria-label="모바일 빠른 이동">
+    <a href="#tripCommand">지금</a>
+    <a href="#tripItinerary">일정</a>
+    <a href="#tripEntry">입국</a>
+    <a href="#tripMap">지도</a>
+    <a href="#tripExplore">맛집·명소</a>
+    <button type="button" data-open-assistant>검색</button>
+  </nav>
+
+  <aside class="mobile-trip-hub" id="tripCommand" aria-labelledby="tripHubTitle">
+    <div class="trip-hub-card">
+      <div class="trip-hub-top">
+        <span class="trip-countdown" id="tripCountdown">D-4</span>
+        <span class="trip-hub-period">2026.07.23—08.01 · Sydney</span>
+      </div>
+      <h2 id="tripHubTitle">4일 뒤 출발</h2>
+      <p class="trip-hub-plan" id="tripHubPlan">출발 전에는 ETA 승인, 항공편, 객실과 공항 이동만 마지막으로 잠그면 됩니다.</p>
+      <div class="trip-hub-detail">
+        <span id="tripHubBase">첫 거점 · Park Hyatt Sydney</span>
+        <span id="tripHubWeather">현지 기준 · Australia/Sydney</span>
+      </div>
+      <p class="trip-hub-freshness">자료 확인 2026.05.17 · 운영시간·날씨·항공 상태는 출발 직전 다시 확인</p>
+      <div class="trip-hub-actions">
+        <a href="#tripItinerary">오늘 일정</a>
+        <a href="#tripPrep">준비 확인</a>
+        <button type="button" data-open-assistant>여행 검색</button>
+      </div>
+    </div>
+  </aside>
+
   <main class="page">
-    <section class="ask-board-section" id="askBoardSection" aria-labelledby="askBoardTitle">
+    <section class="ask-board-section" id="askBoardSection" aria-labelledby="askBoardTitle" data-empty="true">
       <div class="ask-board-shell" id="askBoard">
         <div class="ask-board-head">
           <div>
-            <h2 id="askBoardTitle">Q&A 게시판</h2>
-            <p>목록에서 행을 누르면 답변과 근거 링크가 펼쳐지고, 다시 누르면 접힙니다.</p>
+            <h2 id="askBoardTitle">여행 Q&A 기록</h2>
+            <p>이 기기에 저장된 질문입니다. 행을 누르면 답변과 근거 링크가 펼쳐집니다.</p>
           </div>
           <span class="ask-board-count" id="askBoardCount">Q&A 0</span>
         </div>
@@ -2253,7 +2916,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="tripDecision">
       <h2>현재 결론</h2>
       <p class="lead">
         Coogee 첫 2박안은 접고, 아버지·어머니는 첫날부터 Park Hyatt로 직행한다.
@@ -2266,7 +2929,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="tripSummary">
       <h2>가족 회의용 결정 요약</h2>
       <div class="decision-grid">
         <article class="decision-card primary">
@@ -2292,7 +2955,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="tripBudget">
       <h2>숙소 조합 계산기</h2>
       <div class="calculator">
         <aside class="controls" aria-label="숙소 계산 조건">
@@ -2372,7 +3035,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="tripHotels">
       <h2>4개 숙소 카드</h2>
       <div class="hotel-grid">
         <article class="hotel-card">
@@ -2435,7 +3098,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="tripPrep">
       <h2>예약 전 객실·가격 체크리스트</h2>
       <p class="lead">
         계산기는 후보를 좁히는 도구이고, 실제 예약 전에는 아래 항목을 호텔 공식·OTA 양쪽에서 다시 잠가야 한다.
@@ -2493,7 +3156,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="tripEntry">
       <h2>ETA·입국 준비</h2>
       <div class="check-grid">
         <article class="check-card">
@@ -2530,7 +3193,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="tripItinerary">
       <h2>날짜별 여행 배치</h2>
       <div class="itinerary">
         <div class="date-cell">7/23 목</div>
@@ -2598,8 +3261,8 @@
       </div>
 
       <div class="day-planner" aria-label="날짜별 선택형 상세 설명">
-        <div class="day-tabs" id="dayTabs" role="tablist" aria-label="날짜 선택"></div>
-        <article class="day-focus">
+        <div class="day-tabs" id="dayTabs" role="tablist" aria-label="날짜 선택" aria-orientation="horizontal"></div>
+        <article class="day-focus" id="dayFocus" role="tabpanel" aria-live="polite">
           <figure class="day-photo">
             <img id="dayPhoto" src="https://ak-d.tripcdn.com/images/0203b120008thak4u61B6_R_960_660_R5_D.jpg" alt="Park Hyatt Sydney">
             <figcaption id="dayCaption">Park Hyatt 첫날 회복일</figcaption>
@@ -2634,7 +3297,7 @@
 
       <div class="day-ops-grid" id="dayOpsGrid" aria-label="날짜별 Plan A B C와 주변 식당 카페 추천" style="margin-top:18px;"></div>
 
-      <div class="map-stage" style="margin-top:18px;">
+      <div class="map-stage" id="tripMap" style="margin-top:18px;">
         <div class="tile-route-map" id="sydneyRouteMap" role="img" aria-label="실제 지도 타일 위에 표시한 시드니 숙소와 관광 동선">
           <div class="tile-layer" id="sydneyRouteTiles" aria-hidden="true"></div>
           <svg class="route-overlay" id="sydneyRouteOverlay" aria-hidden="true"></svg>
@@ -2797,7 +3460,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="tripAttractions">
       <h2>관광명소 SWOT 카드</h2>
       <div class="swot-grid">
         <article class="swot-card">
@@ -2917,7 +3580,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="tripWeather">
       <h2>해당 날씨에 좋은 활동</h2>
       <p class="lead">
         7월 시드니는 겨울이다. BOM 장기 평균상 Observatory Hill 기준 7월 평균 최고 16.4도, 평균 최저 8.1도,
@@ -2971,7 +3634,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="tripRisk">
       <h2>운영시간·예약 리스크</h2>
       <div class="ops-grid">
         <article class="ops-card">
@@ -2997,7 +3660,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="tripFlights">
       <h2>항공 기준</h2>
       <div class="table-wrap">
         <table>
@@ -3041,7 +3704,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="tripSources">
       <h2>출처와 확인 링크</h2>
       <div class="source-panel">
         <p class="small">
@@ -3096,7 +3759,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="tripExplore">
       <h2>동선 주변 Top 100 음식점·카페·명소</h2>
       <p class="lead">
         숙소와 날짜별 동선을 기준으로 Circular Quay·The Rocks·Coogee·Bondi·Mosman·Manly·Blue Mountains까지 확장했다.
@@ -3106,6 +3769,31 @@
         각 카드는 영업시간·예약 가능 여부가 바뀔 수 있으므로 Google Maps와 예약 버튼에서 실시간 확인하는 전제다.
         히어로 사진은 장소별 이미지 크롤링 결과를 고정 반영했고, 평점은 Google Maps 공개 지도 검색과 Tripadvisor 스니펫을 2026.05.17 KST 기준으로 확인했다.
         가족판단점수는 동선·아이/부모님 적합도·날씨·예약난도를 합친 내부 점수이고, 최신 Google 별점은 지도 버튼에서 확인한다.
+      </div>
+      <div class="poi-toolbar" role="search" aria-label="음식점, 카페, 명소 필터">
+        <label class="poi-search-field">
+          <span class="sr-only">장소명 또는 지역 검색</span>
+          <input id="poiSearch" type="search" placeholder="장소명·지역 검색" autocomplete="off">
+        </label>
+        <label>
+          <span class="sr-only">지역 선택</span>
+          <select id="poiArea" aria-label="지역 선택">
+            <option value="">모든 지역</option>
+          </select>
+        </label>
+        <label>
+          <span class="sr-only">종류 선택</span>
+          <select id="poiKind" aria-label="종류 선택">
+            <option value="">전체 종류</option>
+            <option value="식당">식당</option>
+            <option value="카페">카페</option>
+            <option value="명소">명소</option>
+          </select>
+        </label>
+      </div>
+      <div class="poi-toolbar-meta">
+        <span class="poi-result-count" id="poiResultCount" aria-live="polite">추천 장소를 불러오는 중입니다.</span>
+        <button class="poi-show-more" id="poiShowMore" type="button">12개 더 보기</button>
       </div>
       <div class="poi-grid" id="poiGrid" aria-label="시드니 동선 주변 Top 100 카드"></div>
 
@@ -3124,7 +3812,8 @@
   </main>
 
   <div class="ask-dock" role="region" aria-label="무엇이든 물어보세요">
-    <div class="ask-panel">
+    <button class="ask-fab" id="askDockToggle" type="button" aria-expanded="false" aria-controls="askPanel">여행 검색</button>
+    <div class="ask-panel" id="askPanel">
       <div class="ask-answer" id="askAnswer" aria-live="polite" hidden></div>
       <form class="ask-form" id="askForm">
         <div class="ask-mode" role="radiogroup" aria-label="검색 방식">
@@ -3132,7 +3821,7 @@
           <label><input type="radio" name="askMode" value="bridge">AI</label>
         </div>
         <p class="ask-privacy" id="askPrivacy" hidden>
-          Codex/Claude 모드는 질문과 관련 페이지 근거를 로컬/서버 브리지로 보냅니다. 모든 질문과 답변은 Q&A 게시판에도 함께 올라갑니다.
+          외부 AI 모드는 질문과 관련 페이지 근거를 연결된 서버 브리지로 보냅니다. 결과는 이 기기의 여행 Q&A 기록에도 저장됩니다.
         </p>
         <div class="ask-suggestions" aria-label="가족 여행 빠른 질문">
           <button class="ask-suggestion" type="button" data-question="오늘 비 오면 부모님과 아이들 데리고 어디 가는 게 제일 안전해?">비 오는 날 대안</button>
@@ -3148,6 +3837,8 @@
   </div>
 
   <script>
+    document.documentElement.classList.add("js");
+
     const airTotal = 26608500;
     const partySize = 9;
     const dayPlans = [
@@ -3866,6 +4557,101 @@
       `;
     }
 
+    function zonedDateParts(timeZone = "Australia/Sydney") {
+      const parts = new Intl.DateTimeFormat("en-CA", {
+        timeZone,
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      }).formatToParts(new Date());
+      const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+      return {
+        year: Number(values.year),
+        month: Number(values.month),
+        day: Number(values.day)
+      };
+    }
+
+    function tripDateState() {
+      const current = zonedDateParts();
+      const currentDay = Date.UTC(current.year, current.month - 1, current.day);
+      const startDay = Date.UTC(2026, 6, 23);
+      const endDay = Date.UTC(2026, 7, 1);
+      const offset = Math.round((currentDay - startDay) / 86400000);
+      return {
+        offset,
+        before: currentDay < startDay,
+        after: currentDay > endDay,
+        returnDay: currentDay === endDay,
+        planIndex: Math.max(0, Math.min(dayPlans.length - 1, offset))
+      };
+    }
+
+    function prioritizeMobileSections() {
+      if (!window.matchMedia("(max-width: 640px)").matches) return;
+      const page = document.querySelector(".page");
+      if (!page) return;
+      const priorityIds = ["tripItinerary", "tripEntry", "tripPrep"];
+      const fragment = document.createDocumentFragment();
+      priorityIds.forEach((id) => {
+        const section = document.getElementById(id);
+        if (section) fragment.appendChild(section);
+      });
+      page.insertBefore(fragment, page.firstChild);
+    }
+
+    function initTripHub() {
+      const state = tripDateState();
+      const countdown = document.getElementById("tripCountdown");
+      const title = document.getElementById("tripHubTitle");
+      const planText = document.getElementById("tripHubPlan");
+      const base = document.getElementById("tripHubBase");
+      const weather = document.getElementById("tripHubWeather");
+      const plan = dayPlans[state.planIndex] || dayPlans[0];
+
+      if (state.before) {
+        const days = Math.abs(state.offset);
+        if (countdown) countdown.textContent = `D-${days}`;
+        if (title) title.textContent = `${days}일 뒤 출발`;
+        if (planText) planText.textContent = "ETA 승인, 항공편, 객실, 공항 이동만 마지막으로 잠그면 됩니다.";
+        if (base) base.textContent = "첫 거점 · Park Hyatt Sydney";
+        if (weather) weather.textContent = "첫날 목표 · 이동 최소화";
+        return 0;
+      }
+
+      if (state.returnDay) {
+        if (countdown) countdown.textContent = "귀국일";
+        if (title) title.textContent = "8/1 · 누나네 출발";
+        if (planText) planText.textContent = "마지막 이동은 관광보다 짐, 식사, 공항 도착 시간을 우선합니다.";
+        if (base) base.textContent = "출발 거점 · InterContinental Sydney";
+        if (weather) weather.textContent = "체력 보존 · 실내 중심";
+        return dayPlans.length - 1;
+      }
+
+      if (state.after) {
+        if (countdown) countdown.textContent = "완료";
+        if (title) title.textContent = "시드니 여행 완료";
+        if (planText) planText.textContent = "일정과 검색 기록은 다음 여행을 위한 회고 자료로 남아 있습니다.";
+        if (base) base.textContent = "2026.07.23—08.01";
+        if (weather) weather.textContent = "가족 9명";
+        return dayPlans.length - 1;
+      }
+
+      if (countdown) countdown.textContent = `DAY ${state.offset + 1}`;
+      if (title) title.textContent = `${plan.date} · 여행 ${state.offset + 1}일차`;
+      if (planText) planText.textContent = plan.title;
+      if (base) base.textContent = `거점 · ${plan.base}`;
+      if (weather) weather.textContent = `날씨 판단 · ${plan.weather}`;
+      return state.planIndex;
+    }
+
+    function initExternalLinks() {
+      document.querySelectorAll('a[href^="http"]').forEach((link) => {
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      });
+    }
+
     function renderDayPlan(index) {
       const plan = dayPlans[index];
       if (!plan) return;
@@ -3873,7 +4659,11 @@
       const tabs = document.querySelectorAll(".day-tab");
       tabs.forEach((tab, tabIndex) => {
         tab.setAttribute("aria-selected", String(tabIndex === index));
+        tab.tabIndex = tabIndex === index ? 0 : -1;
       });
+      const activeTab = tabs[index];
+      const panel = document.getElementById("dayFocus");
+      if (activeTab && panel) panel.setAttribute("aria-labelledby", activeTab.id);
 
       document.getElementById("dayPhoto").src = plan.photo;
       document.getElementById("dayPhoto").alt = plan.alt;
@@ -3892,13 +4682,15 @@
       document.getElementById("dayAlt").href = plan.altMap;
       document.getElementById("dayAlt").textContent = plan.altLabel;
       renderDayOperations(index);
+      initExternalLinks();
     }
 
-    function initDayPlanner() {
+    function initDayPlanner(initialIndex = 0) {
       const tabs = document.getElementById("dayTabs");
       if (!tabs) return;
       tabs.innerHTML = dayPlans.map((plan, index) => `
-        <button class="day-tab" type="button" role="tab" aria-selected="${index === 0}" data-day-index="${index}">
+        <button class="day-tab" id="day-tab-${index}" type="button" role="tab" aria-controls="dayFocus"
+          aria-selected="${index === initialIndex}" tabindex="${index === initialIndex ? 0 : -1}" data-day-index="${index}">
           ${plan.date}
         </button>
       `).join("");
@@ -3907,7 +4699,26 @@
         if (!button) return;
         renderDayPlan(Number(button.dataset.dayIndex));
       });
-      renderDayPlan(0);
+      tabs.addEventListener("keydown", (event) => {
+        const current = event.target.closest(".day-tab");
+        if (!current) return;
+        const buttons = [...tabs.querySelectorAll(".day-tab")];
+        const currentIndex = buttons.indexOf(current);
+        let nextIndex = currentIndex;
+        if (event.key === "ArrowRight") nextIndex = (currentIndex + 1) % buttons.length;
+        if (event.key === "ArrowLeft") nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+        if (event.key === "Home") nextIndex = 0;
+        if (event.key === "End") nextIndex = buttons.length - 1;
+        if (nextIndex === currentIndex) return;
+        event.preventDefault();
+        buttons[nextIndex].focus();
+        renderDayPlan(nextIndex);
+      });
+      renderDayPlan(initialIndex);
+      const activeTab = tabs.querySelector('[aria-selected="true"]');
+      if (activeTab && window.matchMedia("(max-width: 640px)").matches) {
+        activeTab.scrollIntoView({ block: "nearest", inline: "center" });
+      }
     }
 
     function bookingSearch(item) {
@@ -4153,9 +4964,85 @@
         `;
     }
 
-    function renderPoiCards() {
+    let poiVisibleLimit = 12;
+
+    function filteredPoiItems() {
+      const search = String(document.getElementById("poiSearch")?.value || "").trim().toLocaleLowerCase();
+      const area = String(document.getElementById("poiArea")?.value || "");
+      const kind = String(document.getElementById("poiKind")?.value || "");
+      return poiTop100.filter((poi) => {
+        const haystack = [poi.name, poi.area, poi.kind, poi.s, poi.w, poi.o, poi.t]
+          .join(" ")
+          .toLocaleLowerCase();
+        return (!search || haystack.includes(search)) &&
+          (!area || poi.area === area) &&
+          (!kind || poi.kind === kind);
+      });
+    }
+
+    function renderPoiCards(options = {}) {
       const quickGrid = document.getElementById("poiGrid");
-      if (quickGrid) quickGrid.innerHTML = poiTop100.map(poiCardMarkup).join("");
+      if (!quickGrid) return;
+      const mobile = window.matchMedia("(max-width: 640px)").matches;
+      if (options.reset) poiVisibleLimit = 12;
+      const filtered = filteredPoiItems();
+      const visible = mobile ? filtered.slice(0, poiVisibleLimit) : filtered;
+      quickGrid.setAttribute("aria-busy", "true");
+      quickGrid.innerHTML = visible.length
+        ? visible.map(poiCardMarkup).join("")
+        : '<p class="poi-empty">조건에 맞는 장소가 없습니다. 검색어나 필터를 바꿔보세요.</p>';
+      quickGrid.setAttribute("aria-busy", "false");
+
+      const count = document.getElementById("poiResultCount");
+      if (count) {
+        count.textContent = filtered.length === poiTop100.length
+          ? `전체 ${filtered.length}개 중 ${visible.length}개 표시`
+          : `조건에 맞는 ${filtered.length}개 중 ${visible.length}개 표시`;
+      }
+      const more = document.getElementById("poiShowMore");
+      if (more) {
+        const remaining = Math.max(0, filtered.length - visible.length);
+        more.hidden = !mobile || remaining === 0;
+        more.textContent = remaining > 0 ? `${Math.min(12, remaining)}개 더 보기` : "모두 표시됨";
+      }
+      initExternalLinks();
+    }
+
+    function initPoiExplorer() {
+      const areaSelect = document.getElementById("poiArea");
+      const search = document.getElementById("poiSearch");
+      const kind = document.getElementById("poiKind");
+      const more = document.getElementById("poiShowMore");
+      if (!areaSelect || !search || !kind || !more) {
+        renderPoiCards({ reset: true });
+        return;
+      }
+
+      [...new Set(poiTop100.map((poi) => poi.area))]
+        .sort((a, b) => a.localeCompare(b, "ko"))
+        .forEach((area) => {
+          const option = document.createElement("option");
+          option.value = area;
+          option.textContent = area;
+          areaSelect.appendChild(option);
+        });
+
+      let searchTimer;
+      search.addEventListener("input", () => {
+        window.clearTimeout(searchTimer);
+        searchTimer = window.setTimeout(() => renderPoiCards({ reset: true }), 100);
+      });
+      areaSelect.addEventListener("change", () => renderPoiCards({ reset: true }));
+      kind.addEventListener("change", () => renderPoiCards({ reset: true }));
+      more.addEventListener("click", () => {
+        poiVisibleLimit += 12;
+        renderPoiCards();
+      });
+
+      const media = window.matchMedia("(max-width: 640px)");
+      const handleViewportChange = () => renderPoiCards({ reset: true });
+      if (typeof media.addEventListener === "function") media.addEventListener("change", handleViewportChange);
+      renderPoiCards({ reset: true });
     }
 
     const ASSISTANT_LOCAL_BRIDGE = "http://127.0.0.1:8788/ask";
@@ -4202,23 +5089,22 @@
 
     function assistantEndpoint(mode = assistantSearchMode()) {
       if (mode !== "bridge") return "";
-      return assistantConfiguredEndpoint() || ASSISTANT_LOCAL_BRIDGE;
+      return assistantConfiguredEndpoint();
     }
 
     function initAssistantMode() {
-      const urlMode = assistantUrlMode();
-      const bridgeMode = ["local", "codex", "claude"].includes(urlMode);
-      const endpoint = (() => {
-        try {
-          return new URLSearchParams(window.location.search).get("assistantEndpoint");
-        } catch (error) {
-          return "";
-        }
-      })();
-      const shouldUseBridge = bridgeMode || Boolean(endpoint);
+      const shouldUseBridge = Boolean(assistantConfiguredEndpoint());
       const value = shouldUseBridge ? "bridge" : "page";
       const target = document.querySelector(`input[name="askMode"][value="${value}"]`);
       if (target) target.checked = true;
+      const bridgeInput = document.querySelector('input[name="askMode"][value="bridge"]');
+      if (bridgeInput) {
+        bridgeInput.disabled = !shouldUseBridge;
+        const bridgeLabel = bridgeInput.closest("label");
+        if (bridgeLabel) bridgeLabel.hidden = !shouldUseBridge;
+      }
+      const modeGroup = document.querySelector(".ask-mode");
+      if (modeGroup) modeGroup.hidden = !shouldUseBridge;
       updateAssistantModeNotice();
     }
 
@@ -4446,11 +5332,13 @@
     function renderAssistantBoard() {
       const list = document.getElementById("askBoardList");
       const count = document.getElementById("askBoardCount");
+      const section = document.getElementById("askBoardSection");
       if (!list) return;
       const items = assistantStorageItems();
+      if (section) section.dataset.empty = String(items.length === 0);
       list.textContent = "";
       const pendingCount = items.filter((item) => item.status === "pending").length;
-      if (count) count.textContent = pendingCount ? `대기 ${pendingCount} · 전체 ${items.length}` : `Q&A ${items.length}`;
+      if (count) count.textContent = pendingCount ? `대기 ${pendingCount} · 전체 ${items.length}` : `기록 ${items.length}`;
       if (!items.length) {
         const empty = document.createElement("div");
         empty.className = "ask-board-empty";
@@ -5124,6 +6012,46 @@
       });
     }
 
+    function setMobileAssistantDock(open, options = {}) {
+      const dock = document.querySelector(".ask-dock");
+      const toggle = document.getElementById("askDockToggle");
+      if (!dock || !toggle) return;
+      const isMobile = window.matchMedia("(max-width: 640px)").matches;
+      const shouldOpen = isMobile && Boolean(open);
+      dock.classList.toggle("is-open", shouldOpen);
+      toggle.setAttribute("aria-expanded", String(shouldOpen));
+      toggle.textContent = shouldOpen ? "닫기" : "여행 검색";
+      if (shouldOpen && options.focus) {
+        window.setTimeout(() => document.getElementById("askInput")?.focus(), 120);
+      }
+    }
+
+    function initMobileAssistantDock() {
+      const toggle = document.getElementById("askDockToggle");
+      if (!toggle) return;
+      toggle.addEventListener("click", () => {
+        const dock = toggle.closest(".ask-dock");
+        setMobileAssistantDock(!dock?.classList.contains("is-open"), { focus: true });
+      });
+      document.querySelectorAll("[data-open-assistant]").forEach((button) => {
+        button.addEventListener("click", () => {
+          if (window.matchMedia("(max-width: 640px)").matches) {
+            setMobileAssistantDock(true, { focus: true });
+          } else {
+            document.getElementById("askInput")?.focus();
+          }
+        });
+      });
+      document.querySelectorAll(".mobile-quick-nav a, .trip-hub-actions a").forEach((link) => {
+        link.addEventListener("click", () => setMobileAssistantDock(false));
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") setMobileAssistantDock(false);
+      });
+      window.matchMedia("(max-width: 640px)").addEventListener?.("change", () => setMobileAssistantDock(false));
+      setMobileAssistantDock(false);
+    }
+
     function render() {
       const mode = roomMode.value;
       const local = Number(localBudget.value || 0);
@@ -5175,11 +6103,14 @@
     roomMode.addEventListener("change", render);
     sisterFriday.addEventListener("change", render);
     localBudget.addEventListener("input", render);
-    initDayPlanner();
-    renderDayOperations();
-    renderPoiCards();
+    prioritizeMobileSections();
+    const initialDayIndex = initTripHub();
+    initDayPlanner(initialDayIndex);
+    initPoiExplorer();
     initAssistantDock();
+    initMobileAssistantDock();
     render();
+    initExternalLinks();
 
     const routeMapPoints = {
       airport: { label: ["SYD 공항"], lat: -33.9399, lon: 151.1753, type: "major", dx: -58, dy: 30 },
