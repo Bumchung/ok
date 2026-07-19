@@ -33,7 +33,7 @@ const records = guides.map((guide) => {
   ].filter(Boolean).join(" ");
   let status = "방문 후보";
   if (/폐점|영업을 종료|영구 폐쇄|예약 불가/.test(facts)) status = "방문 불가";
-  if (/성인 전용|18세 이상|미성년/.test(facts)) status = "가족 제외";
+  if (/성인 전용|전원 만 18세 이상|미성년자.{0,12}(입장 불가|출입 불가|동반 불가)/.test(facts)) status = "가족 제외";
 
   const latitude = Number(guide.lat);
   const longitude = Number(guide.lng);
@@ -154,7 +154,7 @@ const kml = `<?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
   <Document>
     <name>시드니 가족여행 100곳</name>
-    <description>2026년 7월 가족여행용 식당·카페·명소 100곳. 폐점·성인 전용 장소도 상태 확인을 위해 회색 핀으로 보존했습니다.</description>${kmlStyles}${placemarks}
+    <description>2026년 7월 가족여행용 식당·카페·명소 100곳. 2026-07-19 기준 현재 운영 중이며 아이와 함께 방문 가능한 후보만 담았습니다.</description>${kmlStyles}${placemarks}
   </Document>
 </kml>
 `;

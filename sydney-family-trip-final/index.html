@@ -1817,20 +1817,80 @@
     }
 
     .forecast-day {
+      --weather-accent: #6f7f8c;
+      --weather-icon-bg: #edf1f4;
       min-width: 0;
       padding: 14px 16px;
       border-bottom: 1px solid var(--line);
+      background: #fff;
     }
 
     .forecast-day:nth-child(odd) { border-right: 1px solid var(--line); }
     .forecast-day:nth-last-child(-n + 2) { border-bottom: 0; }
-    .forecast-day.is-blue-mountains { background: #f5f8f2; }
+    .forecast-day.tone-sunny {
+      --weather-accent: #ba7900;
+      --weather-icon-bg: #fff1b8;
+      background: linear-gradient(135deg, #fffdf5, #fff);
+    }
+    .forecast-day.tone-partly {
+      --weather-accent: #39789f;
+      --weather-icon-bg: #dceffc;
+      background: linear-gradient(135deg, #f5fbff, #fff);
+    }
+    .forecast-day.tone-cloudy {
+      --weather-accent: #647382;
+      --weather-icon-bg: #e8edf1;
+      background: linear-gradient(135deg, #f7f9fa, #fff);
+    }
+    .forecast-day.tone-fog {
+      --weather-accent: #65717a;
+      --weather-icon-bg: #e8ecee;
+      background: linear-gradient(135deg, #f6f8f8, #fff);
+    }
+    .forecast-day.tone-rain {
+      --weather-accent: #2f6f9d;
+      --weather-icon-bg: #dceefb;
+      background: linear-gradient(135deg, #f2f9fd, #fff);
+    }
+    .forecast-day.tone-snow {
+      --weather-accent: #52758a;
+      --weather-icon-bg: #e7f5fb;
+      background: linear-gradient(135deg, #f6fcff, #fff);
+    }
+    .forecast-day.tone-storm {
+      --weather-accent: #625285;
+      --weather-icon-bg: #e9e2f4;
+      background: linear-gradient(135deg, #f8f5fb, #fff);
+    }
+    .forecast-day.is-blue-mountains { box-shadow: inset 4px 0 #789c6c; }
 
     .forecast-head {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
       gap: 12px;
+    }
+
+    .forecast-main {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      gap: 10px;
+    }
+
+    .forecast-symbol {
+      display: grid;
+      flex: 0 0 46px;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border: 1px solid color-mix(in srgb, var(--weather-accent) 25%, transparent);
+      border-radius: 14px;
+      background: var(--weather-icon-bg);
+      box-shadow: 0 5px 14px color-mix(in srgb, var(--weather-accent) 12%, transparent);
+      font-family: "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+      font-size: 27px;
+      line-height: 1;
     }
 
     .forecast-head time {
@@ -1869,6 +1929,17 @@
       border-radius: 999px;
       background: #edf1f4;
       padding: 4px 7px;
+    }
+
+    .forecast-metrics .condition {
+      background: var(--weather-icon-bg);
+      color: var(--weather-accent);
+    }
+
+    .forecast-metric-symbol {
+      margin-right: 3px;
+      font-family: "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+      font-weight: 400;
     }
 
     .forecast-advice {
@@ -1952,6 +2023,22 @@
       color: var(--ink);
       font-size: 21px;
       line-height: 1.25;
+    }
+
+    .blue-weather-box .blue-weather-symbol {
+      display: inline-grid;
+      width: 34px;
+      height: 34px;
+      margin-right: 5px;
+      place-items: center;
+      border-radius: 10px;
+      background: #eaf2e5;
+      color: inherit;
+      font-family: "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+      font-size: 23px;
+      font-weight: 400;
+      line-height: 1;
+      vertical-align: middle;
     }
 
     .blue-date-grid {
@@ -3844,6 +3931,16 @@
 
       .forecast-day:last-child { border-bottom: 0; }
       .forecast-day { padding: 13px 14px; }
+      .forecast-head { gap: 8px; }
+      .forecast-main { gap: 9px; }
+      .forecast-symbol {
+        flex-basis: 44px;
+        width: 44px;
+        height: 44px;
+        border-radius: 13px;
+        font-size: 26px;
+      }
+      .forecast-temp { font-size: 18px; }
       .forecast-advice { font-size: 12px; }
 
       .blue-decision-head {
@@ -4857,7 +4954,7 @@
           </div>
           <div class="blue-weather-box" id="blueBestWeather">
             <span>7/26 Katoomba 현재 예보</span>
-            <strong>10° / -2° · 비 0%</strong>
+            <strong><span class="blue-weather-symbol" role="img" aria-label="부분적으로 흐림">⛅</span>10° / -2° · 비 0%</strong>
             <small>부분적으로 흐림 · 최대 돌풍 27km/h · 실제 예보 갱신 시 자동 업데이트</small>
           </div>
         </div>
@@ -5073,7 +5170,7 @@
       <div class="notice">
         각 카드에서 어떤 곳인지, 여행 중 운영시간, 9인 가족 예약 원칙을 먼저 읽을 수 있습니다.
         사진은 카드 안에서 10장씩 넘겨보고, 길찾기와 실제 예약을 실행할 때만 지도·공식 사이트를 여세요.
-        운영정보는 2026.07.19에 공식 페이지 중심으로 확인했으며 폐점·연령 제한도 후보 카드에 그대로 표시합니다.
+        운영정보는 2026.07.19에 공식 페이지 중심으로 다시 확인했고, 문을 닫았거나 아이가 갈 수 없는 곳은 현재 운영 중인 가족 후보로 교체했습니다.
       </div>
       <div class="places-map-card" id="tripPlacesMap" aria-labelledby="placesMapTitle">
         <div class="places-map-head">
@@ -5116,7 +5213,7 @@
           <span><i></i>식당</span>
           <span><i class="cafe"></i>카페</span>
           <span><i class="attraction"></i>명소</span>
-          <span><i class="muted"></i>폐점·가족 제외·재확인</span>
+          <span><i class="muted"></i>공식 정보 재확인 필요</span>
           <span><i class="user"></i>내 위치</span>
         </div>
         <div class="places-map-export">
@@ -5504,6 +5601,32 @@
       95: "뇌우"
     };
 
+    const weatherCodeVisuals = {
+      0: { symbol: "☀️", tone: "sunny" },
+      1: { symbol: "🌤️", tone: "sunny" },
+      2: { symbol: "⛅", tone: "partly" },
+      3: { symbol: "☁️", tone: "cloudy" },
+      45: { symbol: "🌫️", tone: "fog" },
+      48: { symbol: "🌫️", tone: "fog" },
+      51: { symbol: "🌦️", tone: "rain" },
+      53: { symbol: "🌦️", tone: "rain" },
+      55: { symbol: "🌧️", tone: "rain" },
+      61: { symbol: "🌦️", tone: "rain" },
+      63: { symbol: "🌧️", tone: "rain" },
+      65: { symbol: "🌧️", tone: "rain" },
+      71: { symbol: "🌨️", tone: "snow" },
+      73: { symbol: "🌨️", tone: "snow" },
+      75: { symbol: "❄️", tone: "snow" },
+      80: { symbol: "🌦️", tone: "rain" },
+      81: { symbol: "🌧️", tone: "rain" },
+      82: { symbol: "🌧️", tone: "rain" },
+      95: { symbol: "⛈️", tone: "storm" }
+    };
+
+    function weatherCodeVisual(code) {
+      return weatherCodeVisuals[code] || { symbol: "🌡️", tone: "cloudy" };
+    }
+
     function normalizeForecastDaily(payload) {
       const daily = payload?.daily;
       if (!daily || !Array.isArray(daily.time) || daily.time.length !== 10) {
@@ -5541,6 +5664,8 @@
         const isBlueMountains = sydneyDay.date === "2026-07-26";
         const day = isBlueMountains ? katoombaByDate.get(sydneyDay.date) : sydneyDay;
         const guide = tripActivityGuide[day.date];
+        const visual = weatherCodeVisual(day.code);
+        const weatherLabel = weatherCodeLabels[day.code] || `날씨 코드 ${day.code}`;
         const exposedWeather = day.gust >= 55 || day.rainProbability >= 45 || day.rainSum >= 2 || day.code >= 51;
         const goodActivity = exposedWeather ? guide.indoor : guide.outdoor;
         const caution = day.gust >= 55
@@ -5555,19 +5680,22 @@
           timeZone: "Australia/Sydney"
         }).format(new Date(`${day.date}T12:00:00+10:00`));
         return `
-          <li class="forecast-day${isBlueMountains ? " is-blue-mountains" : ""}">
+          <li class="forecast-day tone-${visual.tone}${isBlueMountains ? " is-blue-mountains" : ""}">
             <div class="forecast-head">
-              <div>
-                <time datetime="${day.date}">${dateLabel}</time>
-                <small>${guide.label} · ${isBlueMountains ? "Katoomba 산악 예보" : "Sydney 도심 예보"}</small>
+              <div class="forecast-main">
+                <span class="forecast-symbol" role="img" aria-label="${weatherLabel}">${visual.symbol}</span>
+                <div>
+                  <time datetime="${day.date}">${dateLabel}</time>
+                  <small>${guide.label} · ${isBlueMountains ? "Katoomba 산악 예보" : "Sydney 도심 예보"}</small>
+                </div>
               </div>
               <span class="forecast-temp">${day.max.toFixed(1)}° / ${day.min.toFixed(1)}°</span>
             </div>
             <div class="forecast-metrics">
-              <span>${weatherCodeLabels[day.code] || `날씨 코드 ${day.code}`}</span>
-              <span>비 ${Math.round(day.rainProbability)}%</span>
-              <span>바람 ${Math.round(day.wind)}km/h</span>
-              <span>돌풍 ${Math.round(day.gust)}km/h</span>
+              <span class="condition">${weatherLabel}</span>
+              <span><span class="forecast-metric-symbol" aria-hidden="true">☔</span>비 ${Math.round(day.rainProbability)}%</span>
+              <span><span class="forecast-metric-symbol" aria-hidden="true">💨</span>바람 ${Math.round(day.wind)}km/h</span>
+              <span><span class="forecast-metric-symbol" aria-hidden="true">🌬️</span>돌풍 ${Math.round(day.gust)}km/h</span>
             </div>
             <div class="forecast-advice">
               <span><strong>좋음</strong>${goodActivity}</span>
@@ -5581,10 +5709,12 @@
       const blue = katoombaByDate.get("2026-07-26");
       const blueBox = document.getElementById("blueBestWeather");
       if (blueBox && blue) {
+        const blueVisual = weatherCodeVisual(blue.code);
+        const blueWeatherLabel = weatherCodeLabels[blue.code] || "날씨 확인";
         blueBox.innerHTML = `
           <span>7/26 Katoomba ${meta.live ? "최신" : "저장"} 예보</span>
-          <strong>${blue.max.toFixed(1)}° / ${blue.min.toFixed(1)}° · 비 ${Math.round(blue.rainProbability)}%</strong>
-          <small>${weatherCodeLabels[blue.code] || "날씨 확인"} · 최대 돌풍 ${Math.round(blue.gust)}km/h · ${forecastConfidenceLabel(blue.date)}</small>
+          <strong><span class="blue-weather-symbol" role="img" aria-label="${blueWeatherLabel}">${blueVisual.symbol}</span>${blue.max.toFixed(1)}° / ${blue.min.toFixed(1)}° · 비 ${Math.round(blue.rainProbability)}%</strong>
+          <small>${blueWeatherLabel} · 최대 돌풍 ${Math.round(blue.gust)}km/h · ${forecastConfidenceLabel(blue.date)}</small>
         `;
       }
     }
@@ -5767,7 +5897,7 @@
         ],
         cafes: [
           { name: "Cassiopeia Specialty Coffee", area: "Katoomba", query: "Cassiopeia Specialty Coffee Katoomba", s: "커피 휴식", w: "좌석 제한", o: "이동 중 회복", t: "영업시간", source: "Google Maps" },
-          { name: "Anonymous Cafe", area: "Blackheath", query: "Anonymous Cafe Blackheath", s: "로컬 카페", w: "동선 우회", o: "블랙히스 포함 시", t: "휴무", source: "Google Maps" },
+          { name: "Victory Cafe Blackheath", area: "Blackheath", query: "Victory Cafe Blackheath", s: "옛 극장과 앤티크 숍을 함께 보는 브런치", w: "워크인 전용", o: "블랙히스 포함 시", t: "9인 동시 착석", source: "Victory Cafe 공식" },
           { name: "Blue Mountains Chocolate Company", area: "Katoomba", query: "Blue Mountains Chocolate Company Katoomba", s: "아이 간식", w: "식사 대체 약함", o: "추운 날 휴식", t: "혼잡", source: "Google Maps" }
         ]
       },
@@ -5851,7 +5981,7 @@
 
     const poiTop50 = [
       { rank: 1, kind: "식당", tag: "red", name: "Bennelong", area: "Opera House", source: "Time Out·Google Maps", query: "Bennelong Sydney Opera House", s: "오페라하우스 안의 상징성", w: "예약·가격 부담", o: "부모님 특별식", t: "좌석 마감" },
-      { rank: 2, kind: "식당", tag: "red", name: "Quay", area: "The Rocks", source: "로컬 파인다이닝·Google Maps", query: "Quay Restaurant Sydney", s: "하버뷰 파인다이닝", w: "매우 고가", o: "기념일 저녁", t: "아이 동반 난도" },
+      { rank: 2, kind: "식당", tag: "red", name: "The Dining Room by James Viles", area: "The Rocks", source: "Park Hyatt Sydney 공식", query: "The Dining Room by James Viles Park Hyatt Sydney", s: "숙소 안 하버뷰 특별식", w: "화–토 저녁만 운영", o: "이동 없는 가족 기념 저녁", t: "9인 좌석 조기 마감" },
       { rank: 3, kind: "식당", tag: "red", name: "Aria", area: "Circular Quay", source: "OpenTable·Google Maps", query: "Aria Restaurant Sydney", s: "오페라하우스 전망", w: "비싼 코스", o: "부모님 저녁", t: "예약 경쟁" },
       { rank: 4, kind: "식당", tag: "good", name: "Cafe Sydney", area: "Circular Quay", source: "OpenTable·Google Maps", query: "Cafe Sydney", s: "항구뷰와 접근성", w: "테라스 날씨 변수", o: "가족 저녁", t: "피크타임 혼잡" },
       { rank: 5, kind: "식당", tag: "good", name: "6HEAD", area: "The Rocks", source: "OpenTable·Google Maps", query: "6HEAD Sydney", s: "스테이크·하버뷰", w: "무거운 식사", o: "다세대 식사", t: "저녁 가격" },
@@ -5908,7 +6038,7 @@
       { rank: 53, kind: "카페", tag: "good", name: "Barzura", area: "Coogee", source: "Google Maps·로컬", query: "Barzura Coogee", s: "해변 앞 아침", w: "피크 대기", o: "산책 전 커피", t: "바람" },
       { rank: 54, kind: "카페", tag: "blue", name: "Gusto Espresso Bar", area: "Coogee", source: "Google Maps·로컬", query: "Gusto Espresso Bar Coogee", s: "짧은 커피 동선", w: "좌석 제한", o: "테이크아웃", t: "영업시간" },
       { rank: 55, kind: "카페", tag: "blue", name: "The Little Kitchen", area: "Coogee", source: "Google Maps·로컬", query: "The Little Kitchen Coogee", s: "브런치형", w: "규모 작음", o: "느린 오전", t: "대기" },
-      { rank: 56, kind: "식당", tag: "blue", name: "Estate Coogee Beach", area: "Coogee", source: "Google Maps", query: "Estate Coogee Beach", s: "해변 캐주얼", w: "날씨 영향", o: "아이 식사", t: "혼잡" },
+      { rank: 56, kind: "식당", tag: "good", name: "Churrasco Coogee", area: "Coogee", source: "Churrasco 공식", query: "Churrasco Coogee", s: "브라질식 꼬치 바비큐를 함께 나누는 가족 저녁", w: "주말 90분 좌석", o: "아이 요금·유아 의자 규칙이 명확함", t: "24시간 취소 조건" },
       { rank: 57, kind: "식당", tag: "good", name: "Totti's Bondi", area: "Bondi", source: "Broadsheet·Google Maps", query: "Totti's Bondi", s: "공유식 가족 친화", w: "예약 경쟁", o: "Bondi 산책 후", t: "대기" },
       { rank: 58, kind: "카페", tag: "good", name: "Bills Bondi Beach", area: "Bondi", source: "Google Maps·로컬", query: "Bills Bondi Beach", s: "브런치 안정감", w: "관광객 많음", o: "아침 일정", t: "대기" },
       { rank: 59, kind: "카페", tag: "blue", name: "Porch and Parlour", area: "Bondi", source: "Broadsheet·Google Maps", query: "Porch and Parlour Bondi", s: "로컬 브런치", w: "좌석 제한", o: "North Bondi 산책", t: "혼잡" },
@@ -5919,13 +6049,13 @@
       { rank: 64, kind: "식당", tag: "good", name: "Hinchcliff House", area: "Circular Quay", source: "Broadsheet·Google Maps", query: "Hinchcliff House Sydney", s: "여러 콘셉트 선택", w: "층별 예약 확인", o: "비오는 날", t: "예약" },
       { rank: 65, kind: "식당", tag: "blue", name: "Apollonia", area: "Circular Quay", source: "Broadsheet·Google Maps", query: "Apollonia Sydney", s: "분위기 강함", w: "가족 전체엔 좁을 수 있음", o: "어른 저녁", t: "좌석" },
       { rank: 66, kind: "식당", tag: "red", name: "Shell House Dining Room & Terrace", area: "CBD", source: "Time Out·Google Maps", query: "Shell House Dining Room Sydney", s: "도심 하이엔드", w: "고가·어른용", o: "마지막 저녁", t: "예약" },
-      { rank: 67, kind: "식당", tag: "red", name: "The Gidley", area: "CBD", source: "Time Out·Google Maps", query: "The Gidley Sydney", s: "스테이크 강함", w: "어둡고 무거움", o: "어른 특별식", t: "아이 동반" },
-      { rank: 68, kind: "식당", tag: "red", name: "Bistecca", area: "CBD", source: "Time Out·Google Maps", query: "Bistecca Sydney", s: "스테이크 목적성", w: "가족 9명 난도", o: "어른 저녁", t: "예약" },
+      { rank: 67, kind: "식당", tag: "good", name: "Chophouse Sydney", area: "CBD", source: "Chophouse 공식", query: "Chophouse Sydney", s: "어른 스테이크와 어린이 메뉴를 한 자리에서", w: "9인은 그룹 메뉴", o: "아이 활동팩 포함", t: "24시간 취소 조건" },
+      { rank: 68, kind: "식당", tag: "red", name: "Rockpool Bar & Grill Sydney", area: "CBD", source: "Rockpool 공식", query: "Rockpool Bar and Grill Sydney", s: "아르데코 공간과 호주산 스테이크", w: "가격대가 높음", o: "가족 기념 저녁", t: "9인 예약" },
       { rank: 69, kind: "카페", tag: "good", name: "The Tea Room QVB", area: "CBD/QVB", source: "QVB·Google Maps", query: "The Tea Room QVB Sydney", s: "실내·부모님 친화", w: "가격", o: "우천 애프터눈티", t: "예약" },
       { rank: 70, kind: "카페", tag: "good", name: "The Grounds of the City", area: "CBD/QVB", source: "공식·Google Maps", query: "The Grounds of the City Sydney", s: "실내 안정", w: "대기", o: "마지막날 브런치", t: "혼잡" },
       { rank: 71, kind: "카페", tag: "blue", name: "Gumption by Coffee Alchemy", area: "The Strand Arcade", source: "Google Maps·로컬", query: "Gumption by Coffee Alchemy Sydney", s: "커피 품질", w: "좌석 제한", o: "쇼핑 중 휴식", t: "줄" },
       { rank: 72, kind: "카페", tag: "blue", name: "Regiment CBD", area: "CBD", source: "Google Maps·로컬", query: "Regiment CBD Sydney", s: "스페셜티 커피", w: "간단함", o: "이동 중 카페인", t: "영업시간" },
-      { rank: 73, kind: "카페", tag: "blue", name: "Single O CBD", area: "CBD", source: "Google Maps·로컬", query: "Single O CBD Sydney", s: "커피 목적성", w: "좌석 적음", o: "체크아웃 전", t: "평일 중심" },
+      { rank: 73, kind: "카페", tag: "blue", name: "Single O Surry Hills", area: "Surry Hills", source: "Single O 공식", query: "Single O Surry Hills", s: "브랜드가 시작된 본점 커피", w: "예약 없는 인기 카페", o: "평일 이른 브런치", t: "9인 동시 착석" },
       { rank: 74, kind: "식당", tag: "blue", name: "Mary's Circular Quay", area: "Circular Quay", source: "Google Maps", query: "Mary's Circular Quay", s: "아이 버거 백업", w: "고급감 낮음", o: "빠른 식사", t: "혼잡" },
       {
         rank: 75,
@@ -5955,19 +6085,19 @@
       { rank: 82, kind: "식당", tag: "blue", name: "The Fernery", area: "Mosman", source: "Google Maps·로컬", query: "The Fernery Mosman", s: "루프탑·캐주얼", w: "날씨 변수", o: "가벼운 저녁", t: "바람" },
       { rank: 83, kind: "식당", tag: "blue", name: "Bistro Mosman", area: "Mosman", source: "Google Maps·로컬", query: "Bistro Mosman", s: "프렌치 비스트로", w: "아이 호불호", o: "부모님 저녁", t: "예약" },
       { rank: 84, kind: "식당", tag: "good", name: "Hugo's Manly", area: "Manly", source: "OpenTable·Google Maps", query: "Hugo's Manly", s: "페리 도착 후 바로", w: "혼잡·가격", o: "해변 저녁", t: "예약" },
-      { rank: 85, kind: "식당", tag: "good", name: "Queen Chow Manly", area: "Manly", source: "Broadsheet·Google Maps", query: "Queen Chow Manly", s: "공유식 중식", w: "시끄러움", o: "대가족 식사", t: "예약" },
+      { rank: 85, kind: "식당", tag: "good", name: "The Pantry Manly", area: "Manly", source: "The Pantry 공식", query: "The Pantry Manly", s: "비치 바로 앞 가족 식사", w: "작은 공간", o: "맨리 점심·이른 저녁", t: "주말 조식은 워크인" },
       { rank: 86, kind: "식당", tag: "blue", name: "Garfish Manly", area: "Manly", source: "Google Maps", query: "Garfish Manly", s: "해산물 안정", w: "가격", o: "페리 데이 점심", t: "좌석" },
-      { rank: 87, kind: "식당", tag: "blue", name: "Manly Wharf Bar", area: "Manly", source: "Google Maps", query: "Manly Wharf Bar", s: "접근성 최고", w: "붐빔", o: "페리 직전", t: "소음" },
+      { rank: 87, kind: "식당", tag: "good", name: "Felons Manly", area: "Manly", source: "Felons 공식", query: "Felons Manly Wharf", s: "워프의 넓은 가족형 브루어리", w: "행사 시간에는 활기참", o: "페리 전후 편한 식사", t: "야외석은 워크인" },
       { rank: 88, kind: "식당", tag: "blue", name: "Chica Bonita Manly", area: "Manly", source: "Google Maps·로컬", query: "Chica Bonita Manly", s: "캐주얼 멕시칸", w: "좌석 작음", o: "아이 빠른 식사", t: "대기" },
       { rank: 89, kind: "카페", tag: "good", name: "Rollers Bakehouse", area: "Manly", source: "Google Maps·로컬", query: "Rollers Bakehouse Manly", s: "베이커리 만족도", w: "식사 대체 약함", o: "아침 간식", t: "품절" },
       { rank: 90, kind: "식당", tag: "red", name: "Darley's Restaurant", area: "Blue Mountains", source: "Google Maps·로컬", query: "Darley's Restaurant Katoomba", s: "블루마운틴 하이엔드", w: "시간·가격 부담", o: "부모님 특별식", t: "예약" },
       { rank: 91, kind: "식당", tag: "good", name: "Echoes Restaurant", area: "Blue Mountains", source: "Google Maps", query: "Echoes Restaurant Katoomba", s: "전망 식사", w: "날씨 의존", o: "맑은 날 점심", t: "안개" },
       { rank: 92, kind: "식당", tag: "good", name: "Ates Blackheath", area: "Blue Mountains", source: "Google Maps·로컬", query: "Ates Blackheath", s: "로컬 명성", w: "동선 우회", o: "Blackheath 포함 시", t: "예약" },
       { rank: 93, kind: "식당", tag: "blue", name: "Blaq", area: "Blue Mountains", source: "Google Maps", query: "Blaq Blackheath", s: "호텔 레스토랑 안정", w: "관광동선과 거리", o: "비오는 저녁", t: "좌석" },
-      { rank: 94, kind: "식당", tag: "blue", name: "Pins on Lurline", area: "Blue Mountains", source: "Google Maps", query: "Pins on Lurline Katoomba", s: "Katoomba 식사", w: "목적성 낮음", o: "투어 후 회복", t: "휴무" },
+      { rank: 94, kind: "식당", tag: "blue", name: "Pins on Lurline", area: "Blue Mountains", source: "Pins on Lurline 공식", query: "Pins on Lurline Katoomba", s: "산장 분위기의 겨울 저녁", w: "목–일 중심 운영", o: "투어 후 따뜻한 식사", t: "48시간 취소 규정" },
       { rank: 95, kind: "식당", tag: "blue", name: "Bootlegger Bar Katoomba", area: "Blue Mountains", source: "Google Maps", query: "Bootlegger Bar Katoomba", s: "캐주얼 바비큐", w: "소음 가능", o: "가벼운 저녁", t: "대기" },
       { rank: 96, kind: "카페", tag: "blue", name: "Cassiopeia Specialty Coffee", area: "Blue Mountains", source: "Google Maps", query: "Cassiopeia Specialty Coffee Katoomba", s: "커피 휴식", w: "좌석 제한", o: "추운 날 회복", t: "영업시간" },
-      { rank: 97, kind: "카페", tag: "blue", name: "Anonymous Cafe", area: "Blue Mountains", source: "Google Maps", query: "Anonymous Cafe Blackheath", s: "로컬 카페", w: "동선 우회", o: "Blackheath 휴식", t: "휴무" },
+      { rank: 97, kind: "카페", tag: "good", name: "Victory Cafe Blackheath", area: "Blue Mountains", source: "Victory Cafe 공식", query: "Victory Cafe Blackheath", s: "옛 극장과 앤티크 숍이 함께 있는 브런치", w: "워크인 전용", o: "블랙히스 아침·실내 휴식", t: "9인 동시 착석" },
       { rank: 98, kind: "카페", tag: "good", name: "Blue Mountains Chocolate Company", area: "Blue Mountains", source: "Google Maps", query: "Blue Mountains Chocolate Company Katoomba", s: "아이 간식", w: "식사 대체 약함", o: "추운 날 실내", t: "혼잡" },
       { rank: 99, kind: "카페", tag: "warn", name: "Hydro Majestic Afternoon Tea", area: "Blue Mountains", source: "Google Maps", query: "Hydro Majestic Afternoon Tea Medlow Bath", s: "부모님 만족감", w: "동선 길어짐", o: "비오는 날", t: "예약" },
       { rank: 100, kind: "식당", tag: "blue", name: "Mountain Culture Beer Co", area: "Blue Mountains", source: "Google Maps·로컬", query: "Mountain Culture Beer Co Katoomba", s: "캐주얼 회복", w: "어른 취향", o: "투어 후 간단식", t: "혼잡" }
