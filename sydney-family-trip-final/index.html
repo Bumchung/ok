@@ -2752,14 +2752,95 @@
     .places-map-legend .muted { background: #707982; }
     .places-map-legend .user { background: #1a73e8; box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.16); }
 
+    .mymaps-embed {
+      border-top: 1px solid var(--line);
+      padding: 18px;
+      background: #f7fafc;
+    }
+
+    .mymaps-embed-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 12px;
+    }
+
+    .mymaps-embed-head h4 {
+      margin: 2px 0 5px;
+      color: var(--ink);
+      font-size: 20px;
+      letter-spacing: -0.025em;
+    }
+
+    .mymaps-embed-head p {
+      max-width: 720px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .mymaps-embed-link {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #1a73e8;
+      border-radius: 8px;
+      background: #1a73e8;
+      color: #fff;
+      padding: 8px 13px;
+      font-size: 12px;
+      font-weight: 900;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .mymaps-frame {
+      overflow: hidden;
+      border: 1px solid #c9d4dc;
+      border-radius: 10px;
+      background: #e8eef2;
+      box-shadow: 0 8px 22px rgba(28, 44, 56, 0.08);
+    }
+
+    .mymaps-frame iframe {
+      display: block;
+      width: 100%;
+      height: 520px;
+      border: 0;
+    }
+
+    .mymaps-embed-tip {
+      margin: 9px 2px 0;
+      color: #53616c;
+      font-size: 11px;
+      line-height: 1.55;
+    }
+
+    .places-map-backup {
+      border-top: 1px solid var(--line);
+      background: #fffdf8;
+    }
+
+    .places-map-backup summary {
+      min-height: 44px;
+      padding: 13px 16px;
+      color: #65522d;
+      font-size: 12px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
     .places-map-export {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto auto auto;
+      grid-template-columns: minmax(0, 1fr) auto auto;
       gap: 8px;
       align-items: center;
       border-top: 1px solid var(--line);
       padding: 12px 14px;
-      background: #f5f8fa;
+      background: #fffdf8;
     }
 
     .places-map-export p {
@@ -2785,16 +2866,9 @@
       white-space: nowrap;
     }
 
-    .places-map-export a:first-of-type {
-      border-color: #1a73e8;
-      background: #1a73e8;
-      color: #fff;
-    }
-
     .places-map-import-note {
-      border-top: 1px solid var(--line);
       background: #fffdf8;
-      padding: 10px 14px 12px;
+      padding: 0 14px 12px;
       color: #65522d;
       font-size: 11px;
       line-height: 1.55;
@@ -2816,6 +2890,8 @@
         border-top: 1px solid var(--line);
         border-left: 0;
       }
+      .mymaps-embed-head { grid-template-columns: 1fr; }
+      .mymaps-embed-link { width: fit-content; }
       .places-map-export { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .places-map-export p { grid-column: 1 / -1; }
     }
@@ -3930,6 +4006,10 @@
       .places-map-layout { min-height: 0; }
       .places-map-detail { padding: 15px; }
       .places-map-detail h4 { font-size: 20px; }
+      .mymaps-embed { padding: 14px 10px 12px; }
+      .mymaps-embed-head { gap: 10px; }
+      .mymaps-embed-link { width: 100%; white-space: normal; }
+      .mymaps-frame iframe { height: 440px; }
       .places-map-export { grid-template-columns: 1fr; padding: 10px; }
       .places-map-export p { grid-column: auto; }
       .places-map-export a { white-space: normal; }
@@ -5244,17 +5324,37 @@
           <span><i class="muted"></i>공식 정보 재확인 필요</span>
           <span><i class="user"></i>내 위치</span>
         </div>
-        <div class="places-map-export">
-          <p><strong>Google Maps에서도 보는 법</strong><br>My Maps에 아래 원본을 한 번 가져오면 휴대폰 Google Maps의 저장됨 → 지도에서 계속 볼 수 있습니다.</p>
-          <a href="https://www.google.com/maps/d/u/0/">Google My Maps 열기</a>
-          <a href="https://docs.google.com/spreadsheets/d/1LD8saQWFsFDXI89uszlG78kWxF_aUowvs7XQlAExaDQ/edit">Google Sheet 원본</a>
-          <a href="./sydney-family-trip-100-places.kml" download>KML 100핀 받기</a>
+        <div class="mymaps-embed">
+          <div class="mymaps-embed-head">
+            <div>
+              <span class="places-map-eyebrow">Google My Maps · 100곳 공개 지도</span>
+              <h4>우리 가족이 갈 곳만, Google 지도 한 장에</h4>
+              <p>별도 가져오기 없이 바로 쓸 수 있게 만들어뒀습니다. 핀을 누르면 장소 설명을 보고, 현지에서는 Google 지도 길찾기로 이어가세요.</p>
+            </div>
+            <a class="mymaps-embed-link" href="https://www.google.com/maps/d/viewer?mid=1PVG0i-f-kTKTInelh-IJ6qC8N4VQHMc" target="_blank" rel="noopener noreferrer">Google 지도에서 크게 보기 ↗</a>
+          </div>
+          <div class="mymaps-frame">
+            <iframe
+              src="https://www.google.com/maps/d/embed?mid=1PVG0i-f-kTKTInelh-IJ6qC8N4VQHMc"
+              title="시드니 가족여행 100곳 Google My Maps"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="mymaps-embed-tip">여행 중에는 핀 선택 → 장소 설명 확인 → 길찾기 순서가 가장 빠릅니다. 지도는 링크가 있는 누구나 볼 수 있도록 공개돼 있습니다.</p>
         </div>
-        <p class="places-map-import-note">
-          My Maps에서 <strong>새 지도 → 가져오기 → Google Sheet 또는 KML</strong> 순서로 선택하면 됩니다.
-          표준 Google Maps 링크는 길이 제한 때문에 100핀을 한 번에 담지 못하므로,
-          <a href="./sydney-family-trip-100-places.csv" download>CSV 원본</a>도 함께 보존했습니다.
-        </p>
+        <details class="places-map-backup">
+          <summary>지도 원본 · 백업 파일</summary>
+          <div class="places-map-export">
+            <p><strong>기술 백업</strong><br>공개 지도가 바뀌거나 사라질 때 다시 만들 수 있는 원본입니다.</p>
+            <a href="https://docs.google.com/spreadsheets/d/1LD8saQWFsFDXI89uszlG78kWxF_aUowvs7XQlAExaDQ/edit" target="_blank" rel="noopener noreferrer">Google Sheet</a>
+            <a href="./sydney-family-trip-100-places.kml" download>KML 100핀</a>
+          </div>
+          <p class="places-map-import-note">
+            <a href="./sydney-family-trip-100-places.csv" download>CSV 원본</a>도 함께 보존했습니다.
+          </p>
+        </details>
       </div>
       <div class="poi-toolbar" role="search" aria-label="음식점, 카페, 명소 필터">
         <label class="poi-search-field">
