@@ -2277,6 +2277,436 @@
       pointer-events: none;
     }
 
+    .poi-card.is-map-focus {
+      outline: 3px solid #f1b849;
+      outline-offset: 3px;
+      animation: poiMapFocus 1.2s ease-in-out 2;
+    }
+
+    .places-map-card {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .places-map-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+      padding: 21px 22px 18px;
+      background:
+        radial-gradient(circle at 92% 8%, rgba(211, 154, 46, 0.18), transparent 28%),
+        linear-gradient(135deg, #f5faf9, #ffffff 58%);
+    }
+
+    .places-map-eyebrow {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .places-map-head h3 {
+      margin: 0;
+      font-size: clamp(23px, 3vw, 31px);
+      letter-spacing: -0.035em;
+    }
+
+    .places-map-head p {
+      max-width: 760px;
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .places-map-total {
+      display: grid;
+      min-width: 112px;
+      min-height: 76px;
+      place-items: center;
+      border: 1px solid #bfd5d4;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.84);
+      color: var(--accent);
+      text-align: center;
+    }
+
+    .places-map-total strong {
+      display: block;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .places-map-total span {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .places-map-toolbar {
+      display: flex;
+      gap: 7px;
+      overflow-x: auto;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 9px 12px;
+      background: #f8fafc;
+      scrollbar-width: none;
+    }
+
+    .places-map-toolbar::-webkit-scrollbar { display: none; }
+
+    .places-map-scope,
+    .places-map-locate {
+      flex: 0 0 auto;
+      min-height: 44px;
+      border: 1px solid #c7d0da;
+      border-radius: 999px;
+      background: #fff;
+      color: #34414c;
+      padding: 0 14px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .places-map-scope[aria-pressed="true"] {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .places-map-locate {
+      margin-left: auto;
+      border-color: #9fc2c1;
+      color: var(--accent);
+    }
+
+    .places-map-locate[aria-pressed="true"] {
+      background: #e4f2f1;
+    }
+
+    .places-map-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(290px, 0.5fr);
+      min-height: 520px;
+    }
+
+    .places-map-canvas {
+      position: relative;
+      min-height: 520px;
+      overflow: hidden;
+      background: #dbe7e5;
+      isolation: isolate;
+    }
+
+    .places-map-canvas .tile-layer { z-index: 0; }
+
+    .places-map-markers {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+    }
+
+    .places-map-marker {
+      position: absolute;
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      transform: translate(-50%, -50%);
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: #fff;
+      padding: 0;
+      font: inherit;
+      font-size: 10px;
+      font-weight: 950;
+      cursor: pointer;
+      filter: drop-shadow(0 3px 5px rgba(23, 40, 52, 0.28));
+    }
+
+    .places-map-marker::before {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border: 3px solid #fff;
+      border-radius: 50% 50% 50% 8px;
+      background: #c15f42;
+      content: "";
+      transform: rotate(-45deg);
+      box-shadow: 0 0 0 1px rgba(34, 48, 58, 0.2);
+    }
+
+    .places-map-marker > span {
+      position: relative;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .places-map-marker.kind-cafe::before { background: #2b75a8; }
+    .places-map-marker.kind-attraction::before { background: #2f7f64; }
+    .places-map-marker.is-muted::before { background: #707982; }
+
+    .places-map-marker.is-cluster::before {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #173f4a;
+      transform: none;
+    }
+
+    .places-map-marker.is-selected::after {
+      position: absolute;
+      width: 41px;
+      height: 41px;
+      border: 3px solid #f1b849;
+      border-radius: 50%;
+      content: "";
+      animation: mapSelectionPulse 1.6s ease-in-out infinite;
+    }
+
+    .places-map-user {
+      position: absolute;
+      z-index: 3;
+      width: 20px;
+      height: 20px;
+      transform: translate(-50%, -50%);
+      border: 4px solid #fff;
+      border-radius: 50%;
+      background: #1a73e8;
+      box-shadow: 0 0 0 10px rgba(26, 115, 232, 0.18), 0 3px 8px rgba(20, 45, 80, 0.3);
+    }
+
+    .places-map-zoom {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 4;
+      display: grid;
+      gap: 6px;
+    }
+
+    .places-map-zoom button {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(78, 94, 108, 0.36);
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--ink);
+      font: inherit;
+      font-size: 22px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(24, 40, 54, 0.14);
+    }
+
+    .places-map-detail {
+      border-left: 1px solid var(--line);
+      background: #fff;
+      padding: 20px;
+    }
+
+    .places-map-detail .tag { margin-bottom: 8px; }
+
+    .places-map-detail h4 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -0.025em;
+    }
+
+    .places-map-detail-meta {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .places-map-detail-description {
+      margin: 14px 0 0;
+      color: #36424d;
+      font-size: 14px;
+      line-height: 1.62;
+    }
+
+    .places-map-detail-facts {
+      display: grid;
+      gap: 9px;
+      margin: 15px 0 0;
+    }
+
+    .places-map-detail-facts div {
+      border-top: 1px solid var(--line);
+      padding-top: 9px;
+    }
+
+    .places-map-detail-facts dt {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 950;
+    }
+
+    .places-map-detail-facts dd {
+      margin: 3px 0 0;
+      color: #2d3944;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .places-map-detail-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 7px;
+      margin-top: 16px;
+    }
+
+    .places-map-google,
+    .places-map-card-link,
+    .places-map-cluster-item {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #cbd4dd;
+      border-radius: 8px;
+      background: #fff;
+      color: #33404a;
+      padding: 8px 12px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.3;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .places-map-google {
+      border-color: #1a73e8;
+      background: #1a73e8;
+      color: #fff;
+    }
+
+    .places-map-cluster-list {
+      display: grid;
+      gap: 7px;
+      margin-top: 14px;
+    }
+
+    .places-map-cluster-item {
+      justify-content: flex-start;
+      text-align: left;
+    }
+
+    .places-map-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      border-top: 1px solid var(--line);
+      padding: 10px 14px;
+      background: #fbfcfd;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .places-map-legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .places-map-legend i {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #c15f42;
+    }
+
+    .places-map-legend .cafe { background: #2b75a8; }
+    .places-map-legend .attraction { background: #2f7f64; }
+    .places-map-legend .muted { background: #707982; }
+    .places-map-legend .user { background: #1a73e8; box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.16); }
+
+    .places-map-export {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto auto;
+      gap: 8px;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding: 12px 14px;
+      background: #f5f8fa;
+    }
+
+    .places-map-export p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .places-map-export a {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #c4ced8;
+      border-radius: 8px;
+      background: #fff;
+      color: #33404a;
+      padding: 7px 11px;
+      font-size: 12px;
+      font-weight: 900;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .places-map-export a:first-of-type {
+      border-color: #1a73e8;
+      background: #1a73e8;
+      color: #fff;
+    }
+
+    .places-map-import-note {
+      border-top: 1px solid var(--line);
+      background: #fffdf8;
+      padding: 10px 14px 12px;
+      color: #65522d;
+      font-size: 11px;
+      line-height: 1.55;
+    }
+
+    @keyframes mapSelectionPulse {
+      0%, 100% { transform: scale(0.92); opacity: 0.72; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    @keyframes poiMapFocus {
+      0%, 100% { box-shadow: var(--shadow); }
+      50% { box-shadow: 0 0 0 8px rgba(241, 184, 73, 0.22), var(--shadow); }
+    }
+
+    @media (max-width: 900px) {
+      .places-map-layout { grid-template-columns: 1fr; }
+      .places-map-detail {
+        border-top: 1px solid var(--line);
+        border-left: 0;
+      }
+      .places-map-export { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .places-map-export p { grid-column: 1 / -1; }
+    }
+
     .ask-dock {
       position: fixed;
       left: 0;
@@ -3357,6 +3787,40 @@
         min-height: 0;
       }
 
+      .places-map-head {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 17px 15px 15px;
+      }
+
+      .places-map-head h3 { font-size: 23px; }
+
+      .places-map-total {
+        grid-template-columns: auto auto;
+        justify-content: start;
+        gap: 7px;
+        width: fit-content;
+        min-width: 0;
+        min-height: 44px;
+        padding: 0 12px;
+      }
+
+      .places-map-total strong { font-size: 20px; }
+      .places-map-total span { margin-top: 0; }
+      .places-map-toolbar {
+        padding: 8px 30px 8px 10px;
+        -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 24px), transparent 100%);
+        mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 24px), transparent 100%);
+      }
+      .places-map-locate { margin-left: 0; }
+      .places-map-canvas { min-height: 420px; }
+      .places-map-layout { min-height: 0; }
+      .places-map-detail { padding: 15px; }
+      .places-map-detail h4 { font-size: 20px; }
+      .places-map-export { grid-template-columns: 1fr; padding: 10px; }
+      .places-map-export p { grid-column: auto; }
+      .places-map-export a { white-space: normal; }
+
       .poi-gallery { height: 176px; aspect-ratio: auto; }
       .poi-body { padding: 14px; }
       .poi-description { font-size: 14px; line-height: 1.52; }
@@ -3450,12 +3914,19 @@
         font-weight: 900;
         cursor: pointer;
         pointer-events: auto;
+        transition: opacity 160ms ease, transform 160ms ease, background 160ms ease;
       }
 
       .ask-dock:not(.is-open) .ask-fab {
         width: 52px;
         padding: 0;
         font-size: 0;
+      }
+
+      .ask-dock.is-map-obscured:not(.is-open) .ask-fab {
+        transform: translateY(18px);
+        opacity: 0;
+        pointer-events: none;
       }
 
       .ask-dock:not(.is-open) .ask-fab::before {
@@ -4603,6 +5074,62 @@
         각 카드에서 어떤 곳인지, 여행 중 운영시간, 9인 가족 예약 원칙을 먼저 읽을 수 있습니다.
         사진은 카드 안에서 10장씩 넘겨보고, 길찾기와 실제 예약을 실행할 때만 지도·공식 사이트를 여세요.
         운영정보는 2026.07.19에 공식 페이지 중심으로 확인했으며 폐점·연령 제한도 후보 카드에 그대로 표시합니다.
+      </div>
+      <div class="places-map-card" id="tripPlacesMap" aria-labelledby="placesMapTitle">
+        <div class="places-map-head">
+          <div>
+            <span class="places-map-eyebrow">100 places map</span>
+            <h3 id="placesMapTitle">찍어둔 100곳을 지도에서 먼저 보기</h3>
+            <p>핀을 누르면 어떤 곳인지와 영업·예약 원칙이 바로 열립니다. 선택한 장소만 Google Maps 앱으로 넘겨 길찾기를 시작하세요.</p>
+          </div>
+          <div class="places-map-total" aria-live="polite">
+            <strong id="placesMapCount">100</strong>
+            <span>지도에 표시</span>
+          </div>
+        </div>
+        <div class="places-map-toolbar" role="group" aria-label="지도 권역 선택">
+          <button class="places-map-scope" type="button" data-map-scope="all" aria-pressed="true">전체 100곳</button>
+          <button class="places-map-scope" type="button" data-map-scope="sydney" aria-pressed="false">시드니 85곳</button>
+          <button class="places-map-scope" type="button" data-map-scope="blue" aria-pressed="false">Blue Mountains 15곳</button>
+          <button class="places-map-locate" id="placesMapLocate" type="button" aria-pressed="false">내 위치 주변</button>
+        </div>
+        <div class="places-map-layout">
+          <div class="places-map-canvas" id="placesMapCanvas" role="region" aria-label="시드니 가족여행 추천 장소 100곳 대화형 지도">
+            <div class="tile-layer" id="placesMapTiles" aria-hidden="true"></div>
+            <div class="places-map-markers" id="placesMapMarkers"></div>
+            <div class="places-map-zoom" aria-label="지도 확대 축소">
+              <button id="placesMapZoomIn" type="button" aria-label="지도 확대">+</button>
+              <button id="placesMapZoomOut" type="button" aria-label="지도 축소">−</button>
+              <button id="placesMapReset" type="button" aria-label="선택 권역 전체 보기">↺</button>
+            </div>
+            <div class="map-attribution">
+              © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · © <a href="https://carto.com/attributions">CARTO</a>
+            </div>
+          </div>
+          <aside class="places-map-detail" id="placesMapDetail" aria-live="polite">
+            <span class="tag good">지도 준비 중</span>
+            <h4>100곳을 불러오고 있습니다</h4>
+            <p class="places-map-detail-description">잠시 후 핀을 눌러 장소 설명과 Google Maps 길찾기를 확인할 수 있습니다.</p>
+          </aside>
+        </div>
+        <div class="places-map-legend" aria-label="지도 핀 범례">
+          <span><i></i>식당</span>
+          <span><i class="cafe"></i>카페</span>
+          <span><i class="attraction"></i>명소</span>
+          <span><i class="muted"></i>폐점·가족 제외·재확인</span>
+          <span><i class="user"></i>내 위치</span>
+        </div>
+        <div class="places-map-export">
+          <p><strong>Google Maps에서도 보는 법</strong><br>My Maps에 아래 원본을 한 번 가져오면 휴대폰 Google Maps의 저장됨 → 지도에서 계속 볼 수 있습니다.</p>
+          <a href="https://www.google.com/maps/d/u/0/">Google My Maps 열기</a>
+          <a href="https://docs.google.com/spreadsheets/d/1LD8saQWFsFDXI89uszlG78kWxF_aUowvs7XQlAExaDQ/edit">Google Sheet 원본</a>
+          <a href="./sydney-family-trip-100-places.kml" download>KML 100핀 받기</a>
+        </div>
+        <p class="places-map-import-note">
+          My Maps에서 <strong>새 지도 → 가져오기 → Google Sheet 또는 KML</strong> 순서로 선택하면 됩니다.
+          표준 Google Maps 링크는 길이 제한 때문에 100핀을 한 번에 담지 못하므로,
+          <a href="./sydney-family-trip-100-places.csv" download>CSV 원본</a>도 함께 보존했습니다.
+        </p>
       </div>
       <div class="poi-toolbar" role="search" aria-label="음식점, 카페, 명소 필터">
         <label class="poi-search-field">
@@ -6214,7 +6741,7 @@
         ? `<span class="poi-distance">${poi.distanceKm < 1 ? `${Math.round(poi.distanceKm * 1000)}m` : `${poi.distanceKm.toFixed(1)}km`}</span>`
         : "";
       return `
-        <article class="poi-card ${availability.className}">
+        <article class="poi-card ${availability.className}" id="place-${poi.rank}" data-poi-rank="${poi.rank}">
           <div class="poi-gallery" data-poi-rank="${poi.rank}" data-index="0" role="group" aria-roledescription="사진 슬라이드" aria-label="${escapeGuideHtml(displayName)} 사진 10장">
             <img loading="lazy" src="${escapeGuideHtml(firstPhoto.src)}" data-fallback="${escapeGuideHtml(firstPhoto.fallback)}" onerror="if(this.dataset.fallback&&this.src!==this.dataset.fallback)this.src=this.dataset.fallback" alt="${escapeGuideHtml(displayName)} 대표 사진">
             <span class="poi-rank">#${poi.rank}</span>
@@ -6439,6 +6966,7 @@
           radius.disabled = false;
           resetLocation.hidden = false;
           renderPoiCards();
+          window.dispatchEvent(new CustomEvent("poi-location-change", { detail: poiUserLocation }));
         }, (error) => {
           poiUserLocation = null;
           locate.disabled = false;
@@ -6464,6 +6992,7 @@
         resetLocation.hidden = true;
         locationStatus.textContent = "위치는 버튼을 누를 때만 이 기기 안에서 거리 계산에 사용됩니다.";
         renderPoiCards();
+        window.dispatchEvent(new CustomEvent("poi-location-change", { detail: null }));
       });
 
       grid.addEventListener("click", (event) => {
@@ -7461,16 +7990,35 @@
       dock.classList.toggle("is-open", shouldOpen);
       toggle.setAttribute("aria-expanded", String(shouldOpen));
       toggle.textContent = shouldOpen ? "닫기" : "여행 검색";
+      updateMobileAssistantDockOcclusion();
       if (shouldOpen && options.focus) {
         window.setTimeout(() => document.getElementById("askInput")?.focus(), 120);
+      }
+    }
+
+    function updateMobileAssistantDockOcclusion() {
+      const dock = document.querySelector(".ask-dock");
+      const toggle = document.getElementById("askDockToggle");
+      if (!dock || !toggle) return;
+      const shouldHide = window.matchMedia("(max-width: 640px)").matches &&
+        dock.dataset.mapVisible === "true" &&
+        !dock.classList.contains("is-open");
+      dock.classList.toggle("is-map-obscured", shouldHide);
+      if (shouldHide) {
+        toggle.tabIndex = -1;
+        toggle.setAttribute("aria-hidden", "true");
+      } else {
+        toggle.tabIndex = 0;
+        toggle.removeAttribute("aria-hidden");
       }
     }
 
     function initMobileAssistantDock() {
       const toggle = document.getElementById("askDockToggle");
       if (!toggle) return;
+      const dock = toggle.closest(".ask-dock");
+      const placesMap = document.getElementById("tripPlacesMap");
       toggle.addEventListener("click", () => {
-        const dock = toggle.closest(".ask-dock");
         setMobileAssistantDock(!dock?.classList.contains("is-open"), { focus: true });
       });
       document.querySelectorAll("[data-open-assistant]").forEach((button) => {
@@ -7488,7 +8036,20 @@
       document.addEventListener("keydown", (event) => {
         if (event.key === "Escape") setMobileAssistantDock(false);
       });
-      window.matchMedia("(max-width: 640px)").addEventListener?.("change", () => setMobileAssistantDock(false));
+      window.matchMedia("(max-width: 640px)").addEventListener?.("change", () => {
+        setMobileAssistantDock(false);
+        updateMobileAssistantDockOcclusion();
+      });
+      if (dock && placesMap && "IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+          dock.dataset.mapVisible = String(Boolean(entries[0]?.isIntersecting));
+          updateMobileAssistantDockOcclusion();
+        }, {
+          rootMargin: "-52px 0px -12% 0px",
+          threshold: 0
+        });
+        observer.observe(placesMap);
+      }
       setMobileAssistantDock(false);
     }
 
@@ -7617,6 +8178,386 @@
       return element;
     }
 
+    const placesMapRecords = poiTop100.map((poi) => {
+      const guide = findVenueGuide(poi);
+      return {
+        ...poi,
+        guide,
+        lat: Number(guide?.lat),
+        lon: Number(guide?.lng),
+        availability: poiAvailability(guide)
+      };
+    }).filter((record) => Number.isFinite(record.lat) && Number.isFinite(record.lon));
+
+    const placesMapState = {
+      scope: "all",
+      zoom: null,
+      center: null,
+      selectedRank: 1,
+      userLocation: null
+    };
+
+    function placesMapScopedRecords() {
+      if (placesMapState.scope === "blue") {
+        return placesMapRecords.filter((record) => record.area === "Blue Mountains");
+      }
+      if (placesMapState.scope === "sydney") {
+        return placesMapRecords.filter((record) => record.area !== "Blue Mountains");
+      }
+      if (placesMapState.scope === "nearby" && placesMapState.userLocation) {
+        return placesMapRecords.filter((record) => haversineDistanceKm(
+          placesMapState.userLocation,
+          { lat: record.lat, lng: record.lon }
+        ) <= 5);
+      }
+      return placesMapRecords;
+    }
+
+    function placesMapCenter(records, zoom) {
+      const projected = records.map((record) => projectPoint(record, zoom));
+      return {
+        x: projected.reduce((sum, point) => sum + point.x, 0) / projected.length,
+        y: projected.reduce((sum, point) => sum + point.y, 0) / projected.length
+      };
+    }
+
+    function placesMapFitScope() {
+      const map = document.getElementById("placesMapCanvas");
+      if (!map) return;
+      const scoped = placesMapScopedRecords();
+      const fitRecords = scoped.slice();
+      if (placesMapState.scope === "nearby" && placesMapState.userLocation) {
+        fitRecords.push({
+          lat: placesMapState.userLocation.lat,
+          lon: placesMapState.userLocation.lng
+        });
+      }
+      if (!fitRecords.length) {
+        placesMapState.zoom = 12;
+        placesMapState.center = projectPoint({
+          lat: placesMapState.userLocation?.lat || -33.8688,
+          lon: placesMapState.userLocation?.lng || 151.2093
+        }, placesMapState.zoom);
+        drawPlacesMap();
+        return;
+      }
+      const width = map.clientWidth;
+      const height = map.clientHeight;
+      if (!width || !height) return;
+      const fittedZoom = fitZoom(fitRecords, width, height);
+      placesMapState.zoom = placesMapState.scope === "nearby"
+        ? Math.max(12, fittedZoom)
+        : fittedZoom;
+      placesMapState.center = placesMapCenter(fitRecords, placesMapState.zoom);
+      drawPlacesMap();
+    }
+
+    function placesMapKindClass(record) {
+      if (record.kind === "카페") return "kind-cafe";
+      if (record.kind === "명소") return "kind-attraction";
+      return "kind-restaurant";
+    }
+
+    function placesMapStatusLabel(record) {
+      return record.availability?.label || "방문 후보";
+    }
+
+    function placesMapSelect(record) {
+      placesMapState.selectedRank = record.rank;
+      renderPlacesMapDetail(record);
+      drawPlacesMap();
+    }
+
+    function renderPlacesMapDetail(record) {
+      const detail = document.getElementById("placesMapDetail");
+      if (!detail || !record) return;
+      const guide = record.guide || {};
+      const unavailable = Boolean(record.availability?.className);
+      const tagClass = unavailable ? "warn" : record.kind === "명소" ? "good" : record.kind === "카페" ? "blue" : "good";
+      const mapsUrl = googleMapSearch(guide.address || record.query);
+      detail.innerHTML = `
+        <span class="tag ${tagClass}">${escapeGuideHtml(placesMapStatusLabel(record))}</span>
+        <h4>#${record.rank} ${escapeGuideHtml(guide.name || record.name)}</h4>
+        <p class="places-map-detail-meta">${escapeGuideHtml(record.kind)} · ${escapeGuideHtml(record.area)}</p>
+        <p class="places-map-detail-description">${escapeGuideHtml(guide.description_ko || record.s || "")}</p>
+        <dl class="places-map-detail-facts">
+          <div>
+            <dt>주소</dt>
+            <dd>${escapeGuideHtml(guide.address || record.area)}</dd>
+          </div>
+          <div>
+            <dt>여행 중 운영</dt>
+            <dd>${escapeGuideHtml(guide.hours_summary_ko || "공식 정보 확인 필요")}</dd>
+          </div>
+          <div>
+            <dt>9인 예약</dt>
+            <dd>${escapeGuideHtml(guide.reservation_summary_ko || "당일 좌석 확인")}</dd>
+          </div>
+        </dl>
+        <div class="places-map-detail-actions">
+          <a class="places-map-google" href="${escapeGuideHtml(mapsUrl)}">Google Maps에서 열기</a>
+          <button class="places-map-card-link" type="button" data-map-card-rank="${record.rank}">100곳 카드로 이동</button>
+        </div>
+      `;
+      initExternalLinks();
+    }
+
+    function renderPlacesMapCluster(records) {
+      const detail = document.getElementById("placesMapDetail");
+      if (!detail) return;
+      detail.innerHTML = `
+        <span class="tag blue">같은 위치권</span>
+        <h4>${records.length}곳이 가까이 있습니다</h4>
+        <p class="places-map-detail-description">장소를 하나 고르면 설명과 Google Maps 길찾기가 열립니다.</p>
+        <div class="places-map-cluster-list">
+          ${records
+            .sort((a, b) => a.rank - b.rank)
+            .map((record) => `
+              <button class="places-map-cluster-item" type="button" data-map-detail-rank="${record.rank}">
+                #${record.rank} ${escapeGuideHtml(record.guide?.name || record.name)} · ${escapeGuideHtml(record.kind)}
+              </button>
+            `)
+            .join("")}
+        </div>
+      `;
+    }
+
+    function placesMapShowCard(rank) {
+      const search = document.getElementById("poiSearch");
+      const area = document.getElementById("poiArea");
+      const kind = document.getElementById("poiKind");
+      const radius = document.getElementById("poiRadius");
+      if (search) search.value = "";
+      if (area) area.value = "";
+      if (kind) kind.value = "";
+      if (radius && poiUserLocation) radius.value = "all";
+      renderPoiCards();
+      window.requestAnimationFrame(() => {
+        const card = document.getElementById(`place-${rank}`);
+        if (!card) return;
+        card.scrollIntoView({ behavior: "smooth", block: "start" });
+        card.classList.add("is-map-focus");
+        window.setTimeout(() => card.classList.remove("is-map-focus"), 2400);
+      });
+    }
+
+    function placesMapClusterItems(items, threshold) {
+      const clusters = [];
+      items.forEach((item) => {
+        const match = clusters.find((cluster) => {
+          const dx = cluster.x - item.x;
+          const dy = cluster.y - item.y;
+          return Math.sqrt(dx * dx + dy * dy) < threshold;
+        });
+        if (!match) {
+          clusters.push({ x: item.x, y: item.y, records: [item.record] });
+          return;
+        }
+        const nextCount = match.records.length + 1;
+        match.x = (match.x * match.records.length + item.x) / nextCount;
+        match.y = (match.y * match.records.length + item.y) / nextCount;
+        match.records.push(item.record);
+      });
+      return clusters;
+    }
+
+    function placesMapZoomToCluster(records) {
+      const nextZoom = Math.min(16, Number(placesMapState.zoom || 10) + 2);
+      placesMapState.zoom = nextZoom;
+      placesMapState.center = placesMapCenter(records, nextZoom);
+      drawPlacesMap();
+    }
+
+    function drawPlacesMap() {
+      const map = document.getElementById("placesMapCanvas");
+      const tileLayer = document.getElementById("placesMapTiles");
+      const markerLayer = document.getElementById("placesMapMarkers");
+      const count = document.getElementById("placesMapCount");
+      if (!map || !tileLayer || !markerLayer) return;
+
+      const width = map.clientWidth;
+      const height = map.clientHeight;
+      if (!width || !height) return;
+
+      const scoped = placesMapScopedRecords();
+      if (count) count.textContent = String(scoped.length);
+      if (!placesMapState.zoom || !placesMapState.center) {
+        placesMapFitScope();
+        return;
+      }
+
+      const zoom = placesMapState.zoom;
+      const center = placesMapState.center;
+      const origin = {
+        x: center.x - width / 2,
+        y: center.y - height / 2
+      };
+      const tileSize = 256;
+      const tileCount = Math.pow(2, zoom);
+      const minTileX = Math.floor(origin.x / tileSize);
+      const maxTileX = Math.floor((origin.x + width) / tileSize);
+      const minTileY = Math.floor(origin.y / tileSize);
+      const maxTileY = Math.floor((origin.y + height) / tileSize);
+      const subdomains = ["a", "b", "c", "d"];
+      const tiles = document.createDocumentFragment();
+
+      tileLayer.textContent = "";
+      for (let x = minTileX; x <= maxTileX; x += 1) {
+        for (let y = minTileY; y <= maxTileY; y += 1) {
+          if (y < 0 || y >= tileCount) continue;
+          const wrappedX = ((x % tileCount) + tileCount) % tileCount;
+          const subdomain = subdomains[Math.abs(x + y) % subdomains.length];
+          const image = document.createElement("img");
+          image.alt = "";
+          image.decoding = "async";
+          image.src = `https://${subdomain}.basemaps.cartocdn.com/rastertiles/voyager/${zoom}/${wrappedX}/${y}.png`;
+          image.style.left = `${Math.round(x * tileSize - origin.x)}px`;
+          image.style.top = `${Math.round(y * tileSize - origin.y)}px`;
+          tiles.appendChild(image);
+        }
+      }
+      tileLayer.appendChild(tiles);
+
+      const screenItems = scoped.map((record) => {
+        const point = projectPoint(record, zoom);
+        return {
+          record,
+          x: point.x - origin.x,
+          y: point.y - origin.y
+        };
+      }).filter((item) => item.x >= -24 && item.x <= width + 24 && item.y >= -24 && item.y <= height + 24);
+
+      const clusters = placesMapClusterItems(screenItems, width < 640 ? 48 : 40);
+      markerLayer.textContent = "";
+      clusters.forEach((cluster) => {
+        const button = document.createElement("button");
+        const isCluster = cluster.records.length > 1;
+        const first = cluster.records[0];
+        const selected = cluster.records.some((record) => record.rank === placesMapState.selectedRank);
+        const muted = cluster.records.every((record) => Boolean(record.availability?.className));
+        button.type = "button";
+        button.className = [
+          "places-map-marker",
+          isCluster ? "is-cluster" : placesMapKindClass(first),
+          selected ? "is-selected" : "",
+          muted ? "is-muted" : ""
+        ].filter(Boolean).join(" ");
+        button.style.left = `${cluster.x}px`;
+        button.style.top = `${cluster.y}px`;
+        button.setAttribute("aria-label", isCluster
+          ? `${cluster.records.length}곳 묶음. 확대하거나 장소 목록 보기`
+          : `#${first.rank} ${first.guide?.name || first.name}`);
+        const label = document.createElement("span");
+        label.textContent = isCluster ? String(cluster.records.length) : String(first.rank);
+        button.appendChild(label);
+        button.addEventListener("click", () => {
+          if (!isCluster) {
+            placesMapSelect(first);
+            return;
+          }
+          if (placesMapState.zoom < 15) {
+            placesMapZoomToCluster(cluster.records);
+            return;
+          }
+          renderPlacesMapCluster(cluster.records);
+        });
+        markerLayer.appendChild(button);
+      });
+
+      if (placesMapState.userLocation) {
+        const userPoint = projectPoint({
+          lat: placesMapState.userLocation.lat,
+          lon: placesMapState.userLocation.lng
+        }, zoom);
+        const x = userPoint.x - origin.x;
+        const y = userPoint.y - origin.y;
+        if (x >= -20 && x <= width + 20 && y >= -20 && y <= height + 20) {
+          const user = document.createElement("span");
+          user.className = "places-map-user";
+          user.style.left = `${x}px`;
+          user.style.top = `${y}px`;
+          user.setAttribute("aria-label", "내 현재 위치");
+          markerLayer.appendChild(user);
+        }
+      }
+    }
+
+    function setPlacesMapScope(scope) {
+      placesMapState.scope = scope;
+      document.querySelectorAll("[data-map-scope]").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.mapScope === scope));
+      });
+      placesMapFitScope();
+    }
+
+    function initPlacesMap() {
+      const map = document.getElementById("placesMapCanvas");
+      const detail = document.getElementById("placesMapDetail");
+      const locate = document.getElementById("placesMapLocate");
+      if (!map || !detail || placesMapRecords.length !== 100) return;
+
+      const counts = {
+        all: placesMapRecords.length,
+        sydney: placesMapRecords.filter((record) => record.area !== "Blue Mountains").length,
+        blue: placesMapRecords.filter((record) => record.area === "Blue Mountains").length
+      };
+      document.querySelectorAll("[data-map-scope]").forEach((button) => {
+        const scope = button.dataset.mapScope;
+        const label = scope === "all" ? "전체" : scope === "sydney" ? "시드니" : "Blue Mountains";
+        button.textContent = `${label} ${counts[scope]}곳`;
+        button.addEventListener("click", () => setPlacesMapScope(scope));
+      });
+
+      document.getElementById("placesMapZoomIn")?.addEventListener("click", () => {
+        placesMapState.zoom = Math.min(16, Number(placesMapState.zoom || 10) + 1);
+        drawPlacesMap();
+      });
+      document.getElementById("placesMapZoomOut")?.addEventListener("click", () => {
+        placesMapState.zoom = Math.max(7, Number(placesMapState.zoom || 10) - 1);
+        drawPlacesMap();
+      });
+      document.getElementById("placesMapReset")?.addEventListener("click", placesMapFitScope);
+
+      detail.addEventListener("click", (event) => {
+        const detailButton = event.target.closest("[data-map-detail-rank]");
+        if (detailButton) {
+          const record = placesMapRecords.find((item) => item.rank === Number(detailButton.dataset.mapDetailRank));
+          if (record) placesMapSelect(record);
+          return;
+        }
+        const cardButton = event.target.closest("[data-map-card-rank]");
+        if (cardButton) placesMapShowCard(Number(cardButton.dataset.mapCardRank));
+      });
+
+      locate?.addEventListener("click", () => {
+        const sourceButton = document.getElementById("poiLocate");
+        if (!sourceButton || sourceButton.disabled) return;
+        locate.disabled = true;
+        locate.textContent = "위치 확인 중";
+        sourceButton.click();
+      });
+
+      window.addEventListener("poi-location-change", (event) => {
+        placesMapState.userLocation = event.detail || null;
+        if (locate) {
+          locate.disabled = false;
+          locate.setAttribute("aria-pressed", String(Boolean(event.detail)));
+          locate.textContent = event.detail ? "내 위치 5km" : "내 위치 주변";
+        }
+        if (event.detail) {
+          setPlacesMapScope("nearby");
+        } else if (placesMapState.scope === "nearby") {
+          setPlacesMapScope("all");
+        } else {
+          drawPlacesMap();
+        }
+      });
+
+      const initial = placesMapRecords.find((record) => record.rank === placesMapState.selectedRank) || placesMapRecords[0];
+      renderPlacesMapDetail(initial);
+      window.requestAnimationFrame(placesMapFitScope);
+    }
+
     function drawRouteMap() {
       const map = document.getElementById("sydneyRouteMap");
       const tileLayer = document.getElementById("sydneyRouteTiles");
@@ -7724,6 +8665,12 @@
       window.clearTimeout(routeMapResizeTimer);
       routeMapResizeTimer = window.setTimeout(drawRouteMap, 120);
     });
+    let placesMapResizeTimer;
+    window.addEventListener("resize", () => {
+      window.clearTimeout(placesMapResizeTimer);
+      placesMapResizeTimer = window.setTimeout(placesMapFitScope, 140);
+    });
+    initPlacesMap();
     drawRouteMap();
   </script>
 </body>

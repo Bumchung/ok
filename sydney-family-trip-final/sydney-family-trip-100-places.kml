@@ -1,0 +1,2695 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>시드니 가족여행 100곳</name>
+    <description>2026년 7월 가족여행용 식당·카페·명소 100곳. 폐점·성인 전용 장소도 상태 확인을 위해 회색 핀으로 보존했습니다.</description>
+    <Style id="pin-restaurant">
+      <IconStyle>
+        <scale>1.05</scale>
+        <Icon><href>https://maps.google.com/mapfiles/ms/icons/red-dot.png</href></Icon>
+      </IconStyle>
+    </Style>
+    <Style id="pin-cafe">
+      <IconStyle>
+        <scale>1.05</scale>
+        <Icon><href>https://maps.google.com/mapfiles/ms/icons/blue-dot.png</href></Icon>
+      </IconStyle>
+    </Style>
+    <Style id="pin-attraction">
+      <IconStyle>
+        <scale>1.05</scale>
+        <Icon><href>https://maps.google.com/mapfiles/ms/icons/green-dot.png</href></Icon>
+      </IconStyle>
+    </Style>
+    <Style id="pin-muted">
+      <IconStyle>
+        <scale>1.05</scale>
+        <Icon><href>https://maps.google.com/mapfiles/ms/icons/grey-dot.png</href></Icon>
+      </IconStyle>
+    </Style>
+    <Placemark>
+      <name>#1 Bennelong</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Opera House · 방문 후보
+
+시드니 오페라하우스 내부에서 항구와 건축을 함께 누리는 현대 호주식 파인다이닝이다. 공연이 없어도 오페라하우스 안에서 식사하는 경험 자체가 여행의 한 장면이 된다.
+
+주소: Sydney Opera House, Bennelong Point, Sydney NSW 2000
+
+영업시간: 점심 금–일 12:00–14:00 예약, 저녁 일–목 17:30–20:45·금–토 17:30–21:15 예약. Bennelong Bar는 월–목 17:30부터, 금–일 12:00부터 늦게까지 운영.
+
+9인 예약: 레스토랑은 사전 예약이 사실상 필수다. 9명은 한 테이블 가능 여부와 어린이 동반 조건을 예약 단계에서 확인하고, 원하는 날짜가 열리면 바로 확보하는 편이 안전하다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Sydney%20Opera%20House%2C%20Bennelong%20Point%2C%20Sydney%20NSW%202000
+
+예약: https://www.bennelong.com.au/reservations/
+
+공식: https://www.bennelong.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>1</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Opera House</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Sydney Opera House, Bennelong Point, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2146826,-33.857495,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#2 Quay</name>
+      <styleUrl>#pin-muted</styleUrl>
+      <description>식당 · The Rocks · 방문 불가
+
+피터 길모어의 요리와 오페라하우스·하버브리지 전망으로 알려졌던 시드니 대표 파인다이닝이지만 현재는 영업을 종료했다. 이번 여행의 방문 후보에서는 빼고 같은 서큘러키 권역의 Bennelong·ARIA·Cafe Sydney로 대체하는 것이 맞다.
+
+주소: Upper Level, Overseas Passenger Terminal, The Rocks NSW 2000
+
+영업시간: 2026년 2월 15일 최종 영업 후 폐점.
+
+9인 예약: 현재 방문·예약 불가. 폐점 공지가 확인되어 일정에 넣으면 안 된다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Upper%20Level%2C%20Overseas%20Passenger%20Terminal%2C%20The%20Rocks%20NSW%202000
+
+공식: https://www.quay.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>2</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>The Rocks</value></Data>
+        <Data name="상태"><value>방문 불가</value></Data>
+        <Data name="주소"><value>Upper Level, Overseas Passenger Terminal, The Rocks NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.209683,-33.858496,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#3 Aria</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Circular Quay · 방문 후보
+
+오페라하우스와 하버브리지 사이를 통유리로 바라보며 현대 호주 요리를 먹는 파인다이닝이다. 전망만 소비하는 곳이 아니라 제철 호주 식재료와 서비스까지 갖춰 특별한 가족 저녁에 어울린다.
+
+주소: 1 Macquarie Street, Sydney NSW 2000
+
+영업시간: 점심 목–일 운영. 예약 시간은 월–수 저녁 17:30–20:30, 목 점심 12:00–13:30·저녁 17:30–21:30, 금–토 점심 12:00–13:30·저녁 17:00–21:30, 일 점심 12:00–13:30·저녁 17:00–20:00.
+
+9인 예약: 9명은 사전 예약이 필수에 가깝다. 창가 좌석은 보장되지 않으므로 요청사항으로 남기되, 일몰 전 입장 가능한 시간대를 우선 잡는 편이 좋다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=1%20Macquarie%20Street%2C%20Sydney%20NSW%202000
+
+예약: https://ariasydney.com.au/bookings/
+
+공식: https://ariasydney.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>3</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Circular Quay</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>1 Macquarie Street, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2131948,-33.8591825,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#4 Cafe Sydney</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Circular Quay · 방문 후보
+
+Customs House 옥상층에서 하버브리지와 서큘러키를 넓게 보는 현대 호주식 레스토랑이다. 해산물과 그릴 메뉴가 고르게 있어 세대가 다른 가족이 전망 좋은 한 끼를 함께하기 쉽다.
+
+주소: Level 5, Customs House, 31 Alfred Street, Circular Quay NSW 2000
+
+영업시간: 월–토 12:00부터 늦게까지, 일 12:00–17:00.
+
+9인 예약: 9명까지 일반 단품 예약이 가능하지만 8명 이상에는 10% 서비스료가 붙는다. 9명 정확한 인원으로 일찍 예약하고, 테라스·창가 요청은 좌석 보장과 별개임을 감안해야 한다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Level%205%2C%20Customs%20House%2C%2031%20Alfred%20Street%2C%20Circular%20Quay%20NSW%202000
+
+예약: https://cafesydney.com/
+
+공식: https://cafesydney.com/</description>
+      <ExtendedData>
+        <Data name="순위"><value>4</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Circular Quay</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Level 5, Customs House, 31 Alfred Street, Circular Quay NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2108499,-33.8622498,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#5 6HEAD</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · The Rocks · 방문 후보
+
+1839년 창고였던 Campbell’s Stores의 사암 건물에서 스테이크와 해산물을 먹는 워터프런트 레스토랑이다. 오래된 더 록스의 질감과 하버브리지·오페라하우스 전망이 한 자리에서 이어진다.
+
+주소: Bay 10 &amp; 11, Campbell’s Stores, 7–27 Circular Quay West, The Rocks NSW 2000
+
+영업시간: 월 17:00–21:30, 화–목 12:00–21:30, 금–토 12:00–22:30, 일 12:00–21:30.
+
+9인 예약: 9명은 워터프런트 좌석을 기대한다면 사전 예약이 필요하다. 야외 좌석 요청 시 7월 저녁의 추위와 우천 시 실내 전환 가능 여부도 함께 확인하는 편이 좋다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Bay%2010%20%26%2011%2C%20Campbell%E2%80%99s%20Stores%2C%207%E2%80%9327%20Circular%20Quay%20West%2C%20The%20Rocks%20NSW%202000
+
+예약: https://6head.com.au/reservations/
+
+공식: https://6head.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>5</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>The Rocks</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Bay 10 &amp; 11, Campbell’s Stores, 7–27 Circular Quay West, The Rocks NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2096045,-33.8586316,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#6 Opera Bar</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Opera House · 방문 후보
+
+오페라하우스 아래 물가에 바로 붙어 하버브리지와 도시의 불빛을 가장 편하게 즐기는 캐주얼 바·식당이다. 라이브 음악과 피자·해산물·간단한 식사가 있어 관광 중 쉬어 가기 좋다.
+
+주소: Lower Concourse, Sydney Opera House, Sydney NSW 2000
+
+영업시간: 일–목 10:00부터 늦게까지, 금–토 10:00–다음 날 00:30.
+
+9인 예약: 공식적으로 워크인 전용이며 예약을 받지 않는다. 9명은 점심 직후나 이른 저녁에 호스트 데스크로 가야 함께 앉을 가능성이 높고, 혼잡 시 테이블이 나뉠 수 있다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Lower%20Concourse%2C%20Sydney%20Opera%20House%2C%20Sydney%20NSW%202000
+
+공식: https://operabar.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>6</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Opera House</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Lower Concourse, Sydney Opera House, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2138472,-33.858334,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#7 Ploos</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · The Rocks · 방문 후보
+
+Campbell’s Cove의 사암 창고에서 키프로스와 남에게해 풍미를 풀어내는 그리스식 레스토랑이다. 메제, 숯불 고기와 해산물을 나눠 먹는 방식이라 가족 식사에 잘 맞고 바로 앞 항구 풍경도 좋다.
+
+주소: Bay 7, 7–27 Circular Quay West, The Rocks NSW 2000
+
+영업시간: 공식 고정시간 미공개·날짜별 예약화면 기준. 현재 공개 가이드에는 목–토 12:00–자정, 일 12:00–17:00, 월–수 휴무로 안내되어 있어 여행 날짜로 재확인해야 한다.
+
+9인 예약: 9명은 사전 예약을 권한다. 공유식 메뉴이므로 알레르기와 어린이 식사 가능 여부를 예약 메모에 한 번에 전달하면 현장 주문이 수월하다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Bay%207%2C%207%E2%80%9327%20Circular%20Quay%20West%2C%20The%20Rocks%20NSW%202000
+
+예약: https://www.ploos.com.au/
+
+공식: https://www.ploos.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>7</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>The Rocks</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Bay 7, 7–27 Circular Quay West, The Rocks NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2091434,-33.8569286,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#8 Sake Restaurant &amp; Bar</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · The Rocks · 방문 후보
+
+복원된 더 록스 사암 건물에서 주문 즉시 만드는 스시·사시미와 로바타 요리를 선보이는 현대 일본식 레스토랑이다. 공유 메뉴가 많고 별실·반별실 선택지도 있어 대가족이 식사하기 편하다.
+
+주소: 12 Argyle Street, The Rocks NSW 2000
+
+영업시간: 점심 매일 12:00–15:00. 저녁 일–목 18:00–21:00, 금–토 18:00–22:00.
+
+9인 예약: 9명은 미리 예약해야 한 테이블이나 적절한 공간을 받기 쉽다. 일반 좌석과 별실의 최소 이용금액·세트메뉴 조건이 다를 수 있으므로 예약 화면에서 비교한다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=12%20Argyle%20Street%2C%20The%20Rocks%20NSW%202000
+
+예약: https://sakerestaurant.com.au/the-rocks/
+
+공식: https://sakerestaurant.com.au/the-rocks/</description>
+      <ExtendedData>
+        <Data name="순위"><value>8</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>The Rocks</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>12 Argyle Street, The Rocks NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2074927,-33.8588938,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#9 The Glenmore Rooftop</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · The Rocks · 방문 후보
+
+더 록스의 오래된 펍 옥상에서 오페라하우스와 항구 스카이라인을 보는 캐주얼한 장소다. 격식 없는 펍 음식과 전망을 함께 즐길 수 있어 일정 중간의 편한 점심이나 이른 저녁에 좋다.
+
+주소: 96 Cumberland Street, The Rocks NSW 2000
+
+영업시간: 펍 일–목 11:00–자정·금–토 11:00–다음 날 01:00, 루프톱 일–목 12:00–자정·금–토 12:00–다음 날 01:00. 주방은 매일 12:00–22:00.
+
+9인 예약: 9명은 루프톱 좌석을 원하면 예약을 권한다. 고령 가족이 있다면 계단·엘리베이터 동선을 문의하고, 야외석은 추위·비에 따라 바뀔 수 있음을 감안한다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=96%20Cumberland%20Street%2C%20The%20Rocks%20NSW%202000
+
+예약: https://www.theglenmore.com.au/book-a-table
+
+공식: https://www.theglenmore.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>9</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>The Rocks</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>96 Cumberland Street, The Rocks NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2073996,-33.8587233,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#10 La Renaissance Patisserie</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · The Rocks · 방문 후보
+
+프랑스식 크루아상·에클레어·케이크를 고르는 파티스리로, 더 록스 안쪽의 조용한 파리풍 안뜰이 매력이다. 아침 산책이나 관광 사이에 커피와 디저트를 가볍게 즐기기 좋다.
+
+주소: 47 Argyle Street, The Rocks NSW 2000
+
+영업시간: 매일 07:00–18:00. 크리스마스 당일 휴무.
+
+9인 예약: 예약을 받지 않는 워크인 매장이다. 9명 모두 안뜰에 함께 앉으려면 이른 시간에 가고, 혼잡하면 포장하거나 두 테이블로 나누는 편이 현실적이다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=47%20Argyle%20Street%2C%20The%20Rocks%20NSW%202000
+
+공식: https://larenaissance.com.au/pages/the-cafe</description>
+      <ExtendedData>
+        <Data name="순위"><value>10</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>The Rocks</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>47 Argyle Street, The Rocks NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2084246,-33.8592985,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#11 The Rocks Cafe</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · The Rocks · 방문 후보
+
+더 록스의 헤리티지 건물 두 층을 쓰는 편안한 카페·레스토랑이다. 아침부터 저녁까지 호주식·유럽식 메뉴 폭이 넓어 입맛과 식사 시간이 다른 가족이 함께 가기 쉽다.
+
+주소: 99 George Street, The Rocks NSW 2000
+
+영업시간: 일–목 07:30–21:00, 금–토 07:30–22:00.
+
+9인 예약: 9명은 특히 아침 피크나 주말 저녁에 예약을 권한다. 오래된 건물 특성상 좌석 층과 이동 편의가 중요하면 예약 시 1층 좌석 가능 여부를 요청한다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=99%20George%20Street%2C%20The%20Rocks%20NSW%202000
+
+예약: https://www.therockscafe.com.au/
+
+공식: https://www.therockscafe.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>11</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>The Rocks</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>99 George Street, The Rocks NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2086003,-33.8595809,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#12 MCA Cafe</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Circular Quay · 방문 후보
+
+현재의 ‘MCA Cafe at Tallawoladah’는 미술관 지상층에서 현대 호주식 가벼운 식사와 페이스트리를 내는 카페다. 예전의 옥상 카페가 아니라는 점을 알고 가야 하며, 전시 전후에 부담 없이 쉬기 좋다.
+
+주소: Ground Floor, Museum of Contemporary Art Australia, 140 George Street, The Rocks NSW 2000
+
+영업시간: 공식 고정시간 미공개·날짜별 안내 기준. 현재 공개 가이드에는 07:00–17:00로 표시되지만 방문 당일 MCA 운영 공지를 다시 확인해야 한다.
+
+9인 예약: 일반 카페 이용은 워크인으로 보는 것이 안전하다. 9명은 전시 관람객이 몰리는 점심을 피해 이른 시간에 방문하고, 옥상 전망은 별도로 미술관의 루프톱 테라스를 이용한다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Ground%20Floor%2C%20Museum%20of%20Contemporary%20Art%20Australia%2C%20140%20George%20Street%2C%20The%20Rocks%20NSW%202000
+
+공식: https://www.mca.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>12</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Circular Quay</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Ground Floor, Museum of Contemporary Art Australia, 140 George Street, The Rocks NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2088286,-33.8599007,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#13 Whalebridge</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Circular Quay · 방문 후보
+
+서큘러키 물 위에 놓인 듯한 야외 프렌치 비스트로로, 오페라하우스를 정면에 두고 해산물과 프랑스식 요리를 즐긴다. 실내 전망이 아니라 항구의 바람과 소리를 직접 느끼는 장소다.
+
+주소: 8 &amp; 10 East Circular Quay, Sydney NSW 2000
+
+영업시간: 매일 11:00부터 늦게까지, 기상 여건에 따라 운영.
+
+9인 예약: 9명은 반드시 가까운 수준으로 사전 예약을 권한다. 거의 전부 야외 경험이므로 우천·강풍 시 운영과 좌석 대응, 7월 저녁 보온 대책을 함께 확인한다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=8%20%26%2010%20East%20Circular%20Quay%2C%20Sydney%20NSW%202000
+
+예약: https://whalebridge.com.au/
+
+공식: https://whalebridge.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>13</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Circular Quay</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>8 &amp; 10 East Circular Quay, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2127595,-33.8594087,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#14 Grana</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · CBD · 방문 후보
+
+옛 양모 창고인 Hinchcliff House에서 곡물을 직접 제분해 빵과 파스타로 만드는 이탈리아식 레스토랑이다. 음식이 만들어지는 이야기가 분명해 아이부터 어른까지 한 끼를 기억하기 좋다.
+
+주소: Ground Floor, 5–7 Young Street, Sydney NSW 2000
+
+영업시간: 월–토 11:30–23:00, 일 11:30–22:00.
+
+9인 예약: 9명은 사전 예약을 권한다. 8명 이상에는 10% 서비스료가 적용되며 단체 메뉴나 좌석 조건이 달라질 수 있으니 예약 단계에서 확인한다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Ground%20Floor%2C%205%E2%80%937%20Young%20Street%2C%20Sydney%20NSW%202000
+
+예약: https://grana.sydney/reservations
+
+공식: https://grana.sydney/</description>
+      <ExtendedData>
+        <Data name="순위"><value>14</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>CBD</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Ground Floor, 5–7 Young Street, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2109476,-33.8625153,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#15 Lana</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · CBD · 방문 후보
+
+Hinchcliff House 1층의 현대 이탈리아 레스토랑으로, 이탈리아 뼈대에 아시아 향신료와 호주 토착 식재료를 섬세하게 섞는다. 여러 접시를 나눠 먹는 구성이어서 음식에 관심 많은 가족에게 특히 재미있다.
+
+주소: Level 1, 5–7 Young Street, Sydney NSW 2000
+
+영업시간: 점심 목–금 11:30–15:00. 저녁 월–토 17:00–23:00. 일요일 휴무.
+
+9인 예약: 6명 이상은 단체 메뉴가 적용되므로 9명은 예약이 필수다. 메뉴 구성, 알레르기, 어린이 대응을 예약 전에 한 번에 확정한다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Level%201%2C%205%E2%80%937%20Young%20Street%2C%20Sydney%20NSW%202000
+
+예약: https://lana.sydney/
+
+공식: https://lana.sydney/</description>
+      <ExtendedData>
+        <Data name="순위"><value>15</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>CBD</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Level 1, 5–7 Young Street, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2109476,-33.8625153,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#16 Mr. Wong</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · CBD · 방문 후보
+
+1930년대 상하이를 떠올리게 하는 큰 2층 공간에서 광둥식 요리와 딤섬, 북경오리를 나눠 먹는 레스토랑이다. 메뉴가 매우 넓고 활기가 있어 대가족 식사의 ‘시드니 도심 한 장면’이 된다.
+
+주소: 3 Bridge Lane, Sydney NSW 2000
+
+영업시간: 공식 고정시간 미공개·날짜별 예약화면 기준. 현재 공개 가이드에는 점심 매일 12:00–15:00, 저녁 17:30부터 일–목 약 22:00·금–토 약 23:00까지로 안내된다.
+
+9인 예약: 인기가 높아 9명은 예약이 필수에 가깝다. 북경오리 등 원하는 대표 메뉴와 알레르기, 어린이 의자 필요 여부를 예약 메모에 남긴다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=3%20Bridge%20Lane%2C%20Sydney%20NSW%202000
+
+예약: https://merivale.com/venues/mrwong/
+
+공식: https://merivale.com/venues/mrwong/</description>
+      <ExtendedData>
+        <Data name="순위"><value>16</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>CBD</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>3 Bridge Lane, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2082992,-33.8641135,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#17 Restaurant Hubert</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · CBD · 방문 후보
+
+지하로 내려가면 촛불과 목재, 라이브 재즈가 어우러진 오래된 파리풍 공간이 펼쳐지는 프렌치 레스토랑이다. 클래식 프랑스 요리에 동아시아의 디테일이 섞여 공간과 음식 모두 극적인 저녁이 된다.
+
+주소: 15 Bligh Street, Sydney NSW 2000
+
+영업시간: 점심 매일 12:00부터, 저녁 매일 17:00부터 늦게까지.
+
+9인 예약: 워크인도 받지만 공식 안내도 예약을 권하며 예약 좌석 이용시간은 2시간이다. 9명은 반드시 가까운 수준으로 미리 예약하고 계단 이동이 어려운 가족이 있으면 접근 동선을 문의한다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=15%20Bligh%20Street%2C%20Sydney%20NSW%202000
+
+예약: https://swillhouse.com/reservations/
+
+공식: https://swillhouse.com/venues/restaurant-hubert/</description>
+      <ExtendedData>
+        <Data name="순위"><value>17</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>CBD</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>15 Bligh Street, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2103039,-33.8651583,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#18 Rockpool Bar &amp; Grill</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · CBD · 방문 후보
+
+아르데코 걸작 City Mutual Building의 높은 기둥과 대리석 공간에서 장작불 스테이크와 해산물을 먹는 그릴 레스토랑이다. 호주산 쇠고기와 방대한 와인 리스트가 중심이라 어른들의 특별한 저녁에 잘 맞는다.
+
+주소: 66 Hunter Street, Sydney NSW 2000
+
+영업시간: 레스토랑 점심 매일 12:00–14:00. 저녁 월–금 18:00–21:00, 토 17:30–22:00, 일 17:30–21:00. 바는 매일 12:00부터 늦게까지.
+
+9인 예약: 9명은 일찍 예약해야 같은 테이블과 적절한 식사 시간을 확보하기 쉽다. 단체 메뉴·서비스료와 어린이 메뉴 가능 여부를 예약 화면에서 확인한다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=66%20Hunter%20Street%2C%20Sydney%20NSW%202000
+
+예약: https://rockpoolbarandgrill.com.au/sydney/
+
+공식: https://rockpoolbarandgrill.com.au/sydney/</description>
+      <ExtendedData>
+        <Data name="순위"><value>18</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>CBD</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>66 Hunter Street, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2103603,-33.8660112,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#19 Coogee Pavilion</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Coogee · 방문 후보
+
+쿠지 해변 앞의 대형 복합 공간으로, 지상층은 피자·해산물·키즈 메뉴와 게임이 있어 가족 식사에 초점이 맞춰져 있다. 층마다 성격이 다르며 루프톱은 성인 중심이므로 가족은 지상층을 목적지로 잡는 것이 좋다.
+
+주소: 169 Dolphin Street, Coogee NSW 2034
+
+영업시간: 공식 고정시간 미공개·날짜별 예약화면 기준. 공개 가이드의 지상층 기준은 대체로 07:30–22:00이며, 층과 요일별 운영시간이 달라 방문 날짜로 확인해야 한다.
+
+9인 예약: 9명은 지상층의 예약 가능 시간을 먼저 확인한다. 주말에는 워크인 대기가 길 수 있고, 루프톱은 가족 식사 대안으로 간주하지 않는 편이 안전하다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=169%20Dolphin%20Street%2C%20Coogee%20NSW%202034
+
+예약: https://merivale.com/venues/coogeepavilion/
+
+공식: https://merivale.com/venues/coogeepavilion/</description>
+      <ExtendedData>
+        <Data name="순위"><value>19</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Coogee</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>169 Dolphin Street, Coogee NSW 2034</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2582571,-33.9186735,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#20 Mimi&apos;s</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Coogee · 방문 후보
+
+Coogee Pavilion 중간층의 화려한 해안 파인다이닝으로, 해산물과 지중해풍 요리를 바다 전망과 함께 즐긴다. 캐주얼한 해변 일정 안에 한 번의 격식 있는 가족 식사를 넣고 싶을 때 어울린다.
+
+주소: Middle Level, Coogee Pavilion, 130A Beach Street, Coogee NSW 2034
+
+영업시간: 공식 고정시간 미공개·날짜별 예약화면 기준. 점심·저녁 가능 시간은 여행 날짜와 인원 9명을 입력해 공식 예약 화면에서 확인해야 한다.
+
+9인 예약: 9명은 사전 예약이 필수다. 단체 메뉴·최소 이용금액·서비스료가 적용될 수 있고, 어린이 동반 가능 시간과 좌석을 예약 전에 확인한다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Middle%20Level%2C%20Coogee%20Pavilion%2C%20130A%20Beach%20Street%2C%20Coogee%20NSW%202034
+
+예약: https://merivale.com/venues/mimis/
+
+공식: https://merivale.com/venues/mimis/</description>
+      <ExtendedData>
+        <Data name="순위"><value>20</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Coogee</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Middle Level, Coogee Pavilion, 130A Beach Street, Coogee NSW 2034</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2582716,-33.9184726,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#21 Una Mas</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Coogee · 방문 후보
+
+Coogee Pavilion 중간층의 바다를 향한 타파스·와인 바다. 플란차에서 구운 해산물과 지중해식 작은 접시를 여럿 나눌 수 있어 격식보다 대화에 집중하는 가족 점심에 어울린다.
+
+주소: Middle Level, Coogee Pavilion, 130A Beach Street, Coogee NSW 2034
+
+영업시간: 공식 고정시간 미공개·날짜별 예약화면 기준. 2026년 6월 갱신 공개 가이드에는 수–일 12:00–22:00, 월–화 휴무로 표시된다.
+
+9인 예약: 9명은 공식 예약 화면에서 가능한 시간을 먼저 확보한다. 바 성격이 강하므로 어린이 동반 시간 제한, 단체 좌석과 메뉴 조건을 예약 단계에서 확인한다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Middle%20Level%2C%20Coogee%20Pavilion%2C%20130A%20Beach%20Street%2C%20Coogee%20NSW%202034
+
+예약: https://merivale.com/venues/una-mas
+
+공식: https://merivale.com/venues/una-mas</description>
+      <ExtendedData>
+        <Data name="순위"><value>21</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Coogee</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Middle Level, Coogee Pavilion, 130A Beach Street, Coogee NSW 2034</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2582571,-33.9186735,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#22 Will&apos;s</name>
+      <styleUrl>#pin-muted</styleUrl>
+      <description>식당 · Coogee · 가족 제외
+
+Coogee Pavilion 중간층에서 곡선형 대리석 바와 바다 전망을 즐기는 유럽풍 칵테일 바다. 지중해식 간단한 음식과 술이 중심이므로 온 가족의 주 식사보다는 성인 가족의 해질녘 한 잔에 더 맞는다.
+
+주소: Middle Level, Coogee Pavilion, 130A Beach Street, Coogee NSW 2034
+
+영업시간: 공식 고정시간 미공개·날짜별 예약화면 기준. 현재 공개 안내에는 수–목 12:00–22:00, 금–토 12:00–자정, 일 12:00–21:00, 월–화 휴무로 표시된다.
+
+9인 예약: 9명은 예약 가능 여부를 먼저 확인한다. 미성년자 동반 규정과 시간대가 핵심이므로 어린이가 포함되면 방문 후보로 확정하기 전에 공식 예약 화면이나 매장에 확인한다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Middle%20Level%2C%20Coogee%20Pavilion%2C%20130A%20Beach%20Street%2C%20Coogee%20NSW%202034
+
+예약: https://merivale.com/venues/wills/
+
+공식: https://merivale.com/venues/wills/</description>
+      <ExtendedData>
+        <Data name="순위"><value>22</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Coogee</value></Data>
+        <Data name="상태"><value>가족 제외</value></Data>
+        <Data name="주소"><value>Middle Level, Coogee Pavilion, 130A Beach Street, Coogee NSW 2034</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2582571,-33.9186735,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#23 Sugarcane Coogee</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Coogee · 방문 후보
+
+알록달록한 아시아 시장 분위기에서 동남아식 커리, 해산물, 프라이드치킨을 나눠 먹는 활기찬 레스토랑이다. 향신료 강도를 조절해 여러 접시를 공유하면 세대가 다른 가족도 즐기기 좋다.
+
+주소: Shop 1, 56 Carr Street, Coogee NSW 2034
+
+영업시간: 월–목 17:30부터 마감까지. 금–일 점심 12:00–14:00, 저녁 17:00부터 마감까지.
+
+9인 예약: 9명은 온라인으로 미리 예약한다. 매운맛, 알레르기, 어린이용으로 덜 자극적인 메뉴를 예약 메모에 적어 두면 주문이 수월하다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Shop%201%2C%2056%20Carr%20Street%2C%20Coogee%20NSW%202034
+
+예약: https://www.sugarcanerestaurant.com.au/book-online
+
+공식: https://www.sugarcanerestaurant.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>23</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Coogee</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Shop 1, 56 Carr Street, Coogee NSW 2034</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2565566,-33.9229761,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#24 Osteria Coogee</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Coogee · 방문 후보
+
+쿠지 해변 가까이에서 제철 식재료와 이탈리아 가족 식탁의 정서를 풀어내는 동네 오스테리아다. 수제 파스타와 이탈리아 와인을 중심으로 번잡한 관광지보다 차분한 저녁을 보내기 좋다.
+
+주소: 31 Alfreda Street, Coogee NSW 2034
+
+영업시간: 월–화 휴무. 수–금 17:30부터 마감까지, 토 12:00부터 마감까지, 일 12:00–20:00.
+
+9인 예약: 9명은 사전 예약을 권한다. 좌석 수가 큰 대형 식당이 아니므로 같은 테이블, 단체 메뉴와 어린이 식사 가능 여부를 함께 확인한다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=31%20Alfreda%20Street%2C%20Coogee%20NSW%202034
+
+예약: https://www.osteriacoogee.com/reservations
+
+공식: https://www.osteriacoogee.com/</description>
+      <ExtendedData>
+        <Data name="순위"><value>24</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Coogee</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>31 Alfreda Street, Coogee NSW 2034</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2558716,-33.9201385,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#25 Fabbrica Bread Shop</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Coogee · 방문 후보
+
+매일 구운 사워도우, 포카치아 샌드위치, 크루아상과 페이스트리를 파는 작은 베이커리다. 해변으로 가기 전 아침이나 피크닉용 빵을 챙기기 좋고, 인기 품목은 일찍 품절될 수 있다.
+
+주소: 214 Coogee Bay Road, Coogee NSW 2034
+
+영업시간: 매일 06:30–13:00. 구운 제품은 품절 시 조기 종료될 수 있다.
+
+9인 예약: 공식적으로 워크인 전용이다. 9명이 앉아 식사하는 목적보다는 이른 시간에 방문해 각자 원하는 빵과 커피를 포장하는 동선이 적합하다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=214%20Coogee%20Bay%20Road%2C%20Coogee%20NSW%202034
+
+공식: https://www.ciaofabbrica.com/venues/fabbrica-bread-shop-coogee</description>
+      <ExtendedData>
+        <Data name="순위"><value>25</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Coogee</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>214 Coogee Bay Road, Coogee NSW 2034</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2549875,-33.9203834,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#26 Bondi Icebergs Dining Room</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Bondi · 방문 후보
+
+본다이 수영장과 태평양을 180도로 내려다보는 우아한 다이닝룸으로, 현대 이탈리아·호주식 제철 요리를 선보인다. 낮에는 바다색, 저녁에는 해안의 빛을 보는 특별한 식사에 적합하다.
+
+주소: 1 Notts Avenue, Bondi Beach NSW 2026
+
+영업시간: 월 휴무. 화–금 12:00부터 종일, 토 점심 12:00·저녁 18:30부터, 일 12:00부터 종일.
+
+9인 예약: 공식 예약은 최대 9명까지 가능하므로 정확히 9명으로 일찍 잡아야 한다. 이 인원에는 고정 메뉴가 적용될 수 있으며 창가 좌석은 요청하되 보장되지 않는다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=1%20Notts%20Avenue%2C%20Bondi%20Beach%20NSW%202026
+
+예약: https://idrb.com/
+
+공식: https://idrb.com/</description>
+      <ExtendedData>
+        <Data name="순위"><value>26</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Bondi</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>1 Notts Avenue, Bondi Beach NSW 2026</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2744078,-33.8952732,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#27 Sean&apos;s Panorama</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Bondi · 방문 후보
+
+좌석 약 45개의 작은 본다이 식당에서 지역·제철·윤리적 식재료로 매일 달라지는 3코스를 낸다. 화려한 바다 전망보다 주인 있는 식당의 따뜻한 식탁과 음식 이야기를 원하는 가족에게 맞다.
+
+주소: 270 Campbell Parade, North Bondi NSW 2026
+
+영업시간: 저녁 매일 18:00부터. 점심 금–일 12:00부터.
+
+9인 예약: 작은 식당이라 9명은 사전 예약이 필수다. 6명 이상 10% 서비스료가 적용되며, 최대 12명의 별실 가능 여부와 식이 제한을 직접 확인하는 편이 좋다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=270%20Campbell%20Parade%2C%20North%20Bondi%20NSW%202026
+
+예약: https://seansbondi.com/
+
+공식: https://seansbondi.com/</description>
+      <ExtendedData>
+        <Data name="순위"><value>27</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Bondi</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>270 Campbell Parade, North Bondi NSW 2026</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2813474,-33.8896188,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#28 North Bondi Fish</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Bondi · 방문 후보
+
+본다이 북쪽 끝에서 해변을 정면으로 보며 제철 해산물, 생선튀김, 사시미와 타코를 편하게 나누는 레스토랑이다. 아이부터 어른까지 고르기 쉬운 메뉴와 바다 전망의 균형이 좋다.
+
+주소: 120 Ramsgate Avenue, North Bondi NSW 2026
+
+영업시간: 월–화 휴무. 수–목 12:00–20:30, 금–토 12:00–22:00, 일 12:00–18:00.
+
+9인 예약: 9명은 예약이 필수에 가깝다. 8명 이상에는 10% 서비스료와 취소 조건이 적용되며, 키즈 메뉴와 접근성 정보는 공식 안내에서 확인할 수 있다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=120%20Ramsgate%20Avenue%2C%20North%20Bondi%20NSW%202026
+
+예약: https://northbondifish.com.au/
+
+공식: https://northbondifish.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>28</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Bondi</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>120 Ramsgate Avenue, North Bondi NSW 2026</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2825273,-33.8904283,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#29 Speedos Cafe</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Bondi · 방문 후보
+
+노스 본다이 해변 바로 앞에서 화려한 브런치 접시, 스무디와 커피를 즐기는 올데이 카페다. 아침 바다 산책 뒤 밝고 가벼운 식사를 원하는 가족에게 잘 맞는다.
+
+주소: 126 Ramsgate Avenue, North Bondi NSW 2026
+
+영업시간: 일–목 06:00–15:00, 금–토 06:00–19:00.
+
+9인 예약: 공식 예약 창구가 확인되지 않아 워크인 기준으로 계획한다. 9명은 주말 브런치 피크 전에 일찍 가야 함께 앉기 쉽고, 대기가 길면 포장도 대안이다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=126%20Ramsgate%20Avenue%2C%20North%20Bondi%20NSW%202026
+
+공식: https://speedoscafe.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>29</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Bondi</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>126 Ramsgate Avenue, North Bondi NSW 2026</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2828005,-33.8906926,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#30 Doyles on the Beach</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Watsons Bay · 방문 후보
+
+1885년부터 이어진 가족 경영 해산물 식당으로, 왓슨스베이 모래사장과 요트 너머 시드니 스카이라인을 바라본다. 페리를 타고 도착해 생선과 해산물을 먹는 과정 전체가 하루 여행이 된다.
+
+주소: 11 Marine Parade, Watsons Bay NSW 2030
+
+영업시간: 점심 매일 11:45–15:00. 저녁 월–목 17:00–20:30, 금–토 17:30–21:00, 일 17:30–20:00.
+
+9인 예약: 9명은 페리 시간과 맞춰 사전 예약을 권한다. 야외 전망석은 날씨 영향을 받으므로 실내 대체 가능 여부와 마지막 귀환 페리 시간을 함께 확인한다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=11%20Marine%20Parade%2C%20Watsons%20Bay%20NSW%202030
+
+예약: https://www.doyles.com.au/
+
+공식: https://www.doyles.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>30</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Watsons Bay</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>11 Marine Parade, Watsons Bay NSW 2030</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.28192,-33.8428674,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#31 Taronga Zoo</name>
+      <styleUrl>#pin-attraction</styleUrl>
+      <description>명소 · Mosman · 방문 후보
+
+시드니항을 배경으로 호주 토착동물과 세계의 동물을 만나는 대형 동물원이다. 페리 이동, 사육사 토크와 동물 관람을 묶으면 아이와 어른 모두 하루를 보내기 좋다.
+
+주소: Bradleys Head Road, Mosman NSW 2088
+
+영업시간: 겨울철 5–8월 매일 09:30–16:30.
+
+9인 예약: 9명은 공식 온라인 티켓을 미리 구매해 입장 동선을 줄인다. 단체 할인 기준은 12명부터라 9명에는 적용되지 않으며, 경사가 많아 지도에서 상·하행 동선을 먼저 잡는 것이 좋다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Bradleys%20Head%20Road%2C%20Mosman%20NSW%202088
+
+예약: https://www.taronga.org.au/sydney-zoo/tickets
+
+공식: https://www.taronga.org.au/sydney-zoo</description>
+      <ExtendedData>
+        <Data name="순위"><value>31</value></Data>
+        <Data name="종류"><value>명소</value></Data>
+        <Data name="권역"><value>Mosman</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Bradleys Head Road, Mosman NSW 2088</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2413746,-33.8438318,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#32 Wildlife Retreat at Taronga</name>
+      <styleUrl>#pin-attraction</styleUrl>
+      <description>명소 · Mosman · 방문 후보
+
+타롱가 동물원 안에서 코알라·왈라비·에키드나 등이 사는 보호구역과 항구를 가까이 느끼는 숙박 경험이다. 단순한 호텔보다 동물원 개장 전후의 분위기와 해설 투어가 핵심 가치다.
+
+주소: 2A Bradleys Head Road, Mosman NSW 2088
+
+영업시간: 체크인 14:00, 체크아웃 10:00. 조식 07:00–10:00. 공식 직접 예약에 포함되는 Sanctuary Tour는 15:00–17:00 사이 시간대를 체크인 때 배정하며, 동물원은 도착일과 출발일에 이용 가능.
+
+9인 예약: 숙박은 사전 예약이 필수이며 9명은 객실 조합과 연결 객실 가능 여부를 일찍 확인해야 한다. 포함 혜택이 달라질 수 있으므로 공식 사이트 직접 예약 조건, 투어 시간과 식사를 함께 확정한다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=2A%20Bradleys%20Head%20Road%2C%20Mosman%20NSW%202088
+
+예약: https://www.taronga.org.au/sydney-zoo/accommodation/wildlife-retreat
+
+공식: https://www.taronga.org.au/sydney-zoo/accommodation/wildlife-retreat</description>
+      <ExtendedData>
+        <Data name="순위"><value>32</value></Data>
+        <Data name="종류"><value>명소</value></Data>
+        <Data name="권역"><value>Mosman</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>2A Bradleys Head Road, Mosman NSW 2088</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2440235,-33.8433025,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#33 Bathers&apos; Pavilion</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Balmoral · 방문 후보
+
+1920년대 해변 파빌리온을 복원한 공간 안에 Bistro, Restaurant, Betel Leaf와 Kiosk가 모여 있다. Balmoral의 잔잔한 물을 바라보며 가족 취향과 예산에 맞는 식사 형식을 고를 수 있다는 점이 강점이다.
+
+주소: 4 The Esplanade, Balmoral NSW 2088
+
+영업시간: 아침 매일 08:00–11:00, Bistro 점심·저녁 매일. Restaurant 점심 수–일·저녁 수–토, Betel Leaf 점심 목–일·저녁 목–토, Kiosk 매일 07:00–15:00. 세부 예약 시간은 날짜별 화면 기준.
+
+9인 예약: 9명은 어느 공간을 이용할지 먼저 정한 뒤 예약해야 한다. 각 레스토랑의 메뉴·가격·영업일이 다르고, 해변 쪽 좌석 요청은 보장되지 않는다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=4%20The%20Esplanade%2C%20Balmoral%20NSW%202088
+
+예약: https://www.batherspavilion.com.au/reservations/
+
+공식: https://www.batherspavilion.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>33</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Balmoral</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>4 The Esplanade, Balmoral NSW 2088</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2522328,-33.8277501,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#34 The Boathouse Balmoral</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Balmoral · 방문 후보
+
+Balmoral 물가에 붙은 밝은 카페·바로, Boathouse식 아침·점심과 동남아 풍미가 섞인 메뉴, 키즈 선택지를 즐긴다. 잔잔한 해변 산책과 바로 이어지는 편안한 가족 식사 장소다.
+
+주소: 2 The Esplanade, Balmoral NSW 2088
+
+영업시간: 매일 07:00 오픈, 금–토 저녁 영업. 공식 종료시간은 날짜별 예약화면 기준.
+
+9인 예약: 현재 공식 안내상 월–목은 2명 이상 아침·점심·오후, 금–토 낮에는 6명 이상, 금–토 저녁에는 2명 이상 예약을 받는다. 9명은 해당 요일의 예약 가능 시간을 공식 화면에서 확보하고, 일요일은 워크인 운영 여부를 재확인한다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=2%20The%20Esplanade%2C%20Balmoral%20NSW%202088
+
+예약: https://www.theboathousegroup.com.au/venues/the-boathouse-balmoral
+
+공식: https://www.theboathousegroup.com.au/venues/the-boathouse-balmoral</description>
+      <ExtendedData>
+        <Data name="순위"><value>34</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Balmoral</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>2 The Esplanade, Balmoral NSW 2088</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2532815,-33.8278543,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#35 Ripples Chowder Bay</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Chowder Bay · 방문 후보
+
+19세기 잠수함 광산기지 건물을 살린 하버사이드 식당입니다. Chowder Bay 물가에서 제철 호주 식재료와 해산물 중심의 지중해풍 요리를 즐길 수 있어, 가족 일정 중 전망 좋은 특별 점심으로 제안합니다.
+
+주소: Building 7, Deck C, Chowder Bay Road, Mosman NSW 2088
+
+영업시간: 점심 월–금 12:00부터, 토–일 11:30부터. 저녁 수–일 18:00부터.
+
+9인 예약: 9명은 사전예약을 강력히 권장합니다. 어린이 메뉴가 있지만 유서 깊은 건물 구조상 휠체어 접근이 어렵다는 공식 안내도 함께 확인하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Building%207%2C%20Deck%20C%2C%20Chowder%20Bay%20Road%2C%20Mosman%20NSW%202088
+
+예약: https://srghospitality.com.au/venue/ripples-chowder-bay/
+
+공식: https://srghospitality.com.au/venue/ripples-chowder-bay/</description>
+      <ExtendedData>
+        <Data name="순위"><value>35</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Chowder Bay</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Building 7, Deck C, Chowder Bay Road, Mosman NSW 2088</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2551347,-33.8389984,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#36 Ormeggio at The Spit</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Mosman · 방문 후보
+
+The Spit 마리나를 바라보는 고급 이탈리안 레스토랑입니다. 해산물과 현대 이탈리아 코스에 집중하는 곳이라 어른들의 특별 식사에 잘 맞고, 아이에게는 요청 시 단순한 파스타를 준비할 수 있습니다.
+
+주소: D&apos;Albora Marina The Spit, Spit Road, Mosman NSW 2088
+
+영업시간: 수–금 점심 11:45부터·저녁 17:30부터, 토–일 점심 11:30부터·저녁 17:30부터. 월–화 휴무.
+
+9인 예약: 공식 안내상 8–18명은 전용 그룹 예약과 세트 메뉴 대상이므로 9명 전원을 온라인으로 반드시 함께 예약하세요. 어린이 메뉴는 없지만 12세 이하에게 단순한 파스타를 요청할 수 있고, 유모차 공간은 제한적입니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=D&apos;Albora%20Marina%20The%20Spit%2C%20Spit%20Road%2C%20Mosman%20NSW%202088
+
+예약: https://www.ormeggio.com.au/functions
+
+공식: https://www.ormeggio.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>36</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Mosman</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>D&apos;Albora Marina The Spit, Spit Road, Mosman NSW 2088</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2446688,-33.8052328,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#37 Felons Seafood Manly</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Manly · 방문 후보
+
+Manly Wharf에 내려 바로 만나는 캐주얼 해산물 식당입니다. Manly Cove 전경과 함께 호주산 생선·조개류를 지중해식으로 가볍게 먹을 수 있어, 페리 이동 뒤 온 가족이 쉬어가기 좋습니다.
+
+주소: Manly Wharf, West Esplanade, Manly NSW 2095
+
+영업시간: 화–일 12:00부터 늦게까지. 월요일 휴무.
+
+9인 예약: 워크인도 받지만 9명은 창가나 한 테이블 배정을 위해 미리 예약하세요. 어린이 메뉴·하이체어·휠체어 접근 안내가 있습니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Manly%20Wharf%2C%20West%20Esplanade%2C%20Manly%20NSW%202095
+
+예약: https://www.sevenrooms.com/explore/felonsseafood/reservations/create/search?venues=felonsmanly%2Cfelonsseafood%2Chugosmanly
+
+공식: https://felonsbrewingco.com.au/pages/felons-seafood</description>
+      <ExtendedData>
+        <Data name="순위"><value>37</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Manly</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Manly Wharf, West Esplanade, Manly NSW 2095</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2849153,-33.8000957,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#38 Saké Manly</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Manly · 방문 후보
+
+Manly Wharf 1층에서 만을 내려다보는 현대식 일본 레스토랑입니다. 로바타 구이, 스시·사시미, 오마카세와 연회 메뉴를 한자리에서 고를 수 있어 세대별 취향을 맞추기 좋습니다.
+
+주소: Level 1, Manly Ferry Wharf, East Esplanade, Manly NSW 2095
+
+영업시간: 점심 수–일 12:00–15:00. 저녁 금–토 17:30–22:00, 그 밖의 요일 17:30–21:00.
+
+9인 예약: 9명은 사전예약을 강력히 권장합니다. 별도 어린이 메뉴는 없지만 작은 양과 덜 매운 조리를 요청할 수 있으며, 예약시간 15분 이후에는 좌석이 보장되지 않습니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Level%201%2C%20Manly%20Ferry%20Wharf%2C%20East%20Esplanade%2C%20Manly%20NSW%202095
+
+예약: https://sakerestaurant.com.au/group-bookings/
+
+공식: https://www.sakerestaurant.com.au/manly-wharf</description>
+      <ExtendedData>
+        <Data name="순위"><value>38</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Manly</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Level 1, Manly Ferry Wharf, East Esplanade, Manly NSW 2095</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2847,-33.7998,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#39 The Bower</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Manly · 방문 후보
+
+Fairy Bower 해변 산책로에 붙은 작은 오션뷰 카페입니다. 바다를 보며 아침이나 가벼운 점심을 먹고 Shelly Beach 방향 산책을 이어가기 좋아, 맑은 날 Manly 일정의 출발점으로 제안합니다.
+
+주소: 7 Marine Parade, Manly NSW 2095
+
+영업시간: 동절기 월–목 07:00 영업 시작·주문 마감 15:30·문 닫음 16:30, 금–일 주문 마감 16:30·문 닫음 17:30. 날씨에 따라 변동.
+
+9인 예약: 워크인과 예약을 모두 받지만 좌석이 많지 않아 9명은 예약이 안전합니다. 날씨가 나쁘면 운영시간이 달라질 수 있습니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=7%20Marine%20Parade%2C%20Manly%20NSW%202095
+
+예약: https://www.thebowermanly.com.au/contact
+
+공식: https://www.thebowermanly.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>39</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Manly</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>7 Marine Parade, Manly NSW 2095</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2934329,-33.800868,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#40 Ruby Lane Wholefoods</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Manly · 방문 후보
+
+채소와 통곡물, 좋은 단백질을 중심으로 아침·브런치·점심을 내는 Manly 동네 카페입니다. 여행 중 무거운 외식 사이에 신선한 한 끼를 넣고 싶을 때 가장 실용적인 선택입니다.
+
+주소: Shops 1 &amp; 2, 200 Pittwater Road, Manly NSW 2095
+
+영업시간: 매일 06:45–15:00.
+
+9인 예약: 공식 온라인 예약 안내는 확인되지 않았습니다. 9명이 함께 앉아야 한다면 방문 전 전화로 좌석 가능 여부를 확인하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Shops%201%20%26%202%2C%20200%20Pittwater%20Road%2C%20Manly%20NSW%202095
+
+예약: https://www.rubylane.com.au/contact
+
+공식: https://www.rubylane.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>40</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Manly</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Shops 1 &amp; 2, 200 Pittwater Road, Manly NSW 2095</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2848536,-33.7883518,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#41 Queen Victoria Building</name>
+      <styleUrl>#pin-attraction</styleUrl>
+      <description>명소 · CBD · 방문 후보
+
+1898년에 완공된 로마네스크 양식의 쇼핑 아케이드로, 돔과 스테인드글라스, 대형 시계 자체가 볼거리입니다. 비가 오거나 추운 날에도 140여 개 상점과 카페를 둘러보며 시드니의 옛 도시 분위기를 느낄 수 있습니다.
+
+주소: 455 George Street, Sydney NSW 2000
+
+영업시간: 월–수·금–토 09:00–18:00, 목 09:00–21:00, 일 11:00–17:00. 1·2층 상점은 월–토 10:00부터 여는 곳이 많음.
+
+9인 예약: 건물과 상점 관람은 예약 없이 가능합니다. 역사 가이드 투어를 원할 때만 별도 일정과 예약을 확인하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=455%20George%20Street%2C%20Sydney%20NSW%202000
+
+예약: https://www.qvb.com.au/
+
+공식: https://www.qvb.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>41</value></Data>
+        <Data name="종류"><value>명소</value></Data>
+        <Data name="권역"><value>CBD</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>455 George Street, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2066693,-33.8714355,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#42 Art Gallery of NSW</name>
+      <styleUrl>#pin-attraction</styleUrl>
+      <description>명소 · Domain · 방문 후보
+
+두 개의 미술관 건물과 야외 아트가든을 함께 보는 시드니 대표 공공 미술관입니다. 호주·국제미술뿐 아니라 Yiribana 원주민·토레스 해협 섬 주민 갤러리가 강점이고, 항구와 Domain 풍경까지 한 번에 즐길 수 있습니다.
+
+주소: Art Gallery Road, The Domain, Sydney NSW 2000
+
+영업시간: 매일 10:00–17:00, 수요일 22:00까지. 성금요일·크리스마스 휴관.
+
+9인 예약: 상설 컬렉션 일반 입장은 무료이며 예약 없이 가능합니다. 유료 특별전이나 특정 프로그램만 원하는 시간대로 미리 예매하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Art%20Gallery%20Road%2C%20The%20Domain%2C%20Sydney%20NSW%202000
+
+예약: https://www.artgallery.nsw.gov.au/whats-on/
+
+공식: https://www.artgallery.nsw.gov.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>42</value></Data>
+        <Data name="종류"><value>명소</value></Data>
+        <Data name="권역"><value>Domain</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Art Gallery Road, The Domain, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2174176,-33.8686067,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#43 Australian Museum</name>
+      <styleUrl>#pin-attraction</styleUrl>
+      <description>명소 · CBD · 방문 후보
+
+공룡과 자연사, 호주와 태평양 문화 컬렉션을 함께 볼 수 있는 가족 친화 박물관입니다. 어린이를 위한 Burra 체험 공간이 있어 7세 아이와 어른이 같은 시간에 각자 재미를 찾기 좋습니다.
+
+주소: 1 William Street, Sydney NSW 2010
+
+영업시간: 매일 10:00–17:00. Burra와 카페는 16:30 종료. 크리스마스 휴관.
+
+9인 예약: 상설 전시는 무료이고 9명 가족은 일반 입장 예약이 필요 없습니다. 유료 특별전과 프로그램은 사전예매가 안전합니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=1%20William%20Street%2C%20Sydney%20NSW%202010
+
+예약: https://australian.museum/visit/admission/
+
+공식: https://australian.museum/visit/</description>
+      <ExtendedData>
+        <Data name="순위"><value>43</value></Data>
+        <Data name="종류"><value>명소</value></Data>
+        <Data name="권역"><value>CBD</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>1 William Street, Sydney NSW 2010</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2132563,-33.8743491,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#44 SEA LIFE Sydney Aquarium</name>
+      <styleUrl>#pin-attraction</styleUrl>
+      <description>명소 · Darling Harbour · 방문 후보
+
+듀공, 펭귄, 상어와 그레이트배리어리프 생물을 9개 테마 구역에서 만나는 실내 수족관입니다. 날씨 영향을 받지 않고 약 90분 동안 이동 동선이 이어져, 아이가 있는 가족의 비 오는 날 핵심 일정으로 좋습니다.
+
+주소: 1–5 Wheat Road, Sydney NSW 2000
+
+영업시간: 여행일 기준 2026-07-23·24·27–31은 10:00–17:00, 07-25·26은 09:30–17:00. 마지막 입장 16:00.
+
+9인 예약: 공식 사이트가 주말·성수기 사전예매를 권하며 날짜 지정 티켓이 더 저렴할 수 있습니다. 9명은 원하는 입장시간을 확보하도록 미리 결제하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=1%E2%80%935%20Wheat%20Road%2C%20Sydney%20NSW%202000
+
+예약: https://www.visitsealife.com/sydney/tickets-passes/
+
+공식: https://www.visitsealife.com/sydney/</description>
+      <ExtendedData>
+        <Data name="순위"><value>44</value></Data>
+        <Data name="종류"><value>명소</value></Data>
+        <Data name="권역"><value>Darling Harbour</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>1–5 Wheat Road, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2019098,-33.8696064,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#45 Darling Harbour / Tumbalong Park</name>
+      <styleUrl>#pin-attraction</styleUrl>
+      <description>명소 · CBD · 방문 후보
+
+Darling Harbour 한가운데의 넓은 잔디와 대형 놀이터·물놀이 시설이 이어지는 가족 휴식 공간입니다. 수족관이나 쇼핑 사이에 아이는 뛰고 어른은 쉬는 완충 일정으로 넣기 좋습니다.
+
+주소: Tumbalong Boulevard, Darling Harbour NSW 2000
+
+영업시간: 공식 고정시간 미공개·날짜별 예약화면 기준. 공공 야외공간이며 행사와 놀이·물놀이 시설은 점검에 따라 이용 범위가 달라질 수 있음.
+
+9인 예약: 공원 이용은 무료이고 예약이 필요 없습니다. 현장 행사나 임시 통제만 당일 시드니시 안내에서 확인하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Tumbalong%20Boulevard%2C%20Darling%20Harbour%20NSW%202000
+
+예약: https://www.cityofsydney.nsw.gov.au/parks/tumbalong-park
+
+공식: https://www.cityofsydney.nsw.gov.au/parks/tumbalong-park</description>
+      <ExtendedData>
+        <Data name="순위"><value>45</value></Data>
+        <Data name="종류"><value>명소</value></Data>
+        <Data name="권역"><value>CBD</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Tumbalong Boulevard, Darling Harbour NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.201722,-33.8756779,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#46 Hyde Park + St Mary&apos;s Cathedral</name>
+      <styleUrl>#pin-attraction</styleUrl>
+      <description>명소 · CBD · 방문 후보
+
+무화과나무 길과 Archibald Fountain이 있는 시드니의 오래된 도심공원을 걷고, 바로 옆 사암 고딕 성당 안으로 들어가는 짧고 밀도 높은 코스입니다. 이동 부담이 적어 부모님과 아이가 함께 쉬어가기 좋습니다.
+
+주소: Hyde Park, Elizabeth Street, Sydney NSW 2000 / St Mary&apos;s Cathedral, 2 St Mary&apos;s Road, Sydney NSW 2000
+
+영업시간: Hyde Park는 공공 야외공간으로 고정 관람시간 없음. 성당은 월–금 06:30–18:30, 토–일 06:30–19:00.
+
+9인 예약: 공원과 성당 일반 방문은 무료·예약 불필요입니다. 성당 무료 가이드 투어는 일요일 14:00이므로 참여하려면 공식 일정을 다시 확인하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Hyde%20Park%2C%20Elizabeth%20Street%2C%20Sydney%20NSW%202000%20%2F%20St%20Mary&apos;s%20Cathedral%2C%202%20St%20Mary&apos;s%20Road%2C%20Sydney%20NSW%202000
+
+예약: https://stmaryscathedral.org.au/explore/visiting-tours/visitor-information/
+
+공식: https://stmaryscathedral.org.au/explore/visiting-tours/visitor-information/</description>
+      <ExtendedData>
+        <Data name="순위"><value>46</value></Data>
+        <Data name="종류"><value>명소</value></Data>
+        <Data name="권역"><value>CBD</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Hyde Park, Elizabeth Street, Sydney NSW 2000 / St Mary&apos;s Cathedral, 2 St Mary&apos;s Road, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2141078,-33.8708847,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#47 Scenic World</name>
+      <styleUrl>#pin-attraction</styleUrl>
+      <description>명소 · Blue Mountains · 방문 후보
+
+52도 경사의 Scenic Railway, 계곡을 가로지르는 Skyway, Cableway와 우림 산책로를 한곳에서 경험합니다. 부모님은 긴 산행 없이도 블루마운틴의 규모를 보고, 아이는 세 가지 탈것 자체를 즐길 수 있습니다.
+
+주소: 1 Violet Street, Katoomba NSW 2780
+
+영업시간: 여행일 기준 평일 10:00–16:00, 토–일 09:00–17:00. 정상부 마지막 탑승은 폐장 20분 전, 계곡 마지막 탑승은 10분 전이며 긴 산책로는 약 1시간 전부터 닫힘.
+
+9인 예약: 9명은 같은 날 이용할 Unlimited Discovery Pass를 사전구매하세요. 전체 체험에 2–3시간을 잡고, 바람이나 안개가 심한 날은 운행 상태를 당일 확인하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=1%20Violet%20Street%2C%20Katoomba%20NSW%202780
+
+예약: https://www.scenicworld.com.au/tickets
+
+공식: https://www.scenicworld.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>47</value></Data>
+        <Data name="종류"><value>명소</value></Data>
+        <Data name="권역"><value>Blue Mountains</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>1 Violet Street, Katoomba NSW 2780</value></Data>
+      </ExtendedData>
+      <Point><coordinates>150.3012638,-33.7289504,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#48 Echo Point + Three Sisters</name>
+      <styleUrl>#pin-attraction</styleUrl>
+      <description>명소 · Blue Mountains · 방문 후보
+
+Jamison Valley와 세 개의 사암 봉우리인 Three Sisters가 정면으로 펼쳐지는 블루마운틴의 대표 전망대입니다. 주 전망대는 접근이 쉬워 가족 모두가 큰 수고 없이 장대한 풍경을 볼 수 있고, Giant Stairway는 체력 좋은 사람만 선택하면 됩니다.
+
+주소: Echo Point Road, Katoomba NSW 2780
+
+영업시간: 전망대 구역은 항상 개방하나 정비·악천후·산불 위험 시 닫힐 수 있음. 방문자센터는 매일 09:00–16:00, 크리스마스 휴무. Three Sisters 조명은 일몰부터 23:00까지.
+
+9인 예약: 전망대는 무료이고 예약이 필요 없습니다. 부모님과 아이는 주 전망 테라스 위주로 보고, 비·강풍·안개가 심하면 계단 하산은 생략하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Echo%20Point%20Road%2C%20Katoomba%20NSW%202780
+
+예약: https://www.nationalparks.nsw.gov.au/things-to-do/lookouts/echo-point-lookout-three-sisters
+
+공식: https://www.visitbluemountains.com.au/echo-point-three-sisters</description>
+      <ExtendedData>
+        <Data name="순위"><value>48</value></Data>
+        <Data name="종류"><value>명소</value></Data>
+        <Data name="권역"><value>Blue Mountains</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Echo Point Road, Katoomba NSW 2780</value></Data>
+      </ExtendedData>
+      <Point><coordinates>150.3115852,-33.7296286,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#49 Leura Garage</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Blue Mountains · 방문 후보
+
+기존 Leura Garage는 더 이상 영업하지 않습니다. 같은 역사적 철도 정비 차고에 2026년 2월 문을 연 The Leopard Deli가 이탈리아·프랑스식 델리와 비스트로 메뉴를 이어가므로, 현재 방문지는 이곳으로 바꿔야 합니다.
+
+주소: Railway Parade, Leura NSW 2780
+
+영업시간: 현재 업장 The Leopard Deli: 수–목 12:00–21:00, 금–일 12:00–20:00. 점심 12:00부터, 저녁 17:30부터. 월–화 휴무.
+
+9인 예약: 9명은 일반 온라인 예약 상한 6명을 넘으므로 공식 이메일로 단체좌석을 요청해야 합니다. 과거 Leura Garage 이름으로 표시된 영업시간이나 예약 링크는 사용하지 마세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Railway%20Parade%2C%20Leura%20NSW%202780
+
+예약: https://www.theleoparddeli.com.au/
+
+공식: https://www.theleoparddeli.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>49</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Blue Mountains</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Railway Parade, Leura NSW 2780</value></Data>
+      </ExtendedData>
+      <Point><coordinates>150.3316631,-33.7125119,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#50 The Lookout Echo Point</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Blue Mountains · 방문 후보
+
+Echo Point 바로 옆에서 Three Sisters와 절벽 풍경을 보며 쉬는 캐주얼 다이닝 복합공간입니다. 전망을 놓치지 않으면서 빠르게 먹으려면 Milkbar, 조금 더 여유롭게 머물려면 Bar NSW가 실용적입니다.
+
+주소: Pavilion, 33–37 Echo Point Road, Katoomba NSW 2780
+
+영업시간: Bar NSW 매일 11:00부터 일몰까지이며 동절기 안내는 18:00까지. Milkbar 메뉴상 조식은 08:00–12:00. 공간별 시간이 다름.
+
+9인 예약: Bar NSW는 공식적으로 워크인만 받습니다. 9명이 한 테이블을 원하면 붐비는 점심시간을 피하고 일찍 도착하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Pavilion%2C%2033%E2%80%9337%20Echo%20Point%20Road%2C%20Katoomba%20NSW%202780
+
+예약: https://thelookoutechopoint.com.au/bar-nsw/
+
+공식: https://thelookoutechopoint.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>50</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Blue Mountains</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Pavilion, 33–37 Echo Point Road, Katoomba NSW 2780</value></Data>
+      </ExtendedData>
+      <Point><coordinates>150.3114961,-33.7310404,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#51 Rick Stein at Coogee Beach</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Coogee · 방문 후보
+
+Coogee 바다를 바라보며 호주산 해산물을 단순하고 선명하게 조리하는 Rick Stein의 레스토랑입니다. 여행 중 한 번 제대로 된 해산물 식사를 하고 싶다면 가족 기념 저녁으로 제안합니다.
+
+주소: Level 1, 242 Arden Street, Coogee NSW 2034
+
+영업시간: 화–목 17:30부터 늦게까지, 금–토 12:00–14:30 및 17:30부터 늦게까지, 일요일 12:00부터 점심만. 월요일 휴무.
+
+9인 예약: 9명은 오션뷰 좌석과 같은 테이블을 위해 사전예약을 강력히 권장합니다. 일요일은 점심만 가능하므로 날짜와 시간을 먼저 고르세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Level%201%2C%20242%20Arden%20Street%2C%20Coogee%20NSW%202034
+
+예약: https://www.ricksteinatcoogeebeach.com.au/
+
+공식: https://www.ricksteinatcoogeebeach.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>51</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Coogee</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Level 1, 242 Arden Street, Coogee NSW 2034</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.255831,-33.922358,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#52 Shutters Coogee</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Coogee · 방문 후보
+
+큰 셔터 창 너머로 Coogee Beach를 바라보는 밝은 지중해풍 올데이 레스토랑입니다. 같은 호텔 안에서 아침부터 저녁까지 선택할 수 있어 부모님과 아이의 식사시간을 맞추기 편합니다.
+
+주소: Level 1, 242 Arden Street, Coogee NSW 2034
+
+영업시간: 조식 매일 06:30–10:30, 점심 매일 12:00–15:00, 저녁 매일 17:00–21:00. 공식 페이지 간 점심 표기가 엇갈려 예약화면을 최종 기준으로 확인.
+
+9인 예약: 9명은 온라인으로 미리 예약하세요. 공식 호텔 페이지와 별도 연락처 페이지의 점심 표기가 달라 날짜별 예약 가능 시간이 가장 신뢰할 만한 기준입니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Level%201%2C%20242%20Arden%20Street%2C%20Coogee%20NSW%202034
+
+예약: https://www.sevenrooms.com/reservations/shutterscoogeebeach?venues=shutterscoogeebeach%2Cestatecoogeebeach
+
+공식: https://www.shutterscoogee.com/</description>
+      <ExtendedData>
+        <Data name="순위"><value>52</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Coogee</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Level 1, 242 Arden Street, Coogee NSW 2034</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.256062,-33.922622,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#53 Barzura</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Coogee · 방문 후보
+
+Coogee 남쪽 끝의 바다 전망을 품은 올데이 카페·레스토랑입니다. 아침부터 저녁까지 현대 호주식 메뉴를 폭넓게 내므로 해변 산책 전후 가족 식사를 한곳에서 해결하기 좋습니다.
+
+주소: 62 Carr Street, Coogee NSW 2034
+
+영업시간: 월–토 07:00–21:00, 일 07:00–20:00.
+
+9인 예약: 워크인도 가능하지만 9명은 일반 테이블 예약을 권합니다. 공식 단체예약은 10명부터이므로 9명은 보통 예약으로 진행하면 됩니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=62%20Carr%20Street%2C%20Coogee%20NSW%202034
+
+예약: https://barzura.com.au/
+
+공식: https://barzura.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>53</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Coogee</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>62 Carr Street, Coogee NSW 2034</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2573435,-33.9231595,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#54 Gusto Espresso Bar</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Coogee · 방문 후보
+
+2007년부터 Coogee 동네의 아침을 책임져 온 에스프레소 바입니다. 빠른 커피와 가벼운 브런치를 원하는 날, 긴 식당 예약 없이 현지인처럼 들르기 좋은 곳입니다.
+
+주소: 211 Coogee Bay Road, Coogee NSW 2034
+
+영업시간: 공식 고정시간 미공개·날짜별 예약화면 기준.
+
+9인 예약: 공식 사이트에는 온라인 주문만 있고 좌석 예약 안내가 없습니다. 9명 전원이 함께 앉기보다 커피·간단한 아침을 나눠 주문하는 용도로 생각하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=211%20Coogee%20Bay%20Road%2C%20Coogee%20NSW%202034
+
+예약: https://www.gustoespressobar.com.au/
+
+공식: https://www.gustoespressobar.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>54</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Coogee</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>211 Coogee Bay Road, Coogee NSW 2034</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2549684,-33.9206891,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#55 The Little Kitchen</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Coogee · 방문 후보
+
+Arden Street의 작고 편안한 동네 카페로, 해변 산책 전 아침과 브런치를 먹기 좋습니다. 화려한 목적지라기보다 가까이 있을 때 부담 없이 들르는 생활형 선택지입니다.
+
+주소: 275 Arden Street, Coogee NSW 2034
+
+영업시간: 공식 고정시간 미공개·날짜별 예약화면 기준. Apple Maps 공개정보는 매일 06:30–14:00으로 표시.
+
+9인 예약: 공식 예약 시스템은 확인되지 않았습니다. 작은 카페라 9명 동시 착석은 보장하기 어려우므로 전화 확인하거나 2개 테이블로 나눌 수 있게 계획하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=275%20Arden%20Street%2C%20Coogee%20NSW%202034
+
+예약: https://maps.apple.com/place?place-id=I1C6006976CA1A93D
+
+공식: https://maps.apple.com/place?place-id=I1C6006976CA1A93D</description>
+      <ExtendedData>
+        <Data name="순위"><value>55</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Coogee</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>275 Arden Street, Coogee NSW 2034</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2562878,-33.9238451,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#56 Estate Coogee Beach</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Coogee · 방문 후보
+
+Estate Coogee Beach는 현재 폐업한 곳이라 방문 목록에서 빼야 합니다. 같은 242 Arden Street 호텔 건물에는 현재 Shutters와 Rick Stein at Coogee Beach가 운영되므로 원하는 분위기에 따라 둘 중 하나로 바꾸세요.
+
+주소: Formerly at 242 Arden Street, Coogee NSW 2034
+
+영업시간: 폐업 확인: 현재 영업시간 없음.
+
+9인 예약: 예약하지 마세요. 캐주얼한 올데이 식사는 Shutters, 특별한 해산물 식사는 Rick Stein으로 대체하는 것이 맞습니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Formerly%20at%20242%20Arden%20Street%2C%20Coogee%20NSW%202034
+
+예약: https://coogeebeach.intercontinental.com/dining-bars
+
+공식: https://coogeebeach.intercontinental.com/dining-bars</description>
+      <ExtendedData>
+        <Data name="순위"><value>56</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Coogee</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Formerly at 242 Arden Street, Coogee NSW 2034</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.255831,-33.922358,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#57 Totti&apos;s Bondi</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Bondi · 방문 후보
+
+올리브나무가 있는 활기찬 안뜰에서 장작 화덕빵, 안티파스티와 수제 파스타를 나눠 먹는 Bondi의 인기 이탈리안입니다. 여러 세대가 큰 접시를 공유하기 좋아 가족 저녁 한 번쯤 넣을 가치가 있습니다.
+
+주소: 283 Bondi Road, Bondi NSW 2026
+
+영업시간: 공식 고정시간 미공개·날짜별 예약화면 기준. 현행 공개정보는 월–수 12:00–22:00, 목–토 12:00–23:00, 일 12:00–21:00.
+
+9인 예약: 매우 붐비는 곳이므로 9명은 원하는 날과 시간대를 정해 일찍 예약하세요. 안뜰을 원해도 날씨와 좌석 배정에 따라 실내가 될 수 있습니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=283%20Bondi%20Road%2C%20Bondi%20NSW%202026
+
+예약: https://merivale.com/venues/tottis/
+
+공식: https://merivale.com/venues/tottis/</description>
+      <ExtendedData>
+        <Data name="순위"><value>57</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Bondi</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>283 Bondi Road, Bondi NSW 2026</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.268861,-33.8948293,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#58 Bills Bondi Beach</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Bondi · 방문 후보
+
+밝고 느긋한 호주식 아침 문화를 대표하는 all-day 식당입니다. Bondi 산책 전후에 아이부터 부모님까지 편하게 먹을 수 있어, 유명세에 비해 가족 일정에 실제로 쓰기 좋은 선택입니다.
+
+주소: 79 Hall Street, Bondi Beach NSW 2026
+
+영업시간: 매일 07:00–22:00, 마지막 주문 22:00.
+
+9인 예약: 공식 예약은 17:00 이후 저녁에만 받습니다. 아침·점심은 워크인이라 9명은 오픈 직후처럼 이른 시간에 가고, 저녁은 반드시 예약하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=79%20Hall%20Street%2C%20Bondi%20Beach%20NSW%202026
+
+예약: https://www.bills.com.au/locations/bondi-beach
+
+공식: https://www.bills.com.au/locations/bondi-beach</description>
+      <ExtendedData>
+        <Data name="순위"><value>58</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Bondi</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>79 Hall Street, Bondi Beach NSW 2026</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2719856,-33.8897859,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#59 Porch and Parlour</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Bondi · 방문 후보
+
+North Bondi 끝자락에서 바다 바람과 해변 풍경을 즐기는 독립 카페입니다. 신선한 아침·점심과 커피를 천천히 즐기는 동네 분위기가 좋아, Bondi의 붐비는 중심부를 잠시 벗어나고 싶을 때 제안합니다.
+
+주소: 17–18/110 Ramsgate Avenue, North Bondi NSW 2026
+
+영업시간: 매일 07:00–14:00. 여름 저녁 영업은 16:00부터 일몰까지로, 7월에는 적용되지 않음.
+
+9인 예약: 공식 사이트에서 일반 예약 안내가 확인되지 않았습니다. 9명이라면 이른 아침에 가거나 전화로 좌석 가능 여부를 확인하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=17%E2%80%9318%2F110%20Ramsgate%20Avenue%2C%20North%20Bondi%20NSW%202026
+
+예약: https://www.porchandparlour.com/
+
+공식: https://www.porchandparlour.com/</description>
+      <ExtendedData>
+        <Data name="순위"><value>59</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Bondi</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>17–18/110 Ramsgate Avenue, North Bondi NSW 2026</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.280975,-33.889729,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#60 The Depot Bondi</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Bondi · 방문 후보
+
+North Bondi의 편안한 로컬 카페로, 낮에는 커피와 브런치, 일부 저녁에는 작은 비스트로 분위기로 바뀝니다. 해변 가까이에서 과하게 꾸미지 않은 한 끼를 원할 때 좋습니다.
+
+주소: 132A Warners Avenue, Bondi Beach NSW 2026
+
+영업시간: 아침·점심 매일 06:30–15:00. 저녁 수–목 17:30–21:00, 금 17:00–21:00.
+
+9인 예약: 공식적으로 워크인만 받습니다. 9명은 대기하거나 두 테이블로 나뉠 가능성이 있으므로 오픈 직후 또는 피크시간 밖에 방문하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=132A%20Warners%20Avenue%2C%20Bondi%20Beach%20NSW%202026
+
+예약: https://thedepotbondi.com/pages/contact
+
+공식: https://thedepotbondi.com/</description>
+      <ExtendedData>
+        <Data name="순위"><value>60</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Bondi</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>132A Warners Avenue, Bondi Beach NSW 2026</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2779373,-33.8883839,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#61 Promenade Bondi Beach</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Bondi · 방문 후보
+
+유서 깊은 Bondi Pavilion 안에서 바다를 정면으로 보는 여러 식음 공간의 집합입니다. 빠른 커피와 간식은 Kiosk, 가족 식사는 Beach Bar나 Etheus로 고르면 같은 장소에서 일정 강도를 조절할 수 있습니다.
+
+주소: Shop 4, Bondi Pavilion, Queen Elizabeth Drive, Bondi Beach NSW 2026
+
+영업시간: Kiosk 매일 07:00–15:00. Beach Bar 수–일 11:00부터 늦게까지, 주말·공휴일 조식 09:00–11:30. Etheus 수–목 17:00부터, 금–토 11:30부터, 일 11:30–19:00. Beach Bar·Etheus 월–화 휴무.
+
+9인 예약: Kiosk는 워크인으로 이용하고, 9명이 Beach Bar나 Etheus에서 식사하려면 미리 예약하세요. 반드시 예약 화면에서 공간 이름을 확인해야 합니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Shop%204%2C%20Bondi%20Pavilion%2C%20Queen%20Elizabeth%20Drive%2C%20Bondi%20Beach%20NSW%202026
+
+예약: https://www.sevenrooms.com/explore/etheus/reservations/create/search
+
+공식: https://www.promenadebondibeach.com/</description>
+      <ExtendedData>
+        <Data name="순위"><value>61</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Bondi</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Shop 4, Bondi Pavilion, Queen Elizabeth Drive, Bondi Beach NSW 2026</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2770255,-33.8903513,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#62 Shuk Bondi</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Bondi · 방문 후보
+
+이스라엘·중동·지중해 풍미를 담은 아침과 브런치를 햇빛 드는 정원에서 즐기는 North Bondi 카페입니다. 익숙한 달걀·빵 메뉴에도 향신료와 채소가 살아 있어 가족 외식에 작은 변화를 주기 좋습니다.
+
+주소: 2 Mitchell Street, North Bondi NSW 2026
+
+영업시간: 매일 06:00–16:00, 주방 06:30–15:00.
+
+9인 예약: 공식 안내상 8명을 초과하는 예약은 매장 이메일로 문의해야 합니다. 9명 가족은 온라인 일반예약이 아니라 Shuk Bondi 매니저에게 직접 요청하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=2%20Mitchell%20Street%2C%20North%20Bondi%20NSW%202026
+
+예약: https://www.opentable.com.au/r/shuk-bondi-reservations-north-bondi
+
+공식: https://www.shuk.com.au/venues</description>
+      <ExtendedData>
+        <Data name="순위"><value>62</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Bondi</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>2 Mitchell Street, North Bondi NSW 2026</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.276869,-33.8822767,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#63 Bar Patron</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Circular Quay · 방문 후보
+
+Circular Quay에서 Harbour Bridge를 바라보며 현대 멕시코식 공유요리와 마가리타를 즐기는 활기찬 레스토랑입니다. 어른 중심의 분위기지만 이른 점심이라면 가족이 타코와 구이 메뉴를 나누기 좋습니다.
+
+주소: 2 Phillip Street, Circular Quay, Sydney NSW 2000; entrance via Albert Street
+
+영업시간: 공식 고정시간 미공개·날짜별 예약화면 기준. 공개 예약·지도 정보는 월–목·일 12:00–22:00, 금–토 12:00–23:00으로 표시.
+
+9인 예약: 9명은 사전예약이 안전하며, 공식 안내상 6명 이상 그룹에는 10% 서비스 요금이 붙습니다. 아이와 부모님을 동반한다면 비교적 조용한 이른 점심을 제안합니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=2%20Phillip%20Street%2C%20Circular%20Quay%2C%20Sydney%20NSW%202000%3B%20entrance%20via%20Albert%20Street
+
+예약: https://barpatron.com.au/about/
+
+공식: https://barpatron.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>63</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Circular Quay</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>2 Phillip Street, Circular Quay, Sydney NSW 2000; entrance via Albert Street</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2124107,-33.86174,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#64 Hinchcliff House</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Circular Quay · 방문 후보
+
+19세기 양모 창고를 복원한 4층 다이닝 하우스로, 층마다 성격이 다릅니다. 9명 가족 식사에는 지하 칵테일바보다 1층의 밝은 이탈리안 Grana를 선택하는 것이 가장 자연스럽습니다.
+
+주소: 5–7 Young Street, Sydney NSW 2000
+
+영업시간: 가족 추천 공간 Grana: 월–토 11:30–23:00, 일 11:30–22:00. 건물 내 다른 업장은 별도 시간 적용.
+
+9인 예약: Hinchcliff House 전체가 아니라 Grana로 예약하세요. 9명은 온라인 사전예약이 안전하고, 큰 그룹용 공유 메뉴와 최대 3시간 좌석 안내를 확인할 수 있습니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=5%E2%80%937%20Young%20Street%2C%20Sydney%20NSW%202000
+
+예약: https://grana.sydney/reservations/
+
+공식: https://hinchcliffhouse.com/</description>
+      <ExtendedData>
+        <Data name="순위"><value>64</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Circular Quay</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>5–7 Young Street, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2109476,-33.8625153,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#65 Apollonia</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Circular Quay · 방문 후보
+
+Hinchcliff House 지하의 시칠리아풍 칵테일 바입니다. 어두운 지하 공간과 술 중심의 분위기가 핵심이라 부모님과 7세 아이를 포함한 가족 식사에는 추천하지 않고, 같은 건물의 Grana로 바꾸는 편이 낫습니다.
+
+주소: Basement, Hinchcliff House, 5–7 Young Street, Sydney NSW 2000; entrance via Loftus Lane
+
+영업시간: 월–수 16:00–24:00, 목–토 16:00–01:00, 일 16:00–22:00.
+
+9인 예약: 성인끼리 방문한다면 예약하세요. 공식 안내상 8명 이상에는 10% 서비스 요금이 적용되며, 이번 9명 가족 구성에는 Grana 예약을 우선 제안합니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Basement%2C%20Hinchcliff%20House%2C%205%E2%80%937%20Young%20Street%2C%20Sydney%20NSW%202000%3B%20entrance%20via%20Loftus%20Lane
+
+예약: https://apollonia.sydney/reservations/
+
+공식: https://apollonia.sydney/</description>
+      <ExtendedData>
+        <Data name="순위"><value>65</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Circular Quay</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Basement, Hinchcliff House, 5–7 Young Street, Sydney NSW 2000; entrance via Loftus Lane</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2109476,-33.8625153,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#66 Shell House Dining Room &amp; Terrace</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · CBD · 방문 후보
+
+복원된 Shell House 9층의 웅장하지만 과하게 딱딱하지 않은 다이닝룸과 테라스입니다. 호주 식재료를 지중해식으로 풀어내며, 도심 전망과 함께 여행의 마지막 특별 식사를 하기 좋습니다.
+
+주소: 37 Margaret Street, Sydney NSW 2000
+
+영업시간: 점심 화–토 12:00부터, 저녁 화–토 17:30부터. 월요일은 저녁 17:30부터, 일요일 휴무.
+
+9인 예약: 온라인 예약이 최대 9명까지 가능하므로 가족 전원을 한 번에 예약하세요. 10명부터는 별도 이메일 문의 대상입니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=37%20Margaret%20Street%2C%20Sydney%20NSW%202000
+
+예약: https://shellhouse.com.au/dining-room-terrace/
+
+공식: https://shellhouse.com.au/dining-room-terrace/</description>
+      <ExtendedData>
+        <Data name="순위"><value>66</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>CBD</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>37 Margaret Street, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.206689,-33.8652512,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#67 The Gidley</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · CBD · 방문 후보
+
+King Street 아래 숨은 호화로운 지하 스테이크하우스로, 숯불 스테이크와 성인 취향의 밀도 높은 분위기가 핵심입니다. 공식 자료상 18세 미만은 입장할 수 있어 7세 아이가 포함된 이번 가족 여행에는 제외해야 합니다.
+
+주소: 161 King Street, Sydney NSW 2000
+
+영업시간: 월–토 12:00–24:00, 일 12:00–22:00. 주방 마지막 주문은 12:00–15:00 및 17:30–22:00, 일요일 저녁은 21:00.
+
+9인 예약: 18세 미만 동반 가족은 이용하지 마세요. 성인만 별도 방문할 경우에도 사전예약이 필요하며, 이번 일정에서는 가족 친화적인 다른 식당으로 교체하는 것이 맞습니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=161%20King%20Street%2C%20Sydney%20NSW%202000
+
+예약: https://www.sevenrooms.com/explore/thegidley/reservations/create/search/
+
+공식: https://www.liquidandlarder.com.au/venues/the-gidley/</description>
+      <ExtendedData>
+        <Data name="순위"><value>67</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>CBD</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>161 King Street, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2101099,-33.8693466,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#68 Bistecca Sydney</name>
+      <styleUrl>#pin-muted</styleUrl>
+      <description>식당 · CBD · 가족 제외
+
+달리 스트리트 지하에 숨은 토스카나식 스테이크 하우스입니다. 고기를 테이블에서 고르고 무게를 확인한 뒤 장작불에 굽는 과정 자체가 특별하지만, 전원 만 18세 이상만 입장할 수 있어 아이가 한 명이라도 있으면 가족 일정에서는 제외해야 합니다.
+
+주소: 3 Dalley Street, Sydney NSW 2000
+
+영업시간: 매일 12:00–24:00. 다이닝룸 주문은 점심 12:00–15:00, 저녁 17:30–22:00.
+
+9인 예약: 예약은 매일 오전 7시에 30일 후 날짜가 열립니다. 9명은 공식 온라인 예약 가능 범위(3–10명)지만 점심 12:00 또는 14:30, 저녁 17:30·17:45 또는 20:30 이후 슬롯 중심이며, 카드 보증과 최소 24시간 전 변경·취소 원칙이 적용됩니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=3%20Dalley%20Street%2C%20Sydney%20NSW%202000
+
+예약: https://www.liquidandlarder.com.au/venues/bistecca/reservations/
+
+공식: https://www.liquidandlarder.com.au/venues/bistecca/</description>
+      <ExtendedData>
+        <Data name="순위"><value>68</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>CBD</value></Data>
+        <Data name="상태"><value>가족 제외</value></Data>
+        <Data name="주소"><value>3 Dalley Street, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.207709766957,-33.86330602852,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#69 The Tea Room QVB Sydney</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · CBD/QVB · 방문 후보
+
+QVB 최상층의 옛 연회장에서 즐기는 정통 하이티입니다. 높은 천장과 샹들리에, 고전적인 서비스가 있어 비 오는 날에도 여행의 한 장면을 만들기 좋고, 5–12세 어린이 메뉴도 있습니다.
+
+주소: Level 3, Queen Victoria Building, 455 George Street, Sydney NSW 2000
+
+영업시간: 여행 기간 공식 QVB 매장 안내 기준 매일 10:00–17:00. 특별 행사일은 예약 화면에서 날짜별 확인.
+
+9인 예약: 9명은 한 예약으로 잡아야 합니다. 평일은 최대 60명, 주말은 최대 12명까지 단체 수용이 가능하므로 온라인 예약을 서두르고, 어린이도 인원수에 포함하며 하이체어·유모차와 알레르기는 예약 때 미리 적으세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Level%203%2C%20Queen%20Victoria%20Building%2C%20455%20George%20Street%2C%20Sydney%20NSW%202000
+
+예약: https://thetearoom.com.au/
+
+공식: https://www.qvb.com.au/stores/the-tea-room</description>
+      <ExtendedData>
+        <Data name="순위"><value>69</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>CBD/QVB</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Level 3, Queen Victoria Building, 455 George Street, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.206686790663,-33.871750931196,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#70 The Grounds of the City Sydney</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · CBD/QVB · 방문 후보
+
+1920년대 도심 카페를 영화 세트처럼 재현한 올데이 레스토랑입니다. 시청·QVB 동선에서 날씨와 상관없이 아침부터 저녁까지 들어가기 좋고, 인테리어 자체가 아이들과 사진을 남길 이유가 됩니다.
+
+주소: Shop RG12, The Galeries, 500 George Street, Sydney NSW 2000
+
+영업시간: 월–금 07:00–21:00, 토 08:00–21:30, 일 08:00–17:00. 마지막 주문은 마감 30분 전.
+
+9인 예약: 일반 온라인 예약은 5명까지만 열리므로 9명은 단체 문의로 요청해야 합니다. 한 예약으로 최대 12명, 운영진 승인 시 최대 16명까지 가능하므로 여행 전 바로 문의하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Shop%20RG12%2C%20The%20Galeries%2C%20500%20George%20Street%2C%20Sydney%20NSW%202000
+
+예약: https://thegrounds.com.au/contact-us/
+
+공식: https://thegrounds.com.au/dine-in/the-city/</description>
+      <ExtendedData>
+        <Data name="순위"><value>70</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>CBD/QVB</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Shop RG12, The Galeries, 500 George Street, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2076,-33.8726,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#71 Gumption by Coffee Alchemy Sydney</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · The Strand Arcade · 방문 후보
+
+스트랜드 아케이드 안의 아주 작은 스페셜티 커피 바입니다. 식사 장소보다는 쇼핑 사이에 수준 높은 에스프레소를 짧게 맛보는 곳으로 생각하면 좋습니다.
+
+주소: Shop 11, The Strand Arcade, 412–414 George Street, Sydney NSW 2000
+
+영업시간: 월–금 08:30–15:45, 토 10:00–15:45, 일 11:00–14:45. 원두 구매는 음료 마감 뒤 약 15분 더 가능.
+
+9인 예약: 공식 예약 운영이 없고 공간이 작습니다. 9명이 함께 앉는 일정으로 잡지 말고, 두세 명씩 주문하거나 테이크아웃하는 짧은 정차로 이용하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Shop%2011%2C%20The%20Strand%20Arcade%2C%20412%E2%80%93414%20George%20Street%2C%20Sydney%20NSW%202000
+
+공식: https://www.gumptioncoffee.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>71</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>The Strand Arcade</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Shop 11, The Strand Arcade, 412–414 George Street, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.207620436029,-33.869599505024,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#72 Regiment CBD Sydney</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · CBD · 방문 후보
+
+조지 스트리트의 빠르고 단정한 CBD 카페로, 스페셜티 커피와 아침·점심을 효율적으로 해결하는 곳입니다. 관광 목적의 긴 식사보다는 이동 중 아침 식사나 커피 픽업에 어울립니다.
+
+주소: 333 George Street, Sydney NSW 2000
+
+영업시간: 월–금 07:00–16:00. 토·일 휴무.
+
+9인 예약: 공식 예약 채널이 안내되지 않습니다. 9명 단체 식사 장소로 기대하지 말고 평일 오전에 테이크아웃하거나 소그룹으로 나눠 이용하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=333%20George%20Street%2C%20Sydney%20NSW%202000
+
+공식: https://www.regimentcbd.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>72</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>CBD</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>333 George Street, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.206887621063,-33.866831382675,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#73 Single O CBD Sydney</name>
+      <styleUrl>#pin-muted</styleUrl>
+      <description>카페 · CBD · 방문 불가
+
+예전에 요크 스트리트에서 운영하던 스탠딩 에스프레소 바지만 현재는 영구 폐점했습니다. 공식 매장 목록에도 CBD점이 없어 여행 후보에서 빼야 합니다.
+
+주소: Formerly 89 York Street, Sydney NSW 2000
+
+영업시간: 영구 폐점.
+
+9인 예약: 예약 불가. Single O를 원하면 공식 매장 목록에 남아 있는 서리힐스 등 다른 지점을 선택하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Formerly%2089%20York%20Street%2C%20Sydney%20NSW%202000
+
+공식: https://singleo.com.au/pages/locations</description>
+      <ExtendedData>
+        <Data name="순위"><value>73</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>CBD</value></Data>
+        <Data name="상태"><value>방문 불가</value></Data>
+        <Data name="주소"><value>Formerly 89 York Street, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.205891431871,-33.869645061842,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#74 Mary&apos;s Circular Quay</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Circular Quay · 방문 후보
+
+록 음악과 버거, 맥주가 중심인 활기찬 지하 다이닝 바입니다. 아이용 미니 버거도 있지만 음악이 크고 어두운 분위기라 어린아이 가족에게는 점심이 저녁보다 편합니다.
+
+주소: 7 Macquarie Place, Sydney NSW 2000
+
+영업시간: 화·수 12:00–22:00, 목·금 12:00–24:00, 토 16:00–24:00. 월·일은 현재 예약 페이지에 서비스가 표시되지 않음.
+
+9인 예약: 현재 예약 채널에서 9명 선택이 가능합니다. 단체가 흩어지지 않도록 미리 예약하고, 어린이가 있으면 이른 시간과 식사 목적 좌석을 고르세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=7%20Macquarie%20Place%2C%20Sydney%20NSW%202000
+
+예약: https://www.opentable.com.au/r/marys-underground-sydney
+
+공식: https://www.marys.wtf/locations/</description>
+      <ExtendedData>
+        <Data name="순위"><value>74</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Circular Quay</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>7 Macquarie Place, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.209888258581,-33.862662768859,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#75 City Extra Circular Quay</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Circular Quay · 방문 후보
+
+서큘러 키 페리 선착장 바로 앞에서 항구를 보며 언제든 식사할 수 있는 24시간 다이너입니다. 미식 목적지보다는 일정이 늦어지거나 아이들이 갑자기 배고플 때 실패 확률이 낮은 백업 카드입니다.
+
+주소: E4 East Podium, between Wharves 3 and 4, Circular Quay, Sydney NSW 2000
+
+영업시간: 연중 365일 24시간 영업.
+
+9인 예약: 공식 예약 폼을 운영합니다. 9명은 점심·저녁 피크에 한 테이블 확보가 쉽지 않으므로 예약하거나 전화로 좌석을 확인하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=E4%20East%20Podium%2C%20between%20Wharves%203%20and%204%2C%20Circular%20Quay%2C%20Sydney%20NSW%202000
+
+예약: https://cityextra.com.au/
+
+공식: https://cityextra.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>75</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Circular Quay</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>E4 East Podium, between Wharves 3 and 4, Circular Quay, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.209332286943,-33.868851253702,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#76 Tapavino Circular Quay</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Circular Quay · 방문 후보
+
+불러틴 플레이스 골목의 스페인 타파스 바입니다. 여러 접시를 나눠 먹는 재미와 와인 리스트가 강점이라 성인 비중이 높은 가족 저녁에 특히 잘 맞습니다.
+
+주소: 6–8 Bulletin Place, Sydney NSW 2000
+
+영업시간: 월 17:00부터, 화–토 12:00부터, 일 휴무. 고정 마감 시각은 공식 페이지에 명시되지 않아 해당 날짜 예약 화면에서 확인.
+
+9인 예약: 골목층은 워크인 중심이고 위층은 예약 좌석입니다. 9명은 반드시 위층을 미리 예약하고, 어린이가 많다면 메뉴가 타파스·와인 중심임을 감안하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=6%E2%80%938%20Bulletin%20Place%2C%20Sydney%20NSW%202000
+
+예약: https://tapavino.com.au/
+
+공식: https://tapavino.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>76</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Circular Quay</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>6–8 Bulletin Place, Sydney NSW 2000</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.209492548932,-33.862481510203,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#77 Public Dining Room Balmoral</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Balmoral · 방문 후보
+
+발모럴 비치 바로 앞에서 모든 테이블이 물가를 향하는 편안한 파인다이닝입니다. 해변 산책 뒤 가족 기념 식사로 좋고, 맑은 날에는 창가 자리의 가치가 특히 큽니다.
+
+주소: 2A The Esplanade, Mosman NSW 2088
+
+영업시간: 점심 매일 12:00–17:00(주방 마지막 주문 15:00), 저녁 월–토 18:00부터. 일요일 저녁 없음.
+
+9인 예약: 9명은 온라인 또는 전화로 미리 예약하세요. 창가 요청은 일찍 넣을수록 좋지만 보장되지는 않으며, 가족 인원과 어린이 좌석을 한 예약에 정확히 적어야 합니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=2A%20The%20Esplanade%2C%20Mosman%20NSW%202088
+
+예약: https://publicdiningroom.com.au/
+
+공식: https://publicdiningroom.com.au/contact</description>
+      <ExtendedData>
+        <Data name="순위"><value>77</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Balmoral</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>2A The Esplanade, Mosman NSW 2088</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.253738520319,-33.82839130416,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#78 Chiosco by Ormeggio The Spit</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · The Spit · 방문 후보
+
+더 스핏 마리나의 제티 위에서 이탈리아 해안식 요리를 나눠 먹는 캐주얼한 수변 식당입니다. 배가 드나드는 풍경이 아이들에게도 재미있고 키즈 메뉴가 있지만, 실제 운항 중인 마리나라 어린이는 계속 지켜봐야 합니다.
+
+주소: The Jetty, D&apos;Albora Marina, Spit Road, Mosman NSW 2088
+
+영업시간: 다이닝: 월·화 점심 11:30부터, 수–토 점심 11:30부터·저녁 17:30부터, 일 점심 11:30부터·저녁 17:00부터. 테이크아웃 월–목 08:00–15:00, 금–일 08:00–16:00.
+
+9인 예약: 9명은 공식 온라인 예약을 권합니다. 어린이도 인원에 포함하고 하이체어·캡슐을 요청하세요. 실내에는 유모차 공간이 부족하므로 접이식 유모차 여부를 미리 알리는 편이 좋습니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=The%20Jetty%2C%20D&apos;Albora%20Marina%2C%20Spit%20Road%2C%20Mosman%20NSW%202088
+
+예약: https://www.chiosco.com.au/reservations
+
+공식: https://www.chiosco.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>78</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>The Spit</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>The Jetty, D&apos;Albora Marina, Spit Road, Mosman NSW 2088</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.24556,-33.804394,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#79 Mosman Rowers</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Mosman · 방문 후보
+
+모스만 베이 물가에 붙은 역사적인 로잉 클럽으로, 화려하기보다 현지인처럼 항구 데크에서 쉬는 맛이 있습니다. 방문자는 입장 등록이 필요하고 휠체어 이용 가능 화장실이 없다는 점은 가족 구성에 따라 중요합니다.
+
+주소: 3 Centenary Drive, Mosman NSW 2088
+
+영업시간: 바 월–금 16:00–늦게, 토·일 12:00–늦게. 카페는 공식 페이지 간 표기가 달라 월–목 07:30–15:00, 금–일 07:30–16:00을 보수적으로 적용하고 당일 확인.
+
+9인 예약: 30명 미만 테이블 예약 채널이 있으며 9명은 미리 예약하는 편이 안전합니다. 모든 방문자가 클럽 입장 등록을 해야 하므로 도착 시간을 여유 있게 잡으세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=3%20Centenary%20Drive%2C%20Mosman%20NSW%202088
+
+예약: https://www.mosmanrowers.com.au/
+
+공식: https://www.mosmanrowers.com.au/rowers-cafe</description>
+      <ExtendedData>
+        <Data name="순위"><value>79</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Mosman</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>3 Centenary Drive, Mosman NSW 2088</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.232030564562,-33.83757183507,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#80 Burnt Orange Mosman</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Mosman · 방문 후보
+
+1920년대 옛 골프 클럽하우스를 개조한 숲속·항구 전망 카페입니다. 베란다에서 긴 아침이나 점심, 하이티를 즐길 수 있어 모스만에서 가족이 천천히 쉬어 갈 장소로 좋습니다.
+
+주소: 1109 Middle Head Road, Mosman NSW 2088
+
+영업시간: 수–금 08:30–16:00, 토·일 08:30–17:30, 월·화 휴무. 공휴일은 공식 사이트에서 별도 확인.
+
+9인 예약: 최대 24명까지 단체 예약을 받으므로 9명은 공식 온라인 예약이 가능합니다. 전망 좋은 베란다를 원하면 일찍 예약하고 어린이·하이체어 수를 함께 적으세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=1109%20Middle%20Head%20Road%2C%20Mosman%20NSW%202088
+
+예약: https://www.burntorange.com.au/
+
+공식: https://www.burntorange.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>80</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Mosman</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>1109 Middle Head Road, Mosman NSW 2088</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.260053529991,-33.828585890042,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#81 Frenchy&apos;s Cafe Mosman</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Mosman · 방문 후보
+
+헤드랜드 파크의 잔디와 숲 사이에 있는 프렌치풍 야외 카페입니다. 아이들이 답답해하지 않고 아침·브런치를 먹기 좋으며 무료 주차와 휠체어 접근성이 장점입니다.
+
+주소: 3 Read Place, Mosman NSW 2088
+
+영업시간: 매일 07:30–16:00, 주방은 15:00 마감. 공식 첫 화면의 07:00–15:00 표기와 차이가 있어 상세 위치 안내 시간을 기준으로 하되 당일 재확인.
+
+9인 예약: 예약을 받지 않습니다. 9명은 주말 피크를 피해 이른 시간에 가고, 한 테이블이 안 나면 야외에서 나눠 앉을 가능성을 감안하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=3%20Read%20Place%2C%20Mosman%20NSW%202088
+
+공식: https://frenchyscafe.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>81</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Mosman</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>3 Read Place, Mosman NSW 2088</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.257335905428,-33.833157750295,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#82 The Fernery Mosman</name>
+      <styleUrl>#pin-muted</styleUrl>
+      <description>식당 · Mosman · 가족 제외
+
+모스만 도심 건물 위에 숨은 식물 가득한 루프톱 레스토랑입니다. 테라스와 시티 전망이 매력적이지만 바람과 비 영향을 받으므로 겨울에는 실내 좌석을 우선 요청하세요.
+
+주소: Rooftop, 719 Military Road, Mosman NSW 2088
+
+영업시간: 월·화 휴무, 수 12:00–21:00, 목–토 12:00–늦게, 일 12:00–21:00.
+
+9인 예약: 공식 온라인 예약이 최대 14명까지 가능해 9명이 한 번에 예약할 수 있습니다. 모든 성인은 신분증을 준비하고, 미성년자가 있으면 입장·동반 조건을 예약 메모로 확인하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Rooftop%2C%20719%20Military%20Road%2C%20Mosman%20NSW%202088
+
+예약: https://www.thefernerymosman.com.au/reservations/
+
+공식: https://www.thefernerymosman.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>82</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Mosman</value></Data>
+        <Data name="상태"><value>가족 제외</value></Data>
+        <Data name="주소"><value>Rooftop, 719 Military Road, Mosman NSW 2088</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.243735724708,-33.828311466532,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#83 Bistro Mosman</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Mosman · 방문 후보
+
+프렌치 비스트로의 단정함에 지중해식 공유 요리를 더한 동네 레스토랑입니다. 격식은 있지만 지나치게 딱딱하지 않아 가족 기념 식사를 차분하게 하기 좋습니다.
+
+주소: 76 Middle Head Road, Mosman NSW 2088
+
+영업시간: 화 저녁부터 영업, 수–일 점심 12:00–15:00 및 저녁 시간대. 공식 페이지의 운영 표기는 화–일 16:00–22:30을 포함.
+
+9인 예약: 20명 미만은 일반 테이블 예약 대상이므로 9명은 온라인으로 미리 예약하세요. 공유 요리를 원하는지, 어린이 메뉴·알레르기 필요가 있는지 예약 메모에 적는 편이 좋습니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=76%20Middle%20Head%20Road%2C%20Mosman%20NSW%202088
+
+예약: https://www.thebuena.com.au/bistromosman/
+
+공식: https://www.thebuena.com.au/bistromosman/</description>
+      <ExtendedData>
+        <Data name="순위"><value>83</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Mosman</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>76 Middle Head Road, Mosman NSW 2088</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.244654716572,-33.832318435345,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#84 Hugo&apos;s Manly</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Manly · 방문 후보
+
+맨리 워프 물가에서 피자와 이탈리아풍 요리, 칵테일을 즐기는 대표적인 선셋 레스토랑입니다. 페리에서 내리자마자 갈 수 있고 항구 쪽 해 질 무렵 분위기가 좋아 맨리 하루의 마무리로 적합합니다.
+
+주소: Shop 1, Manly Wharf, East Esplanade, Manly NSW 2095
+
+영업시간: 매일 영업. 월–금 점심 12:00부터, 토·일 11:30부터, 저녁은 매일 늦게까지.
+
+9인 예약: 일반 온라인 예약 최대 인원이 정확히 9명이므로 한 번에 예약할 수 있습니다. 10명부터는 단체 메뉴가 적용되며, 9명은 선셋 시간대가 빨리 차므로 지금 예약하는 편이 좋습니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Shop%201%2C%20Manly%20Wharf%2C%20East%20Esplanade%2C%20Manly%20NSW%202095
+
+예약: https://hugosmanly.com.au/
+
+공식: https://hugosmanly.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>84</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Manly</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Shop 1, Manly Wharf, East Esplanade, Manly NSW 2095</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.291102865381,-33.804770220911,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#85 Queen Chow Manly</name>
+      <styleUrl>#pin-muted</styleUrl>
+      <description>식당 · Manly · 방문 불가
+
+맨리 워프의 수변 광둥식 레스토랑이었지만 2025년 8월 5일 영구 폐점했습니다. 옛 추천 정보로 남아 있을 뿐이므로 현재 여행 후보에서는 삭제해야 합니다.
+
+주소: Formerly 22–23 Manly Wharf, East Esplanade, Manly NSW 2095
+
+영업시간: 2025-08-05 영구 폐점.
+
+9인 예약: 예약 불가. 같은 워프의 현재 운영 매장을 공식 맨리 워프 디렉터리에서 다시 선택하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Formerly%2022%E2%80%9323%20Manly%20Wharf%2C%20East%20Esplanade%2C%20Manly%20NSW%202095
+
+공식: https://merivale.com/venues/queenchowmanly/</description>
+      <ExtendedData>
+        <Data name="순위"><value>85</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Manly</value></Data>
+        <Data name="상태"><value>방문 불가</value></Data>
+        <Data name="주소"><value>Formerly 22–23 Manly Wharf, East Esplanade, Manly NSW 2095</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.286980477761,-33.801376933139,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#86 Garfish Manly</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Manly · 방문 후보
+
+맨리 코브를 바라보며 호주산 생선과 해산물을 먹는 안정적인 수변 레스토랑입니다. 해산물을 좋아하는 가족의 점심이나 저녁에 맞고 페리 선착장에서도 가깝습니다.
+
+주소: Suite 1, 39 East Esplanade, Manly NSW 2095
+
+영업시간: 화–일 12:00부터 점심·저녁. 공식 페이지의 일요일 점심은 2–9월 한정 표기가 있어 정확한 좌석·마감 시각은 날짜별 예약 화면에서 확인.
+
+9인 예약: 9명은 공식 온라인 테이블 예약을 권합니다. 한 테이블과 수변 좌석을 원하면 미리 잡고, 어린이 및 해산물 알레르기를 예약 때 반드시 알리세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Suite%201%2C%2039%20East%20Esplanade%2C%20Manly%20NSW%202095
+
+예약: https://garfish.com.au/contact-manly
+
+공식: https://garfish.com.au/contact-manly</description>
+      <ExtendedData>
+        <Data name="순위"><value>86</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Manly</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Suite 1, 39 East Esplanade, Manly NSW 2095</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.286013792868,-33.799866598006,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#87 Manly Wharf Bar</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Manly · 방문 후보
+
+기존 Manly Wharf Bar는 2024년에 Felons Manly로 전환되어 옛 이름으로는 더 이상 운영하지 않습니다. 같은 위치의 현재 공간을 원한다면 Felons Manly를 별도 후보로 다뤄야 합니다.
+
+주소: Manly Wharf, East Esplanade, Manly NSW 2095
+
+영업시간: 옛 매장명으로 운영 종료. 현재 Felons Manly는 공식 워프 디렉터리 기준 매일 11:00–늦게 영업하며 날짜별 행사는 공식 사이트 확인.
+
+9인 예약: Manly Wharf Bar 이름으로 예약할 수 없습니다. 대체 후보 Felons Manly는 공식 사이트의 현재 예약·워크인 원칙을 따르세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Manly%20Wharf%2C%20East%20Esplanade%2C%20Manly%20NSW%202095
+
+예약: https://felonsbrewingco.com.au/pages/felons-manly
+
+공식: https://www.manlywharf.com.au/eat-drink/</description>
+      <ExtendedData>
+        <Data name="순위"><value>87</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Manly</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Manly Wharf, East Esplanade, Manly NSW 2095</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.2839,-33.7995,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#88 Chica Bonita Manly</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Manly · 방문 후보
+
+더 코르소 골목의 작고 활기찬 멕시칸 타코 바입니다. 음식은 캐주얼하고 재미있지만 공간과 음악이 다소 빽빽해 어린아이 동반 9명이라면 이른 점심이 가장 편합니다.
+
+주소: 9 The Corso, Manly NSW 2095
+
+영업시간: 월 휴무, 화–목 11:30–15:00·18:00–22:00, 금·토 11:30–22:00, 일 11:30–21:00.
+
+9인 예약: 단체 예약과 행사 문의를 받습니다. 9명은 워크인보다 한 테이블을 미리 예약하고, 유모차·하이체어가 필요하면 작은 공간에 수용 가능한지 함께 확인하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=9%20The%20Corso%2C%20Manly%20NSW%202095
+
+예약: https://goodgoodcompany.com/venue/chica-bonita-manly/
+
+공식: https://goodgoodcompany.com/venue/chica-bonita-manly/</description>
+      <ExtendedData>
+        <Data name="순위"><value>88</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Manly</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>9 The Corso, Manly NSW 2095</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.285343827347,-33.798426922317,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#89 Rollers Bakehouse Manly</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Manly · 방문 후보
+
+리알토 레인의 작은 안뜰에 숨어 있는 창의적인 크루아상 전문 베이크하우스입니다. 달콤하거나 기발한 페이스트리를 골라 해변으로 가져가는 아침 코스로 좋습니다.
+
+주소: 19 Rialto Lane, Manly NSW 2095
+
+영업시간: 월–토 07:00–15:00, 일 07:00–14:00.
+
+9인 예약: 공식 예약 채널이 없고 인기 제품은 품절될 수 있습니다. 9명 좌석 식사보다 이른 시간에 각자 고른 뒤 테이크아웃하는 방식이 적합합니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=19%20Rialto%20Lane%2C%20Manly%20NSW%202095
+
+공식: https://www.rollersbakehouse.com/new-page-1</description>
+      <ExtendedData>
+        <Data name="순위"><value>89</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Manly</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>19 Rialto Lane, Manly NSW 2095</value></Data>
+      </ExtendedData>
+      <Point><coordinates>151.287615909841,-33.798046216275,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#90 Darley&apos;s Restaurant Katoomba</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Blue Mountains · 방문 후보
+
+옛 Darley 가문의 여름 별장을 식당으로 바꾼 블루마운틴 대표 파인다이닝입니다. 샹들리에와 벽난로, 납유리 창, 정원이 어우러져 식사 자체를 여행의 특별한 저녁으로 만들고 싶은 가족에게 맞습니다.
+
+주소: Lilianfels Resort &amp; Spa, 5–19 Lilianfels Avenue, Katoomba NSW 2780
+
+영업시간: 화–토 저녁 17:30–20:30.
+
+9인 예약: 공식 SevenRooms 예약과 카드 보증이 필요하며 저녁은 1인당 최소 3코스입니다. 9명은 일반 소규모 취소 규정 범위를 넘을 수 있으므로 공식 예약 화면 또는 레스토랑에 단체 조건을 확인하고, 식이 제한을 예약 때 알리세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Lilianfels%20Resort%20%26%20Spa%2C%205%E2%80%9319%20Lilianfels%20Avenue%2C%20Katoomba%20NSW%202780
+
+예약: https://www.worldsapart.club/ardour/lilianfels/dining/darleys-restaurant
+
+공식: https://www.worldsapart.club/ardour/lilianfels/dining/darleys-restaurant</description>
+      <ExtendedData>
+        <Data name="순위"><value>90</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Blue Mountains</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Lilianfels Resort &amp; Spa, 5–19 Lilianfels Avenue, Katoomba NSW 2780</value></Data>
+      </ExtendedData>
+      <Point><coordinates>150.310361855808,-33.729409241923,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#91 Echoes Restaurant Katoomba</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Blue Mountains · 방문 후보
+
+자미슨 밸리 절벽 끝에 자리해 식탁에서 블루마운틴 풍경을 바로 바라보는 현대 호주식 레스토랑입니다. 맑은 날 점심의 전망이 핵심이며 안개가 짙으면 풍경의 장점이 줄어듭니다.
+
+주소: Echoes Boutique Hotel, 3 Lilianfels Avenue, Katoomba NSW 2780
+
+영업시간: 매일 아침 08:00–10:00, 점심 12:00–14:30, 저녁 17:30–20:30 마지막 착석.
+
+9인 예약: 6명 이상은 예상 결제액의 30% 비환불 보증금이 필요하고 7일 이내 취소 시 전액 취소료가 적용될 수 있습니다. 어린이는 점심만 환영하며 어린이 메뉴가 있고, 저녁은 만 12세 이상만 가능하므로 9명 가족 구성에 맞춰 점심을 우선 예약하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Echoes%20Boutique%20Hotel%2C%203%20Lilianfels%20Avenue%2C%20Katoomba%20NSW%202780
+
+예약: https://www.worldsapart.club/independents/echoes/dining/echoes-restaurant-bar
+
+공식: https://www.worldsapart.club/independents/echoes/dining/echoes-restaurant-bar</description>
+      <ExtendedData>
+        <Data name="순위"><value>91</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Blue Mountains</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Echoes Boutique Hotel, 3 Lilianfels Avenue, Katoomba NSW 2780</value></Data>
+      </ExtendedData>
+      <Point><coordinates>150.308834505411,-33.729393190578,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#92 Ates Blackheath</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Blue Mountains · 방문 후보
+
+100년 된 장작 오븐을 중심으로 지중해·이탈리아·터키풍 요리를 불맛 있게 내는 블랙히스의 작은 레스토랑입니다. 블루마운틴의 차가운 저녁과 특히 잘 어울리는 따뜻한 공간입니다.
+
+주소: 33 Govetts Leap Road, Blackheath NSW 2785
+
+영업시간: 토 점심 12:00–14:00, 수–일 저녁 17:30–늦게.
+
+9인 예약: 6명 이상은 어린이까지 포함해 1인 A$96 셰프 연회 메뉴가 의무이고 좌석은 2시간입니다. 아이가 연회 메뉴를 먹기 어렵다면 공식 안내대로 키즈 피시앤칩스가 있는 토요일 점심을 선택해 9명으로 예약하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=33%20Govetts%20Leap%20Road%2C%20Blackheath%20NSW%202785
+
+예약: https://www.atesblackheath.com/reservations
+
+공식: https://www.atesblackheath.com/contact</description>
+      <ExtendedData>
+        <Data name="순위"><value>92</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Blue Mountains</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>33 Govetts Leap Road, Blackheath NSW 2785</value></Data>
+      </ExtendedData>
+      <Point><coordinates>150.286558591894,-33.636536748911,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#93 Blaq Blackheath</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Blue Mountains · 방문 후보
+
+The Kyah 호텔 안의 세련된 다이닝룸으로, 지역 식재료에 세계 각지와 멕시코의 풍미를 더합니다. 벽난로가 있어 겨울 블랙히스에서 가족이 편안하게 저녁을 보내기 좋습니다.
+
+주소: 13–17 Brightlands Avenue, Blackheath NSW 2785
+
+영업시간: 저녁 매일 17:00–21:00, 토·일 점심 12:00–14:30, 주말 아침 07:00–10:00. 월·화 저녁은 축소된 &apos;Blaq Out&apos; 메뉴, 수–일은 정규 메뉴.
+
+9인 예약: 공식 사이트가 사전 예약을 강하게 권합니다. 9명은 한 테이블로 미리 잡고, 월·화에는 정규 메뉴가 아니라는 점과 어린이·식이 제한을 예약 전에 확인하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=13%E2%80%9317%20Brightlands%20Avenue%2C%20Blackheath%20NSW%202785
+
+예약: https://www.thekyah.com.au/blaq
+
+공식: https://www.thekyah.com.au/blaq</description>
+      <ExtendedData>
+        <Data name="순위"><value>93</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Blue Mountains</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>13–17 Brightlands Avenue, Blackheath NSW 2785</value></Data>
+      </ExtendedData>
+      <Point><coordinates>150.28720039422,-33.649396180943,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#94 Pins on Lurline Katoomba</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Blue Mountains · 방문 후보
+
+루라인 스트리트의 작은 파인다이닝이었지만 현재 공식 사이트에는 장기 휴업 공지만 남아 있고 재개 영업을 확인할 수 없습니다. 방문 욕심보다 운영 불확실성이 커서 이번 여행에서는 제외하는 것이 안전합니다.
+
+주소: 132 Lurline Street, Katoomba NSW 2780
+
+영업시간: 공식 사이트는 2024-12-26부터 휴업, 2025-07-01 재개 예정이라고 적었으나 2026-07-19 현재 실제 재개 영업시간·예약 가능 여부가 공식 확인되지 않음.
+
+9인 예약: 온라인 예약 가능 상태를 확인할 수 없습니다. 9명 일정을 맡기지 말고, 반드시 공식 이메일 reservations@pinsonlurline.com의 직접 회신을 받은 경우에만 후보로 복원하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=132%20Lurline%20Street%2C%20Katoomba%20NSW%202780
+
+공식: https://www.pinsonlurline.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>94</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Blue Mountains</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>132 Lurline Street, Katoomba NSW 2780</value></Data>
+      </ExtendedData>
+      <Point><coordinates>150.311673875112,-33.723739932163,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#95 Bootlegger Bar Katoomba</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Blue Mountains · 방문 후보
+
+오래된 나이아가라 빌딩에 자리한 스피크이지풍 바·그릴로, 훈연 고기와 위스키·진이 중심입니다. 성인에게는 겨울밤 분위기가 좋지만 늦은 시간에는 바 성격과 소음이 강해 어린이 가족은 이른 저녁이 낫습니다.
+
+주소: Niagara Building, 92 Bathurst Road, Katoomba NSW 2780
+
+영업시간: 월·화 휴무, 수–토 12:00–24:00, 일 12:00–22:00.
+
+9인 예약: 공간이 넓지 않아 9명은 공식 사이트의 Book Now로 미리 예약하세요. 어린이가 있으면 이른 시간대를 고르고 한 테이블 및 연령 동반 가능 조건을 메모로 확인하는 편이 안전합니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=Niagara%20Building%2C%2092%20Bathurst%20Road%2C%20Katoomba%20NSW%202780
+
+예약: https://www.bootleggerbar.com.au/
+
+공식: https://www.bootleggerbar.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>95</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Blue Mountains</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>Niagara Building, 92 Bathurst Road, Katoomba NSW 2780</value></Data>
+      </ExtendedData>
+      <Point><coordinates>150.311148832697,-33.712658008427,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#96 Cassiopeia Specialty Coffee Katoomba</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Blue Mountains · 방문 후보
+
+카툼바의 진지한 스페셜티 에스프레소 바입니다. 블루마운틴 아침 출발 전에 좋은 커피를 빠르게 챙기는 곳이지, 9명이 오래 머무는 브런치 식당은 아닙니다.
+
+주소: 79 Lurline Street, Katoomba NSW 2780
+
+영업시간: 월–금 06:00–14:00, 토·일 06:00–13:00.
+
+9인 예약: 공식 예약 채널이 없습니다. 9명은 테이크아웃 또는 소그룹 순차 주문으로 이용하고, 오전 일찍 들러야 일정 손실이 적습니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=79%20Lurline%20Street%2C%20Katoomba%20NSW%202780
+
+공식: https://cassiopeia.com.au/our-locations</description>
+      <ExtendedData>
+        <Data name="순위"><value>96</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Blue Mountains</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>79 Lurline Street, Katoomba NSW 2780</value></Data>
+      </ExtendedData>
+      <Point><coordinates>150.31165845241,-33.719359004739,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#97 Anonymous Cafe Blackheath</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Blue Mountains · 방문 후보
+
+블랙히스의 작은 로컬 커피·브런치 카페로 알려진 곳입니다. 다만 현재 작동하는 공식 사이트와 최신 고정 영업시간을 확인하지 못해 여행의 확정 식사 장소로 쓰기에는 불확실합니다.
+
+주소: 237–238 Great Western Highway, Blackheath NSW 2785
+
+영업시간: 최신 공식 고정 영업시간 확인 불가. 과거 지역 안내는 수–금 07:00–14:00, 토·일 07:30–14:00, 월·화 휴무였으나 당일 직접 확인 필요.
+
+9인 예약: 과거 안내는 예약을 받지 않는 작은 카페였으며 9명 수용을 기대하기 어렵습니다. 당일 운영을 전화·소셜로 직접 확인하지 못하면 다른 카페를 선택하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=237%E2%80%93238%20Great%20Western%20Highway%2C%20Blackheath%20NSW%202785</description>
+      <ExtendedData>
+        <Data name="순위"><value>97</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Blue Mountains</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>237–238 Great Western Highway, Blackheath NSW 2785</value></Data>
+      </ExtendedData>
+      <Point><coordinates>150.284765199891,-33.634348485449,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#98 Blue Mountains Chocolate Company Katoomba</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Blue Mountains · 방문 후보
+
+벨기에산 커버처로 만든 수제 초콜릿과 트러플, 촛불로 천천히 녹여 마시는 핫초콜릿을 맛보는 카툼바의 디저트 정차입니다. 겨울 불가 분위기와 달콤한 메뉴 덕분에 아이들이 특히 좋아할 가능성이 큽니다.
+
+주소: 174 Lurline Street, Katoomba NSW 2780
+
+영업시간: 매일 10:00–18:00. 크리스마스 등 특별 휴일은 공식 사이트에서 별도 확인.
+
+9인 예약: 공식 예약은 필요 없으며 소매점 겸 카페로 워크인 이용합니다. 9명은 좌석이 나뉠 수 있으니 장시간 식사보다 초콜릿 구매와 짧은 음료 시간으로 잡으세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=174%20Lurline%20Street%2C%20Katoomba%20NSW%202780
+
+공식: https://www.bluemountainschocolate.com.au/</description>
+      <ExtendedData>
+        <Data name="순위"><value>98</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Blue Mountains</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>174 Lurline Street, Katoomba NSW 2780</value></Data>
+      </ExtendedData>
+      <Point><coordinates>150.31100055683,-33.727504538245,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#99 Hydro Majestic Afternoon Tea Medlow Bath</name>
+      <styleUrl>#pin-cafe</styleUrl>
+      <description>카페 · Blue Mountains · 방문 후보
+
+1904년부터 이어진 Hydro Majestic의 아르데코 Wintergarden에서 메갈롱 밸리를 바라보며 즐기는 하이티입니다. 음식뿐 아니라 건축과 전망까지 한꺼번에 경험하는 블루마운틴의 대표적인 가족 기념 코스이며, 2026년 8월 말까지 May Gibbs 테마 하이티가 진행됩니다.
+
+주소: The Hydro Majestic, 52–88 Great Western Highway, Medlow Bath NSW 2780
+
+영업시간: 하이티 매일 11:00–15:30, 마지막 주문 15:00. Wintergarden 저녁은 매일 18:00–20:00.
+
+9인 예약: 공식 사이트가 예약을 강하게 권하며 9명은 미리 한 예약으로 잡아야 합니다. 식이 제한은 예약 때 알리고, 변경·취소는 최소 48시간 전에 해야 하며 구내 주차가 가능합니다.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=The%20Hydro%20Majestic%2C%2052%E2%80%9388%20Great%20Western%20Highway%2C%20Medlow%20Bath%20NSW%202780
+
+예약: https://www.worldsapart.club/independents/hydromajestic/dining/high-tea
+
+공식: https://www.worldsapart.club/independents/hydromajestic/dining/high-tea</description>
+      <ExtendedData>
+        <Data name="순위"><value>99</value></Data>
+        <Data name="종류"><value>카페</value></Data>
+        <Data name="권역"><value>Blue Mountains</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>The Hydro Majestic, 52–88 Great Western Highway, Medlow Bath NSW 2780</value></Data>
+      </ExtendedData>
+      <Point><coordinates>150.276250611188,-33.677426480538,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>#100 Mountain Culture Beer Co Katoomba</name>
+      <styleUrl>#pin-restaurant</styleUrl>
+      <description>식당 · Blue Mountains · 방문 후보
+
+1900년대 유산 건물을 복원한 양조장 펍으로, 직접 만든 맥주와 버거를 편하게 즐기는 카툼바의 활기찬 마무리 장소입니다. 어린이와 비음주자용 선택지도 있어 파인다이닝보다 부담 없는 가족 식사에 맞습니다.
+
+주소: 23–25 Parke Street, Katoomba NSW 2780
+
+영업시간: 월–수 16:00–21:00, 목 11:00–21:00, 금·토 11:00–22:00, 일 11:00–20:00.
+
+9인 예약: 공식적으로 예약을 받지 않고 전부 워크인입니다. 9명은 점심 시작 직후나 저녁 피크 전 일찍 가고, 한 테이블이 안 나면 나눠 앉을 수 있도록 계획하세요.
+
+Google Maps: https://www.google.com/maps/search/?api=1&amp;query=23%E2%80%9325%20Parke%20Street%2C%20Katoomba%20NSW%202780
+
+공식: https://mountainculture.com.au/pages/katoomba-brewpub-restaurant</description>
+      <ExtendedData>
+        <Data name="순위"><value>100</value></Data>
+        <Data name="종류"><value>식당</value></Data>
+        <Data name="권역"><value>Blue Mountains</value></Data>
+        <Data name="상태"><value>방문 후보</value></Data>
+        <Data name="주소"><value>23–25 Parke Street, Katoomba NSW 2780</value></Data>
+      </ExtendedData>
+      <Point><coordinates>150.309667163673,-33.712836501055,0</coordinates></Point>
+    </Placemark>
+  </Document>
+</kml>

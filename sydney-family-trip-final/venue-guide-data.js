@@ -26,8 +26,8 @@ window.SYDNEY_VENUE_GUIDE = [
     "official_url": "https://www.quay.com.au/",
     "booking_url": null,
     "address": "Upper Level, Overseas Passenger Terminal, The Rocks NSW 2000",
-    "lat": null,
-    "lng": null,
+    "lat": -33.858496,
+    "lng": 151.209683,
     "checked_at": "2026-07-19",
     "confidence": "high"
   },
@@ -394,8 +394,8 @@ window.SYDNEY_VENUE_GUIDE = [
     "official_url": "https://www.ciaofabbrica.com/venues/fabbrica-bread-shop-coogee",
     "booking_url": null,
     "address": "214 Coogee Bay Road, Coogee NSW 2034",
-    "lat": null,
-    "lng": null,
+    "lat": -33.9203834,
+    "lng": 151.2549875,
     "checked_at": "2026-07-19",
     "confidence": "high"
   },
@@ -458,8 +458,8 @@ window.SYDNEY_VENUE_GUIDE = [
     "official_url": "https://speedoscafe.com.au/",
     "booking_url": null,
     "address": "126 Ramsgate Avenue, North Bondi NSW 2026",
-    "lat": null,
-    "lng": null,
+    "lat": -33.8906926,
+    "lng": 151.2828005,
     "checked_at": "2026-07-19",
     "confidence": "high"
   },
@@ -1600,4 +1600,3 @@ window.SYDNEY_VENUE_GUIDE = [
     "confidence": "high"
   }
 ];
-
