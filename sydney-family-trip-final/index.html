@@ -600,23 +600,54 @@
       font-weight: 900;
     }
 
-    .food-swot {
+    .guide-recommendation {
+      margin-top: 11px;
+      border: 1px solid #c8ddd5;
+      border-radius: 8px;
+      background: #f1f8f5;
+      padding: 10px 11px;
+    }
+
+    .guide-recommendation span {
+      display: block;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+    }
+
+    .guide-recommendation strong {
+      display: block;
+      margin-top: 4px;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.45;
+    }
+
+    .guide-detail-list {
       display: grid;
       gap: 6px;
-      margin-top: 11px;
+      margin-top: 8px;
       color: #3e4650;
       font-size: 12px;
     }
 
-    .food-swot div {
+    .guide-detail-list div {
       display: grid;
-      grid-template-columns: 20px minmax(0, 1fr);
-      gap: 7px;
+      grid-template-columns: 74px minmax(0, 1fr);
+      gap: 8px;
+      align-items: start;
     }
 
-    .food-swot strong {
-      color: var(--accent);
+    .guide-detail-list strong {
+      color: var(--ink);
       font-weight: 900;
+    }
+
+    .guide-detail-list span {
+      color: var(--muted);
+      line-height: 1.45;
     }
 
     .food-public-rating {
@@ -1423,25 +1454,6 @@
       font-weight: 800;
     }
 
-    .poi-swot {
-      display: grid;
-      gap: 5px;
-      margin-top: 10px;
-      color: #3e4650;
-      font-size: 12px;
-    }
-
-    .poi-swot div {
-      display: grid;
-      grid-template-columns: 18px minmax(0, 1fr);
-      gap: 6px;
-    }
-
-    .poi-swot strong {
-      color: var(--accent);
-      font-weight: 900;
-    }
-
     .poi-source {
       margin-top: auto;
       padding-top: 10px;
@@ -1540,8 +1552,8 @@
 
     .swot-row {
       display: grid;
-      grid-template-columns: 28px minmax(0, 1fr);
-      gap: 8px;
+      grid-template-columns: 76px minmax(0, 1fr);
+      gap: 10px;
       align-items: start;
       font-size: 13px;
       color: #3e4650;
@@ -1549,7 +1561,9 @@
 
     .swot-row strong {
       color: var(--accent);
+      font-size: 11px;
       font-weight: 900;
+      line-height: 1.5;
     }
 
     .swot-link {
@@ -3643,20 +3657,23 @@
     </section>
 
     <section id="tripAttractions">
-      <h2>관광명소 SWOT 카드</h2>
+      <h2>우리 가족에게 맞는 시드니 명소</h2>
+      <p class="lead">
+        부모님 보행량, 아이 만족도, 숙소 동선, 겨울 날씨를 기준으로 가이드가 당일 선택법까지 정리했습니다.
+        전부 다 가기보다 그날 컨디션에 맞는 카드 하나를 꺼내 쓰세요.
+      </p>
       <div class="swot-grid">
         <article class="swot-card">
           <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sydney%20Opera%20House%20From%20Botanic%20Garden.jpg?width=1200" alt="Royal Botanic Garden에서 보는 Sydney Opera House">
           <div class="swot-body">
             <h3>Opera House + Royal Botanic Garden</h3>
             <div class="swot-list">
-              <div class="swot-row"><strong>S</strong><span>Park Hyatt 숙박일에 이동 효율이 압도적.</span></div>
-              <div class="swot-row"><strong>W</strong><span>공식 투어는 계단과 보행량이 있어 부모님 컨디션 체크 필요.</span></div>
-              <div class="swot-row"><strong>O</strong><span>비가 와도 투어, 실내 식사, 야경으로 대체 가능.</span></div>
-              <div class="swot-row"><strong>T</strong><span>주말 혼잡과 겨울 바람이 변수.</span></div>
+              <div class="swot-row"><strong>가이드 제안</strong><span>Park Hyatt 숙박일의 핵심 코스로 두세요. 숙소에서 가까워 이동 부담이 가장 적습니다.</span></div>
+              <div class="swot-row"><strong>이렇게</strong><span>날씨가 좋으면 정원까지 걷고, 비가 오면 공식 투어·실내 식사·짧은 야경으로 줄이세요.</span></div>
+              <div class="swot-row"><strong>가족 체크</strong><span>투어의 계단과 보행량, 주말 혼잡, 겨울 바람을 보고 부모님 컨디션에 맞춰 강도를 낮추세요.</span></div>
             </div>
-            <a class="swot-link" href="https://www.sydneyoperahouse.com/tours/sydney-opera-house-tour">공식 링크</a>
-            <a class="swot-link" href="https://www.botanicgardens.org.au/royal-botanic-garden-sydney">정원 링크</a>
+            <a class="swot-link" href="https://www.sydneyoperahouse.com/tours/sydney-opera-house-tour">투어 정보</a>
+            <a class="swot-link" href="https://www.botanicgardens.org.au/royal-botanic-garden-sydney">정원 정보</a>
           </div>
         </article>
 
@@ -3665,12 +3682,11 @@
           <div class="swot-body">
             <h3>Bondi to Coogee Coastal Walk</h3>
             <div class="swot-list">
-              <div class="swot-row"><strong>S</strong><span>Park Hyatt 기준에서도 맑은 날 선택 코스로는 풍경이 좋음.</span></div>
-              <div class="swot-row"><strong>W</strong><span>6km 완주는 어린아이와 부모님에게 길 수 있음.</span></div>
-              <div class="swot-row"><strong>O</strong><span>맑은 날 짧은 구간만 걸어도 만족도가 높음.</span></div>
-              <div class="swot-row"><strong>T</strong><span>비·강풍에는 노출 동선이라 취소가 맞음.</span></div>
+              <div class="swot-row"><strong>가이드 제안</strong><span>맑고 바람이 약한 날에만 선택하세요. 6km 완주보다 가족 모두가 즐길 수 있는 짧은 구간이 맞습니다.</span></div>
+              <div class="swot-row"><strong>이렇게</strong><span>풍경 좋은 구간만 걷고, 부모님과 아이가 피곤해지기 전에 되돌아오세요.</span></div>
+              <div class="swot-row"><strong>가족 체크</strong><span>비·강풍이면 미련 없이 취소하세요. 노출 동선이라 날씨가 나쁘면 만족도가 급격히 떨어집니다.</span></div>
             </div>
-            <a class="swot-link" href="https://www.nsw.gov.au/visiting-and-exploring-nsw/locations-and-attractions/bondi-to-coogee-coastal-walk">공식 링크</a>
+            <a class="swot-link" href="https://www.nsw.gov.au/visiting-and-exploring-nsw/locations-and-attractions/bondi-to-coogee-coastal-walk">코스 정보</a>
           </div>
         </article>
 
@@ -3679,12 +3695,11 @@
           <div class="swot-body">
             <h3>Taronga Zoo + Wildlife Retreat</h3>
             <div class="swot-list">
-              <div class="swot-row"><strong>S</strong><span>아이들 만족도 최고 후보. 숙소와 콘텐츠가 결합됨.</span></div>
-              <div class="swot-row"><strong>W</strong><span>동물원 지형이 언덕이고 방 크기 만족도는 확인 필요.</span></div>
-              <div class="swot-row"><strong>O</strong><span>리트리트 프로그램으로 일반 동물원보다 기억에 남을 가능성 큼.</span></div>
-              <div class="swot-row"><strong>T</strong><span>비가 오면 야외 관람 효율 하락.</span></div>
+              <div class="swot-row"><strong>가이드 제안</strong><span>아이들 중심의 이번 여행 하이라이트로 두세요. 숙소와 체험이 이어져 이동을 줄이면서 기억에 남기기 좋습니다.</span></div>
+              <div class="swot-row"><strong>이렇게</strong><span>오전부터 핵심 구역을 보고, 숙소 프로그램과 휴식 시간을 먼저 고정하세요.</span></div>
+              <div class="swot-row"><strong>가족 체크</strong><span>언덕이 많고 비가 오면 야외 효율이 떨어집니다. 부모님 휴식 지점과 방 크기를 미리 확인하세요.</span></div>
             </div>
-            <a class="swot-link" href="https://www.taronga.org.au/sydney-zoo/plan/visitor-information">공식 링크</a>
+            <a class="swot-link" href="https://www.taronga.org.au/sydney-zoo/plan/visitor-information">방문 정보</a>
           </div>
         </article>
 
@@ -3693,12 +3708,11 @@
           <div class="swot-body">
             <h3>Manly Ferry 또는 Harbour Ferry</h3>
             <div class="swot-list">
-              <div class="swot-row"><strong>S</strong><span>시드니 항구를 가장 쉽게 체감.</span></div>
-              <div class="swot-row"><strong>W</strong><span>겨울 바람이 세면 부모님 피로도가 올라감.</span></div>
-              <div class="swot-row"><strong>O</strong><span>Taronga 2일차 또는 Park Hyatt 숙박일에 짧게 넣기 좋음.</span></div>
-              <div class="swot-row"><strong>T</strong><span>강풍·우천 시 배 멀미와 지연 리스크.</span></div>
+              <div class="swot-row"><strong>가이드 제안</strong><span>시드니 항구를 가장 힘 적게 체감하는 코스로 넣으세요.</span></div>
+              <div class="swot-row"><strong>이렇게</strong><span>Taronga 2일차나 Park Hyatt 숙박일에 짧게 붙이고, 바람이 약할 때만 진행하세요.</span></div>
+              <div class="swot-row"><strong>가족 체크</strong><span>강풍·우천이면 부모님 피로, 멀미, 지연 가능성이 커지므로 육상 코스로 바꾸세요.</span></div>
             </div>
-            <a class="swot-link" href="https://transportnsw.info/routes/details/sydney-ferries/f1/090F1">노선 링크</a>
+            <a class="swot-link" href="https://transportnsw.info/routes/details/sydney-ferries/f1/090F1">페리 정보</a>
           </div>
         </article>
 
@@ -3707,12 +3721,11 @@
           <div class="swot-body">
             <h3>Blue Mountains + Scenic World</h3>
             <div class="swot-list">
-              <div class="swot-row"><strong>S</strong><span>도시 일정에서 벗어나는 하이엔드 전용차 데이투어.</span></div>
-              <div class="swot-row"><strong>W</strong><span>이동 시간이 길고 하루가 통째로 필요.</span></div>
-              <div class="swot-row"><strong>O</strong><span>맑은 겨울날이면 가족사진과 전망 만족도 높음.</span></div>
-              <div class="swot-row"><strong>T</strong><span>안개·비면 전망 가치가 급감.</span></div>
+              <div class="swot-row"><strong>가이드 제안</strong><span>맑고 가족 컨디션이 좋은 하루에만 전용차 데이투어로 선택하세요.</span></div>
+              <div class="swot-row"><strong>이렇게</strong><span>Scenic World와 전망을 중심으로 가족사진을 남기고, 다른 일정은 욕심내지 마세요.</span></div>
+              <div class="swot-row"><strong>가족 체크</strong><span>왕복 이동이 길고 하루가 필요합니다. 안개·비면 전망 가치가 떨어지니 취소하세요.</span></div>
             </div>
-            <a class="swot-link" href="https://www.scenicworld.com.au/attractions/scenic-skyway">공식 링크</a>
+            <a class="swot-link" href="https://www.scenicworld.com.au/attractions/scenic-skyway">운영 정보</a>
           </div>
         </article>
 
@@ -3721,13 +3734,12 @@
           <div class="swot-body">
             <h3>Art Gallery NSW + Australian Museum</h3>
             <div class="swot-list">
-              <div class="swot-row"><strong>S</strong><span>비 오는 날 가장 안정적인 실내 대안.</span></div>
-              <div class="swot-row"><strong>W</strong><span>아이들에게는 집중 시간이 짧을 수 있음.</span></div>
-              <div class="swot-row"><strong>O</strong><span>InterContinental Sydney 숙박일에 짧게 붙이기 좋음.</span></div>
-              <div class="swot-row"><strong>T</strong><span>특별전 예약/운영시간 확인 필요.</span></div>
+              <div class="swot-row"><strong>가이드 제안</strong><span>비 오는 날 가족 일정을 지켜주는 실내 플랜 B로 두세요.</span></div>
+              <div class="swot-row"><strong>이렇게</strong><span>InterContinental 숙박일에 짧게 붙이고, 아이 반응에 따라 한 곳만 선택하세요.</span></div>
+              <div class="swot-row"><strong>가족 체크</strong><span>아이 집중 시간이 짧을 수 있습니다. 특별전 예약과 운영시간을 확인하고 오래 머물 계획은 피하세요.</span></div>
             </div>
-            <a class="swot-link" href="https://www.artgallery.nsw.gov.au/">공식 링크</a>
-            <a class="swot-link" href="https://australian.museum/visit/">박물관 링크</a>
+            <a class="swot-link" href="https://www.artgallery.nsw.gov.au/">미술관 정보</a>
+            <a class="swot-link" href="https://australian.museum/visit/">박물관 정보</a>
           </div>
         </article>
 
@@ -3736,13 +3748,12 @@
           <div class="swot-body">
             <h3>QVB + Darling Harbour + SEA LIFE</h3>
             <div class="swot-list">
-              <div class="swot-row"><strong>S</strong><span>마지막날 짐 맡기고 쓰기 좋은 저위험 실내 코스.</span></div>
-              <div class="swot-row"><strong>W</strong><span>시드니만의 강한 감동은 Park Hyatt 주변보다 약함.</span></div>
-              <div class="swot-row"><strong>O</strong><span>비 오는 금요일 또는 누나네 토요일 카드로 좋음.</span></div>
-              <div class="swot-row"><strong>T</strong><span>주말/방학 혼잡과 입장권 가격 변동.</span></div>
+              <div class="swot-row"><strong>가이드 제안</strong><span>마지막 날 짐을 맡긴 뒤 쓰는 저강도 실내 코스로 남겨두세요.</span></div>
+              <div class="swot-row"><strong>이렇게</strong><span>비 오는 금요일이나 누나네 토요일에도 꺼낼 수 있도록 SEA LIFE를 예비 카드로 두세요.</span></div>
+              <div class="swot-row"><strong>가족 체크</strong><span>시드니 대표 풍경보다 실용성이 강한 코스입니다. 주말·방학 혼잡과 입장 가능 시간을 확인하세요.</span></div>
             </div>
-            <a class="swot-link" href="https://www.nsw.gov.au/visiting-and-exploring-nsw/locations-and-attractions/queen-victoria-building">QVB 링크</a>
-            <a class="swot-link" href="https://www.visitsealife.com/sydney/plan-your-day/">SEA LIFE 링크</a>
+            <a class="swot-link" href="https://www.nsw.gov.au/visiting-and-exploring-nsw/locations-and-attractions/queen-victoria-building">QVB 정보</a>
+            <a class="swot-link" href="https://www.visitsealife.com/sydney/plan-your-day/">SEA LIFE 정보</a>
           </div>
         </article>
 
@@ -3751,12 +3762,11 @@
           <div class="swot-body">
             <h3>The Rocks + Harbour Bridge 주변</h3>
             <div class="swot-list">
-              <div class="swot-row"><strong>S</strong><span>Park Hyatt에서 바로 걸어갈 수 있는 핵심 동네.</span></div>
-              <div class="swot-row"><strong>W</strong><span>돌길과 계단이 있어 오래 걷기는 피곤할 수 있음.</span></div>
-              <div class="swot-row"><strong>O</strong><span>토요일 누나네 합류 전후 가벼운 야경 코스로 적합.</span></div>
-              <div class="swot-row"><strong>T</strong><span>겨울 저녁 체감온도와 혼잡.</span></div>
+              <div class="swot-row"><strong>가이드 제안</strong><span>Park Hyatt에서 바로 걸어 나갈 수 있는 첫날·합류일 산책으로 두세요.</span></div>
+              <div class="swot-row"><strong>이렇게</strong><span>누나네 합류 전후에 짧은 야경만 보고, 오래 걷기보다 호텔로 쉽게 돌아오는 동선을 택하세요.</span></div>
+              <div class="swot-row"><strong>가족 체크</strong><span>돌길·계단, 겨울 저녁 추위, 관광지 혼잡을 보고 부모님 보행 시간을 짧게 잡으세요.</span></div>
             </div>
-            <a class="swot-link" href="https://www.sydney.com/destinations/sydney/sydney-city/the-rocks">확인 링크</a>
+            <a class="swot-link" href="https://www.sydney.com/destinations/sydney/sydney-city/the-rocks">동네 정보</a>
           </div>
         </article>
       </div>
@@ -3940,15 +3950,15 @@
     </section>
 
     <section id="tripExplore">
-      <h2>동선 주변 Top 100 음식점·카페·명소</h2>
+      <h2>현장에서 고르는 식당·카페·명소</h2>
       <p class="lead">
-        숙소와 날짜별 동선을 기준으로 Circular Quay·The Rocks·Coogee·Bondi·Mosman·Manly·Blue Mountains까지 확장했다.
-        Google Maps, OpenTable, Time Out, Broadsheet, Urban List, Sydney.com 기준으로 현장에서 고르기 쉬운 후보 100개다.
+        숙소와 그날 동선에서 바로 고를 수 있도록 부모님 체력, 아이 식사, 날씨, 예약 난도를 기준으로 100곳을 정리했습니다.
+        순위는 절대평가가 아니라 우리 가족 일정에서 꺼내 쓰기 좋은 후보 순서입니다.
       </p>
       <div class="notice">
-        각 카드는 영업시간·예약 가능 여부가 바뀔 수 있으므로 Google Maps와 예약 버튼에서 실시간 확인하는 전제다.
-        히어로 사진은 장소별 이미지 크롤링 결과를 고정 반영했고, 평점은 Google Maps 공개 지도 검색과 Tripadvisor 스니펫을 2026.05.17 KST 기준으로 확인했다.
-        가족판단점수는 동선·아이/부모님 적합도·날씨·예약난도를 합친 내부 점수이고, 최신 Google 별점은 지도 버튼에서 확인한다.
+        먼저 ‘이럴 때 가세요’를 보고 후보를 고른 뒤 ‘가기 전 확인’에서 가족 변수만 점검하세요.
+        영업시간과 예약 가능 여부는 바뀔 수 있으므로 지도·공식 버튼에서 실시간 확인해야 합니다.
+        공개 평점은 Google Maps 지도 검색과 Tripadvisor 스니펫을 2026.05.17 KST 기준으로 확인했습니다.
       </div>
       <div class="poi-toolbar" role="search" aria-label="음식점, 카페, 명소 필터">
         <label class="poi-search-field">
@@ -3975,7 +3985,7 @@
         <span class="poi-result-count" id="poiResultCount" aria-live="polite">추천 장소를 불러오는 중입니다.</span>
         <button class="poi-show-more" id="poiShowMore" type="button">12개 더 보기</button>
       </div>
-      <div class="poi-grid" id="poiGrid" aria-label="시드니 동선 주변 Top 100 카드"></div>
+      <div class="poi-grid" id="poiGrid" aria-label="우리 가족을 위한 시드니 가이드 추천 100곳"></div>
 
       <div class="source-panel" style="margin-top:16px;">
         <p class="small">
@@ -4197,7 +4207,22 @@
         title: "부모님 Park Hyatt 직행일 주변 추천",
         note: "첫날은 부모님이 호텔에서 멀어지지 않는 게 핵심이라 The Rocks·Circular Quay 도보권과 늦은 도착 백업 위주로 잡았다.",
         restaurants: [
-          { name: "City Extra Circular Quay", area: "Circular Quay", query: "City Extra Circular Quay", s: "늦은 시간 백업", w: "특별함 낮음", o: "도착 지연 대응", t: "관광지 혼잡", source: "Google Maps" },
+          {
+            name: "City Extra Circular Quay",
+            area: "Circular Quay",
+            query: "City Extra Circular Quay",
+            s: "늦은 시간 백업",
+            w: "특별함 낮음",
+            o: "도착 지연 대응",
+            t: "관광지 혼잡",
+            source: "Google Maps",
+            guide: {
+              label: "첫날 비상 식사",
+              recommendation: "늦게 도착해도 가족 식사를 놓치지 않게 해주는 안전한 백업입니다.",
+              when: "부모님 도착이 늦어 첫 저녁 시간이 밀렸을 때",
+              check: "특별한 첫 끼를 위한 곳은 아닙니다. 출발 전 Circular Quay의 영업시간과 혼잡을 확인하세요."
+            }
+          },
           { name: "The Rocks Cafe", area: "The Rocks", query: "The Rocks Cafe Sydney", s: "Park Hyatt 도보권", w: "관광지형", o: "부모님 첫 저녁", t: "운영시간", source: "Google Maps" },
           { name: "Pancakes On The Rocks", area: "The Rocks", query: "Pancakes On The Rocks Sydney", s: "아이·어른 모두 쉬움", w: "대기 가능", o: "늦은 식사 백업", t: "혼잡", source: "Google Maps" }
         ],
@@ -4317,7 +4342,22 @@
         title: "InterContinental·Darling Harbour·공항일 주변 추천",
         note: "밤 비행 전이라 짐 보관, 화장실, 택시 접근, 짧은 체류가 쉬운 CBD·Circular Quay·QVB 중심으로 잡았다.",
         restaurants: [
-          { name: "City Extra Circular Quay", area: "Circular Quay", query: "City Extra Circular Quay", s: "시간 조절 백업", w: "특별함 낮음", o: "공항 전 식사", t: "관광지 혼잡", source: "Google Maps" },
+          {
+            name: "City Extra Circular Quay",
+            area: "Circular Quay",
+            query: "City Extra Circular Quay",
+            s: "시간 조절 백업",
+            w: "특별함 낮음",
+            o: "공항 전 식사",
+            t: "관광지 혼잡",
+            source: "Google Maps",
+            guide: {
+              label: "공항 전 시간 조절",
+              recommendation: "밤 비행 전 식사 시간을 유연하게 조절하는 안전한 백업입니다.",
+              when: "공항으로 가기 전 식사 시간이 애매해졌을 때",
+              check: "마지막 특별식보다는 실용적인 선택입니다. 출발 전 Circular Quay의 혼잡을 확인하세요."
+            }
+          },
           { name: "Mary's Circular Quay", area: "Circular Quay", query: "Mary's Circular Quay", s: "캐주얼 버거", w: "고급감 없음", o: "아이 빠른 식사", t: "혼잡", source: "Sydney.com" },
           { name: "The Grounds of the City", area: "CBD/QVB", query: "The Grounds of the City Sydney", s: "실내 안정", w: "예약·대기", o: "마지막 브런치", t: "시간 지연", source: "공식/Google" }
         ],
@@ -4336,7 +4376,25 @@
       { rank: 4, kind: "식당", tag: "good", name: "The Grounds of the City", area: "CBD", source: "공식 사이트", query: "The Grounds of the City Sydney", s: "QVB 근처 실내 안정", w: "9명은 문의 필요", o: "비오는 날", t: "피크 혼잡" },
       { rank: 5, kind: "식당", tag: "good", name: "Bathers' Bistro", area: "Balmoral", source: "Bathers 공식", query: "Bathers Bistro Balmoral", s: "아이 메뉴·가족형", w: "동선 우회", o: "Balmoral 점심", t: "예약" },
       { rank: 6, kind: "카페", tag: "blue", name: "The Boathouse Balmoral", area: "Balmoral", source: "공식 사이트", query: "The Boathouse Balmoral", s: "맑은 날 해변 카페", w: "날씨 노출", o: "Taronga 2일차", t: "임시 휴무 확인" },
-      { rank: 7, kind: "식당", tag: "blue", name: "City Extra Circular Quay", area: "Circular Quay", source: "공식 사이트", query: "City Extra Circular Quay", s: "24시간 백업", w: "특별함은 낮음", o: "항공 지연·마지막날", t: "관광지 혼잡" },
+      {
+        rank: 7,
+        kind: "식당",
+        tag: "blue",
+        name: "City Extra Circular Quay",
+        area: "Circular Quay",
+        source: "공식 사이트",
+        query: "City Extra Circular Quay",
+        s: "24시간 백업",
+        w: "특별함은 낮음",
+        o: "항공 지연·마지막날",
+        t: "관광지 혼잡",
+        guide: {
+          label: "시간이 꼬였을 때",
+          recommendation: "늦은 도착이나 밤 비행 때문에 식사 시간이 밀렸을 때 꺼내는 백업입니다.",
+          when: "항공편이 지연됐거나 마지막 날 시간이 애매할 때",
+          check: "특별한 식사보다는 실용성이 강합니다. Circular Quay의 혼잡을 먼저 확인하세요."
+        }
+      },
       { rank: 8, kind: "명소", tag: "good", name: "Australian Museum", area: "CBD", source: "Sydney.com·Google Maps", query: "Australian Museum Sydney", s: "우천 실내 강함", w: "특별전 비용", o: "아이 백업", t: "운영시간" },
       { rank: 9, kind: "명소", tag: "good", name: "SEA LIFE Sydney Aquarium", area: "Darling Harbour", source: "Sydney.com·Google Maps", query: "SEA LIFE Sydney Aquarium", s: "아이 만족도 안정", w: "입장료", o: "비오는 날", t: "대기" },
       { rank: 10, kind: "명소", tag: "good", name: "Scenic World", area: "Blue Mountains", source: "공식 사이트", query: "Scenic World Blue Mountains", s: "맑은 날 하이라이트", w: "장거리 이동", o: "가족사진", t: "안개·마감" }
@@ -4420,7 +4478,25 @@
       { rank: 72, kind: "카페", tag: "blue", name: "Regiment CBD", area: "CBD", source: "Google Maps·로컬", query: "Regiment CBD Sydney", s: "스페셜티 커피", w: "간단함", o: "이동 중 카페인", t: "영업시간" },
       { rank: 73, kind: "카페", tag: "blue", name: "Single O CBD", area: "CBD", source: "Google Maps·로컬", query: "Single O CBD Sydney", s: "커피 목적성", w: "좌석 적음", o: "체크아웃 전", t: "평일 중심" },
       { rank: 74, kind: "식당", tag: "blue", name: "Mary's Circular Quay", area: "Circular Quay", source: "Google Maps", query: "Mary's Circular Quay", s: "아이 버거 백업", w: "고급감 낮음", o: "빠른 식사", t: "혼잡" },
-      { rank: 75, kind: "식당", tag: "warn", name: "City Extra Circular Quay", area: "Circular Quay", source: "Google Maps", query: "City Extra Circular Quay", s: "시간 조절 쉬움", w: "특별함 낮음", o: "항공 지연 백업", t: "관광지 가격" },
+      {
+        rank: 75,
+        kind: "식당",
+        tag: "warn",
+        name: "City Extra Circular Quay",
+        area: "Circular Quay",
+        source: "Google Maps",
+        query: "City Extra Circular Quay",
+        s: "시간 조절 쉬움",
+        w: "특별함 낮음",
+        o: "항공 지연 백업",
+        t: "관광지 가격",
+        guide: {
+          label: "시간이 꼬였을 때",
+          recommendation: "늦은 도착이나 밤 비행 때문에 식사 시간이 밀렸을 때 꺼내는 백업입니다.",
+          when: "항공편이 지연됐거나 마지막 날 시간이 애매할 때",
+          check: "특별한 식사보다는 실용성이 강합니다. Circular Quay의 혼잡을 먼저 확인하세요."
+        }
+      },
       { rank: 76, kind: "식당", tag: "blue", name: "Tapavino", area: "Circular Quay", source: "OpenTable·Google Maps", query: "Tapavino Circular Quay", s: "공유식 타파스", w: "아이 취향 갈림", o: "비오는 저녁", t: "소음" },
       { rank: 77, kind: "식당", tag: "good", name: "Public Dining Room", area: "Balmoral", source: "OpenTable·Google Maps", query: "Public Dining Room Balmoral", s: "해변 앞 가족식", w: "가격대", o: "Balmoral 점심", t: "예약" },
       { rank: 78, kind: "식당", tag: "good", name: "Chiosco by Ormeggio", area: "The Spit", source: "OpenTable·Google Maps", query: "Chiosco by Ormeggio The Spit", s: "워터프런트 캐주얼", w: "차량 필요", o: "Taronga 전후", t: "주차" },
@@ -4950,9 +5026,19 @@
       return item.booking || "https://www.google.com/search?q=" + encodeURIComponent(item.query + " booking official Sydney");
     }
 
+    function familyGuideCopy(item) {
+      return {
+        label: item.guide?.label || "가이드가 고른 이유",
+        recommendation: item.guide?.recommendation || item.s,
+        when: item.guide?.when || item.o,
+        check: item.guide?.check || [item.w, item.t].filter(Boolean).join(" · ")
+      };
+    }
+
     function foodCard(item, type, typeClass) {
       const photo = foodHero(item, type);
       const signal = venueSignalByQuery.get(item.query);
+      const guide = familyGuideCopy(item);
       return `
         <article class="day-ops-card food-card">
           <a class="food-photo" href="${imageSearch(item.query)}">
@@ -4965,17 +5051,19 @@
               <span class="food-area">${item.area}</span>
             </div>
             <h4>${item.name}</h4>
-            <div class="food-swot">
-              <div><strong>S</strong><span>${item.s}</span></div>
-              <div><strong>W</strong><span>${item.w}</span></div>
-              <div><strong>O</strong><span>${item.o}</span></div>
-              <div><strong>T</strong><span>${item.t}</span></div>
+            <div class="guide-recommendation">
+              <span>${guide.label}</span>
+              <strong>${guide.recommendation}</strong>
+            </div>
+            <div class="guide-detail-list">
+              <div><strong>이럴 때</strong><span>${guide.when}</span></div>
+              <div><strong>가기 전 확인</strong><span>${guide.check}</span></div>
             </div>
             <p>${item.source}</p>
             ${signal ? `<div class="food-public-rating"><strong>${signal.verdict}</strong>${signal.text}</div>` : ""}
             <div class="food-actions">
-              <a class="mini-link" href="${googleMapSearch(item.query)}">지도·영업시간</a>
-              <a class="mini-link" href="${bookingSearch(item)}">예약/공식</a>
+              <a class="mini-link" href="${googleMapSearch(item.query)}">지도·영업 확인</a>
+              <a class="mini-link" href="${bookingSearch(item)}">예약·공식 보기</a>
             </div>
           </div>
         </article>
@@ -5117,15 +5205,7 @@
     }
 
     function poiDecisionMeta(poi) {
-      const base = { good: 4.7, blue: 4.3, warn: 3.9, red: 3.7 }[poi.tag] || 4.1;
       const area = poi.area.toLowerCase();
-      const name = poi.name.toLowerCase();
-      let score = base;
-      if (area.includes("rocks") || area.includes("circular") || area.includes("opera")) score += 0.1;
-      if (name.includes("city extra") || name.includes("sea life") || name.includes("australian museum")) score += 0.1;
-      if (poi.t.includes("예약") || poi.w.includes("고가") || poi.w.includes("비싸")) score -= 0.1;
-      score = Math.max(3.5, Math.min(4.9, score));
-
       const routeFit =
         area.includes("rocks") || area.includes("circular") || area.includes("opera") ? "상" :
         area.includes("cbd") || area.includes("qvb") || area.includes("darling") || area.includes("mosman") ? "중상" :
@@ -5135,15 +5215,12 @@
         poi.t.includes("예약") || poi.w.includes("예약") || poi.t.includes("마감") ? "예약" :
         poi.w.includes("대기") || poi.t.includes("혼잡") || poi.t.includes("대기") ? "대기" : "보통";
 
-      const scoreTone = score >= 4.6 ? "good" : score >= 4.2 ? "blue" : score >= 3.9 ? "warn" : "red";
       const routeTone = routeFit === "상" || routeFit === "중상" ? "good" : routeFit === "선택" ? "blue" : "warn";
       const bookingTone = bookingRisk === "예약" ? "red" : bookingRisk === "대기" ? "warn" : "good";
 
       return {
-        score: score.toFixed(1),
         routeFit,
         bookingRisk,
-        scoreTone,
         routeTone,
         bookingTone
       };
@@ -5154,6 +5231,7 @@
         const hero = poiHero(poi);
         const meta = poiDecisionMeta(poi);
         const signal = venueSignals[poi.rank - 1] || { text: "공개 평점 확인 필요", verdict: "확인 필요" };
+        const guide = familyGuideCopy(poi);
         return `
           <article class="poi-card">
             <a class="poi-photo" href="${imageSearch(poi.query)}">
@@ -5167,17 +5245,18 @@
                 <span class="poi-area">${poi.area}</span>
               </div>
               <h3>${poi.name}</h3>
-              <div class="poi-rating" aria-label="가족 판단 기준">
+              <div class="poi-rating" aria-label="가이드 추천 참고 정보">
                 <span class="${poi.tag}"><strong>${signal.verdict}</strong><em>${signal.text}</em></span>
-                <span class="${meta.scoreTone}"><strong>${meta.score}/5</strong><em>가족판단점수</em></span>
                 <span class="${meta.routeTone}"><strong>${meta.routeFit}</strong><em>동선적합</em></span>
                 <span class="${meta.bookingTone}"><strong>${meta.bookingRisk}</strong><em>예약/대기</em></span>
               </div>
-              <div class="poi-swot">
-                <div><strong>S</strong><span>${poi.s}</span></div>
-                <div><strong>W</strong><span>${poi.w}</span></div>
-                <div><strong>O</strong><span>${poi.o}</span></div>
-                <div><strong>T</strong><span>${poi.t}</span></div>
+              <div class="guide-recommendation">
+                <span>${guide.label}</span>
+                <strong>${guide.recommendation}</strong>
+              </div>
+              <div class="guide-detail-list">
+                <div><strong>이럴 때</strong><span>${guide.when}</span></div>
+                <div><strong>가기 전 확인</strong><span>${guide.check}</span></div>
               </div>
               <p class="poi-source">${poi.source}</p>
               <div class="poi-actions">
@@ -5397,7 +5476,7 @@
         return {
           kind: poi.kind,
           title: `#${poi.rank} ${poi.name}`,
-          subtitle: `${poi.area} · ${signal.verdict} · ${meta.score}/5`,
+          subtitle: `${poi.area} · ${signal.verdict} · 동선 ${meta.routeFit}`,
           body: [signal.text, poi.s, poi.w, poi.o, poi.t, poi.source, meta.routeFit, meta.bookingRisk].join(" "),
           url: googleMapSearch(poi.query)
         };
