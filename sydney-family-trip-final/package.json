@@ -1,0 +1,8 @@
+{
+  "name": "sydney-family-trip-assistant",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test assistant-api.test.mjs"
+  }
+}

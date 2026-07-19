@@ -2208,7 +2208,15 @@
       pointer-events: none;
     }
 
+    .poi-gallery-provenance {
+      display: flex;
+      min-width: 0;
+      align-items: center;
+      gap: 5px;
+    }
+
     .poi-gallery .poi-photo-label,
+    .poi-photo-source,
     .poi-gallery-count {
       position: static;
       min-width: 0;
@@ -2219,6 +2227,23 @@
       font-size: 10px;
       font-weight: 900;
       line-height: 1.3;
+    }
+
+    .poi-photo-source {
+      flex: 0 1 auto;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(14, 111, 115, 0.9);
+      text-decoration: none;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      pointer-events: auto;
+    }
+
+    .poi-photo-source:hover,
+    .poi-photo-source:focus-visible {
+      background: #0a5558;
+      text-decoration: underline;
     }
 
     .poi-gallery-count { flex: 0 0 auto; }
@@ -4015,9 +4040,9 @@
       }
 
       .ask-dock:not(.is-open) .ask-fab {
-        width: 52px;
-        padding: 0;
-        font-size: 0;
+        width: auto;
+        padding: 0 14px;
+        font-size: 12px;
       }
 
       .ask-dock.is-map-obscured:not(.is-open) .ask-fab {
@@ -4027,8 +4052,9 @@
       }
 
       .ask-dock:not(.is-open) .ask-fab::before {
-        content: "⌕";
-        font-size: 25px;
+        content: "✦";
+        margin-right: 6px;
+        font-size: 15px;
         line-height: 1;
       }
 
@@ -5170,6 +5196,7 @@
       <div class="notice">
         각 카드에서 어떤 곳인지, 여행 중 운영시간, 9인 가족 예약 원칙을 먼저 읽을 수 있습니다.
         사진은 카드 안에서 10장씩 넘겨보고, 길찾기와 실제 예약을 실행할 때만 지도·공식 사이트를 여세요.
+        상위 후보는 공식 사진을 우선했고, 나머지는 사진 위에 ‘공식 사진·사진 출처·이미지 검색’을 구분해 표시했습니다.
         운영정보는 2026.07.19에 공식 페이지 중심으로 다시 확인했고, 문을 닫았거나 아이가 갈 수 없는 곳은 현재 운영 중인 가족 후보로 교체했습니다.
       </div>
       <div class="places-map-card" id="tripPlacesMap" aria-labelledby="placesMapTitle">
@@ -5297,16 +5324,16 @@
   </main>
 
   <div class="ask-dock" role="region" aria-label="무엇이든 물어보세요">
-    <button class="ask-fab" id="askDockToggle" type="button" aria-expanded="false" aria-controls="askPanel">여행 검색</button>
+    <button class="ask-fab" id="askDockToggle" type="button" aria-expanded="false" aria-controls="askPanel">GPT·Claude 검색</button>
     <div class="ask-panel" id="askPanel">
       <div class="ask-answer" id="askAnswer" aria-live="polite" hidden></div>
       <form class="ask-form" id="askForm">
         <div class="ask-mode" role="radiogroup" aria-label="검색 방식">
-          <label><input type="radio" name="askMode" value="page" checked>내부</label>
-          <label><input type="radio" name="askMode" value="bridge">AI</label>
+          <label><input type="radio" name="askMode" value="page" checked>여행 데이터</label>
+          <label><input type="radio" name="askMode" value="bridge">GPT·Claude</label>
         </div>
         <p class="ask-privacy" id="askPrivacy" hidden>
-          외부 AI 모드는 질문과 관련 페이지 근거를 연결된 서버 브리지로 보냅니다. 결과는 이 기기의 여행 Q&A 기록에도 저장됩니다.
+          질문과 관련 여행 근거만 보안 서버로 보내 GPT와 Claude가 최신 웹 정보를 함께 확인합니다. 연결이 안 되면 이 페이지의 여행 데이터로 즉시 답합니다.
         </p>
         <div class="ask-suggestions" aria-label="가족 여행 빠른 질문">
           <button class="ask-suggestion" type="button" data-question="오늘 비 오면 부모님과 아이들 데리고 어디 가는 게 제일 안전해?">비 오는 날 대안</button>
@@ -6819,17 +6846,147 @@
       { query: "night", label: "저녁 풍경" }
     ];
 
+    function officialGallery(sourceUrl, images) {
+      return images.map((src, index) => ({
+        src,
+        label: `공식 사진 ${index + 1}`,
+        sourceUrl,
+        sourceLabel: "공식 원본"
+      }));
+    }
+
+    const poiCuratedGalleries = new Map([
+      [1, officialGallery("https://www.bennelong.com.au/", [
+        "https://www.bennelong.com.au/wp-content/uploads/2024/08/ben-web5.jpg",
+        "https://www.bennelong.com.au/wp-content/uploads/2019/02/Events-Bennelong-Home.jpg",
+        "https://www.bennelong.com.au/wp-content/uploads/2023/02/Bennelong-Homepage-Weddings.jpg",
+        "https://www.bennelong.com.au/wp-content/uploads/2026/05/Ad-Hoc-Resizing-Other-13-1024x683.jpg",
+        "https://www.bennelong.com.au/wp-content/uploads/2026/05/sipthecanvas-newspost-1024x683.jpg",
+        "https://www.bennelong.com.au/wp-content/uploads/2025/08/b45-newspost-1024x683.jpg",
+        "https://www.bennelong.com.au/wp-content/uploads/2025/10/Bennelong_EthanSmart_LRDSC00171-819x1024.jpg",
+        "https://www.bennelong.com.au/wp-content/uploads/2024/10/threeglasses-bennelong-header-1024x683.jpg",
+        "https://www.sydneyoperahouse.com/sites/default/files/collaborodam_assets/bennelong-hero-1600x900.jpg",
+        "https://www.bennelong.com.au/wp-content/uploads/2024/08/Home-Menu.png"
+      ])],
+      [2, officialGallery("https://www.parkhyattsydneydining.com/the-dining-room", [
+        "https://images.squarespace-cdn.com/content/v1/65c5bfa20a759522cabde3f1/4ae2d165-554f-482e-8de3-006889da8102/Park-Hyatt-Sydney-The-Dining-Room-Landscape.jpg",
+        "https://images.squarespace-cdn.com/content/v1/65c5bfa20a759522cabde3f1/c430703b-613e-487a-a160-7677db07615c/TDR+2026+-+Dan+Grill+2.jpg",
+        "https://images.squarespace-cdn.com/content/v1/65c5bfa20a759522cabde3f1/97b4b90f-1798-447e-ac55-b963674af279/The+Dining+Room+-+Black+Sesame+Pavlova.png",
+        "https://images.squarespace-cdn.com/content/v1/65c5bfa20a759522cabde3f1/9d853af0-2849-49f5-93e3-6cbea53c193c/The+Dining+Room+-+Winter+Menu+Snacks+and+Entrees.jpg",
+        "https://images.squarespace-cdn.com/content/v1/65c5bfa20a759522cabde3f1/f22a7541-f704-473b-8592-69aa88ba9ea8/Stills+1_1.1.1+1.jpg",
+        "https://images.squarespace-cdn.com/content/v1/65c5bfa20a759522cabde3f1/5ff15511-d144-4f0c-b580-de030ed2eea2/Untitled+design+%282%29.jpg",
+        "https://images.squarespace-cdn.com/content/v1/65c5bfa20a759522cabde3f1/4c8b518a-3430-4992-b010-e9a355237239/SYDPH-Dan-Parkes-3.jpg",
+        "https://images.squarespace-cdn.com/content/v1/65c5bfa20a759522cabde3f1/5ad25c9e-e1b0-4798-a6ff-38ff974a65c2/Park+Hyatt+Sydney_James+Fuji+and+Brian+Foraging4.jpg",
+        "https://images.squarespace-cdn.com/content/v1/65c5bfa20a759522cabde3f1/cce3f5e9-b6a5-47b4-b890-7d5dc1919682/Park-Hyatt-Sydney-Produce-Shellfish2.jpg",
+        "https://images.squarespace-cdn.com/content/v1/65c5bfa20a759522cabde3f1/2f687012-1c83-482a-b1bc-a626b2d128d5/Park-Hyatt-Sydney-Produce-Beef.jpg"
+      ])],
+      [3, officialGallery("https://ariasydney.com.au/", [
+        "https://ariasydney.com.au/sites/ariasyd/files/2026-07/Aria-home-page.png",
+        "https://ariasydney.com.au/sites/ariasyd/files/2026-07/Aria-home-page-mobile.png"
+      ])],
+      [4, officialGallery("https://cafesydney.com/", [
+        "https://cafesydney.com/wp-content/uploads/2025/01/Cafe-Sydney-Restaurant-1600L-4.jpg",
+        "https://cafesydney.com/wp-content/uploads/2025/01/Cafe-Sydney-Restaurant-1300-x-1300-12.jpg",
+        "https://cafesydney.com/wp-content/uploads/2025/01/Cafe-Sydney-Restaurant-1300-x-1300-8.jpg",
+        "https://cafesydney.com/wp-content/uploads/2025/01/Cafe-Sydney-Restaurant-1300x1300-19-2.jpg",
+        "https://cafesydney.com/wp-content/uploads/2024/11/Cafe-Sydney-Experience-4.jpg"
+      ])],
+      [5, officialGallery("https://6head.com.au/", [
+        "https://6head.com.au/wp-content/uploads/2023/08/domcherry-6326.jpg",
+        "https://6head.com.au/wp-content/uploads/2024/10/Sydney-Perth-World-Class-Steakhouse-Restaurants-Section-Image-768x1154.webp",
+        "https://6head.com.au/wp-content/uploads/2023/10/6head-fallback-1.jpg",
+        "https://6head.com.au/wp-content/uploads/2025/08/SydBay11_0003_6H-Syd-bay-11.jpg",
+        "https://6head.com.au/wp-content/uploads/2023/07/nav-hero-682x1024.jpg"
+      ])],
+      [6, officialGallery("https://operabar.com.au/", [
+        "https://operabar.com.au/wp-content/uploads/sites/27/2025/09/Opera-Bar-Hero-Shot-scaled.jpg",
+        "https://operabar.com.au/wp-content/uploads/sites/27/2025/12/OperaBar_December_StevenWoodburn_75-1400x1867.jpg"
+      ])],
+      [8, officialGallery("https://hunterstreethospitality.com.au/venues/sake/sydney/", [
+        "https://hunterstreethospitality.com.au/wp-content/uploads/2026/06/sake-sydney-gateway.jpg",
+        "https://hunterstreethospitality.com.au/wp-content/uploads/2026/06/Frame-22083-1.jpg",
+        "https://hunterstreethospitality.com.au/wp-content/uploads/2026/06/sake-gallery-1.jpg",
+        "https://hunterstreethospitality.com.au/wp-content/uploads/2026/06/sake-gallery-2.jpg",
+        "https://hunterstreethospitality.com.au/wp-content/uploads/2026/06/sake-gallery-3.jpg",
+        "https://hunterstreethospitality.com.au/wp-content/uploads/2026/06/sake-gallery-4.jpg",
+        "https://hunterstreethospitality.com.au/wp-content/uploads/2026/06/sake-gallery-5.jpg"
+      ])],
+      [9, officialGallery("https://www.theglenmore.com.au/", [
+        "https://cdn.prod.website-files.com/652950e4138fe5d187323a40/6810634e596cbf791773f5de_TheGlenmore_March_StevenWoodburn_42%20(1).jpg",
+        "https://cdn.prod.website-files.com/652950e4138fe5d187323a40/65420762326911a76c8c996f_wis-09446.JPG",
+        "https://cdn.prod.website-files.com/652950e4138fe5d187323a40/6542067064ad9975e2f13f5b_GLENMORE_Autumn_StevenWoodburn_29.jpg",
+        "https://cdn.prod.website-files.com/652950e4138fe5d187323a40/6542084ad2a1d2d098dea0b1_THEGLENMORE_October_StevenWoodburn_76.jpg",
+        "https://cdn.prod.website-files.com/652950e4138fe5d187323a40/653787747cae3740f0243463_rooftopfunctionsa-2%201.png",
+        "https://cdn.prod.website-files.com/652950e4138fe5d187323a40/681063f2b1abcfd4dba26ef3_TheGlenmore_Spring_StevenWoodburn_24%20(4).jpg",
+        "https://cdn.prod.website-files.com/652950e4138fe5d187323a40/653daaeda6c5415661d27ddd_THEGLENMORE_October_StevenWoodburn_94.jpg",
+        "https://cdn.prod.website-files.com/652950e4138fe5d187323a40/653daae782b17d2f9c94ffd9_THEGLENMORE_October_StevenWoodburn_35.jpg",
+        "https://cdn.prod.website-files.com/652950e4138fe5d187323a40/653daacf82b17d2f9c94e91e_THEGLENMORE_October_StevenWoodburn_15.jpg",
+        "https://cdn.prod.website-files.com/652950e4138fe5d187323a40/653daac2e29df46651448e69_20230905-Glenmore-222.JPG"
+      ])],
+      [13, officialGallery("https://sundayco.com/venues/whalebridge/", [
+        "https://sundayco.com/wp-content/uploads/2026/03/04-SUN-Website-Images-WLB-WR1-8.jpg",
+        "https://sundayco.com/wp-content/uploads/2026/03/04-SUN-Website-Images-WLB-WR1-2.jpg",
+        "https://sundayco.com/wp-content/uploads/2026/03/Venue_Whalebridge_3.jpg",
+        "https://sundayco.com/wp-content/uploads/2026/03/Venue_Whalebridge_4.jpg",
+        "https://sundayco.com/wp-content/uploads/2026/03/04-SUN-Website-Images-WLB-WR1-5.jpg",
+        "https://sundayco.com/wp-content/uploads/2026/03/Venue_Whalebridge_6.jpg",
+        "https://sundayco.com/wp-content/uploads/2026/03/Venue_Whalebridge_7.jpg",
+        "https://sundayco.com/wp-content/uploads/2026/03/Whalebridge_June_StevenWoodburn_52.jpg",
+        "https://sundayco.com/wp-content/uploads/2026/03/SundayCo_May_StevenWoodburn_122-scaled.jpg",
+        "https://sundayco.com/wp-content/uploads/2026/03/20220609-IMG_9845.jpg"
+      ])],
+      [15, officialGallery("https://lana.sydney/", [
+        "https://images.squarespace-cdn.com/content/v1/64b5e6e801b5ba675051c9ae/85fcf780-c16c-424d-8478-e7bf4cc99ab8/Restaurant+Sydney+Lana+Hinchcliff+House.png?format=1500w",
+        "https://images.squarespace-cdn.com/content/v1/64b5e6e801b5ba675051c9ae/aa24c3cb-4d66-435f-89d7-7781d53b1a86/First+Frame+Lana+Video.jpg",
+        "https://images.squarespace-cdn.com/content/v1/64b5e6e801b5ba675051c9ae/46ed0c47-3515-4bbe-9dfa-8392ce93198b/080725_Lana_ZiChen_Rev1-23.jpeg",
+        "https://images.squarespace-cdn.com/content/v1/64b5e6e801b5ba675051c9ae/1767b140-3e7d-45eb-9f04-7aae87f9d668/ITALIAN+DINING+WITH+AN+ASIAN+TWIST.jpeg",
+        "https://images.squarespace-cdn.com/content/v1/64b5e6e801b5ba675051c9ae/07c89ed8-9f52-4bd4-b084-2affe6042fb1/Untitled+%28148+x+105+mm%29.png"
+      ])],
+      [17, officialGallery("https://swillhouse.com/venues/restaurant-hubert/", [
+        "https://swillhouse.com/wp-content/uploads/2023/05/Hubert-Lunch-Venue-July-11.jpg",
+        "https://swillhouse.com/wp-content/uploads/2023/07/Hubert-PDR-Botero-420x300.jpg"
+      ])],
+      [18, officialGallery("https://hunterstreethospitality.com.au/venues/rockpool/news-stories/sydney-beststeak/", [
+        "https://hunterstreethospitality.com.au/wp-content/uploads/2025/04/Hero-800G-Rib-Eye-Steak-Sides-18-1-scaled-1.jpg",
+        "https://rockpoolbarandgrill.com.au/wp-content/uploads/2025/02/Rockpool-Bar-1-min-768x512.jpg"
+      ])]
+    ]);
+
+    function photoSourceLabel(url) {
+      try {
+        const hostname = new URL(url).hostname.replace(/^www\./, "");
+        if (hostname.includes("wikimedia.org")) return "Wikimedia Commons";
+        if (hostname.includes("unsplash.com")) return "Unsplash";
+        if (hostname.includes("bing.net")) return "이미지 검색";
+        return `${hostname} 사진`;
+      } catch (error) {
+        return "사진 출처";
+      }
+    }
+
     function poiGalleryPhoto(poi, index) {
+      const fallback = areaFallbackPhoto(poi);
+      const curated = poiCuratedGalleries.get(poi.rank) || [];
+      if (curated[index]) {
+        return { ...curated[index], fallback: fallback.src };
+      }
       if (index === 0) {
         const hero = poiHero(poi);
-        return { src: hero.src, fallback: hero.fallback, label: "대표 사진" };
+        return {
+          src: hero.src,
+          fallback: hero.fallback,
+          label: "대표 사진",
+          sourceUrl: hero.src,
+          sourceLabel: photoSourceLabel(hero.src)
+        };
       }
       const variant = poiGalleryVariants[index - 1] || poiGalleryVariants[0];
-      const fallback = areaFallbackPhoto(poi);
       return {
         src: venueThumbnail(`${poi.query} ${variant.query}`),
         fallback: fallback.src,
-        label: variant.label
+        label: variant.label,
+        sourceUrl: imageSearch(`${poi.query} ${variant.query}`),
+        sourceLabel: "이미지 검색"
       };
     }
 
@@ -6878,7 +7035,10 @@
             <button class="poi-gallery-nav poi-gallery-prev" type="button" aria-label="이전 사진">‹</button>
             <button class="poi-gallery-nav poi-gallery-next" type="button" aria-label="다음 사진">›</button>
             <div class="poi-gallery-meta">
-              <span class="poi-photo-label">${firstPhoto.label}</span>
+              <div class="poi-gallery-provenance">
+                <span class="poi-photo-label">${escapeGuideHtml(firstPhoto.label)}</span>
+                <a class="poi-photo-source" href="${escapeGuideHtml(firstPhoto.sourceUrl || firstPhoto.src)}">${escapeGuideHtml(firstPhoto.sourceLabel || "사진 출처")} ↗</a>
+              </div>
               <span class="poi-gallery-count" aria-live="polite">1 / 10</span>
             </div>
           </div>
@@ -6982,7 +7142,8 @@
       const image = gallery?.querySelector("img");
       const count = gallery?.querySelector(".poi-gallery-count");
       const label = gallery?.querySelector(".poi-photo-label");
-      if (!poi || !image || !count || !label) return;
+      const source = gallery?.querySelector(".poi-photo-source");
+      if (!poi || !image || !count || !label || !source) return;
       const currentIndex = Number(gallery.dataset.index || 0);
       const nextIndex = (currentIndex + delta + 10) % 10;
       const photo = poiGalleryPhoto(poi, nextIndex);
@@ -6991,6 +7152,8 @@
       image.dataset.fallback = photo.fallback;
       image.alt = `${findVenueGuide(poi)?.name || poi.name} ${photo.label} 사진`;
       label.textContent = photo.label;
+      source.href = photo.sourceUrl || photo.src;
+      source.textContent = `${photo.sourceLabel || "사진 출처"} ↗`;
       count.textContent = `${nextIndex + 1} / 10`;
     }
 
@@ -7001,6 +7164,11 @@
         image.addEventListener("error", () => {
           const fallback = image.dataset.fallback;
           if (fallback && image.src !== fallback) image.src = fallback;
+          const source = image.closest(".poi-gallery")?.querySelector(".poi-photo-source");
+          if (source && fallback) {
+            source.href = fallback;
+            source.textContent = `${photoSourceLabel(fallback)} ↗`;
+          }
         }, { once: true });
       });
       grid.querySelectorAll(".poi-gallery").forEach((gallery) => {
@@ -7135,40 +7303,33 @@
       renderPoiCards();
     }
 
+    const ASSISTANT_PRODUCTION_BRIDGE = "https://sydney-family-trip-assistant.vercel.app/api/ask";
     const ASSISTANT_LOCAL_BRIDGE = "http://127.0.0.1:8788/ask";
-    const ASSISTANT_HANDOFF_MS = 150000;
-    const ASSISTANT_BRIDGE_HARD_TIMEOUT_MS = 630000;
+    const ASSISTANT_HANDOFF_MS = 50000;
+    const ASSISTANT_BRIDGE_HARD_TIMEOUT_MS = 55000;
     const ASSISTANT_BOARD_STORAGE_KEY = "sydney-family-trip-qna-board-v1";
     const ASSISTANT_BOARD_MAX_ITEMS = 50;
     const ASSISTANT_BRIDGE_STATUS = [
-      "Codex와 Claude에 같은 질문을 보내고 있습니다.",
+      "GPT와 Claude에 같은 질문을 보내고 있습니다.",
       "페이지 내부 근거와 웹 검색 결과를 함께 맞춰보고 있습니다.",
       "공식 관광지, 지도, 예약 사이트 출처를 우선 확인합니다.",
       "두 모델 답변과 출처를 병합할 준비를 하고 있습니다.",
       "답변은 Q&A 게시판에도 함께 저장됩니다."
     ];
 
-    // Keep model credentials off GitHub Pages; call only a server-side bridge URL when external mode is selected.
+    // Keep model credentials off GitHub Pages. Production always uses the fixed HTTPS bridge;
+    // the local bridge is available only when this page itself runs on localhost.
     function assistantConfiguredEndpoint() {
       try {
         const params = new URLSearchParams(window.location.search);
-        const queryEndpoint = params.get("assistantEndpoint");
         const assistantMode = params.get("assistant");
-        if (queryEndpoint) return queryEndpoint.trim();
-        if (["local", "codex", "claude"].includes(String(assistantMode || "").toLowerCase())) {
+        const isLocalPage = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+        if (isLocalPage && String(assistantMode || "").toLowerCase() === "local") {
           return ASSISTANT_LOCAL_BRIDGE;
         }
-        return String(window.SYDNEY_ASSISTANT_ENDPOINT || window.localStorage.getItem("SYDNEY_ASSISTANT_ENDPOINT") || "").trim();
+        return ASSISTANT_PRODUCTION_BRIDGE;
       } catch (error) {
-        return "";
-      }
-    }
-
-    function assistantUrlMode() {
-      try {
-        return String(new URLSearchParams(window.location.search).get("assistant") || "").toLowerCase();
-      } catch (error) {
-        return "";
+        return ASSISTANT_PRODUCTION_BRIDGE;
       }
     }
 
@@ -7411,7 +7572,7 @@
 
     function assistantBoardAnswerText(item) {
       const answer = String(item.answer || "").trim();
-      if (item.status === "pending" && (!answer || answer.includes("2분 30초"))) {
+      if (item.status === "pending" && (!answer || answer.includes("2분 30초") || answer.includes("50초"))) {
         return assistantPendingBoardText();
       }
       return answer || assistantPendingBoardText();
@@ -7468,7 +7629,7 @@
         const time = document.createElement("span");
         time.textContent = formatAssistantBoardTime(item.updatedAt || item.createdAt);
         const provider = document.createElement("span");
-        provider.textContent = item.provider || "Codex/Claude";
+        provider.textContent = item.provider || "GPT·Claude";
         meta.append(status, time, provider);
 
         const question = document.createElement("h3");
@@ -7555,7 +7716,7 @@
         id,
         status: "ready",
         answer,
-        provider: result.provider || "Codex/Claude",
+        provider: result.provider || "GPT·Claude",
         sources: compactAssistantSources(result.sources || []),
         matches: compactAssistantMatches(matches),
         elapsedMs: result.elapsedMs || Date.now() - startedAt,
@@ -7671,9 +7832,9 @@
             : "질문과 가장 가까운 내부 근거를 찾고 있습니다."
         },
         {
-          title: hasBridge ? "Codex/Claude 검색" : "내부 검색 결과로 답변 준비",
+          title: hasBridge ? "GPT·Claude 최신 검색" : "내부 검색 결과로 답변 준비",
           detail: hasBridge
-            ? "Codex와 Claude가 웹 출처와 페이지 근거를 함께 확인합니다."
+            ? "GPT와 Claude가 공식 웹 출처와 페이지 근거를 함께 확인합니다."
             : "연결된 브리지가 없어 페이지 데이터만으로 정리합니다."
         },
         {
@@ -7802,7 +7963,7 @@
           body: JSON.stringify({
             page: "sydney-family-trip-final",
             question,
-            providers: ["codex", "claude"],
+            providers: ["gpt", "claude"],
             requireSources: true,
             sourceFormat: "Return JSON: { answer: string, provider: string, sources: [{ title: string, url: string, snippet: string, provider?: string }] }",
             context: matches.map((item) => ({
@@ -7830,8 +7991,8 @@
       answer.textContent = "";
       answer.hidden = false;
       appendAssistantClose(answer);
-      appendAssistantParagraph(answer, "2분 30초를 넘겨 여기서 대기창은 마칩니다. 질문은 이미 맨 위 Q&A 게시판에 올려두었고, 제가 답변하면 같은 항목에 준비해놓겠습니다.");
-      appendAssistantWarning(answer, "브리지 확인은 백그라운드에서 계속 진행 중입니다.");
+      appendAssistantParagraph(answer, "실시간 검색이 50초를 넘겨 페이지 내부 여행 가이드 답변으로 전환했습니다. 질문은 맨 위 Q&A 기록에 남겨두었습니다.");
+      appendAssistantWarning(answer, "느린 외부 검색은 백그라운드에서 계속 확인합니다.");
       if (matches.length) {
         appendAssistantSectionTitle(answer, "우선 잡아둔 페이지 내부 근거");
         appendAssistantResults(answer, matches.slice(0, 3));
@@ -7847,18 +8008,18 @@
     function localAssistantChecklist(question) {
       const text = normalizeAssistantText(question);
       if (/ihg|trip|호텔|조식|예약|취소|회원/.test(text)) {
-        return "출발 전 확인: 같은 룸타입, 같은 인원, 조식 포함 여부, 무료취소 시한, 세금/서비스료 포함 총액을 한 화면에서 맞춰본 뒤 IHG 공식 회원가를 우선합니다.";
+        return "가이드 한마디: 호텔 안에서 식사와 휴식을 해결하면 부모님 이동이 사라집니다. 전망이나 조식이 여행 경험에 실제로 보탬이 되는 조건만 남기고, 같은 객실의 공식 회원가를 기준으로 고르세요.";
       }
       if (/비|우천|rain|실내/.test(text)) {
-        return "출발 전 확인: 당일 영업시간, 특별전/입장권, 택시 승하차 지점, 유모차·부모님 휴식 동선을 먼저 봅니다.";
+        return "가이드 한마디: 시드니의 비 오는 날은 미술관·박물관의 큰 실내 공간과 항구가 보이는 카페를 묶으면 ‘대체 일정’ 느낌이 적습니다. 한 곳을 오래 보기보다 좋은 점심과 짧은 관람을 연결하세요.";
       }
       if (/공항|짐|체크아웃|마지막/.test(text)) {
-        return "출발 전 확인: 호텔 짐 보관, 공항 이동 예상 시간, 택시 2대 분리 여부, 마지막 식사 장소의 대기 시간을 확인합니다.";
+        return "가이드 한마디: 마지막 날은 관광지를 하나 더 채우는 날이 아니라 가족 모두 기분 좋게 여행을 닫는 날입니다. 호텔에 짐을 맡기고 가까운 실내 명소와 편한 점심만 남기세요.";
       }
       if (/taronga|동물원|zoo|피곤|아이/.test(text)) {
-        return "출발 전 확인: 페리/택시 이동 시간, 아이 체력, 비 예보, 중간 철수 시 돌아올 교통편을 같이 잡습니다.";
+        return "가이드 한마디: Taronga의 매력은 동물만이 아니라 언덕 사이로 계속 열리는 시드니 항구 전망입니다. 오전 핵심 구역을 보고 숙소에서 쉬는 리듬이 아이와 부모님 모두에게 가장 기억 좋게 남습니다.";
       }
-      return "출발 전 확인: 영업시간, 예약 가능 여부, 택시 이동 시간, 아이와 부모님이 앉아 쉴 수 있는지를 당일 오전에 다시 확인합니다.";
+      return "가이드 한마디: 이 장소는 체크리스트를 채우기보다 시드니에서만 가능한 풍경·공간·음식을 가족이 함께 느끼는 데 의미가 있습니다. 하루의 대표 장면 하나로 두고 앞뒤 일정은 가볍게 잡으세요.";
     }
 
     function assistantObjectParticle(value) {
@@ -7875,7 +8036,7 @@
       const top = matches[0];
       const alternatives = matches.slice(1, 4).map((item) => item.title);
       const intro = reason === "bridge-error"
-        ? "Codex/Claude 연결이 끊겨도 페이지 내부 데이터로 계속 정리합니다."
+        ? "GPT·Claude 실시간 검색이 연결되지 않아 페이지 내부 여행 데이터로 바로 정리합니다."
         : "페이지 내부 데이터 기준으로 정리합니다.";
       const decision = `결론: 지금 질문에는 ${top.title}${assistantObjectParticle(top.title)} 1순위로 봅니다. ${top.subtitle ? `${top.subtitle} 맥락과 가장 가깝습니다.` : ""}`.trim();
       const reasonText = `이유: ${assistantSnippet(top.body, 220)}`;
@@ -7966,7 +8127,7 @@
       if (result.answer) {
         appendAssistantParagraph(answer, result.answer);
       } else if (mode === "no-bridge") {
-        appendAssistantParagraph(answer, "Codex/Claude 검색 서버가 아직 연결되어 있지 않아 지금은 페이지 내부 데이터만 보여드립니다.");
+        appendAssistantParagraph(answer, "GPT·Claude 검색을 사용할 수 없어 지금은 페이지 내부 여행 데이터만 보여드립니다.");
       } else if (matches.length) {
         appendAssistantParagraph(answer, `이 페이지 기준으로는 ${matches[0].title} 쪽이 가장 가깝습니다.`);
       } else {
@@ -7974,7 +8135,7 @@
       }
 
       if (result.elapsedMs) {
-        appendAssistantWarning(answer, `Codex/Claude 응답 생성 시간: ${formatAssistantDuration(result.elapsedMs)}`);
+        appendAssistantWarning(answer, `GPT·Claude 응답 생성 시간: ${formatAssistantDuration(result.elapsedMs)}`);
       }
 
       if (Array.isArray(result.errors) && result.errors.length) {
@@ -7982,7 +8143,7 @@
       }
 
       if (result.sources.length) {
-        appendAssistantSectionTitle(answer, `${result.provider || "Codex/Claude"} 검색 출처`);
+        appendAssistantSectionTitle(answer, `${result.provider || "GPT·Claude"} 검색 출처`);
         appendAssistantResults(answer, result.sources.map((source) => ({
           title: source.title,
           url: source.url,
@@ -8031,7 +8192,7 @@
           question,
           matches,
           startedAt,
-          endpoint ? "Codex/Claude 점검" : "페이지 내부 검색"
+          endpoint ? "GPT·Claude 검색" : "페이지 내부 검색"
         );
         button.disabled = true;
         button.textContent = mode === "bridge" ? "확인 중" : "검색 중";
@@ -8119,7 +8280,7 @@
       const shouldOpen = isMobile && Boolean(open);
       dock.classList.toggle("is-open", shouldOpen);
       toggle.setAttribute("aria-expanded", String(shouldOpen));
-      toggle.textContent = shouldOpen ? "닫기" : "여행 검색";
+      toggle.textContent = shouldOpen ? "닫기" : "GPT·Claude 검색";
       updateMobileAssistantDockOcclusion();
       if (shouldOpen && options.focus) {
         window.setTimeout(() => document.getElementById("askInput")?.focus(), 120);
