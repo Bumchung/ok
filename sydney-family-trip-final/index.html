@@ -139,6 +139,10 @@
       margin-top: 28px;
     }
 
+    .hero-metrics.trip-mode-metrics {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
     .hero-metric {
       min-height: 110px;
       border: 1px solid rgba(255, 255, 255, 0.24);
@@ -2188,6 +2192,120 @@
       opacity: 0.62;
     }
 
+    .js .page > .cost-section {
+      display: none;
+    }
+
+    #askBoardSection[data-empty="true"] {
+      display: none;
+    }
+
+    .trip-appendix {
+      margin-top: 56px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .trip-appendix details {
+      overflow: hidden;
+      border: 1px solid #d7dde5;
+      border-radius: 18px;
+      background: #f7f8fa;
+      box-shadow: 0 12px 34px rgba(19, 31, 48, 0.08);
+    }
+
+    .trip-appendix summary {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 14px;
+      min-height: 96px;
+      padding: 17px 20px;
+      color: var(--ink);
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .trip-appendix summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .trip-appendix summary:focus-visible {
+      outline: 3px solid rgba(14, 111, 115, 0.3);
+      outline-offset: -3px;
+    }
+
+    .appendix-kicker {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      border: 1px solid #c9d1da;
+      border-radius: 999px;
+      background: #fff;
+      color: #56616d;
+      padding: 0 11px;
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+    }
+
+    .appendix-copy {
+      min-width: 0;
+    }
+
+    .appendix-copy strong,
+    .appendix-copy small {
+      display: block;
+    }
+
+    .appendix-copy strong {
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .appendix-copy small {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 750;
+      line-height: 1.45;
+    }
+
+    .appendix-state {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 78px;
+      min-height: 42px;
+      border-radius: 999px;
+      background: #e9edf1;
+      color: #4f5b67;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .appendix-state::after {
+      content: "열기 ↓";
+    }
+
+    .trip-appendix details[open] .appendix-state::after {
+      content: "접기 ↑";
+    }
+
+    .trip-appendix-body {
+      display: grid;
+      gap: 44px;
+      border-top: 1px solid #d7dde5;
+      background: #fff;
+      padding: 36px 20px 28px;
+    }
+
+    .trip-appendix-body > .cost-section {
+      display: block;
+      margin-top: 0;
+    }
+
     @keyframes askSpin {
       to { transform: rotate(360deg); }
     }
@@ -2823,6 +2941,46 @@
         outline-offset: 2px;
       }
 
+      .trip-appendix {
+        margin-top: 36px;
+        padding-top: 14px;
+      }
+
+      .trip-appendix details {
+        border-radius: 14px;
+      }
+
+      .trip-appendix summary {
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 10px 12px;
+        min-height: 92px;
+        padding: 14px;
+      }
+
+      .appendix-kicker {
+        align-self: start;
+      }
+
+      .appendix-copy strong {
+        font-size: 18px;
+      }
+
+      .appendix-state {
+        grid-column: 2;
+        justify-self: start;
+        min-width: 86px;
+        min-height: 44px;
+      }
+
+      .trip-appendix-body {
+        gap: 32px;
+        padding: 26px 12px 18px;
+      }
+
+      .trip-appendix-body > .cost-section {
+        margin-top: 0;
+      }
+
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -2841,32 +2999,27 @@
   <a class="skip-link" href="#tripCommand">여행 허브로 건너뛰기</a>
   <header class="hero">
     <div class="hero-inner">
-      <p class="eyebrow">검증 기준: 2026.05.16~17 KST · Trip.com 실측가 + BOM 장기 기후 평균</p>
+      <p class="eyebrow">여행 모드 · 2026.07.23—08.01 · Australia/Sydney</p>
       <h1>시드니 가족여행</h1>
       <p class="hero-copy">
-        핵심 결정은 첫날부터 Park Hyatt다. 아버지·어머니는 7/23 도착 즉시 Park Hyatt로 직행하고,
-        정희범팀 3명(나·아내·태리)은 7/23 오후·저녁 대한항공 등으로 출발해 7/24 Park Hyatt에서 합류하는 구조로 다시 잡았다.
+        부모님은 7/23 Park Hyatt로 직행하고, 정희범팀은 7/24, 정은아팀은 7/25 합류한다.
+        항구에서 시작해 Taronga를 거쳐 CBD로 돌아오는 흐름으로 이동 강도를 낮췄다.
       </p>
-      <div class="hero-metrics">
+      <div class="hero-metrics trip-mode-metrics">
         <div class="hero-metric">
-          <span>항공권 기준가</span>
-          <strong>약 2,661만원</strong>
-          <span>기존 OZ 기준. 정희범팀 KE 후보 재견적 필요</span>
+          <span>여행 기간</span>
+          <strong>7월 23일—8월 1일</strong>
+          <span>시드니 겨울 · 현지 시각 기준</span>
         </div>
         <div class="hero-metric">
-          <span>호텔 결정안</span>
-          <strong>약 2,093만원</strong>
-          <span>누나네 7/31 금요일 투숙 확정 포함</span>
+          <span>가족 구성</span>
+          <strong>3개 팀 · 최대 9명</strong>
+          <span>부모님, 정희범팀, 정은아팀 순차 합류</span>
         </div>
         <div class="hero-metric">
-          <span>호텔 안정안</span>
-          <strong>약 2,409만원</strong>
-          <span>2방 안정 + 금요일 투숙 확정</span>
-        </div>
-        <div class="hero-metric">
-          <span>현지비 포함 예상</span>
-          <strong>약 6,554~6,870만원+</strong>
-          <span>KE 재견적 전, 식사·차량·투어 포함</span>
+          <span>여행 리듬</span>
+          <strong>항구 → Taronga → CBD</strong>
+          <span>Park Hyatt에서 시작해 이동 강도를 낮춘 일정</span>
         </div>
       </div>
     </div>
@@ -2896,7 +3049,7 @@
       <p class="trip-hub-freshness">자료 확인 2026.05.17 · 운영시간·날씨·항공 상태는 출발 직전 다시 확인</p>
       <div class="trip-hub-actions">
         <a href="#tripItinerary">오늘 일정</a>
-        <a href="#tripPrep">준비 확인</a>
+        <a href="#tripEntry">입국 준비</a>
         <button type="button" data-open-assistant>여행 검색</button>
       </div>
     </div>
@@ -2916,20 +3069,27 @@
       </div>
     </section>
 
-    <section id="tripDecision">
-      <h2>현재 결론</h2>
+    <section id="tripFlightOps">
+      <h2>가족 합류·숙소 이동</h2>
       <p class="lead">
-        Coogee 첫 2박안은 접고, 아버지·어머니는 첫날부터 Park Hyatt로 직행한다.
-        정희범팀 3명(나·아내·태리)은 7/23 오후·저녁 대한항공 등으로 출발해 7/24 도착 후 Park Hyatt에서 합류하는 안이 기준이다.
-        이후 토·일 Park Hyatt, 월·화 Taronga, 수·목 InterContinental Sydney로 이어간다.
+        부모님은 7/23 Park Hyatt로 직행하고, 정희범팀은 7/24, 정은아팀은 7/25 합류한다.
+        합류가 끝난 뒤 Park Hyatt, Taronga, InterContinental 순서로 거점을 옮긴다.
       </p>
-      <div class="notice">
-        항공 총액은 아직 기존 OZ 기준 예산이다. 정희범팀 3명(나·아내·태리)은 대한항공 등 7/23 오후·저녁편 가격과 수하물·좌석·환불조건을 재견적한 뒤 잠가야 한다.
-        누나네는 2026.07.31 금요일 InterContinental Sydney에 투숙하고 2026.08.01 토요일 나가는 것으로 확정 반영했다.
+      <div class="ops-grid" style="margin-top:16px;">
+        <article class="ops-card">
+          <span>팀별 합류</span>
+          <h3>7/23 부모님 → 7/24 정희범팀 → 7/25 정은아팀</h3>
+          <p>부모님은 OZ601, 정은아팀은 7/25 OZ601 기준이다. 정희범팀은 7/23 오후·저녁 출발편으로 7/24 합류한다. 부모님·정희범팀은 7/31, 정은아팀은 8/1 출발을 다시 확인한다.</p>
+        </article>
+        <article class="ops-card">
+          <span>숙소 이동</span>
+          <h3>Park Hyatt → Taronga → InterContinental</h3>
+          <p>Park Hyatt 7/23~27, Taronga 7/27~29, InterContinental 7/29~31 흐름이다. 이동일에는 짐 보관·체크인·점심을 먼저 고정하고 관광지는 하나만 둔다.</p>
+        </article>
       </div>
     </section>
 
-    <section id="tripSummary">
+    <section class="cost-section" id="tripSummary">
       <h2>가족 회의용 결정 요약</h2>
       <div class="decision-grid">
         <article class="decision-card primary">
@@ -2955,7 +3115,7 @@
       </div>
     </section>
 
-    <section id="tripBudget">
+    <section class="cost-section" id="tripBudget">
       <h2>숙소 조합 계산기</h2>
       <div class="calculator">
         <aside class="controls" aria-label="숙소 계산 조건">
@@ -3035,7 +3195,7 @@
       </div>
     </section>
 
-    <section id="tripHotels">
+    <section class="cost-section" id="tripHotels">
       <h2>4개 숙소 카드</h2>
       <div class="hotel-grid">
         <article class="hotel-card">
@@ -3099,18 +3259,18 @@
     </section>
 
     <section id="tripPrep">
-      <h2>예약 전 객실·가격 체크리스트</h2>
+      <h2>숙박·이동 운영 체크</h2>
       <p class="lead">
-        계산기는 후보를 좁히는 도구이고, 실제 예약 전에는 아래 항목을 호텔 공식·OTA 양쪽에서 다시 잠가야 한다.
+        가족이 실제로 움직일 때 필요한 객실 조건과 이동일 운영만 빠르게 확인한다.
       </p>
       <div class="check-grid" style="margin-top:16px;">
         <article class="check-card">
-          <span>IHG 계열</span>
-          <h3>공식 직접 예약 우선</h3>
+          <span>확정 거점</span>
+          <h3>Park → Taronga → InterContinental</h3>
           <ul class="check-list">
-            <li>InterContinental·Holiday Inn 등은 IHG 공식 회원가 먼저 조회</li>
-            <li>Trip.com은 같은 룸타입·조식·무료취소·세금 포함일 때만 보조 비교</li>
-            <li>가격이 비슷하면 포인트·숙박실적·예약지원 때문에 IHG 직접 예약</li>
+            <li>7/23~27 Park Hyatt Sydney</li>
+            <li>7/27~29 Wildlife Retreat at Taronga</li>
+            <li>7/29~31 InterContinental Sydney</li>
           </ul>
         </article>
         <article class="check-card">
@@ -3132,21 +3292,43 @@
           </ul>
         </article>
         <article class="check-card">
+          <span>이동일</span>
+          <h3>이동일 운영</h3>
+          <ul class="check-list">
+            <li>얼리 체크인·레이트 체크아웃 요청</li>
+            <li>짐 보관 가능 시간</li>
+            <li>9명+캐리어 전용차 크기 확인</li>
+          </ul>
+        </article>
+      </div>
+      <div class="notice warn">
+        7/27과 7/29는 관광일이 아니라 이동일로 운영한다. 체크아웃 전 짐 수량과 차량 크기, 다음 숙소 짐 보관,
+        아이·부모님이 앉아 기다릴 장소를 먼저 확인한다.
+      </div>
+    </section>
+
+    <section class="cost-section" id="tripPricePrep">
+      <h2>예약·가격 체크리스트</h2>
+      <p class="lead">
+        계산기는 후보를 좁히는 도구이고, 실제 결제 전에는 호텔 공식과 OTA의 조건을 같은 기준으로 다시 맞춘다.
+      </p>
+      <div class="check-grid" style="margin-top:16px;">
+        <article class="check-card">
+          <span>IHG 계열</span>
+          <h3>공식 직접 예약 우선</h3>
+          <ul class="check-list">
+            <li>InterContinental·Holiday Inn 등은 IHG 공식 회원가 먼저 조회</li>
+            <li>Trip.com은 같은 룸타입·조식·무료취소·세금 포함일 때만 보조 비교</li>
+            <li>가격이 비슷하면 포인트·숙박실적·예약지원 때문에 IHG 직접 예약</li>
+          </ul>
+        </article>
+        <article class="check-card">
           <span>가격 조건</span>
           <h3>총액 재확인</h3>
           <ul class="check-list">
             <li>세금·수수료·보증금 포함 여부</li>
             <li>조식 포함/불포함</li>
             <li>결제 통화와 환불 가능 시한</li>
-          </ul>
-        </article>
-        <article class="check-card">
-          <span>split-stay</span>
-          <h3>이동일 운영</h3>
-          <ul class="check-list">
-            <li>얼리 체크인·레이트 체크아웃 요청</li>
-            <li>짐 보관 가능 시간</li>
-            <li>9명+캐리어 전용차 크기 확인</li>
           </ul>
         </article>
       </div>
@@ -3286,7 +3468,7 @@
               </div>
             </dl>
             <div class="route-points" id="dayPoints"></div>
-            <p class="day-why" id="dayWhy">부모님은 첫날 호텔을 옮기지 않는 것이 전체 일정 안정성을 높인다. 정희범팀은 다음날 합류라 첫날 객실박도 줄일 수 있다.</p>
+            <p class="day-why" id="dayWhy">부모님은 첫날 호텔을 옮기지 않는 것이 전체 일정 안정성을 높인다. 정희범팀은 다음날 합류해 도착팀의 이동 피로를 최소화한다.</p>
             <div class="day-actions">
               <a class="map-link" id="dayMap" href="https://www.google.com/maps/dir/?api=1&amp;origin=Sydney%20Airport&amp;destination=Park%20Hyatt%20Sydney&amp;travelmode=driving">Google Maps 동선</a>
               <a class="map-link" id="dayAlt" href="https://www.google.com/maps/search/?api=1&amp;query=The%20Rocks%20restaurants%20Sydney">주변 식사/대체</a>
@@ -3660,7 +3842,7 @@
       </div>
     </section>
 
-    <section id="tripFlights">
+    <section class="cost-section" id="tripFlights">
       <h2>항공 기준</h2>
       <div class="table-wrap">
         <table>
@@ -3708,19 +3890,17 @@
       <h2>출처와 확인 링크</h2>
       <div class="source-panel">
         <p class="small">
-          가격은 Trip.com 동적 페이지를 2026.05.16~17 KST에 검색한 캡처값을 반영했다.
-          IHG 계열 호텔은 공식 직접 예약을 우선 확인하는 운영 원칙을 추가했다. 관광/날씨는 공식 또는 정부·운영사 페이지로 교차 확인했다.
+          관광·입국·날씨·운영시간은 공식 또는 정부·운영사 페이지로 교차 확인했다.
+          항공·호텔 가격 근거는 비용 부록에 보존했고, IHG 계열 호텔은 공식 직접 예약을 우선 확인하는 원칙을 적용했다.
         </p>
         <div class="source-grid">
           <div>
-            <h3>항공·호텔</h3>
+            <h3>항공·숙소 운영</h3>
             <ul>
               <li><a href="https://flyasiana.com/C/AU/EN/customer/notice/detail?id=CM202601230002527916">Asiana OZ601/OZ602 2026 일정 공지</a></li>
               <li><a href="https://www.koreanair.com/">Korean Air 공식 예약/운항 확인</a></li>
-              <li><a href="https://kr.trip.com/hotels/the-rocks-hotel-detail-734386/park-hyatt-sydney/?rankingId=100200213458&tid=H0008_10650080900_best&locale=ko-KR&curr=KRW">Trip.com Park Hyatt Sydney</a></li>
               <li><a href="https://www.ihg.com/intercontinental/hotels/kr/ko/sydney/sydha/hoteldetail">IHG 공식 InterContinental Sydney</a></li>
               <li><a href="https://www.ihg.com/intercontinental/hotels/kr/ko/sydney/sydcb/hoteldetail">IHG 공식 InterContinental Coogee Beach</a></li>
-              <li><a href="https://kr.trip.com/hotels/mosman-hotel-detail-23934327/wildlife-retreat-at-taronga/?rankingId=100200187323">Trip.com Wildlife Retreat at Taronga</a></li>
             </ul>
           </div>
           <div>
@@ -3809,6 +3989,20 @@
         </p>
       </div>
     </section>
+
+    <section class="trip-appendix" id="tripAppendix" aria-labelledby="tripAppendixTitle">
+      <details id="tripCostDetails">
+        <summary>
+          <span class="appendix-kicker">부록</span>
+          <span class="appendix-copy">
+            <strong id="tripAppendixTitle">비용·숙소·예약 검토</strong>
+            <small>항공·호텔 기준가와 계산기는 보존하되 여행 모드에서는 기본으로 접어둡니다.</small>
+          </span>
+          <span class="appendix-state" aria-hidden="true"></span>
+        </summary>
+        <div class="trip-appendix-body" id="tripAppendixBody"></div>
+      </details>
+    </section>
   </main>
 
   <div class="ask-dock" role="region" aria-label="무엇이든 물어보세요">
@@ -3827,7 +4021,7 @@
           <button class="ask-suggestion" type="button" data-question="오늘 비 오면 부모님과 아이들 데리고 어디 가는 게 제일 안전해?">비 오는 날 대안</button>
           <button class="ask-suggestion" type="button" data-question="InterContinental Sydney로 옮기는 날 점심이나 카페는 어디가 좋아?">호텔 이동일 점심</button>
           <button class="ask-suggestion" type="button" data-question="Taronga Zoo 가는 날 비가 오거나 아이가 지치면 어떻게 바꾸지?">Taronga 변경</button>
-          <button class="ask-suggestion" type="button" data-question="Coogee 근처에서 조식 포함 호텔 예약은 Trip.com이랑 IHG 중 어디가 나아?">IHG 예약 판단</button>
+          <button class="ask-suggestion" type="button" data-question="부모님이 지쳤을 때 호텔 근처에서 짧게 쉬고 식사할 곳은 어디가 좋아?">부모님 휴식 코스</button>
           <button class="ask-suggestion" type="button" data-question="마지막 날 공항 가기 전 짐 들고 가족 9명이 할 만한 코스 추천해줘">공항 전 코스</button>
         </div>
         <input class="ask-input" id="askInput" type="search" autocomplete="off" placeholder="시드니 여행에서 무엇이든 검색" aria-label="시드니 여행에서 무엇이든 검색">
@@ -3854,7 +4048,7 @@
         weather: "비 영향 낮음",
         points: ["SYD 공항", "Park Hyatt", "정희범팀 출국"],
         summary: "부모님은 OZ601 도착 후 Park Hyatt로 바로 들어가고, 정희범팀은 7/23 오후·저녁 대한항공 등으로 출발한다. 이날은 부모님 수면 회복만 성공하면 된다.",
-        why: "첫날부터 부모님을 Park Hyatt에 고정하면 호텔 이동 피로가 사라진다. 정희범팀은 다음날 합류라 첫날 객실박도 줄일 수 있다.",
+        why: "첫날부터 부모님을 Park Hyatt에 고정하면 호텔 이동 피로가 사라진다. 정희범팀은 다음날 합류해 도착팀의 이동 피로를 최소화한다.",
         map: "https://www.google.com/maps/dir/?api=1&origin=Sydney%20Airport&destination=Park%20Hyatt%20Sydney&travelmode=driving",
         altMap: "https://www.google.com/maps/search/?api=1&query=The%20Rocks%20restaurants%20Sydney",
         altLabel: "The Rocks 식사"
@@ -3905,7 +4099,7 @@
         weather: "맑으면 최고, 비 와도 투어 가능",
         points: ["Opera House", "Botanic Garden", "Mrs Macquarie's Chair"],
         summary: "오페라하우스 외관, 가능하면 공식 투어, Royal Botanic Garden, Mrs Macquarie's Chair를 묶는 날이다. 사진과 산책 만족도는 높지만 부모님 보행량은 중간에 끊어 조절해야 한다.",
-        why: "Park Hyatt 숙박비를 정당화하는 핵심일이다. 위치가 워낙 좋아 차를 타지 않고도 대표 명소를 소화할 수 있다.",
+        why: "Park Hyatt의 도보 접근성을 가장 잘 쓰는 핵심일이다. 차를 타지 않고도 대표 명소를 소화할 수 있다.",
         map: "https://www.google.com/maps/dir/?api=1&origin=Park%20Hyatt%20Sydney&destination=Park%20Hyatt%20Sydney&waypoints=Sydney%20Opera%20House%7CRoyal%20Botanic%20Garden%20Sydney%7CMrs%20Macquarie%27s%20Chair&travelmode=walking",
         altMap: "https://www.google.com/maps/search/?api=1&query=Sydney%20Opera%20House%20tour",
         altLabel: "투어 확인"
@@ -4587,17 +4781,48 @@
       };
     }
 
-    function prioritizeMobileSections() {
-      if (!window.matchMedia("(max-width: 640px)").matches) return;
+    function prioritizeTripSections() {
       const page = document.querySelector(".page");
       if (!page) return;
-      const priorityIds = ["tripItinerary", "tripEntry", "tripPrep"];
+      const priorityIds = [
+        "tripItinerary",
+        "tripFlightOps",
+        "tripEntry",
+        "tripPrep",
+        "tripRisk",
+        "tripWeather",
+        "tripAttractions",
+        "tripExplore",
+        "tripSources"
+      ];
       const fragment = document.createDocumentFragment();
       priorityIds.forEach((id) => {
         const section = document.getElementById(id);
         if (section) fragment.appendChild(section);
       });
       page.insertBefore(fragment, page.firstChild);
+    }
+
+    function initTripMode() {
+      const page = document.querySelector(".page");
+      const appendix = document.getElementById("tripAppendix");
+      const appendixBody = document.getElementById("tripAppendixBody");
+      const details = document.getElementById("tripCostDetails");
+      const costSectionIds = ["tripSummary", "tripBudget", "tripHotels", "tripPricePrep", "tripFlights"];
+      if (!page || !appendix || !appendixBody || !details) return;
+
+      costSectionIds.forEach((id) => {
+        const section = document.getElementById(id);
+        if (section) appendixBody.appendChild(section);
+      });
+      page.appendChild(appendix);
+
+      const revealLinkedCostSection = () => {
+        const targetId = window.location.hash.slice(1);
+        if (costSectionIds.includes(targetId)) details.open = true;
+      };
+      revealLinkedCostSection();
+      window.addEventListener("hashchange", revealLinkedCostSection);
     }
 
     function initTripHub() {
@@ -6103,7 +6328,8 @@
     roomMode.addEventListener("change", render);
     sisterFriday.addEventListener("change", render);
     localBudget.addEventListener("input", render);
-    prioritizeMobileSections();
+    prioritizeTripSections();
+    initTripMode();
     const initialDayIndex = initTripHub();
     initDayPlanner(initialDayIndex);
     initPoiExplorer();
