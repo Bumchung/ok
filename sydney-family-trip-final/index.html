@@ -4264,6 +4264,201 @@
         transition-duration: 0.01ms !important;
       }
     }
+    /* ── 주변에서 바로 고르기 ── */
+    .nearby-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    .nearby-locate {
+      border: 0;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 11px 18px;
+      cursor: pointer;
+    }
+
+    .nearby-locate[aria-pressed="true"] { background: var(--green); }
+    .nearby-locate:disabled { opacity: 0.6; cursor: wait; }
+
+    .nearby-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .nearby-chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--ink);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 9px 15px;
+      cursor: pointer;
+    }
+
+    .nearby-chip[aria-pressed="true"] {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #fff;
+    }
+
+    .nearby-status {
+      margin: 10px 0 0;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .nearby-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .nearby-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel);
+      padding: 13px 15px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .nearby-item:active { background: var(--soft); }
+
+    .nearby-item-main { min-width: 0; }
+
+    .nearby-item-main strong {
+      display: block;
+      font-size: 1rem;
+      line-height: 1.35;
+    }
+
+    .nearby-item-meta {
+      display: block;
+      margin-top: 2px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .nearby-item-hours {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .nearby-item-side {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .nearby-distance {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .nearby-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 3px 8px;
+      background: var(--soft);
+      color: var(--muted);
+    }
+
+    .nearby-badge.tourcurrent { background: #fdf0e3; color: #8a5a1d; }
+
+    .nearby-go { font-size: 0.8rem; font-weight: 700; color: var(--blue); }
+
+    .nearby-more-wrap { margin-top: 12px; text-align: center; }
+
+    .nearby-more,
+    .poi-show-more {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 11px 22px;
+      cursor: pointer;
+    }
+
+    .poi-show-more { display: block; margin: 16px auto 0; }
+
+    /* ── 투어커렌트 맛집 리스트 ── */
+    .tc-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .tc-card {
+      display: block;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel);
+      padding: 15px 16px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .tc-card:active { background: var(--soft); }
+
+    .tc-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .tc-cat {
+      font-size: 0.72rem;
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 3px 9px;
+      background: #fdf0e3;
+      color: #8a5a1d;
+    }
+
+    .tc-card h3 { margin: 8px 0 2px; font-size: 1.02rem; }
+
+    .tc-area { font-size: 0.82rem; color: var(--muted); }
+
+    .tc-facts { margin: 8px 0 0; font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+
+    .tc-facts strong { color: var(--ink); font-weight: 600; }
+
+    .tc-go { display: inline-block; margin-top: 9px; font-size: 0.82rem; font-weight: 700; color: var(--blue); }
+
+    /* 메모리 절약: 화면 밖 카드 렌더링 지연 (iOS Safari 리로드 방지) */
+    .poi-card, .tc-card {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 620px;
+    }
+
+    .tc-card { contain-intrinsic-size: auto 220px; }
   </style>
 </head>
 <body>
@@ -4299,7 +4494,7 @@
   <nav class="mobile-quick-nav" aria-label="모바일 빠른 이동">
     <a href="#tripCommand">지금</a>
     <a href="#tripItinerary">일정</a>
-    <a href="#tripEntry">입국</a>
+    <a href="#tripNearby">주변</a>
     <a href="#tripMap">지도</a>
     <a href="#tripExplore">맛집·명소</a>
     <button type="button" data-open-assistant>검색</button>
@@ -4312,7 +4507,7 @@
         <span class="trip-hub-period">2026.07.23—08.01 · Sydney</span>
       </div>
       <h2 id="tripHubTitle">4일 뒤 출발</h2>
-      <p class="trip-hub-plan" id="tripHubPlan">출발 전에는 ETA 승인, 항공편, 객실과 공항 이동만 마지막으로 잠그면 됩니다.</p>
+      <p class="trip-hub-plan" id="tripHubPlan">여행 중에는 '지금 주변에서 바로 고르기'로 현재 위치에서 가까운 식당·카페를 바로 정하세요.</p>
       <div class="trip-hub-detail">
         <span id="tripHubBase">첫 거점 · Park Hyatt Sydney</span>
         <span id="tripHubWeather">현지 기준 · Australia/Sydney</span>
@@ -4320,7 +4515,7 @@
       <p class="trip-hub-freshness">자료 확인 2026.05.17 · 운영시간·날씨·항공 상태는 출발 직전 다시 확인</p>
       <div class="trip-hub-actions">
         <a href="#tripItinerary">오늘 일정</a>
-        <a href="#tripEntry">입국 준비</a>
+        <a href="#tripNearby">주변에서 고르기</a>
         <button type="button" data-open-assistant>여행 검색</button>
       </div>
     </div>
@@ -4340,23 +4535,25 @@
       </div>
     </section>
 
-    <section id="tripFlightOps">
-      <h2>가족 합류·숙소 이동</h2>
+    <section id="tripNearby">
+      <h2>지금 주변에서 바로 고르기</h2>
       <p class="lead">
-        부모님은 7/23 Park Hyatt로 직행하고, 정희범팀은 7/24, 정은아팀은 7/25 합류한다.
-        합류가 끝난 뒤 Park Hyatt, Taronga, InterContinental 순서로 거점을 옮긴다.
+        내 위치를 켜면 100곳 리스트와 투어커렌트 맛집을 합쳐 현재 위치에서 가까운 순으로 보여줍니다.
+        카드를 누르면 Google Maps 길찾기가 새 탭에서 열립니다.
       </p>
-      <div class="ops-grid" style="margin-top:16px;">
-        <article class="ops-card">
-          <span>팀별 합류</span>
-          <h3>7/23 부모님 → 7/24 정희범팀 → 7/25 정은아팀</h3>
-          <p>부모님은 OZ601, 정은아팀은 7/25 OZ601 기준이다. 정희범팀은 7/23 오후·저녁 출발편으로 7/24 합류한다. 부모님·정희범팀은 7/31, 정은아팀은 8/1 출발을 다시 확인한다.</p>
-        </article>
-        <article class="ops-card">
-          <span>숙소 이동</span>
-          <h3>Park Hyatt → Taronga → InterContinental</h3>
-          <p>Park Hyatt 7/23~27, Taronga 7/27~29, InterContinental 7/29~31 흐름이다. 이동일에는 짐 보관·체크인·점심을 먼저 고정하고 관광지는 하나만 둔다.</p>
-        </article>
+      <div class="nearby-toolbar" role="group" aria-label="주변 장소 필터">
+        <button class="nearby-locate" id="nearbyLocate" type="button" aria-pressed="false">📍 내 위치 켜기</button>
+        <div class="nearby-chips" role="group" aria-label="종류 선택">
+          <button class="nearby-chip" type="button" data-nearby-kind="" aria-pressed="true">전체</button>
+          <button class="nearby-chip" type="button" data-nearby-kind="식사" aria-pressed="false">식사</button>
+          <button class="nearby-chip" type="button" data-nearby-kind="카페" aria-pressed="false">카페·디저트</button>
+          <button class="nearby-chip" type="button" data-nearby-kind="명소" aria-pressed="false">명소</button>
+        </div>
+      </div>
+      <p class="nearby-status" id="nearbyStatus">위치는 버튼을 누를 때만 이 기기 안에서 거리 계산에 쓰이고, 서버로 보내지 않습니다.</p>
+      <div class="nearby-list" id="nearbyList" aria-live="polite"></div>
+      <div class="nearby-more-wrap">
+        <button class="nearby-more" id="nearbyMore" type="button" hidden>더 보기</button>
       </div>
     </section>
 
@@ -4609,43 +4806,6 @@
       </div>
     </section>
 
-    <section id="tripEntry">
-      <h2>ETA·입국 준비</h2>
-      <div class="check-grid">
-        <article class="check-card">
-          <span>대상</span>
-          <h3>대한민국 여권자</h3>
-          <p>관광·가족방문 목적 3개월 이하 체류는 Australian ETA App으로 ETA를 신청하는 흐름이 맞다.</p>
-        </article>
-        <article class="check-card">
-          <span>전원 확인</span>
-          <h3>여권 정보</h3>
-          <ul class="check-list">
-            <li>여권 영문명·생년월일</li>
-            <li>여권 만료일</li>
-            <li>ETA 승인 이메일/앱 화면</li>
-          </ul>
-        </article>
-        <article class="check-card">
-          <span>리스크</span>
-          <h3>오답·추가심사</h3>
-          <p>범죄기록 질문 등에서 추가 자료 요청이 나오면 시간이 걸릴 수 있으므로 출발 4주 전까지 전원 완료가 안전하다.</p>
-        </article>
-        <article class="check-card">
-          <span>현장 백업</span>
-          <h3>사본 묶음</h3>
-          <ul class="check-list">
-            <li>여권·ETA·보험증권 PDF</li>
-            <li>복용약 영문명</li>
-            <li>가족별 비상연락망</li>
-          </ul>
-        </article>
-      </div>
-      <div class="notice warn">
-        ETA는 호주 체류 중 추가 신청이 불가하고, 잘못 승인된 정보는 새 ETA로 다시 신청해야 한다. 발권 후 미루지 말고 바로 처리한다.
-      </div>
-    </section>
-
     <section id="tripItinerary">
       <h2>날짜별 여행 배치</h2>
       <div class="itinerary">
@@ -4754,9 +4914,6 @@
         <div class="tile-route-map" id="sydneyRouteMap" role="img" aria-label="실제 지도 타일 위에 표시한 시드니 숙소와 관광 동선">
           <div class="tile-layer" id="sydneyRouteTiles" aria-hidden="true"></div>
           <svg class="route-overlay" id="sydneyRouteOverlay" aria-hidden="true"></svg>
-          <div class="map-attribution">
-            © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · © <a href="https://carto.com/attributions">CARTO</a>
-          </div>
         </div>
         <div class="map-legend">
           <span class="legend-item"><span class="legend-line"></span>숙소 이동 핵심 동선</span>
@@ -5307,9 +5464,6 @@
               <button id="placesMapZoomOut" type="button" aria-label="지도 축소">−</button>
               <button id="placesMapReset" type="button" aria-label="선택 권역 전체 보기">↺</button>
             </div>
-            <div class="map-attribution">
-              © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · © <a href="https://carto.com/attributions">CARTO</a>
-            </div>
           </div>
           <aside class="places-map-detail" id="placesMapDetail" aria-live="polite">
             <span class="tag good">지도 준비 중</span>
@@ -5405,6 +5559,22 @@
           <a href="https://www.opentable.com/n/sydney-nsw/sydney-cbd-restaurants?lang=en">OpenTable Sydney CBD</a> ·
           <a href="https://www.sydney.com/articles/top-attractions-in-sydney">Sydney.com attractions</a> ·
           <a href="https://www.broadsheet.com.au/national/food-and-drink/article/restaurant-booking-site-fork-shuts-down-its-australian-operations">TheFork Australia 종료 확인</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="tripTourcurrent">
+      <h2>투어커렌트 시드니 맛집 리스트</h2>
+      <p class="lead">
+        현지 가이드 투어커렌트(@tourcurrent)의 시드니 맛집 전자책에서 상호·주소·영업시간·추천 메뉴만 골라 정리했습니다.
+        카드를 누르면 Google Maps가 새 탭에서 열리고, 내 위치를 켜면 거리도 함께 표시됩니다.
+      </p>
+      <div class="tc-toolbar" id="tcToolbar" role="group" aria-label="맛집 카테고리 선택"></div>
+      <div class="tc-grid" id="tcGrid" aria-live="polite"></div>
+      <div class="source-panel" style="margin-top:16px;">
+        <p class="small">
+          출처: 투어커렌트 @tourcurrent 「시드니 맛집 리스트」 전자책 — 상호·주소·영업시간 등 사실 정보만 발췌.
+          영업시간은 발행 시점 기준이므로 방문 전 Google Maps에서 다시 확인하세요.
         </p>
       </div>
     </section>
@@ -6581,14 +6751,14 @@
       const page = document.querySelector(".page");
       if (!page) return;
       const priorityIds = [
+        "tripNearby",
         "tripItinerary",
-        "tripFlightOps",
-        "tripEntry",
         "tripPrep",
         "tripRisk",
         "tripWeather",
         "tripAttractions",
         "tripExplore",
+        "tripTourcurrent",
         "tripSources"
       ];
       const fragment = document.createDocumentFragment();
@@ -6634,7 +6804,7 @@
         const days = Math.abs(state.offset);
         if (countdown) countdown.textContent = `D-${days}`;
         if (title) title.textContent = `${days}일 뒤 출발`;
-        if (planText) planText.textContent = "ETA 승인, 항공편, 객실, 공항 이동만 마지막으로 잠그면 됩니다.";
+        if (planText) planText.textContent = "'지금 주변에서 바로 고르기'로 현재 위치에서 가까운 식당·카페를 바로 정하세요.";
         if (base) base.textContent = "첫 거점 · Park Hyatt Sydney";
         if (weather) weather.textContent = "첫날 목표 · 이동 최소화";
         return 0;
@@ -7288,21 +7458,46 @@
       });
     }
 
-    function renderPoiCards() {
+    // 모바일 메모리 보호: 100장 카드를 한 번에 DOM에 올리면 iOS Safari가
+    // 메모리 초과로 페이지를 강제 리로드한다. 24장씩 끊어 렌더링한다.
+    const POI_RENDER_BATCH = 24;
+    let poiRenderLimit = POI_RENDER_BATCH;
+
+    function renderPoiCards(options = {}) {
       const quickGrid = document.getElementById("poiGrid");
       if (!quickGrid) return;
+      if (!options.preserveLimit) poiRenderLimit = POI_RENDER_BATCH;
       const filtered = filteredPoiItems();
+      const visible = filtered.slice(0, poiRenderLimit);
       quickGrid.setAttribute("aria-busy", "true");
-      quickGrid.innerHTML = filtered.length
-        ? filtered.map(poiCardMarkup).join("")
+      quickGrid.innerHTML = visible.length
+        ? visible.map(poiCardMarkup).join("")
         : '<p class="poi-empty">조건에 맞는 장소가 없습니다. 검색어나 필터를 바꿔보세요.</p>';
       quickGrid.setAttribute("aria-busy", "false");
 
+      let showMore = document.getElementById("poiShowMore");
+      if (!showMore) {
+        showMore = document.createElement("button");
+        showMore.id = "poiShowMore";
+        showMore.type = "button";
+        showMore.className = "poi-show-more";
+        showMore.addEventListener("click", () => {
+          poiRenderLimit += POI_RENDER_BATCH;
+          renderPoiCards({ preserveLimit: true });
+        });
+        quickGrid.insertAdjacentElement("afterend", showMore);
+      }
+      const hiddenCount = filtered.length - visible.length;
+      showMore.hidden = hiddenCount <= 0;
+      showMore.textContent = `다음 ${Math.min(hiddenCount, POI_RENDER_BATCH)}곳 더 보기 (남은 ${hiddenCount}곳)`;
+
       const count = document.getElementById("poiResultCount");
       if (count) {
-        count.textContent = filtered.length === poiTop100.length
-          ? `전체 ${filtered.length}개를 한 번에 표시`
-          : `조건에 맞는 ${filtered.length}개를 표시`;
+        count.textContent = hiddenCount > 0
+          ? `조건에 맞는 ${filtered.length}곳 중 ${visible.length}곳 표시`
+          : (filtered.length === poiTop100.length
+            ? `전체 ${filtered.length}개를 한 번에 표시`
+            : `조건에 맞는 ${filtered.length}개를 표시`);
       }
       const locationStatus = document.getElementById("poiLocationStatus");
       if (locationStatus && poiUserLocation) {
@@ -7347,6 +7542,57 @@
       kind.addEventListener("change", renderPoiCards);
       radius.addEventListener("change", renderPoiCards);
 
+      const tripGeoState = { watchId: null, accuracy: null, updatedAt: null };
+
+      function tripGeoStatusText() {
+        if (!tripGeoState.updatedAt) return "";
+        const time = new Date(tripGeoState.updatedAt).toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" });
+        const accuracy = Number.isFinite(tripGeoState.accuracy)
+          ? ` · 정확도 ±${Math.round(tripGeoState.accuracy)}m`
+          : "";
+        return `내 위치 ${time} 갱신${accuracy} · 걸으면 자동으로 다시 정렬됩니다. 위치는 서버로 전송하지 않습니다.`;
+      }
+
+      function stopTripGeoWatch() {
+        if (tripGeoState.watchId !== null && navigator.geolocation) {
+          navigator.geolocation.clearWatch(tripGeoState.watchId);
+        }
+        tripGeoState.watchId = null;
+      }
+
+      function applyTripPosition(position) {
+        const next = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        tripGeoState.accuracy = position.coords.accuracy;
+        tripGeoState.updatedAt = Date.now();
+        locate.disabled = false;
+        locate.setAttribute("aria-pressed", "true");
+        locate.textContent = "현재 위치 적용됨";
+        radius.disabled = false;
+        resetLocation.hidden = false;
+        const movedKm = poiUserLocation ? haversineDistanceKm(poiUserLocation, next) : Infinity;
+        locationStatus.textContent = tripGeoStatusText();
+        if (movedKm < 0.05) return;
+        poiUserLocation = next;
+        renderPoiCards();
+        window.dispatchEvent(new CustomEvent("poi-location-change", { detail: poiUserLocation }));
+      }
+
+      function handleTripGeoError(error) {
+        locate.disabled = false;
+        const messages = {
+          1: "위치 권한이 거절되었습니다. 브라우저 설정에서 이 사이트의 위치 권한을 허용하면 사용할 수 있습니다.",
+          2: "현재 위치를 확인할 수 없습니다. 잠시 후 다시 시도하세요.",
+          3: "위치 확인 시간이 초과되었습니다. 실외 또는 창가에서 다시 시도하세요."
+        };
+        locationStatus.textContent = messages[error.code] || "현재 위치를 확인하지 못했습니다.";
+        if (!poiUserLocation) {
+          window.dispatchEvent(new CustomEvent("poi-location-change", { detail: null }));
+        }
+      }
+
       locate.addEventListener("click", () => {
         if (!navigator.geolocation) {
           locationStatus.textContent = "이 브라우저는 현재 위치 기능을 지원하지 않습니다.";
@@ -7355,34 +7601,24 @@
         locate.disabled = true;
         locationStatus.textContent = "현재 위치 권한을 확인하고 있습니다.";
         navigator.geolocation.getCurrentPosition((position) => {
-          poiUserLocation = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          locate.disabled = false;
-          locate.setAttribute("aria-pressed", "true");
-          locate.textContent = "현재 위치 적용됨";
-          radius.disabled = false;
-          resetLocation.hidden = false;
-          renderPoiCards();
-          window.dispatchEvent(new CustomEvent("poi-location-change", { detail: poiUserLocation }));
-        }, (error) => {
-          poiUserLocation = null;
-          locate.disabled = false;
-          const messages = {
-            1: "위치 권한이 거절되었습니다. 브라우저 설정에서 이 사이트의 위치 권한을 허용하면 사용할 수 있습니다.",
-            2: "현재 위치를 확인할 수 없습니다. 잠시 후 다시 시도하세요.",
-            3: "위치 확인 시간이 초과되었습니다. 실외 또는 창가에서 다시 시도하세요."
-          };
-          locationStatus.textContent = messages[error.code] || "현재 위치를 확인하지 못했습니다.";
-        }, {
+          applyTripPosition(position);
+          stopTripGeoWatch();
+          tripGeoState.watchId = navigator.geolocation.watchPosition(applyTripPosition, () => {}, {
+            enableHighAccuracy: true,
+            timeout: 20000,
+            maximumAge: 15000
+          });
+        }, handleTripGeoError, {
           enableHighAccuracy: true,
           timeout: 10000,
-          maximumAge: 300000
+          maximumAge: 60000
         });
       });
 
       resetLocation.addEventListener("click", () => {
+        stopTripGeoWatch();
+        tripGeoState.accuracy = null;
+        tripGeoState.updatedAt = null;
         poiUserLocation = null;
         locate.setAttribute("aria-pressed", "false");
         locate.textContent = "현재 위치에서 가까운 곳";
@@ -8723,7 +8959,8 @@
       if (area) area.value = "";
       if (kind) kind.value = "";
       if (radius && poiUserLocation) radius.value = "all";
-      renderPoiCards();
+      poiRenderLimit = poiTop100.length;
+      renderPoiCards({ preserveLimit: true });
       window.requestAnimationFrame(() => {
         const card = document.getElementById(`place-${rank}`);
         if (!card) return;
@@ -8802,6 +9039,7 @@
           const image = document.createElement("img");
           image.alt = "";
           image.decoding = "async";
+          image.loading = "lazy";
           image.src = `https://${subdomain}.basemaps.cartocdn.com/rastertiles/voyager/${zoom}/${wrappedX}/${y}.png`;
           image.style.left = `${Math.round(x * tileSize - origin.x)}px`;
           image.style.top = `${Math.round(y * tileSize - origin.y)}px`;
@@ -9052,18 +9290,250 @@
       overlay.appendChild(pinGroup);
     }
 
-    let routeMapResizeTimer;
+    // ── 투어커렌트 시드니 맛집 리스트 (전자책에서 사실 정보만 발췌) ──
+    const TOURCURRENT_VENUES = [
+      { name: "MCA Cafe", cat: "브런치", kind: "카페", area: "The Rocks", address: "4/140 George St, The Rocks NSW 2000", hours: "토~월 10-16 · 수·목 10-16 · 금 10-20:45 · 화 휴무", menu: "오페라하우스 전망 옥상 브런치", lat: -33.8598, lng: 151.209 },
+      { name: "Social Brew Cafe", cat: "브런치", kind: "식사", area: "Pyrmont", address: "224 Harris St, Pyrmont NSW 2009", hours: "매일 7-15:30", menu: "Ricotta Hotcakes · Eggs Benedict with Salmon", lat: -33.869, lng: 151.1936 },
+      { name: "Three Williams Cafe", cat: "브런치", kind: "식사", area: "Redfern", address: "613A Elizabeth St, Redfern NSW 2016", hours: "월~금 7-15 · 토·일 8-15", menu: "창고형 공간의 브런치", lat: -33.8927, lng: 151.2073 },
+      { name: "Paramount Coffee Project", cat: "브런치", kind: "카페", area: "Surry Hills", address: "80 Commonwealth St, Surry Hills NSW 2010", hours: "매일 7-16", menu: "브런치 · 스페셜티 커피", lat: -33.8797, lng: 151.2115 },
+      { name: "St Jude Cafe", cat: "브런치", kind: "카페", area: "Redfern", address: "Shop 1/728 Bourke St, Redfern NSW 2016", hours: "매일 7-15", menu: "로컬 브런치 · 커피", lat: -33.8934, lng: 151.2113 },
+      { name: "City Extra 24 Hour Restaurant", cat: "브런치", kind: "식사", area: "Circular Quay", address: "E4 East Podium, 2 Alfred St, Sydney NSW 2000", hours: "24시간", menu: "Calamari · Victorian Mixed Grill · Chicken Parmigiana", lat: -33.8613, lng: 151.211 },
+      { name: "The Tea Cosy", cat: "브런치", kind: "카페", area: "The Rocks", address: "7 Atherden St, The Rocks NSW 2000", hours: "월~금 9:30-16 · 토·일 9-16:30", menu: "티 · 갓 구운 스콘", lat: -33.8578, lng: 151.2087 },
+      { name: "Pancakes on the Rocks", cat: "브런치", kind: "식사", area: "The Rocks", address: "22 Playfair St, The Rocks NSW 2000", hours: "일~목 7:30-24 · 금·토 7:30-새벽2", menu: "팬케이크 · 립 · 피자", lat: -33.859, lng: 151.2082 },
+      { name: "The Grounds of the City", cat: "브런치", kind: "카페", area: "Town Hall", address: "Shop RG 12/500 George St, Sydney NSW 2000", hours: "월~금 7-21:30 · 토 8-21:30 · 일 8-17", menu: "커피 · 아포가토 · 칵테일", lat: -33.8735, lng: 151.2065 },
+      { name: "The Grounds of Alexandria", cat: "브런치", kind: "식사", area: "Alexandria", address: "7a/2 Huntley St, Alexandria NSW 2015", hours: "매일 7:30-21", menu: "Avocado on Toast · Eggs Benedict · Big Brekkie", lat: -33.9106, lng: 151.1938 },
+      { name: "Harry's Cafe de Wheels", cat: "길거리", kind: "식사", area: "Woolloomooloo", address: "Cowper Wharf Roadway, Woolloomooloo NSW 2011", hours: "월~목 9-22 · 금 9-새벽1 · 토 10-새벽1 · 일 10-22", menu: "핫도그 · 미트파이", lat: -33.8696, lng: 151.2223 },
+      { name: "Campos Coffee", cat: "커피", kind: "카페", area: "Newtown", address: "193 Missenden Rd, Newtown NSW 2042", hours: "월~금 7-16 · 토 8-17 · 일 8-16", menu: "Affogato · Soy Flat White", lat: -33.8955, lng: 151.1783 },
+      { name: "Gumption Coffee", cat: "커피", kind: "카페", area: "CBD", address: "Shop 11, The Strand Arcade, 412-414 George St, Sydney NSW 2000", hours: "월~금 8:30-16 · 토 10-16 · 일 11-15", menu: "Flat White with Oat Milk · Almond Croissant", lat: -33.8697, lng: 151.2073 },
+      { name: "Single O", cat: "커피", kind: "카페", area: "Surry Hills", address: "60-64 Reservoir St, Surry Hills NSW 2010", hours: "월~금 7-15 · 토·일 8-15", menu: "Flat White with Almond Milk · Ice Oat Flattie", lat: -33.8837, lng: 151.2098 },
+      { name: "Chophouse Sydney", cat: "스테이크", kind: "식사", area: "CBD", address: "25 Bligh St, Sydney NSW 2000", hours: "월~수 12-21 · 목·금 12-21:30 · 토 17:30-21:30 · 일 휴무", menu: "Scotch Fillet · Eye Fillet · Wagyu Flank", lat: -33.8654, lng: 151.2107 },
+      { name: "Rockpool Bar & Grill", cat: "스테이크", kind: "식사", area: "CBD", address: "66 Hunter St, Sydney NSW 2000", hours: "월~수 12-14:30/18-21 · 목·금 12-15/18-22 · 토 17:30-22 · 일 휴무", menu: "Rib Eye on the Bone · Roast King Prawns (드레스코드 있음)", lat: -33.8651, lng: 151.211 },
+      { name: "I'm Angus Steakhouse", cat: "스테이크", kind: "식사", area: "Darling Harbour", address: "The Promenade, Cockle Bay Wharf, Sydney NSW 2000", hours: "월~토 11:30-15/17-22 · 일 11:30-22", menu: "Wagyu Scotch Fillet · T-Bone Steak", lat: -33.8719, lng: 151.2016 },
+      { name: "The Meat & Wine Co (시티점)", cat: "스테이크", kind: "식사", area: "CBD", address: "219/223 Castlereagh St, Sydney NSW 2000", hours: "매일 12-22 (Barangaroo 지점 별도)", menu: "Beef Ribs · Kangaroo Skewers", lat: -33.876, lng: 151.2087 },
+      { name: "Braza Churrascaria", cat: "바베큐", kind: "식사", area: "Darling Harbour", address: "1/25 Harbour St, Sydney NSW 2000", hours: "월~목 12-21:45 · 금·토 12-22:15 · 일 12-20:30", menu: "브라질 무한리필 바베큐 · 구운 파인애플", lat: -33.877, lng: 151.2019 },
+      { name: "Betty's Burgers", cat: "버거", kind: "식사", area: "Circular Quay", address: "8 Gateway Plaza, 1 Macquarie Pl, Sydney NSW 2000", hours: "일~수 11-20:30 · 목 11-21 · 금·토 11-21:30", menu: "Betty's Classic Burger and Fries", lat: -33.8628, lng: 151.2107 },
+      { name: "Doyles on the Beach", cat: "해산물", kind: "식사", area: "Watsons Bay", address: "11 Marine Parade, Watsons Bay NSW 2030", hours: "매일 런치 11:45-15~16 · 디너 17~ (요일별 상이)", menu: "시푸드 플래터 · 피시앤칩스", lat: -33.8442, lng: 151.281 },
+      { name: "The Boatshed La Perouse", cat: "해산물", kind: "식사", area: "La Perouse", address: "La Perouse NSW 2036 (프렌치맨스 베이)", hours: "월~금 7-16 · 토·일 7-17", menu: "Seafood Platter · Lobster Roll", lat: -33.9878, lng: 151.2312 },
+      { name: "The Boathouse Shelly Beach", cat: "해산물", kind: "식사", area: "Manly", address: "1 Marine Parade, Manly NSW 2095", hours: "월~수 7-15 · 목~일 7-21", menu: "Bucket of Prawns · Fish and Chips", lat: -33.8004, lng: 151.2939 },
+      { name: "Flying Fish", cat: "해산물", kind: "식사", area: "Pyrmont", address: "The Star, 80 Pyrmont St, Pyrmont NSW 2009", hours: "화~토 17-22 · 일·월 휴무", menu: "Scallops · King Prawns · Lobster Udon", lat: -33.8683, lng: 151.1947 },
+      { name: "Jordons Seafood", cat: "해산물", kind: "식사", area: "Darling Harbour", address: "King Street Wharf, 6/32 The Promenade, Sydney NSW 2000", hours: "일~목 11:30-21 · 금·토 11:30-22:30", menu: "Seafood Chowder · Oysters Kilpatrick", lat: -33.8672, lng: 151.2013 },
+      { name: "Bar Reggio", cat: "이탈리아", kind: "식사", area: "Darlinghurst", address: "135 Crown St, Darlinghurst NSW 2010", hours: "월~금 12-21:30 · 토 12-22 · 일 휴무", menu: "Reggio Pasta · Australia Pizza (BYO 가능)", lat: -33.8779, lng: 151.2144 },
+      { name: "한상 Hansang", cat: "한식", kind: "식사", area: "Haymarket", address: "39-41 Goulburn St, Haymarket NSW 2000", hours: "월~금 11:30-14:40/15:30-21:30 · 토·일 11-14:40/16-21:30", menu: "곰도리탕 · 안동찜닭", lat: -33.8785, lng: 151.2059 },
+      { name: "백종원본가 Bornga", cat: "한식", kind: "식사", area: "Haymarket", address: "Level 1/78 Harbour St, Haymarket NSW 2000", hours: "월~목 16:30-22:30 · 금·토 11:30-15/16:30-23 · 일 11:30-15/16:30-22", menu: "우삼겹 · 한국식 바비큐", lat: -33.8788, lng: 151.2027 },
+      { name: "강호동678", cat: "한식", kind: "식사", area: "Haymarket", address: "Level 1/396 Pitt St, Haymarket NSW 2000", hours: "월~목 12-23 · 금 12-24 · 토 11-24 · 일 11-23", menu: "양념 늑간살", lat: -33.8779, lng: 151.2078 },
+      { name: "Parami", cat: "일식", kind: "식사", area: "CBD", address: "Shop 101/21 Alberta St, Sydney NSW 2000", hours: "월~금 8-15 · 토·일 9-15", menu: "오니기리 · Kinoco Cheese", lat: -33.8768, lng: 151.2107 },
+      { name: "RaRa Ramen", cat: "일식", kind: "식사", area: "Redfern", address: "66b Regent St, Redfern NSW 2016", hours: "월~수 12-21 · 목~토 12-21:30 · 일 12-20:30", menu: "생면 라멘 · 비건 라멘", lat: -33.8925, lng: 151.2043 },
+      { name: "Sokyo", cat: "일식", kind: "식사", area: "Pyrmont", address: "The Darling, Level G, 80 Pyrmont St, Pyrmont NSW 2009", hours: "조식 7-10:30 · 디너 17-22 · 토·일 런치 12-15", menu: "오마카세 · Sashimi Platter", lat: -33.868, lng: 151.195 },
+      { name: "Thai Pothong", cat: "태국", kind: "식사", area: "Newtown", address: "294 King St, Newtown NSW 2042", hours: "일~목 12-15:30/17:30-22 · 금·토 ~23", menu: "Pad Thai · Chilli Hot Basil Chicken", lat: -33.8973, lng: 151.177 },
+      { name: "RivaReno Gelato", cat: "디저트", kind: "디저트", area: "Barangaroo", address: "4/33 Barangaroo Ave, Barangaroo NSW 2000", hours: "일~수 11-22 · 목 11-22:30 · 금·토 11-23:30", menu: "이탈리아 전통 젤라토", lat: -33.8617, lng: 151.2013 },
+      { name: "Yo-Chi", cat: "디저트", kind: "디저트", area: "Surry Hills", address: "435 Crown St, Surry Hills NSW 2010", hours: "매일 11-22:30", menu: "셀프 토핑 프로즌 요거트", lat: -33.8867, lng: 151.2126 },
+      { name: "Gelato Messina", cat: "디저트", kind: "디저트", area: "Circular Quay", address: "Gateway, 1 Macquarie Pl, Sydney NSW 2000", hours: "일~목 12-22:30 · 금·토 12-23", menu: "젤라토 40가지 이상 · 밀크셰이크", lat: -33.8626, lng: 151.2105 }
+    ];
+
+    function nearbyDistanceLabel(km) {
+      if (!Number.isFinite(km)) return "";
+      return km < 1 ? `${Math.round(km * 1000)}m` : `${km.toFixed(1)}km`;
+    }
+
+    const tcState = { cat: "" };
+
+    function renderTourcurrent() {
+      const grid = document.getElementById("tcGrid");
+      if (!grid) return;
+      const located = poiUserLocation;
+      let items = TOURCURRENT_VENUES.filter((venue) => !tcState.cat || venue.cat === tcState.cat);
+      if (located) {
+        items = items
+          .map((venue) => ({ ...venue, distanceKm: haversineDistanceKm(located, { lat: venue.lat, lng: venue.lng }) }))
+          .sort((a, b) => a.distanceKm - b.distanceKm);
+      }
+      grid.innerHTML = items.map((venue) => `
+        <a class="tc-card" href="${googleMapSearch(`${venue.name} ${venue.address}`)}" target="_blank" rel="noopener noreferrer">
+          <div class="tc-card-top">
+            <span class="tc-cat">${escapeGuideHtml(venue.cat)}</span>
+            ${Number.isFinite(venue.distanceKm) ? `<span class="nearby-distance">${nearbyDistanceLabel(venue.distanceKm)}</span>` : ""}
+          </div>
+          <h3>${escapeGuideHtml(venue.name)}</h3>
+          <span class="tc-area">${escapeGuideHtml(venue.area)} · ${escapeGuideHtml(venue.address)}</span>
+          <p class="tc-facts">
+            <strong>영업</strong> ${escapeGuideHtml(venue.hours)}<br>
+            <strong>추천</strong> ${escapeGuideHtml(venue.menu)}
+          </p>
+          <span class="tc-go">Google Maps에서 열기 ↗</span>
+        </a>
+      `).join("");
+    }
+
+    function initTourcurrent() {
+      const toolbar = document.getElementById("tcToolbar");
+      const grid = document.getElementById("tcGrid");
+      if (!toolbar || !grid) return;
+      const cats = ["", ...new Set(TOURCURRENT_VENUES.map((venue) => venue.cat))];
+      toolbar.innerHTML = cats.map((cat) => `
+        <button class="nearby-chip" type="button" data-tc-cat="${cat}" aria-pressed="${String(cat === tcState.cat)}">${cat || "전체"}</button>
+      `).join("");
+      toolbar.addEventListener("click", (event) => {
+        const chip = event.target.closest("[data-tc-cat]");
+        if (!chip) return;
+        tcState.cat = chip.dataset.tcCat || "";
+        toolbar.querySelectorAll("[data-tc-cat]").forEach((other) => {
+          other.setAttribute("aria-pressed", String(other === chip));
+        });
+        renderTourcurrent();
+      });
+      window.addEventListener("poi-location-change", renderTourcurrent);
+      renderTourcurrent();
+    }
+
+    // ── 지금 주변에서 바로 고르기: 100곳 + 투어커렌트 통합 최근접 필터 ──
+    const nearbyState = { kind: "", limit: 10, location: null };
+    let nearbyPoolCache = null;
+
+    function normalizeVenueName(name) {
+      return String(name || "").toLocaleLowerCase().replace(/[^a-z0-9가-힣]/g, "");
+    }
+
+    function buildNearbyPool() {
+      const pool = [];
+      const seen = new Set();
+      placesMapRecords.forEach((record) => {
+        if (record.availability?.className) return;
+        const guide = record.guide || {};
+        const name = guide.name || record.name;
+        seen.add(normalizeVenueName(name));
+        seen.add(normalizeVenueName(record.name));
+        pool.push({
+          name,
+          kind: record.kind === "식당" ? "식사" : record.kind,
+          area: record.area,
+          hours: guide.hours_summary_ko || "",
+          lat: record.lat,
+          lng: record.lon,
+          source: "100곳",
+          mapQuery: guide.address || record.query
+        });
+      });
+      TOURCURRENT_VENUES.forEach((venue) => {
+        if (seen.has(normalizeVenueName(venue.name))) return;
+        pool.push({
+          name: venue.name,
+          kind: venue.kind,
+          area: venue.area,
+          hours: venue.hours,
+          lat: venue.lat,
+          lng: venue.lng,
+          source: "투어커렌트",
+          mapQuery: `${venue.name} ${venue.address}`
+        });
+      });
+      return pool.filter((item) => Number.isFinite(item.lat) && Number.isFinite(item.lng));
+    }
+
+    function nearbyMatchesKind(item) {
+      if (!nearbyState.kind) return true;
+      if (nearbyState.kind === "카페") return item.kind === "카페" || item.kind === "디저트";
+      return item.kind === nearbyState.kind;
+    }
+
+    function renderNearby() {
+      const list = document.getElementById("nearbyList");
+      if (!list) return;
+      if (!nearbyPoolCache) nearbyPoolCache = buildNearbyPool();
+      const located = nearbyState.location;
+      const items = nearbyPoolCache.filter(nearbyMatchesKind).map((item) => ({
+        ...item,
+        distanceKm: located ? haversineDistanceKm(located, { lat: item.lat, lng: item.lng }) : null
+      })).sort((a, b) => {
+        if (located) return a.distanceKm - b.distanceKm;
+        if (a.area !== b.area) return a.area.localeCompare(b.area, "ko");
+        return a.name.localeCompare(b.name, "ko");
+      });
+      const visible = items.slice(0, nearbyState.limit);
+      list.innerHTML = visible.length ? visible.map((item) => `
+        <a class="nearby-item" href="${googleMapSearch(item.mapQuery)}" target="_blank" rel="noopener noreferrer">
+          <div class="nearby-item-main">
+            <strong>${escapeGuideHtml(item.name)}</strong>
+            <span class="nearby-item-meta">${escapeGuideHtml(item.kind)} · ${escapeGuideHtml(item.area)}</span>
+            ${item.hours ? `<span class="nearby-item-hours">${escapeGuideHtml(item.hours)}</span>` : ""}
+          </div>
+          <div class="nearby-item-side">
+            ${Number.isFinite(item.distanceKm) ? `<span class="nearby-distance">${nearbyDistanceLabel(item.distanceKm)}</span>` : ""}
+            <span class="nearby-badge${item.source === "투어커렌트" ? " tourcurrent" : ""}">${item.source}</span>
+            <span class="nearby-go">길찾기 ↗</span>
+          </div>
+        </a>
+      `).join("") : '<p class="poi-empty">조건에 맞는 장소가 없습니다.</p>';
+      const more = document.getElementById("nearbyMore");
+      if (more) {
+        const hiddenCount = items.length - visible.length;
+        more.hidden = hiddenCount <= 0;
+        more.textContent = located
+          ? `가까운 순 ${hiddenCount}곳 더 보기`
+          : `${hiddenCount}곳 더 보기`;
+      }
+    }
+
+    function initNearby() {
+      const list = document.getElementById("nearbyList");
+      if (!list) return;
+      document.querySelectorAll(".nearby-chip[data-nearby-kind]").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          nearbyState.kind = chip.dataset.nearbyKind || "";
+          nearbyState.limit = 10;
+          document.querySelectorAll(".nearby-chip[data-nearby-kind]").forEach((other) => {
+            other.setAttribute("aria-pressed", String(other === chip));
+          });
+          renderNearby();
+        });
+      });
+      document.getElementById("nearbyMore")?.addEventListener("click", () => {
+        nearbyState.limit += 10;
+        renderNearby();
+      });
+      const locate = document.getElementById("nearbyLocate");
+      locate?.addEventListener("click", () => {
+        const sourceButton = document.getElementById("poiLocate");
+        if (!sourceButton || sourceButton.disabled) return;
+        locate.disabled = true;
+        locate.textContent = "위치 확인 중…";
+        sourceButton.click();
+      });
+      window.addEventListener("poi-location-change", (event) => {
+        nearbyState.location = event.detail || null;
+        nearbyState.limit = 10;
+        if (locate) {
+          locate.disabled = false;
+          locate.setAttribute("aria-pressed", String(Boolean(event.detail)));
+          locate.textContent = event.detail ? "📍 내 위치 적용됨" : "📍 내 위치 켜기";
+        }
+        const status = document.getElementById("nearbyStatus");
+        if (status) {
+          status.textContent = event.detail
+            ? "현재 위치에서 가까운 순입니다. 거리는 직선거리이고, 위치는 서버로 전송하지 않습니다."
+            : "위치는 버튼을 누를 때만 이 기기 안에서 거리 계산에 쓰이고, 서버로 보내지 않습니다.";
+        }
+        renderNearby();
+      });
+      renderNearby();
+    }
+
+    // iOS Safari는 스크롤 중 주소창 높이 변화만으로 resize 이벤트를 연속 발생시킨다.
+    // 폭이 실제로 바뀔 때만 지도 타일을 다시 그려 메모리 급증(강제 리로드)을 막는다.
+    let mapViewportWidth = window.innerWidth;
+    let mapResizeTimer;
     window.addEventListener("resize", () => {
-      window.clearTimeout(routeMapResizeTimer);
-      routeMapResizeTimer = window.setTimeout(drawRouteMap, 120);
-    });
-    let placesMapResizeTimer;
-    window.addEventListener("resize", () => {
-      window.clearTimeout(placesMapResizeTimer);
-      placesMapResizeTimer = window.setTimeout(placesMapFitScope, 140);
+      if (window.innerWidth === mapViewportWidth) return;
+      mapViewportWidth = window.innerWidth;
+      window.clearTimeout(mapResizeTimer);
+      mapResizeTimer = window.setTimeout(() => {
+        drawRouteMap();
+        placesMapFitScope();
+      }, 150);
     });
     initPlacesMap();
     drawRouteMap();
+    initTourcurrent();
+    initNearby();
   </script>
 </body>
 </html>
