@@ -1,4 +1,4 @@
-import { climate, familyGroups, itinerary, lodgingOptions, mealSuggestions, places, rentalChecklist, sources, trip } from "./trip-data.mjs";
+import { CHECKED_AT, climate, familyGroups, itinerary, lodgingOptions, mealSuggestions, places, rentalChecklist, sources, trip } from "./trip-data.mjs";
 
 const DAY_MS = 86400000;
 
@@ -49,7 +49,19 @@ export function filterPlaces(filters = {}) {
     if (filters.rain === true && !item.rain) return false;
     if (filters.energy && Number(item.energy) > Number(filters.energy)) return false;
     if (!query) return true;
-    return normalize([item.name, item.zone, item.category, item.why, item.warning].join(" ")).includes(query);
+    return normalize([
+      item.name,
+      item.zone,
+      item.category,
+      item.why,
+      item.warning,
+      item.bestFor,
+      item.skipIf,
+      item.kids,
+      item.reviews?.summary,
+      ...(item.reviews?.liked || []),
+      ...(item.reviews?.disliked || [])
+    ].join(" ")).includes(query);
   });
 }
 
@@ -58,20 +70,20 @@ function searchableRecords() {
     kind: "일정",
     title: `${day.date.slice(5).replace("-", "/")} ${day.title}`,
     subtitle: `${day.zone}, 강도 ${day.intensity}`,
-    body: `${day.main} ${day.timeline.join(" ")} 비: ${day.rain} 저강도: ${day.low} 식사: ${mealSuggestions[day.date] || "미정"} ${day.notes}`,
+    body: `${day.main} ${day.timeline.join(" ")} 비 오면: ${day.rain} 힘들면: ${day.low} 식사: ${mealSuggestions[day.date] || "미정"} ${day.notes}`,
     url: `#day-${day.date}`
   }));
   const placeRecords = places.map((item) => ({
     kind: item.category,
     title: item.name,
     subtitle: `${item.zone}, ${item.duration}, 에너지 ${item.energy}`,
-    body: `${item.why} 주의: ${item.warning}`,
+    body: `${item.why} 우리 가족에게: ${item.bestFor}. 아이 셋이면: ${item.kids}. 이럴 땐 빼요: ${item.skipIf}. 후기: ${item.reviews?.summary || ""} 좋았다는 점: ${(item.reviews?.liked || []).join(" ")} 아쉽다는 점: ${(item.reviews?.disliked || []).join(" ")} 예약 전 확인: ${item.warning}`,
     url: item.official
   }));
   const lodgingRecords = lodgingOptions.map((item) => ({
     kind: "숙소",
     title: item.name,
-    subtitle: `${item.type}, 적합도 ${item.fit}`,
+    subtitle: `${item.type}, 가족 조건 ${item.fit}`,
     body: `${item.verdict}. ${item.capacity}. ${item.layout}. 장점: ${item.good.join(" ")} 주의: ${item.cautions.join(" ")}`,
     url: item.official
   }));
@@ -108,31 +120,31 @@ export function searchContext(question, limit = 6) {
 const questionRules = [
   {
     terms: ["비", "우천", "날씨"],
-    answer: "두바이는 비보다 강풍과 한낮 더위가 더 중요한 변수입니다. 강풍이면 Aquaventure와 abra를 취소하고 Museum of the Future, Dubai Aquarium, Green Planet 중 숙소와 가까운 한 곳만 고르세요."
+    answer: "두바이는 비보다 센 바람과 한낮 더위를 먼저 봐야 해요. 바람이 세면 Aquaventure와 abra는 미루고, Museum of the Future, Dubai Aquarium, Green Planet 중 숙소에서 가까운 한 곳만 갑니다."
   },
   {
     terms: ["숙소", "호텔", "에어비앤비", "airbnb", "한집"],
-    answer: "정원 적합도 1순위는 Jumeirah Zabeel Saray의 Four Bedroom Lagoon Royal Villa입니다. 공식적으로 6성인과 4아동까지 받습니다. 이동 균형은 Marsa Al Arab이 더 좋지만 6성인과 3아동 조합을 서면 승인받아야 합니다."
+    answer: "아홉 명이 한 빌라에 묵으려면 Jumeirah Zabeel Saray의 Four Bedroom Lagoon Royal Villa부터 보세요. 공식 정원은 6성인과 4아동이라 우리 가족이 들어갑니다. 시내 이동은 Marsa Al Arab이 낫지만 6성인과 3아동 투숙이 되는지 이메일 답을 받아야 합니다."
   },
   {
     terms: ["피곤", "힘들", "쉬", "낮잠"],
-    answer: "일정을 줄이세요. 이 여행의 기본 단위는 오전 1곳, 점심, 숙소 복귀입니다. 당일 컨디션이 낮으면 각 날짜 카드의 저강도안을 선택하고, 이미 예약한 곳도 취소할 수 있어야 합니다."
+    answer: "그날은 한 군데만 가요. 오전에 보고 점심을 먹은 뒤 숙소로 돌아오면 됩니다. 아이들이 지치면 날짜 카드의 ‘힘들면’ 일정으로 바꾸고, 예약했더라도 무리해서 가지 않아요."
   },
   {
     terms: ["아이", "어린이", "6살", "7살", "9살"],
-    answer: "아이 기준으로는 Aquaventure, The Lost Chambers, Museum of the Future가 강합니다. Aquaventure는 1.2m 신장 제한과 구명조끼 규정을 먼저 확인하고, 하루 종일 버티지 말고 15시 전에 나오는 편이 낫습니다."
+    answer: "아이 셋이 가장 좋아할 곳은 Aquaventure예요. 바람이 세거나 키 제한 때문에 못 타는 시설이 많으면 Lost World Aquarium이나 Museum of the Future로 바꿉니다. 워터파크는 하루 종일 버티지 말고 15시 전에 나와요."
   },
   {
     terms: ["식당", "밥", "점심", "저녁", "맛집"],
-    answer: "두바이에서는 리조트 안 식사를 기본값으로 두세요. 관광일에는 Museum of the Future, Dubai Mall, Madinat의 목적 식당 한 곳만 9인으로 예약하고, 숙소 복귀 후 다시 외식하러 나오지 않는 것이 저피로 원칙에 맞습니다."
+    answer: "쉬는 날 저녁은 리조트 안에서 먹는 게 편해요. 밖에 나가는 날은 Museum of the Future, Dubai Mall, Madinat 근처 식당 한 곳만 9인으로 예약하고, 숙소에 돌아온 뒤 다시 저녁을 먹으러 나오지는 않아요."
   },
   {
     terms: ["비행", "항공", "직항", "공항"],
-    answer: "두 팀 모두 현재 Emirates 직항 노선이 있지만 2027년 시간은 아직 확정할 수 없습니다. 도착 시각을 억지로 맞추지 말고 DXB Meet & Greet와 팀별 차량으로 각각 숙소에 들어가세요."
+    answer: "두 팀 모두 지금은 Emirates 직항이 있지만 2027년 시간표는 아직 확정할 수 없어요. 도착 시각을 맞추느라 불편한 편을 고르지 말고, DXB에서 팀별 차를 따로 타고 숙소로 들어가면 됩니다."
   },
   {
     terms: ["사막", "사파리", "아부다비", "근교", "다른도시"],
-    answer: "이번 조건에서는 핵심 일정에 넣지 않는 편이 맞습니다. 사막 사파리는 장거리 차량, 모래길, 늦은 귀환이 저피로 원칙과 충돌합니다. Abu Dhabi도 왕복 이동 때문에 별도 숙박을 하지 않는 한 추천하지 않습니다."
+    answer: "사막 사파리와 Abu Dhabi는 이번에는 빼는 게 맞습니다. 차를 오래 타고 모래길을 달린 뒤 늦게 돌아오면 아이 셋이 너무 힘들어요. 꼭 가고 싶다면 다른 날을 비우고, 거친 dune bashing 없는 전용차부터 찾아야 합니다."
   }
 ];
 
@@ -141,8 +153,8 @@ export function localAnswer(question) {
   const rule = questionRules.find((candidate) => candidate.terms.some((term) => normalized.includes(normalize(term))));
   const context = searchContext(question);
   const defaultAnswer = context.length
-    ? `가장 가까운 앱 자료는 “${context[0].title}”입니다. ${context[0].body}`
-    : "앱 자료에서 직접 일치하는 항목을 찾지 못했습니다. 날짜, 장소, 숙소, 식당, 비 오는 날처럼 질문을 조금 더 구체적으로 적어 주세요.";
+    ? `이 내용부터 보세요: “${context[0].title}”. ${context[0].body}`
+    : "바로 맞는 내용을 못 찾았어요. 날짜나 장소 이름을 넣어 다시 물어봐 주세요. 예: ‘3월 29일 바람이 세면 어디 가?’";
   return {
     answer: rule?.answer || defaultAnswer,
     provider: "앱 내장 가이드",
@@ -179,6 +191,61 @@ export function makeKml(items = places) {
 ${marks}
   </Document>
 </kml>`;
+}
+
+export function distanceKm(from, to) {
+  const radians = (degrees) => (Number(degrees) * Math.PI) / 180;
+  const lat1 = radians(from?.lat);
+  const lat2 = radians(to?.lat);
+  const deltaLat = radians(Number(to?.lat) - Number(from?.lat));
+  const deltaLng = radians(Number(to?.lng) - Number(from?.lng));
+  const value = Math.sin(deltaLat / 2) ** 2
+    + Math.cos(lat1) * Math.cos(lat2) * Math.sin(deltaLng / 2) ** 2;
+  return 6371 * 2 * Math.atan2(Math.sqrt(value), Math.sqrt(1 - value));
+}
+
+function compactDate(dateKey) {
+  return String(dateKey || "").replaceAll("-", "");
+}
+
+function nextDate(dateKey) {
+  const date = new Date(`${dateKey}T12:00:00Z`);
+  date.setUTCDate(date.getUTCDate() + 1);
+  return date.toISOString().slice(0, 10);
+}
+
+export function makeGoogleCalendarUrl(day) {
+  const query = new URLSearchParams({
+    action: "TEMPLATE",
+    text: `${trip.destination} 가족여행, ${day.title}`,
+    dates: `${compactDate(day.date)}/${compactDate(nextDate(day.date))}`,
+    details: `${day.main}\n\n왜 이날 하나요: ${day.whyNow || "가족의 이동과 휴식 리듬에 맞춘 일정입니다."}\n\n비 오면: ${day.rain}\n힘들면: ${day.low}\n식사: ${mealSuggestions[day.date] || "당일 확인"}`,
+    location: day.zone
+  });
+  return `https://calendar.google.com/calendar/render?${query.toString()}`;
+}
+
+function icsText(value) {
+  return String(value || "")
+    .replaceAll("\\", "\\\\")
+    .replaceAll("\n", "\\n")
+    .replaceAll(",", "\\,")
+    .replaceAll(";", "\\;");
+}
+
+export function makeIcs(days = itinerary) {
+  const events = days.map((day) => [
+    "BEGIN:VEVENT",
+    `UID:${day.date}-${trip.destination.toLocaleLowerCase("en-US")}@family-trip.local`,
+    `DTSTAMP:${compactDate(CHECKED_AT)}T000000Z`,
+    `DTSTART;VALUE=DATE:${compactDate(day.date)}`,
+    `DTEND;VALUE=DATE:${compactDate(nextDate(day.date))}`,
+    `SUMMARY:${icsText(`${trip.destination} 가족여행, ${day.title}`)}`,
+    `LOCATION:${icsText(day.zone)}`,
+    `DESCRIPTION:${icsText(`${day.main}\n왜 이날 하나요: ${day.whyNow || "가족의 이동과 휴식 리듬에 맞춘 일정입니다."}\n비 오면: ${day.rain}\n힘들면: ${day.low}\n식사: ${mealSuggestions[day.date] || "당일 확인"}`)}`,
+    "END:VEVENT"
+  ].join("\r\n")).join("\r\n");
+  return ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Family Trip 2027//KO", "CALSCALE:GREGORIAN", events, "END:VCALENDAR", ""].join("\r\n");
 }
 
 export function buildMapPoints(items = places, width = 1000, height = 560) {

@@ -2,7 +2,7 @@ export const CHECKED_AT = "2026-08-31";
 
 export const trip = {
   title: "DUBAI FAMILY TRIP",
-  subtitle: "세 가족, 한 빌라, 리조트 중심 저강도 여행",
+  subtitle: "세 가족이 한 빌라에 머물며, 관광과 수영을 번갈아 하는 여행",
   destination: "두바이",
   startDate: "2027-03-20",
   arrivalDate: "2027-03-21",
@@ -11,7 +11,7 @@ export const trip = {
   adults: 6,
   children: [9, 7, 6],
   principles: [
-    "관광일 다음에는 반드시 리조트 회복일을 둔다.",
+    "관광한 다음 날에는 멀리 나가지 않는다.",
     "차량 편도 30분이 넘는 일정은 하루에 하나만 잡는다.",
     "아이 셋의 수영과 휴식을 관광보다 먼저 고정한다.",
     "사막 사파리와 Old Dubai는 숙소 위치가 맞을 때만 선택한다."
@@ -47,11 +47,11 @@ export const lodgingOptions = [
     id: "zabeel", rank: 1,
     name: "Jumeirah Zabeel Saray, Four Bedroom Lagoon Royal Villa",
     type: "서비스와 수영장이 결합된 4베드룸 빌라",
-    verdict: "6성인과 3아동 수용이 공식 문구로 가장 명확함",
+    verdict: "공식 정원에 성인 6명과 아이 3명이 들어가는 가장 안전한 선택",
     capacity: "최대 10명, 6성인과 4아동 명시",
     layout: "461㎡, 침실 4, 완전한 주방, 별도 출입구, 라군 풀",
     location: "Palm Jumeirah West Crescent", fit: 94,
-    good: ["이번 6+3 구성을 공식 수용", "한 빌라와 전용 생활 공간", "키즈클럽, 해변, 24시간 버틀러", "회복일을 숙소에서 완결 가능"],
+    good: ["이번 6+3 구성을 공식 수용", "한 빌라와 전용 생활 공간", "키즈클럽, 해변, 24시간 버틀러", "쉬는 날은 호텔 밖으로 나가지 않아도 됨"],
     cautions: ["Downtown과 Old Dubai까지 이동이 길다", "각 방의 정확한 침대 배치 확인", "10박 연속 재고와 취소 조건 미확인"],
     action: "6성인과 만 9세, 7세, 6세의 침대 배치도와 10박 총액을 서면 요청",
     official: "https://www.jumeirah.com/en/stay/dubai/jumeirah-zabeel-saray/accommodation/four-bedroom-lagoon-royal-residences-exclusive",
@@ -77,7 +77,7 @@ export const lodgingOptions = [
     id: "raffles", rank: 3,
     name: "Raffles The Palm Dubai, Royal Villa Four Bedroom",
     type: "프라이버시가 강한 대형 독립 빌라",
-    verdict: "한 채의 완결성은 가장 높지만 Palm 서쪽 이동이 약점",
+    verdict: "한 채로 쓰는 만족도는 높지만 Palm 서쪽이라 차에 오래 있어야 함",
     capacity: "공식 최대 10명",
     layout: "950㎡, 침실 4, 주방, 전용 수영장과 출입구",
     location: "Palm Jumeirah West Crescent", fit: 88,
@@ -120,18 +120,35 @@ export const rentalChecklist = [
 
 export const itinerary = [
   { date: "2027-03-20", dow: "토", title: "각 도시에서 출발", zone: "ICN / LAX", intensity: 1, stay: false, main: "두 팀 모두 Emirates 직항을 우선하고 도착 시각을 억지로 맞추지 않는다.", timeline: ["ICN팀 직항 출발", "LAX팀 직항 출발", "단체 채팅에 항공편과 차량 담당자 고정"], rain: "해당 없음", low: "라운지와 기내 수면만 일정으로 본다.", transport: "출발 공항 개별 이동", notes: "2027년 시간표가 열리면 확정" },
-  { date: "2027-03-21", dow: "일", title: "도착과 체크인만", zone: "DXB / 숙소", intensity: 1, stay: true, main: "Meet & Greet와 개별 차량으로 숙소에 들어가며 합류 행사를 만들지 않는다.", timeline: ["DXB 입국 패스트트랙", "숙소별 얼리 체크인 또는 데이룸", "인룸 다이닝과 수면"], rain: "숙소 안에서 동일", low: "외출 없음", transport: "DXB 전용차 30-45분", notes: "Palm 서쪽은 교통에 따라 더 길 수 있음" },
+  { date: "2027-03-21", dow: "일", title: "도착과 체크인만", zone: "DXB / 숙소", intensity: 1, stay: true, main: "공항에서 서로 기다리지 않고 팀별 차량으로 바로 숙소에 들어갑니다.", timeline: ["DXB 입국 패스트트랙", "숙소별 얼리 체크인 또는 데이룸", "인룸 다이닝과 수면"], rain: "숙소 안에서 동일", low: "외출 없음", transport: "DXB 전용차 30-45분", notes: "Palm 서쪽은 교통에 따라 더 길 수 있음" },
   { date: "2027-03-22", dow: "월", title: "완전 회복일", zone: "리조트", intensity: 1, stay: true, main: "수영장이나 해변을 60-90분만 사용하고 낮잠을 일정의 중심에 둔다.", timeline: ["늦은 조식", "아이 수영 60-90분", "오후 낮잠과 빌라 저녁"], rain: "키즈클럽과 실내 수영장", low: "하루 종일 빌라", transport: "도보", notes: "예약 일정 없음" },
   { date: "2027-03-23", dow: "화", title: "Museum of the Future", zone: "Trade Centre", intensity: 2, stay: true, main: "10시 30분 시간 지정 입장 한 곳만 보고 이른 점심 뒤 15시 전에 복귀한다.", timeline: ["09:45 숙소 출발", "10:30-13:00 관람", "인근 점심 후 즉시 귀환"], rain: "그대로 진행", low: "관람 90분 후 귀환", transport: "전용차 편도 20-35분", notes: "시간 지정 표는 사전 예약" },
   { date: "2027-03-24", dow: "수", title: "리조트 데이", zone: "리조트", intensity: 1, stay: true, main: "키즈클럽과 성인 스파를 교대하고 이동하지 않는다.", timeline: ["아이 키즈클럽", "성인 교대 스파", "해 질 무렵 짧은 산책"], rain: "실내 시설", low: "빌라와 룸서비스", transport: "도보", notes: "관광 예약 없음" },
   { date: "2027-03-25", dow: "목", title: "Burj Khalifa 한 블록", zone: "Downtown", intensity: 2, stay: true, main: "10시 전망대와 이른 점심만 고정하고 Aquarium은 체력이 남을 때만 선택한다.", timeline: ["09:15 숙소 출발", "10:00 At The Top", "Dubai Mall 이른 점심, 14:30 귀환"], rain: "그대로 진행", low: "전망대만 보고 귀환", transport: "전용차 편도 20-40분", notes: "유모차와 큰 가방 보관 규정 확인" },
   { date: "2027-03-26", dow: "금", title: "Madinat abra와 이른 저녁", zone: "Jumeirah", intensity: 1, stay: true, main: "Jumeirah 숙소라면 짧은 배와 저녁만, Palm 숙소라면 리조트 일정으로 교체한다.", timeline: ["오후까지 휴식", "16:30 abra", "18:00 이른 저녁 후 귀환"], rain: "Madinat 실내 식사만", low: "숙소 해변 산책", transport: "전용차 편도 5-30분", notes: "숙소 위치에 따라 가치가 달라짐" },
-  { date: "2027-03-27", dow: "토", title: "Al Shindagha Children’s House", zone: "Old Dubai", intensity: 2, stay: true, main: "어린이 전시 중심으로 2시간만 보고, Palm 서쪽 숙소라면 과감히 삭제한다.", timeline: ["09:30 전용차 출발", "10:15-12:30 관람", "점심 후 바로 귀환"], rain: "그대로 진행", low: "Etihad Museum으로 축소", transport: "전용차 편도 30-50분", notes: "Palm 숙소에서는 선택 일정" },
+  { date: "2027-03-27", dow: "토", title: "Al Shindagha Children’s House", zone: "Old Dubai", intensity: 2, stay: true, main: "어린이 전시 두 곳만 2시간 보고 나옵니다. Palm 서쪽에 묵는다면 빼도 아쉽지 않습니다.", timeline: ["09:30 전용차 출발", "10:15-12:30 관람", "점심 후 바로 귀환"], rain: "그대로 진행", low: "Etihad Museum으로 축소", transport: "전용차 편도 30-50분", notes: "Palm 숙소에서는 선택 일정" },
   { date: "2027-03-28", dow: "일", title: "두 번째 완전 휴식일", zone: "리조트", intensity: 1, stay: true, main: "관광 예약을 넣지 않고 아이들이 원하는 수영과 식사만 반복한다.", timeline: ["늦은 조식", "수영 또는 키즈클럽", "가족 사진과 인룸 저녁"], rain: "실내 시설", low: "빌라", transport: "도보", notes: "아무것도 추가하지 않음" },
-  { date: "2027-03-29", dow: "월", title: "Aquaventure 짧고 확실하게", zone: "Palm", intensity: 3, stay: true, main: "10시부터 15시까지만 머물고 cabana와 AquaXpress로 대기와 체력 소모를 줄인다.", timeline: ["개장 시각 입장", "cabana를 회복 거점으로 사용", "15:00 이전 숙소 귀환"], rain: "강풍이나 운영 제한 시 Green Planet", low: "Lost Chambers만 90분", transport: "전용차 편도 5-30분", notes: "신장 제한과 구명조끼 규정 확인" },
-  { date: "2027-03-30", dow: "화", title: "날씨와 피로 버퍼", zone: "숙소 주변", intensity: 1, stay: true, main: "취소된 일정 하나만 복구하고 기본값은 숙소다. 사막 사파리는 핵심 일정에 넣지 않는다.", timeline: ["아침 컨디션 확인", "필요하면 이전 일정 하나 복구", "짐 정리와 이른 취침"], rain: "Museum of the Future 또는 Aquarium", low: "숙소", transport: "선택 일정만 차량", notes: "사막은 장거리와 늦은 귀환 때문에 제외" },
-  { date: "2027-03-31", dow: "수", title: "체크아웃과 출국", zone: "숙소 / DXB", intensity: 1, stay: false, main: "팀별 항공편 3시간 전 DXB 도착을 기준으로 개별 출발한다.", timeline: ["객실별 짐과 여권 점검", "팀별 전용차 출발", "DXB 항공사 카운터 확인"], rain: "동일", low: "동일", transport: "전용차 30-50분", notes: "공항에서 합류 행사를 만들지 않음" }
+  { date: "2027-03-29", dow: "월", title: "Aquaventure 짧고 확실하게", zone: "Palm", intensity: 3, stay: true, main: "개장할 때 들어가 15시 전에 나옵니다. Cabana를 잡아 아이들이 중간에 눕고 물을 마실 자리를 만듭니다.", timeline: ["개장 시각 입장", "Cabana에서 점심과 휴식", "15:00 이전 숙소 귀환"], rain: "강풍이나 운영 제한 시 Green Planet", low: "Lost World Aquarium만 90분", transport: "전용차 편도 5-30분", notes: "신장 제한과 구명조끼 규정 확인" },
+  { date: "2027-03-30", dow: "화", title: "비가 오거나 지쳤을 때 쓰는 빈 날", zone: "숙소 주변", intensity: 1, stay: true, main: "앞에서 놓친 곳이 정말 아쉬울 때만 한 곳을 다시 잡고, 아니면 숙소에서 쉽니다. 사막 사파리는 넣지 않습니다.", timeline: ["아침 컨디션 확인", "필요하면 이전 일정 하나 복구", "짐 정리와 이른 취침"], rain: "Museum of the Future 또는 Aquarium", low: "숙소", transport: "선택 일정만 차량", notes: "사막은 장거리와 늦은 귀환 때문에 제외" },
+  { date: "2027-03-31", dow: "수", title: "체크아웃과 출국", zone: "숙소 / DXB", intensity: 1, stay: false, main: "두 팀은 각자 항공편 시간에 맞춰 출발하고 공항에서 다시 모이지 않습니다.", timeline: ["객실별 짐과 여권 점검", "팀별 전용차 출발", "DXB 항공사 카운터 확인"], rain: "동일", low: "동일", transport: "전용차 30-50분", notes: "항공편 3시간 전 DXB 도착" }
 ];
+
+const dayDetails = {
+  "2027-03-20": { featuredPlace: "zabeel", whyNow: "장거리 비행이 시작되는 날이라 다른 약속을 잡지 않고, 두 팀 모두 기내에서 잘 수 있는 리듬만 맞춥니다." },
+  "2027-03-21": { featuredPlace: "zabeel", whyNow: "도착 시간이 다른 세 가족이 공항에서 기다리지 않도록, 첫날은 체크인과 잠만 남겨 둡니다." },
+  "2027-03-22": { featuredPlace: "zabeel", whyNow: "시차가 가장 크게 느껴지는 첫 아침입니다. 수영도 한 번만 하고 오후에는 모두 방으로 돌아갑니다." },
+  "2027-03-23": { featuredPlace: "future", whyNow: "첫 외출은 날씨 영향을 받지 않고 아이 셋 모두 들어갈 수 있는 Future Heroes부터 시작합니다." },
+  "2027-03-24": { featuredPlace: "marsa", whyNow: "첫 외출 다음 날에는 차를 타지 않습니다. 아이 수영과 어른 휴식을 번갈아 쓰는 날입니다." },
+  "2027-03-25": { featuredPlace: "burj", whyNow: "전망대는 오전 첫 시간에만 시도합니다. 줄이 길면 포기하고 Dubai Mall에서 점심만 먹고 돌아옵니다." },
+  "2027-03-26": { featuredPlace: "madinat", whyNow: "관광 사이에 넣을 수 있는 가장 짧은 외출입니다. 배는 20분 남짓이고 이른 저녁까지 한 권역에서 끝납니다." },
+  "2027-03-27": { featuredPlace: "shindagha", whyNow: "리뷰에서 아이 전시, 직원 설명, 낮은 혼잡도가 반복된 문화 일정이라 주말 오전에 두 건물만 봅니다." },
+  "2027-03-28": { featuredPlace: "zabeel", whyNow: "Aquaventure 전날에는 다리를 아껴야 합니다. 예약을 하나도 넣지 않고 아이들이 좋아한 수영과 식사를 반복합니다." },
+  "2027-03-29": { featuredPlace: "aquaventure", whyNow: "이번 여행에서 가장 체력이 많이 드는 날입니다. 전날을 비우고 평일 개장 시간에 맞춰 대기와 더위를 피합니다." },
+  "2027-03-30": { featuredPlace: "green", whyNow: "비, 바람, 피로 때문에 놓친 일정이 있을 때만 씁니다. 모두 괜찮았다면 숙소에서 짐을 싸고 쉽니다." },
+  "2027-03-31": { featuredPlace: "zabeel", whyNow: "출국일에는 관광을 넣지 않습니다. 세 가족이 서로 기다리지 않고 항공편 순서대로 공항으로 갑니다." }
+};
+
+for (const day of itinerary) Object.assign(day, dayDetails[day.date]);
 
 export const mealSuggestions = {
   "2027-03-20": "라운지와 기내식만 이용하고 도착 직전 과식하지 않는다.",
@@ -143,7 +160,7 @@ export const mealSuggestions = {
   "2027-03-26": "Madinat에서 17시 30분 9인 테이블과 어린이 메뉴를 사전 확인한다.",
   "2027-03-27": "Old Dubai 점심은 차량 동선 안의 한 곳만 예약하고 시장 탐색은 하지 않는다.",
   "2027-03-28": "아이들이 좋아한 리조트 식사를 반복한다.",
-  "2027-03-29": "Aquaventure cabana 식사와 충분한 수분을 기본값으로 둔다.",
+  "2027-03-29": "Aquaventure cabana에서 점심을 먹고 물을 자주 마신다.",
   "2027-03-30": "새 식당을 추가하지 않고 숙소 또는 이미 검증한 곳을 반복한다.",
   "2027-03-31": "항공편별 조식 또는 포장식, 공항에서 단체 식사를 만들지 않는다."
 };
@@ -164,19 +181,293 @@ export const places = [
   place("future", "Museum of the Future", "Trade Centre", "박물관", 25.2192, 55.2822, "2-3시간", 2, true, "아이와 어른이 함께 몰입할 수 있는 대표 실내 일정이다.", "모든 표가 날짜와 시간 지정, 사전 예약 필요", "https://museumofthefuture.ae/en/plan-your-visit", images.city),
   place("burj", "Burj Khalifa At The Top", "Downtown", "전망", 25.1972, 55.2744, "90분", 2, true, "10시 입장으로 혼잡과 피로를 낮추기 좋다.", "표는 지정 날짜와 시간에만 유효", "https://ticket.atthetop.ae/tickets/book-tickets/", images.burj),
   place("mall", "Dubai Mall", "Downtown", "쇼핑", 25.1985, 55.2796, "점심 포함 2시간", 2, true, "전망대와 점심을 한 건물권에서 끝낼 수 있다.", "규모가 커서 목적 식당과 출입구를 미리 고정", "https://thedubaimall.com/", images.city),
-  place("aquarium", "Dubai Aquarium", "Downtown", "수족관", 25.1975, 55.2793, "60-90분", 2, true, "Burj 일정의 선택형 실내 대안이다.", "같은 날 의무로 묶으면 아이 피로가 커짐", "https://www.thedubaiaquarium.com/", images.city),
+  place("aquarium", "Dubai Aquarium", "Downtown", "수족관", 25.1975, 55.2793, "60-90분", 2, true, "Burj Khalifa 뒤에도 아이들이 더 보고 싶어 할 때만 들어갑니다.", "같은 날 의무로 묶으면 아이 피로가 커짐", "https://www.thedubaiaquarium.com/", images.city),
   place("madinat", "Madinat Jumeirah Abra", "Jumeirah", "보트", 25.1339, 55.1858, "30-60분", 1, false, "Jumeirah 숙소에서 짧고 상징적인 저녁 전 일정이 된다.", "더운 시간과 주말 혼잡을 피함", "https://www.jumeirah.com/en/stay/dubai/madinat-jumeirah", images.coast),
   place("burjalarab", "Burj Al Arab waterfront", "Jumeirah", "산책", 25.1412, 55.1853, "30분", 1, false, "Madinat와 같은 권역에서 사진과 짧은 산책을 끝낼 수 있다.", "공공 해변과 호텔 출입 규정은 다름", "https://www.jumeirah.com/en/stay/dubai/burj-al-arab-jumeirah", images.coast),
-  place("shindagha", "Al Shindagha Museum", "Old Dubai", "박물관", 25.2689, 55.2893, "2-3시간", 2, true, "Children’s House 중심으로 문화 일정을 아이 눈높이에 맞춘다.", "Palm 서쪽 숙소에서는 이동 대비 효용이 낮아 선택 일정", "https://alshindagha.dubaiculture.gov.ae/", images.city),
+  place("shindagha", "Al Shindagha Museum", "Old Dubai", "박물관", 25.2689, 55.2893, "2-3시간", 2, true, "Children’s House 중심으로 문화 일정을 아이 눈높이에 맞춥니다.", "Palm 서쪽 숙소라면 왕복 차 시간이 길어 빼도 아쉽지 않음", "https://alshindagha.dubaiculture.gov.ae/", images.city),
   place("etihad", "Etihad Museum", "Jumeirah 1", "박물관", 25.2413, 55.2696, "90분", 1, true, "Old Dubai보다 짧은 실내 대안으로 쓰기 좋다.", "전시 관심도가 낮으면 생략", "https://etihadmuseum.dubaiculture.gov.ae/", images.city),
   place("aquaventure", "Aquaventure World", "Palm", "워터파크", 25.1305, 55.1171, "최대 5시간", 3, false, "아이 셋에게 두바이 선택의 가장 분명한 이유다.", "1.2m 신장 제한, 구명조끼, 13세 미만 보호자 규정 확인", "https://www.atlantis.com/dubai/atlantis-aquaventure/aquaventure-waterpark", images.coast),
-  place("lost", "The Lost Chambers Aquarium", "Palm", "수족관", 25.1300, 55.1175, "60-90분", 1, true, "Aquaventure를 감당하기 어려운 날의 저강도 대안이다.", "운영시간과 묶음표 조건 확인", "https://www.atlantis.com/atlantis-the-palm/the-lost-chambers-aquarium", images.coast),
+  place("lost", "Lost World Aquarium (구 Lost Chambers)", "Palm", "수족관", 25.1300, 55.1175, "60-90분", 1, true, "Aquaventure가 어렵거나 바람이 강한 날 한 시간만 보는 실내 선택입니다.", "운영시간과 묶음표 조건 확인", "https://www.atlantis.com/atlantis-the-palm/the-lost-chambers-aquarium", images.coast),
   place("green", "The Green Planet", "City Walk", "실내자연", 25.2075, 55.2627, "90분", 1, true, "강풍이나 피로가 큰 날의 실내 생태 대안이다.", "주말 혼잡과 시간 지정표 확인", "https://www.thegreenplanetdubai.com/", images.city),
   place("kite", "Kite Beach", "Jumeirah", "해변", 25.1612, 55.2073, "60-90분", 1, false, "Jumeirah 숙소에서 짧은 야외 회복 일정으로 쓸 수 있다.", "한낮 햇빛과 바람을 피하고 수영은 안전요원 구역만", "https://www.visitdubai.com/en/places-to-visit/kite-beach", images.coast),
   place("zabeel", "Jumeirah Zabeel Saray", "Palm West", "숙소", 25.0986, 55.1233, "기준점", 1, true, "공식적으로 6성인과 4아동까지 받는 정확한 4베드룸 후보다.", "도심 이동이 길어 리조트 중심 일정으로 운영", lodgingOptions[0].official, images.coast),
   place("marsa", "Jumeirah Marsa Al Arab", "Jumeirah", "숙소", 25.1419, 55.1848, "기준점", 1, true, "도심과 해변 이동 균형이 가장 좋은 입지 후보다.", "6성인과 3아동 수용 서면 승인 필요", lodgingOptions[1].official, images.coast),
   place("desert", "Desert safari", "Desert", "제외", 25.1100, 55.4200, "반일 이상", 3, false, "대표 경험이지만 이번 저피로 원칙과 충돌한다.", "장거리 차량, 모래길, 늦은 귀환 때문에 핵심 일정에서 제외", "https://www.visitdubai.com/en/things-to-do/itineraries/desert-safari", images.desert)
 ];
+
+const placeDetails = {
+  future: {
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Museum%20of%20The%20Future.jpg?width=1600",
+    imageFallback: images.city,
+    photoSource: "https://commons.wikimedia.org/wiki/File:Museum_of_The_Future.jpg",
+    bestFor: "첫 외출을 실내에서 시작하고, 세 아이가 Future Heroes에서 직접 움직이게 하고 싶을 때",
+    skipIf: "건축보다 전시의 깊이를 기대하거나 입장 전 대기가 길 때",
+    kids: "만 10세 이하 전용 공간을 먼저 보고 전체 관람은 2시간에서 끝냅니다.",
+    groupFit: "시간 지정표 9장을 같은 회차로 예약해야 합니다.",
+    reservation: "10시 첫 회차 권장",
+    reviews: {
+      summary: "건물과 이동 연출은 압도적이라는 반응이 많지만, 유료 전시의 깊이와 가격 만족도는 꽤 엇갈립니다.",
+      liked: ["아랍 서예 외관과 우주선 같은 연출", "만 10세 이하 Future Heroes"],
+      disliked: ["외관에 비해 전시가 얕고 입장 전 대기가 생길 수 있음"],
+      familyTip: "Future Heroes를 중심으로 2시간만 보고 이른 점심 뒤 숙소로 돌아갑니다.",
+      sources: [{ platform: "Tripadvisor 최근 여행자 리뷰", url: "https://www.tripadvisor.com/Attraction_Review-g295424-d23751344-Reviews-Museum_Of_The_Future-Dubai_Emirate_of_Dubai.html", checkedAt: CHECKED_AT }]
+    }
+  },
+  burj: {
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Burj%20Khalifa%20-%20Dubai.jpg?width=1600",
+    imageFallback: images.burj,
+    photoSource: "https://commons.wikimedia.org/wiki/File:Burj_Khalifa_-_Dubai.jpg",
+    bestFor: "두바이의 규모를 한 번에 보고 싶은 어른과 높은 곳을 좋아하는 아이",
+    skipIf: "입장 대기가 30분을 넘거나 유모차 보관이 번거로운 날",
+    kids: "전망보다 줄이 더 오래 기억날 수 있어 오전 첫 회차만 시도합니다.",
+    groupFit: "9장 같은 회차, 유모차 보관, 차량 출구를 함께 확인합니다.",
+    reservation: "선택 일정, 오전 첫 회차만",
+    reviews: {
+      summary: "전망과 상징성은 분명하지만 시간 지정표가 있어도 긴 줄, 좌석 부족, 유모차 보관 불편이 반복됩니다.",
+      liked: ["124층과 125층의 넓은 전망", "두바이의 규모를 한눈에 보는 상징성"],
+      disliked: ["긴 대기와 혼잡, 유모차를 맡겨야 하는 절차"],
+      familyTip: "30분 이상 기다릴 것 같으면 취소하고 Dubai Mall 점심만 먹습니다.",
+      sources: [{ platform: "Tripadvisor 가족 리뷰", url: "https://www.tripadvisor.com/Attraction_Review-g295424-d12580575-Reviews-At_The_Top_Burj_Khalifa-Dubai_Emirate_of_Dubai.html", checkedAt: CHECKED_AT }]
+    }
+  },
+  mall: {
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Dubai%20MALL%20Waterfalls.jpg?width=1600",
+    imageFallback: images.city,
+    photoSource: "https://commons.wikimedia.org/wiki/File:Dubai_MALL_Waterfalls.jpg",
+    bestFor: "Burj Khalifa 뒤에 차를 다시 타지 않고 점심과 화장실을 해결할 때",
+    skipIf: "쇼핑을 일정으로 만들거나 출구를 정하지 않고 돌아다닐 때",
+    kids: "식당, 화장실, 차량 출구를 미리 하나씩 정해 걷는 거리를 줄입니다.",
+    groupFit: "9인 식당 예약과 차량 승하차 지점을 예약서에 같이 남깁니다.",
+    reservation: "목적 식당만 예약",
+    reviews: {
+      summary: "깨끗하고 가족 편의시설이 많다는 평이 우세하지만, 너무 큰 규모와 피크 시간 혼잡이 여행 피로를 키웁니다.",
+      liked: ["식당과 실내 활동을 한곳에서 해결", "깨끗한 시설과 많은 가족 편의"],
+      disliked: ["길을 잃기 쉽고 출구와 차량 지점을 찾는 데 오래 걸림"],
+      familyTip: "관광지가 아니라 Burj Khalifa 점심과 차량 연결을 위한 통로로 씁니다.",
+      sources: [{ platform: "Tripadvisor 여행자 리뷰", url: "https://www.tripadvisor.com/Attraction_Review-g295424-d1210327-Reviews-The_Dubai_Mall-Dubai_Emirate_of_Dubai.html", checkedAt: CHECKED_AT }]
+    }
+  },
+  aquarium: {
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Dubai%20Aquarium2.jpg?width=1600",
+    imageFallback: images.city,
+    photoSource: "https://commons.wikimedia.org/wiki/File:Dubai_Aquarium2.jpg",
+    bestFor: "Burj Khalifa 뒤에도 아이들이 더 보고 싶어 하고 실내에서 한 시간만 쓸 때",
+    skipIf: "전망대에서 이미 지쳤거나 입장권 가격이 부담스러울 때",
+    kids: "상어 터널만 보고 나와도 충분합니다. 같은 날 의무 일정으로 묶지 않습니다.",
+    groupFit: "9인 표를 미리 살 필요 없이 당일 아이 컨디션을 보고 결정합니다.",
+    reservation: "당일 선택",
+    reviews: {
+      summary: "상어 터널과 실내 접근성은 아이 가족에게 호평받지만, 입장료에 비해 관람이 짧고 피크 시간은 붐빕니다.",
+      liked: ["아이들이 바로 반응하는 상어 터널", "Dubai Mall 안에서 바로 연결되는 실내 동선"],
+      disliked: ["가격 대비 짧은 관람과 피크 시간 혼잡"],
+      familyTip: "아이들이 더 보고 싶어 할 때만 60분 선택 일정으로 씁니다.",
+      sources: [{ platform: "Tripadvisor 가족 리뷰", url: "https://www.tripadvisor.com/Attraction_Review-g295424-d1792285-Reviews-Dubai_Aquarium_Underwater_Zoo-Dubai_Emirate_of_Dubai.html", checkedAt: CHECKED_AT }]
+    }
+  },
+  madinat: {
+    image: "https://cdn.jumeirah.com/api/public/content/ab9d70e684384a6bb2b429463cb6b010?v=4b1de950",
+    imageFallback: images.coast,
+    photoSource: "https://www.jumeirah.com/en/stay/dubai/jumeirah-mina-al-salam/experiences/abra-tours",
+    bestFor: "관광 사이에 배 20분과 이른 저녁만 넣고 싶은 날",
+    skipIf: "Palm 서쪽 숙소에서 차로 오래 와야 하거나 주말 저녁에 붐빌 때",
+    kids: "배가 지루해지기 전에 끝나고 Burj Al Arab을 물에서 볼 수 있습니다.",
+    groupFit: "일반 Abra를 나눠 타도 되며 전용 보트는 필요 없습니다.",
+    reservation: "16시 30분 전후 현장 또는 사전 확인",
+    reviews: {
+      summary: "짧은 배 경험과 수로 풍경은 호평받지만 운항 시간에 비해 비싸고 주말 선착장이 붐빈다는 반응도 있습니다.",
+      liked: ["20분에서 40분의 짧고 편한 배 경험", "Burj Al Arab과 수로가 함께 보이는 풍경"],
+      disliked: ["짧은 운항에 비해 비싸고 저녁에는 선착장이 혼잡"],
+      familyTip: "Jumeirah 숙소일 때만 짧게 다녀오고, Palm 숙소면 리조트 산책으로 바꿉니다.",
+      sources: [{ platform: "Tripadvisor 여행자 리뷰", url: "https://www.tripadvisor.co.uk/Attraction_Review-g295424-d17635912-Reviews-Souk_Madinat_Jumeirah_Abra_Tours-Dubai_Emirate_of_Dubai.html", checkedAt: CHECKED_AT }]
+    }
+  },
+  burjalarab: {
+    image: "https://cdn.jumeirah.com/api/public/content/873b4b015d044362adf1ca2a9c225c71?v=138d4724",
+    imageFallback: images.coast,
+    photoSource: "https://www.jumeirah.com/en/stay/dubai/jumeirah-burj-al-arab-a-jumeirah-icon",
+    bestFor: "Madinat 일정 중 이동을 늘리지 않고 가족사진만 남길 때",
+    skipIf: "호텔 내부 입장을 기대하거나 사진을 위해 별도 식사를 추가할 때",
+    kids: "독립 관광지가 아니라 배에서 보고 20분 사진 정차만 합니다.",
+    groupFit: "9명이 서기 좋은 촬영 지점을 기사와 미리 정합니다.",
+    reservation: "별도 예약 없음",
+    reviews: {
+      summary: "대표 실루엣과 해변 사진은 만족도가 높지만, 예약 없이는 내부에 들어갈 수 없고 촬영 지점도 제한적입니다.",
+      liked: ["두바이를 대표하는 실루엣", "Madinat와 같은 권역이라 이동이 거의 없음"],
+      disliked: ["예약 없이는 호텔 내부 입장이 어렵고 사진만을 위한 별도 일정 가치는 낮음"],
+      familyTip: "Madinat Abra에 붙인 20분 사진 정차로만 처리합니다.",
+      sources: [{ platform: "Tripadvisor 여행자 리뷰", url: "https://www.tripadvisor.com/Attraction_Review-g295424-d324445-Reviews-Burj_Al_Arab-Dubai_Emirate_of_Dubai.html", checkedAt: CHECKED_AT }]
+    }
+  },
+  shindagha: {
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Shindagha%20Museum-%20Dubai.jpg?width=1600",
+    imageFallback: images.city,
+    photoSource: "https://commons.wikimedia.org/wiki/Category:Museum_Al_Shindagha",
+    bestFor: "화려한 세트보다 아이 전시와 두바이의 생활사를 천천히 보고 싶을 때",
+    skipIf: "Palm 서쪽에서 왕복 이동이 90분에 가까워질 때",
+    kids: "Children’s House와 Birth of a City 두 곳만 보고 2시간에 끝냅니다.",
+    groupFit: "여러 건물에 흩어져 있으므로 9명이 함께 움직일 두 전시관을 먼저 정합니다.",
+    reservation: "공식 운영시간만 재확인",
+    reviews: {
+      summary: "인터랙티브 어린이 전시, 친절한 직원, 낮은 혼잡도와 냉방은 가족 리뷰에서 꾸준히 좋은 평가를 받습니다.",
+      liked: ["아이에게 맞는 인터랙티브 전시와 직원 설명", "한산하고 냉방된 여러 전시관"],
+      disliked: ["전시관이 넓게 흩어져 있어 전부 보면 반나절 이상 걸림"],
+      familyTip: "모든 전시관을 돌지 말고 Children’s House와 Birth of a City만 봅니다.",
+      sources: [{ platform: "Tripadvisor 가족 리뷰", url: "https://www.tripadvisor.com/Attraction_Review-g295424-d15839938-Reviews-Al_Shindagha_Museum-Dubai_Emirate_of_Dubai.html", checkedAt: CHECKED_AT }]
+    }
+  },
+  etihad: {
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/UAE%20flat%20with%20Etihad%20Museum%20in%20background%2C%20Dubai%2C%20UAE.jpg?width=1600",
+    imageFallback: images.city,
+    photoSource: "https://commons.wikimedia.org/wiki/File:UAE_flat_with_Etihad_Museum_in_background,_Dubai,_UAE.jpg",
+    bestFor: "비나 강풍에 한 시간만 실내에서 UAE 건국사를 볼 때",
+    skipIf: "만 6세에서 9세 아이의 몰입도를 최우선으로 할 때",
+    kids: "문서 중심이라 Al Shindagha보다 후순위입니다.",
+    groupFit: "한산한 편이라 9명이 움직이기 쉽지만 핵심 일정은 아닙니다.",
+    reservation: "날씨 대안",
+    reviews: {
+      summary: "건축과 UAE 건국사를 정리한 구성은 호평받지만, 문서 중심이라 어린아이에게는 다소 어렵다는 반응이 있습니다.",
+      liked: ["현대적인 건축과 차분한 실내", "UAE 건국 과정을 체계적으로 정리한 전시"],
+      disliked: ["정치사와 문서 중심이라 어린아이의 몰입도가 낮을 수 있음"],
+      familyTip: "강풍이나 비가 올 때만 60분 대안으로 씁니다.",
+      sources: [{ platform: "Tripadvisor 여행자 리뷰", url: "https://www.tripadvisor.com/Attraction_Review-g295424-d11964109-Reviews-Etihad_Museum-Dubai_Emirate_of_Dubai.html", checkedAt: CHECKED_AT }]
+    }
+  },
+  aquaventure: {
+    image: "https://dam.kerzner.com/i/kerzner/AquaventureWaterpark-Lifestyle-RagingRapids-Friends-jpg",
+    imageFallback: images.coast,
+    photoSource: "https://www.aquaventureworld.com/aquaventure-waterpark",
+    bestFor: "이번 아이 셋에게 두바이를 고를 가장 큰 이유가 필요할 때",
+    skipIf: "강풍, 운영 제한, 아이 키가 주요 시설 기준에 맞지 않을 때",
+    kids: "1.2m 미만과 이상을 성인 두 팀으로 나누고 15시 전에 나옵니다.",
+    groupFit: "Cabana, AquaXpress, 성인 역할 분담을 먼저 예약합니다.",
+    reservation: "평일 개장 입장과 Cabana 권장",
+    reviews: {
+      summary: "가족 만족도는 매우 높지만 정오 뒤 대기, 넓은 공원, 높은 식음료 가격과 계단이 체력 소모를 키웁니다.",
+      liked: ["연령별 선택지가 많은 대형 워터파크", "Cabana가 가족 휴식 거점으로 유용"],
+      disliked: ["정오 이후 긴 줄과 넓은 동선, 높은 식음료 가격"],
+      familyTip: "개장 입장, Cabana와 AquaXpress를 쓰고 15시 전에 철수합니다.",
+      sources: [{ platform: "Tripadvisor 가족 리뷰", url: "https://www.tripadvisor.com/Attraction_Review-g295424-d1200463-Reviews-Aquaventure_Waterpark-Dubai_Emirate_of_Dubai.html", checkedAt: CHECKED_AT }]
+    }
+  },
+  lost: {
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/TheLostChambers.jpg?width=1600",
+    imageFallback: images.coast,
+    photoSource: "https://commons.wikimedia.org/wiki/File:TheLostChambers.jpg",
+    bestFor: "Aquaventure를 하기 어렵지만 Atlantis 안에서 한 시간은 보내고 싶을 때",
+    skipIf: "워터파크를 정상적으로 즐긴 날이거나 별도 입장료 가치가 낮게 느껴질 때",
+    kids: "유모차 접근이 가능하고 60분이면 충분합니다.",
+    groupFit: "당일 날씨와 아이 컨디션을 보고 9인 표를 결정합니다.",
+    reservation: "Aquaventure 대안",
+    reviews: {
+      summary: "대형 수조와 Atlantis 분위기는 좋지만 관람이 짧아 별도 입장료의 가치는 약하다는 평가가 반복됩니다.",
+      liked: ["오래 걷지 않고 볼 수 있는 대형 수조", "2026년 개편 뒤 늘어난 인터랙티브 공간"],
+      disliked: ["관람 시간이 짧고 만 8세부터 성인 요금이라 비용 부담"],
+      familyTip: "워터파크가 어려운 날의 60분 대안으로만 씁니다.",
+      sources: [{ platform: "Tripadvisor 여행자 리뷰", url: "https://www.tripadvisor.com/Attraction_Review-g295424-d2148295-Reviews-Lost_World_Aquarium_at_Aquaventure_World-Dubai_Emirate_of_Dubai.html", checkedAt: CHECKED_AT }]
+    }
+  },
+  green: {
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Green%20Planet%20Tree%20%26%20Waterfall.jpg?width=1600",
+    imageFallback: images.city,
+    photoSource: "https://commons.wikimedia.org/wiki/File:Green_Planet_Tree_%26_Waterfall.jpg",
+    bestFor: "강풍이나 비 때문에 물놀이가 취소된 날 90분 실내 대안",
+    skipIf: "놀이 구역이 닫혀 있거나 피크 시간 대기가 길 때",
+    kids: "새와 동물을 가까이 보는 데 집중하고 2시간을 넘기지 않습니다.",
+    groupFit: "출발 전에 어린이 구역 운영 여부를 확인합니다.",
+    reservation: "날씨 대안",
+    reviews: {
+      summary: "냉방된 실내에서 새와 동물을 가까이 보는 경험은 호평받지만, 대기와 어린이 구역 폐쇄 사례가 단점입니다.",
+      liked: ["새와 동물을 가까이 보는 실내 경험", "90분에서 2시간 안에 끝나는 동선"],
+      disliked: ["혼잡 구간의 대기와 어린이 놀이 구역 운영 변동"],
+      familyTip: "출발 전에 놀이 구역 운영을 확인하고 Aquaventure 취소 때만 씁니다.",
+      sources: [{ platform: "Tripadvisor 가족 리뷰", url: "https://www.tripadvisor.co.uk/Attraction_Review-g295424-d10807046-Reviews-The_Green_Planet-Dubai_Emirate_of_Dubai.html", checkedAt: CHECKED_AT }]
+    }
+  },
+  kite: {
+    image: "https://www.visitdubai.com/-/media/gathercontent/poi/k/kite-beach/2026-update/kite-beach-det-jan-2026.jpg",
+    imageFallback: images.coast,
+    photoSource: "https://www.visitdubai.com/en/places-to-visit/kite-beach",
+    bestFor: "Jumeirah 숙소에서 해 질 무렵 한 시간만 바다를 걷고 싶을 때",
+    skipIf: "주말 혼잡, 강풍, 해변 안전 깃발이 좋지 않을 때",
+    kids: "수영 여부는 당일 안전 깃발과 시설 운영을 보고 결정합니다.",
+    groupFit: "9인 차량의 픽업 지점을 미리 고정합니다.",
+    reservation: "16시 이후 날씨 확인",
+    reviews: {
+      summary: "넓고 깨끗한 모래와 먹거리, 아이 활동은 호평받지만 주말 혼잡, 강풍, 시설 폐쇄 사례가 변수입니다.",
+      liked: ["넓은 모래와 산책로, 어린이 활동", "Burj Al Arab 전망과 늦은 오후 분위기"],
+      disliked: ["주말 혼잡과 강풍, 샤워와 기저귀 교환 시설 운영 변동"],
+      familyTip: "16시 이후 60분만 머물고 수영은 안전 깃발을 확인한 뒤 결정합니다.",
+      sources: [{ platform: "Tripadvisor 여행자 리뷰", url: "https://www.tripadvisor.com/Attraction_Review-g295424-d8707026-Reviews-Kite_Beach-Dubai_Emirate_of_Dubai.html", checkedAt: CHECKED_AT }]
+    }
+  },
+  zabeel: {
+    image: "https://cdn.jumeirah.com/api/public/content/f4a463d2ea49431285b9bb197ab1c687?v=9591cee1",
+    imageFallback: images.coast,
+    photoSource: lodgingOptions[0].official,
+    bestFor: "관광보다 한 빌라, 해변, 키즈클럽에서 함께 쉬는 시간을 더 중요하게 볼 때",
+    skipIf: "Downtown과 Old Dubai를 여러 번 오가고 싶은 여행",
+    kids: "키즈클럽 연령과 라군 안전 규정을 예약 전에 확인합니다.",
+    groupFit: "공식 정원에 6성인과 4아동이 들어가 이번 구성과 가장 명확하게 맞습니다.",
+    reservation: "현재 숙소 1순위",
+    reviews: {
+      summary: "빌라 공간, 라군, 해변, 버틀러와 가족 시설은 호평받지만 Palm 서쪽의 긴 이동과 무거운 장식 취향은 갈립니다.",
+      liked: ["넓은 빌라와 전용 라군", "키즈클럽, 해변, 버틀러를 한곳에서 이용"],
+      disliked: ["Downtown과 Old Dubai 왕복이 길고 4베드룸 전용 후기 표본은 적음"],
+      familyTip: "관광 횟수를 줄이는 조건으로 고르고 침대 배치와 10박 재고를 서면으로 받습니다.",
+      sources: [{ platform: "Tripadvisor 호텔 리뷰", url: "https://www.tripadvisor.com/Hotel_Review-g295424-d1949597-Reviews-Jumeirah_Zabeel_Saray-Dubai_Emirate_of_Dubai.html", checkedAt: CHECKED_AT }]
+    }
+  },
+  marsa: {
+    image: "https://cdn.jumeirah.com/api/public/content/9b7d4967d86548b2bea484990aa19510?v=b8f3733c",
+    imageFallback: images.coast,
+    photoSource: lodgingOptions[1].official,
+    bestFor: "해변과 Downtown 사이 이동을 줄이면서 레지던스의 주방과 거실을 쓰고 싶을 때",
+    skipIf: "호텔이 성인 6명과 아이 3명 투숙을 서면으로 승인하지 않을 때",
+    kids: "해변과 버기 이동이 편하지만 Family Club 추가 비용을 확인합니다.",
+    groupFit: "총 9명만 보고 예약하지 말고 6+3 조합을 서면으로 승인받아야 합니다.",
+    reservation: "승인되면 이동 기준 1순위",
+    reviews: {
+      summary: "현대적인 디자인, 해변, 서비스와 넓은 Residence는 호평받지만 신생 호텔이라 운영 이력과 리뷰 표본이 짧습니다.",
+      liked: ["Downtown, Madinat, Palm 사이 좋은 위치", "주방과 테라스가 있는 넓은 레지던스"],
+      disliked: ["신생 호텔의 서비스 편차와 6성인, 3아동 공식 수용 문구 부재"],
+      familyTip: "호텔이 6+3을 서면 승인할 때만 Zabeel Saray보다 위로 올립니다.",
+      sources: [{ platform: "Tripadvisor 호텔 리뷰", url: "https://www.tripadvisor.co.uk/Hotel_Review-g295424-d26325849-Reviews-Jumeirah_Residences_Marsa_Al_Arab-Dubai_Emirate_of_Dubai.html", checkedAt: CHECKED_AT }]
+    }
+  },
+  desert: {
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Desert%20Safari%20-%20Dubai.JPG?width=1600",
+    imageFallback: images.desert,
+    photoSource: "https://commons.wikimedia.org/wiki/File:Desert_Safari_-_Dubai.JPG",
+    bestFor: "가족 전원이 원하고 부드러운 자연 관찰형 전용차를 따로 구할 때",
+    skipIf: "멀미, 모래길, 늦은 귀환을 피하고 싶은 이번 여행",
+    kids: "Dune bashing을 빼지 못하면 가지 않습니다.",
+    groupFit: "운영사 편차가 커서 전용차, 카시트, 캠프와 귀환 시각을 모두 확인해야 합니다.",
+    reservation: "이번 핵심 일정에서는 제외",
+    reviews: {
+      summary: "사막 풍경과 낙타 체험은 기억에 남지만 운영사별 차량, 안전, 캠프, 음식과 판매 유도 편차가 매우 큽니다.",
+      liked: ["두바이다운 사막 풍경", "좋은 소규모 운영사의 낙타와 자연 체험"],
+      disliked: ["멀미, 거친 모래길, 늦은 귀환과 운영사 품질 편차"],
+      familyTip: "가족 전원이 원할 때만 dune bashing 없는 전용 자연 관찰형 코스를 고릅니다.",
+      sources: [{ platform: "Tripadvisor 여행자 리뷰", url: "https://www.tripadvisor.com/Attraction_Review-g295424-d11960498-Reviews-Desert_Safari_Dubai-Dubai_Emirate_of_Dubai.html", checkedAt: CHECKED_AT }]
+    }
+  }
+};
+
+const placeAssetExtensions = {
+  madinat: "webp",
+  burjalarab: "avif",
+  kite: "avif",
+  zabeel: "avif",
+  marsa: "avif"
+};
+
+for (const item of places) {
+  Object.assign(item, placeDetails[item.id]);
+  item.remoteImage = item.image;
+  item.imageFallback = item.image;
+  item.image = `./assets/places/${item.id}.${placeAssetExtensions[item.id] || "jpg"}`;
+  item.photoLabel = `${item.name} 실제 장소 사진`;
+}
 
 export const climate = {
   source: "Dubai Statistics Center and Dubai official portal",

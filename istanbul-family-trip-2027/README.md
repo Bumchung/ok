@@ -2,6 +2,10 @@
 
 성인 6명과 만 9세, 7세, 6세 어린이 3명을 위한 2027년 3월 20일부터 31일까지의 이스탄불 가족여행 앱이다.
 
+공개 주소: <https://bumchung.github.io/ok/istanbul-family-trip-2027/>
+
+장소 사진 24개, 후기 장단점, 주변 추천, 실제 지도, 날짜별 Google Calendar, 전체 ICS, CSV와 KML을 포함한다. 앱은 이 폴더만으로 독립 실행된다.
+
 ## 로컬에서 열기
 
 ```bash
@@ -21,6 +25,7 @@ http://127.0.0.1:4173/istanbul-family-trip-2027/
 cd /Users/heebumchung/BumbrainWork/_workspace/bumchung-ok-gh-pages/istanbul-family-trip-2027
 npm test
 npm run build:data
+node ../scripts/audit-family-trip.mjs
 ```
 
 ## 원격 AI 연결

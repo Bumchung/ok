@@ -19,7 +19,7 @@
     </Placemark>
     <Placemark>
       <name>Dubai Aquarium</name>
-      <description>Downtown | 수족관 | Burj 일정의 선택형 실내 대안이다. | 주의: 같은 날 의무로 묶으면 아이 피로가 커짐</description>
+      <description>Downtown | 수족관 | Burj Khalifa 뒤에도 아이들이 더 보고 싶어 할 때만 들어갑니다. | 주의: 같은 날 의무로 묶으면 아이 피로가 커짐</description>
       <Point><coordinates>55.2793,25.1975,0</coordinates></Point>
     </Placemark>
     <Placemark>
@@ -34,7 +34,7 @@
     </Placemark>
     <Placemark>
       <name>Al Shindagha Museum</name>
-      <description>Old Dubai | 박물관 | Children’s House 중심으로 문화 일정을 아이 눈높이에 맞춘다. | 주의: Palm 서쪽 숙소에서는 이동 대비 효용이 낮아 선택 일정</description>
+      <description>Old Dubai | 박물관 | Children’s House 중심으로 문화 일정을 아이 눈높이에 맞춥니다. | 주의: Palm 서쪽 숙소라면 왕복 차 시간이 길어 빼도 아쉽지 않음</description>
       <Point><coordinates>55.2893,25.2689,0</coordinates></Point>
     </Placemark>
     <Placemark>
@@ -48,8 +48,8 @@
       <Point><coordinates>55.1171,25.1305,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>The Lost Chambers Aquarium</name>
-      <description>Palm | 수족관 | Aquaventure를 감당하기 어려운 날의 저강도 대안이다. | 주의: 운영시간과 묶음표 조건 확인</description>
+      <name>Lost World Aquarium (구 Lost Chambers)</name>
+      <description>Palm | 수족관 | Aquaventure가 어렵거나 바람이 강한 날 한 시간만 보는 실내 선택입니다. | 주의: 운영시간과 묶음표 조건 확인</description>
       <Point><coordinates>55.1175,25.13,0</coordinates></Point>
     </Placemark>
     <Placemark>

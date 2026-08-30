@@ -2,11 +2,14 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   buildMapPoints,
+  distanceKm,
   daysBetween,
   filterPlaces,
   localAnswer,
+  makeGoogleCalendarUrl,
   makeAssistantPayload,
   makeCsv,
+  makeIcs,
   makeKml,
   searchContext,
   tripStatus,
@@ -46,6 +49,19 @@ test("place data has unique ids, safe links, and plausible local coordinates", (
     assert.ok(item.lat > 24.9 && item.lat < 25.4, item.name);
     assert.ok(item.lng > 55.0 && item.lng < 55.5, item.name);
     assert.ok(item.warning.length >= 8, item.name);
+    assert.match(item.image, /^(?:https:\/\/|\.\/assets\/)/, `${item.name} primary image`);
+    assert.match(item.imageFallback, /^https:\/\//, `${item.name} fallback image`);
+    assert.ok(item.reviews?.summary.length >= 20, `${item.name} review summary`);
+    assert.ok(item.reviews?.liked.length >= 2, `${item.name} repeated positives`);
+    assert.ok(item.reviews?.disliked.length >= 1, `${item.name} repeated negatives`);
+    assert.ok(item.reviews?.sources.length >= 1, `${item.name} review sources`);
+  }
+});
+
+test("every travel day has a visual anchor and a human reason for its position", () => {
+  for (const day of itinerary) {
+    assert.ok(day.featuredPlace || day.photo, `${day.date} visual anchor`);
+    assert.ok(day.whyNow?.length >= 20, `${day.date} why now`);
   }
 });
 
@@ -74,6 +90,7 @@ test("forecast gate opens only near the trip", () => {
 
 test("filters combine search, rain, area, category, and energy", () => {
   assert.ok(filterPlaces({ query: "아이" }).some((item) => item.id === "future"));
+  assert.ok(filterPlaces({ query: "유모차 보관" }).some((item) => item.id === "burj"));
   assert.ok(filterPlaces({ zone: "Downtown", rain: true }).every((item) => item.zone === "Downtown" && item.rain));
   assert.ok(filterPlaces({ energy: 1 }).every((item) => item.energy <= 1));
   assert.ok(filterPlaces({ category: "제외" }).every((item) => item.category === "제외"));
@@ -82,8 +99,9 @@ test("filters combine search, rain, area, category, and energy", () => {
 test("local guide answers high-risk family questions without a server", () => {
   assert.match(localAnswer("9명이 한 집에서 자려면?").answer, /Zabeel Saray/);
   assert.match(localAnswer("비 오면 아이들과 어디 가?").answer, /Museum of the Future/);
-  assert.match(localAnswer("사막 사파리도 갈까?").answer, /핵심 일정에 넣지 않는 편/);
+  assert.match(localAnswer("사막 사파리도 갈까?").answer, /이번에는 빼는 게 맞/);
   assert.ok(searchContext("Aquaventure 아이").length > 0);
+  assert.ok(searchContext("Burj Khalifa 유모차 보관").some((item) => item.title.includes("Burj Khalifa")));
   assert.equal(makeAssistantPayload("숙소 추천").question, "숙소 추천");
 });
 
@@ -97,4 +115,14 @@ test("CSV, KML, and map points retain all curated places", () => {
   const points = buildMapPoints();
   assert.ok(points.length >= places.length - 1);
   assert.ok(points.every((item) => item.x >= 28 && item.x <= 972 && item.y >= 28 && item.y <= 532));
+});
+
+test("calendar and nearby utilities work without private credentials", () => {
+  const url = makeGoogleCalendarUrl(itinerary[3]);
+  assert.match(url, /^https:\/\/calendar\.google\.com\/calendar\/render\?/);
+  assert.match(decodeURIComponent(url), /20270323/);
+  const ics = makeIcs();
+  assert.match(ics, /BEGIN:VCALENDAR/);
+  assert.equal((ics.match(/BEGIN:VEVENT/g) || []).length, itinerary.length);
+  assert.ok(distanceKm({ lat: 25.1972, lng: 55.2744 }, { lat: 25.0986, lng: 55.1233 }) > 10);
 });

@@ -12,7 +12,7 @@ export const trip = {
   children: [9, 7, 6],
   principles: [
     "하루 핵심 일정은 하나만 잡는다.",
-    "점심 뒤 3시간은 숙소 복귀와 낮잠을 기본값으로 둔다.",
+    "점심 뒤에는 숙소로 돌아와 세 시간쯤 쉬고 낮잠을 잔다.",
     "도보 15분을 넘기면 9인 전용차나 배를 먼저 검토한다.",
     "비, 피로, 임신 가능성에 대비해 매일 대안을 준비한다."
   ],
@@ -48,7 +48,7 @@ export const lodgingOptions = [
     rank: 1,
     name: "CVK Park Bosphorus, 4 Bedroom Residence",
     type: "호텔 서비스형 한 집",
-    verdict: "현재 조건에 가장 정확히 맞음",
+    verdict: "세 가족이 정말 한집처럼 지내려면 지금은 이곳이 1순위",
     capacity: "공식 최대 9명",
     layout: "310㎡, 침실 4, 욕실 4, 주방, 거실",
     location: "Gümüşsuyu, Taksim",
@@ -66,7 +66,7 @@ export const lodgingOptions = [
     rank: 2,
     name: "The Peninsula Istanbul",
     type: "연결 객실형 호텔",
-    verdict: "운영 안정성과 보트 이동은 최고",
+    verdict: "서비스와 위치는 편하지만 모두 한집에 지내는 건 포기해야 함",
     capacity: "객실 3개 이상 또는 스위트 조합",
     layout: "인접 객실, 실내 수영장, 전용 보트와 밴",
     location: "Karaköy, Galataport",
@@ -108,7 +108,7 @@ export const lodgingOptions = [
     location: "Maslak",
     fit: 58,
     good: ["9인 정원과 주방", "장기 투숙 운영 경험"],
-    cautions: ["주요 관광지까지 매일 긴 차량 이동", "러시아워가 저강도 여행 원칙을 깨뜨림"],
+    cautions: ["주요 관광지까지 매일 긴 차량 이동", "러시아워에 걸리면 아이들 쉬는 시간이 줄어듦"],
     action: "가격 차이가 매우 커도 우선순위에서 제외",
     official: "https://www.discoverasr.com/en/somerset-serviced-residence/turkiye/somerset-maslak-istanbul",
     maps: "https://www.google.com/maps/search/?api=1&query=Somerset%20Maslak%20Istanbul",
@@ -140,13 +140,13 @@ export const itinerary = [
   },
   {
     date: "2027-03-21", dow: "일", title: "도착, 체크인만", zone: "숙소 주변", intensity: 1, stay: true,
-    main: "각 팀이 도착 즉시 전용차로 숙소에 들어간다. 합류 이벤트를 만들지 않는다.",
+    main: "공항에서 서로 기다리지 않고 각 팀이 전용차로 바로 숙소에 들어갑니다.",
     timeline: ["공항별 Sprinter 1대 또는 밴 2대", "얼리 체크인 또는 데이룸", "숙소 300m 안에서 이른 저녁"],
     rain: "호텔 수영장, 룸서비스", low: "저녁도 숙소에서 해결하고 바로 취침",
     transport: "IST 공항에서 숙소까지 예약 차량", notes: "정상 체크인 전 도착팀을 위한 객실 확보가 핵심"
   },
   {
-    date: "2027-03-22", dow: "월", title: "완전 회복일", zone: "Taksim / Galataport", intensity: 1, stay: true,
+    date: "2027-03-22", dow: "월", title: "아무 데도 안 가는 날", zone: "Taksim / Galataport", intensity: 1, stay: true,
     main: "늦은 아침, 수영, 짧은 산책만 한다. 시차 적응을 관광보다 우선한다.",
     timeline: ["10:00 늦은 아침", "12:00 수영 또는 낮잠", "16:00 45분 산책", "18:00 이른 저녁"],
     rain: "숙소 안에서 하루", low: "산책도 취소",
@@ -196,13 +196,13 @@ export const itinerary = [
   },
   {
     date: "2027-03-29", dow: "월", title: "시장 2시간", zone: "Grand Bazaar / Eminönü", intensity: 2, stay: true,
-    main: "가이드와 Grand Bazaar의 정한 가게만 보고, Spice Bazaar의 Pandeli에서 점심을 먹는다.",
+    main: "Grand Bazaar는 가이드와 정한 가게 두 곳만 보고, 더 짧고 보기 쉬운 Spice Bazaar에서 점심을 먹습니다.",
     timeline: ["09:30 Grand Bazaar", "11:30 차량으로 Eminönü", "12:00 Pandeli 점심", "14:00 숙소"],
     rain: "동일 진행 가능", low: "Spice Bazaar와 점심만",
     transport: "구간별 차량, 시장 안 걷기 약 1.2km", notes: "Dolmabahçe는 월요일 휴관"
   },
   {
-    date: "2027-03-30", dow: "화", title: "날씨 버퍼", zone: "선택", intensity: 1, stay: true,
+    date: "2027-03-30", dow: "화", title: "비가 오거나 지쳤을 때 쓰는 빈 날", zone: "선택", intensity: 1, stay: true,
     main: "앞서 놓친 한 곳만 보거나, 아이들과 Rahmi M. Koç Museum을 선택한다.",
     timeline: ["전날 밤 가족 투표", "10:30 선택 일정", "13:00 점심", "14:30 짐 정리"],
     rain: "Rahmi M. Koç Museum", low: "좋았던 동네의 점심만 반복",
@@ -217,6 +217,23 @@ export const itinerary = [
   }
 ];
 
+const dayDetails = {
+  "2027-03-20": { featuredPlace: "galataport", whyNow: "장거리 비행이 시작되는 날이라 다른 약속을 잡지 않고, 두 팀 모두 기내에서 잘 수 있는 리듬만 맞춥니다." },
+  "2027-03-21": { featuredPlace: "galataport", whyNow: "도착 시간이 달라도 공항에서 기다리지 않도록 첫날은 체크인, 가까운 저녁, 잠만 남겨 둡니다." },
+  "2027-03-22": { featuredPlace: "galataport", whyNow: "시차가 가장 크게 느껴지는 첫 아침입니다. 산책은 45분까지만 하고 힘들면 숙소 밖으로 나가지 않습니다." },
+  "2027-03-23": { featuredPlace: "cistern", whyNow: "첫 외출은 날씨 영향을 덜 받고 한 시간 안에 끝낼 수 있는 Basilica Cistern부터 시작합니다." },
+  "2027-03-24": { featuredPlace: "topkapi", whyNow: "화요일 휴관을 피한 첫 개장일입니다. Harem과 보물실을 먼저 보고 2시간 30분 안에 나옵니다." },
+  "2027-03-25": { featuredPlace: "dolmabahce", whyNow: "구시가지를 연달아 걷지 않도록 숙소 가까운 궁전으로 옮깁니다. 정원과 핵심 실내만 봅니다." },
+  "2027-03-26": { featuredPlace: "ortakoy", whyNow: "금요 예배 시간의 모스크 혼잡을 피하고, 난방과 화장실이 있는 전용 보트에서 도시를 봅니다." },
+  "2027-03-27": { featuredPlace: "modern", whyNow: "여행 중간에 예약을 비운 날입니다. 원하는 가족만 Istanbul Modern을 90분 보고 돌아옵니다." },
+  "2027-03-28": { featuredPlace: "kuzguncuk", whyNow: "궁전과 구시가지 뒤에는 생활 동네를 봅니다. 해안과 낮은 골목만 골라 다리 피로를 줄입니다." },
+  "2027-03-29": { featuredPlace: "spice", whyNow: "큰 시장은 월요일 오전에 가이드와 짧게 보고, 아이에게 더 쉬운 Spice Bazaar에서 점심으로 끝냅니다." },
+  "2027-03-30": { featuredPlace: "rahmi", whyNow: "비가 오거나 역사 명소에 지친 아이들에게 가장 확실한 교체 카드입니다. 자동차와 기차 전시만 골라도 충분합니다." },
+  "2027-03-31": { featuredPlace: "galataport", whyNow: "출국일에는 관광을 넣지 않습니다. 두 팀이 서로 기다리지 않고 항공편 순서대로 공항으로 갑니다." }
+};
+
+for (const day of itinerary) Object.assign(day, dayDetails[day.date]);
+
 export const mealSuggestions = {
   "2027-03-20": "공항 라운지와 기내식만. 도착 전 과식하지 않는다.",
   "2027-03-21": "룸서비스 또는 숙소 300m 안. 첫날에는 유명 식당 예약을 넣지 않는다.",
@@ -225,7 +242,7 @@ export const mealSuggestions = {
   "2027-03-24": "Gülhane 출구 쪽에서 예약 점심 후 바로 귀환한다. 시장 쪽으로 더 걷지 않는다.",
   "2027-03-25": "Feriye는 점심만 후보로 두고 9인 좌석을 확인한다. 17시 이후 어린이 정책 때문에 저녁은 제외한다.",
   "2027-03-26": "보트 케이터링을 가볍게 하거나 하선 뒤 숙소 가까운 예약 식당 한 곳만 이용한다.",
-  "2027-03-27": "가족 주방 저녁을 기본값으로 두고, 외식은 Namlı 또는 Gallada의 어린이 정책 확인 뒤 선택한다.",
+  "2027-03-27": "숙소 주방에서 먹고, 외식하고 싶으면 Namlı 또는 Gallada의 어린이 정책을 먼저 확인한다.",
   "2027-03-28": "Kuzguncuk의 작은 식당을 현장 탐색하지 말고 컨시어지가 9인 점심을 전날 확정한다.",
   "2027-03-29": "Pandeli 12시 점심을 우선 문의한다. 불가하면 인근 Hamdi의 9인 테이블을 확인한다.",
   "2027-03-30": "아이들이 다시 먹고 싶어 한 곳을 반복한다. 새 파인다이닝을 추가하지 않는다.",
@@ -284,6 +301,263 @@ export const places = [
   place("lokanta1741", "Lokanta 1741", "Old City", "제외", 41.0138, 28.9744, "해당 없음", 1, true, "건축과 음식은 매력적이지만 아이 동반 조건이 맞지 않는다.", "공식 사이트에 15세 미만 입장 불가 안내, 제외", "https://lokanta1741.com/tr/anasayfa/"),
   place("feriye", "Feriye", "Bosphorus", "조건부", 41.0463, 29.0278, "아침 90분", 1, true, "Bosphorus 전망의 주말 아침 후보가 될 수 있다.", "17시 이후 10세 이상 정책이라 저녁은 제외", "https://feriye.com/eat-drink/")
 ];
+
+const placeDetails = {
+  hagia: {
+    reviewSignal: "역사성과 모자이크는 여전히 압도적이지만, 최근 리뷰는 상층 갤러리만 허용되는 동선, 공사 구조물, 긴 대기와 낮은 가격 만족도를 반복해서 지적합니다.",
+    pros: ["비잔틴과 오스만 역사가 한 건물에 겹치는 상징성", "상층 모자이크와 건축 디테일"],
+    cons: ["관광객은 지상 예배 공간에 들어갈 수 없고 공사 때문에 시야가 제한될 수 있음"],
+    familyCaveat: "2027년 공사와 관광객 동선을 다시 확인합니다. 현 상태라면 유료 내부보다 외관, 광장, Blue Mosque를 먼저 봅니다.",
+    verdict: "유료 내부는 조건부",
+    reviewUrl: "https://www.tripadvisor.com/Attraction_Review-g293974-d294497-Reviews-Hagia_Sophia_Grand_Mosque-Istanbul.html",
+    image: images.hagia
+  },
+  blue: {
+    reviewSignal: "무료 입장, 푸른 타일과 넓은 예배 공간은 강점이지만 보안 대기, 기도시간 중단, 복장과 신발 절차가 반복적인 불편으로 언급됩니다.",
+    pros: ["무료이며 공간의 크기와 타일을 아이도 바로 느낄 수 있음", "Hagia Sophia와 같은 광장에서 결합 가능"],
+    cons: ["기도시간에는 입장이 멈추고 오전 중반부터 보안 줄이 생길 수 있음"],
+    familyCaveat: "기도시간 사이 첫 오전 구간을 쓰고, 신발 가방과 머리 스카프를 준비합니다.",
+    verdict: "짧게 추천",
+    reviewUrl: "https://www.tripadvisor.com/Attraction_Review-g293974-d294495-Reviews-Blue_Mosque-Istanbul.html",
+    image: images.blue
+  },
+  cistern: {
+    reviewSignal: "신비로운 조명과 Medusa 기둥은 모든 연령대에서 반응이 좋지만 긴 줄, 높은 가격, 어두움과 미끄러운 통로 불만도 뚜렷합니다.",
+    pros: ["비와 추위를 피하는 30분에서 60분 코스", "아이들이 지하 공간과 Medusa 머리에 쉽게 몰입"],
+    cons: ["온라인 예매가 없으면 줄이 길고 통로가 어둡고 미끄러울 수 있음"],
+    familyCaveat: "첫 시간대 표를 사고 미끄럽지 않은 신발을 신습니다. 유모차 반입과 어린이 요금은 직전에 확인합니다.",
+    verdict: "가족 강력 추천",
+    reviewUrl: "https://www.tripadvisor.com/Attraction_Review-g293974-d294555-Reviews-Basilica_Cistern-Istanbul.html",
+    image: images.cistern
+  },
+  topkapi: {
+    reviewSignal: "궁전과 Harem의 공간은 높은 평가를 받지만 넓은 부지, 줄, 자갈길 때문에 가족 관람 피로가 크다는 반응이 반복됩니다.",
+    pros: ["오스만 궁정 생활을 공간으로 이해할 수 있음", "Harem, 정원, Bosphorus 전망"],
+    cons: ["전체를 보면 반나절이 걸리고 입장 대기, 자갈과 계단이 많음"],
+    familyCaveat: "Harem을 먼저 보고 보물실과 전망만 남기는 2시간 30분 상한을 지킵니다.",
+    verdict: "핵심 구역만 추천",
+    reviewUrl: "https://www.tripadvisor.com/Attraction_Review-g293974-d294547-Reviews-TopkapI_Palace-Istanbul.html",
+    image: images.topkapi
+  },
+  gulhane: {
+    reviewSignal: "무료, 그늘, 벤치, 놀이터와 화장실이 있어 구시가지에서 쉬기 좋다는 가족 리뷰가 반복됩니다.",
+    pros: ["Topkapı 바로 옆이라 이동 추가가 없음", "벤치와 넓은 길, 놀이터가 있고 중간에 나오기 쉬움"],
+    cons: ["주말에는 붐비고 비가 오면 길과 잔디 상태가 나빠질 수 있음"],
+    familyCaveat: "3월에는 튤립 명소가 아니라 궁전 뒤 30분 쉬는 곳으로 씁니다.",
+    verdict: "쉬는 곳으로 추천",
+    reviewUrl: "https://www.tripadvisor.com/Attraction_Review-g293974-d548972-Reviews-Gulhane_Park-Istanbul.html",
+    image: images.gulhane
+  },
+  dolmabahce: {
+    reviewSignal: "내부 장식과 Bosphorus 정원은 호평받지만 긴 관람, 높은 입장료, 사진 금지와 운영 절차에 대한 불만이 있습니다.",
+    pros: ["유럽식 오스만 궁전의 화려한 실내", "Bosphorus 옆 정원과 숙소 후보지에서 가까운 위치"],
+    cons: ["전체 관람은 오래 걸리고 내부 사진 금지, 보안과 단체 대기가 있음"],
+    familyCaveat: "Selamlık 핵심 구간 하나만 보고 2시간 안에 나옵니다.",
+    verdict: "가까운 궁전으로 추천",
+    reviewUrl: "https://www.tripadvisor.com/Attraction_Review-g293974-d294667-Reviews-Dolmabahce_Palace-Istanbul.html",
+    image: images.dolmabahce
+  },
+  modern: {
+    reviewSignal: "밝고 넓은 건물, 터키 현대미술과 옥상 전망은 호평받지만 입장료, 보안과 가방 보관은 번거롭다는 반응이 있습니다.",
+    pros: ["비 오는 날 쓰기 좋은 넓은 실내", "Galataport와 바로 연결되고 옥상 전망이 좋음"],
+    cons: ["현대미술에 관심이 없으면 가격 만족도가 낮고 가방 보관이 번거로움"],
+    familyCaveat: "아이마다 작품 하나만 고르게 하고 60분에서 90분에 끝냅니다.",
+    verdict: "휴식일 선택",
+    reviewUrl: "https://www.tripadvisor.com/Attraction_Review-g293974-d555738-Reviews-Istanbul_Museum_of_Modern_Art-Istanbul.html",
+    image: images.modern
+  },
+  galata: {
+    reviewSignal: "360도 전망은 좋지만 높은 외국인 입장료, 표가 있어도 남는 줄, 가파른 언덕과 계단 불만이 자주 보입니다.",
+    pros: ["도시를 대표하는 외관", "Karaköy 산책에서 방향을 잡기 좋은 기준점"],
+    cons: ["언덕, 긴 대기, 높은 가격과 상부 혼잡"],
+    familyCaveat: "아이 셋과 줄을 서서 올라가지 않고 외관만 20분 봅니다.",
+    verdict: "외관만 추천",
+    reviewUrl: "https://www.tripadvisor.com/Attraction_Review-g293974-d295194-Reviews-Galata_Tower-Istanbul.html",
+    image: images.galata
+  },
+  rahmi: {
+    reviewSignal: "자동차, 비행기, 기차와 선박 체험은 7세와 9세 가족 리뷰에서 큰 호응을 얻었고 비 오는 날에도 혼잡이 분산된다는 평가입니다.",
+    pros: ["이번 아이 연령에 가장 잘 맞는 박물관", "교통수단과 과학 체험이 많고 가격 만족도가 높음"],
+    cons: ["아이 취향을 따라가면 4시간이 넘고 현장 식사 선택이 제한적"],
+    familyCaveat: "2시간에서 3시간 상한과 간식을 두고, 역사 명소에 지친 날 먼저 교체합니다.",
+    verdict: "이스탄불 가족 명소 1순위",
+    reviewUrl: "https://www.tripadvisor.com/Attraction_Review-g293974-d549828-Reviews-Rahmi_M_Koc_Museum-Istanbul.html",
+    image: images.rahmi
+  },
+  grand: {
+    reviewSignal: "역사적 규모와 색감은 인상적이지만 반복되는 관광상품, 판매 압박, 가격과 길 찾기 스트레스 불만이 많습니다.",
+    pros: ["세계적인 역사 시장의 공간감", "공예와 상점의 높은 시각적 밀도"],
+    cons: ["길을 잃기 쉽고 판매 압박, 흥정 피로와 화장실 부족"],
+    familyCaveat: "9명이 흩어지지 않고 가이드와 정한 두 상점만 45분에서 60분 봅니다.",
+    verdict: "짧게 조건부",
+    reviewUrl: "https://www.tripadvisor.com/Attraction_Review-g293974-d294496-Reviews-Grand_Bazaar-Istanbul.html",
+    image: images.bazaar
+  },
+  spice: {
+    reviewSignal: "Grand Bazaar보다 작고 파악하기 쉬우며 색, 향과 시식이 가족에게 재미있다는 평가가 많지만 가격과 판매 방식 불만도 반복됩니다.",
+    pros: ["짧은 시간에 색과 향을 경험", "Pandeli와 같은 건물이고 Grand Bazaar보다 동선 통제가 쉬움"],
+    cons: ["주말 혼잡과 일부 매장의 과한 가격, 견과 알레르기 노출"],
+    familyCaveat: "구경이 기본이며 시식 성분과 결제 전 단가, 총액을 보호자가 확인합니다.",
+    verdict: "시장 일정 1순위",
+    reviewUrl: "https://www.tripadvisor.com/Attraction_Review-g293974-d294546-Reviews-Misir_Carsisi-Istanbul.html",
+    image: images.spice
+  },
+  kuzguncuk: {
+    reviewSignal: "조용한 분위기, 목조주택과 작은 카페는 호평받지만 골목은 계속 오르내린다는 지적이 있습니다.",
+    pros: ["관광지가 아닌 생활 동네 경험", "해안과 카페를 짧게 연결할 수 있음"],
+    cons: ["언덕과 계단, 주말 카페 대기"],
+    familyCaveat: "해안에서 İcadiye 거리 초입까지만 보고 높은 골목은 생략합니다.",
+    verdict: "짧은 동네 산책 추천",
+    reviewUrl: "https://www.tripadvisor.com/Attraction_Review-g293974-d15109936-Reviews-Kuzguncuk_Sahili-Istanbul.html",
+    image: images.kuzguncuk
+  },
+  beylerbeyi: {
+    reviewSignal: "Dolmabahçe보다 작고 한적한 대안으로 평가되지만 대중교통 접근과 부분 폐쇄가 변수입니다.",
+    pros: ["짧은 궁전 관람과 Bosphorus 물가 정원", "Kuzguncuk과 가까운 실내 대안"],
+    cons: ["Üsküdar에서 추가 이동, 내부 사진 제한과 정원 일부 폐쇄 가능성"],
+    familyCaveat: "Kuzguncuk 날 비가 올 때만 붙이고 Dolmabahçe를 봤다면 중복 관람하지 않습니다.",
+    verdict: "비 오는 날 조건부",
+    reviewUrl: "https://www.tripadvisor.com/Attraction_Review-g293974-d295479-Reviews-Beylerbeyi_Palace-Istanbul.html",
+    image: images.beylerbeyi
+  },
+  ortakoy: {
+    reviewSignal: "모스크와 다리가 겹치는 전망, 간식과 해안 분위기는 좋지만 주말 혼잡, 관광지 가격과 3월 바람이 단점입니다.",
+    pros: ["짧은 정차로 강한 사진 장면", "아이 간식이 많고 보트 일정과 연결 가능"],
+    cons: ["주말 혼잡, 관광지 가격과 해안 바람"],
+    familyCaveat: "광장이 붐비지 않을 때만 30분에서 45분 머물고 보트에서 충분히 봤다면 내리지 않습니다.",
+    verdict: "날씨가 좋을 때만",
+    reviewUrl: "https://www.tripadvisor.com/Attraction_Review-g293974-d295191-Reviews-Ortakoy-Istanbul.html",
+    image: images.ortakoy
+  },
+  galataport: {
+    reviewSignal: "깨끗한 해안 산책로, 식당, 카페와 편의시설은 가족에게 편하지만 이스탄불 고유의 경험보다는 고급 쇼핑몰에 가깝습니다.",
+    pros: ["화장실과 식사 선택이 안정적", "평탄하고 유모차 이동이 쉬우며 Istanbul Modern과 연결"],
+    cons: ["크루즈 입항일 혼잡과 역사적 장소로서 낮은 밀도"],
+    familyCaveat: "관광지가 아니라 도착일과 쉬는 날의 편한 생활권으로 씁니다.",
+    verdict: "도착일 생활권",
+    reviewUrl: "https://www.tripadvisor.com/Attraction_Review-g293974-d23954384-Reviews-Galataport-Istanbul.html",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Galataport_from_Istanbul_Museum_of_Modern_Art_in_2024_5623.jpg/1280px-Galataport_from_Istanbul_Museum_of_Modern_Art_in_2024_5623.jpg",
+    imageSource: "https://commons.wikimedia.org/wiki/File:Galataport_from_Istanbul_Museum_of_Modern_Art_in_2024_5623.jpg"
+  },
+  pandeli: {
+    reviewSignal: "푸른 타일의 역사적 실내와 Hünkar Beğendi는 호평받지만 작은 양, 가격과 서비스 편차에 대한 불만도 있습니다.",
+    pros: ["Spice Bazaar 안이라 이동 추가가 없음", "역사적인 실내와 전통 오스만 음식"],
+    cons: ["입구 계단, 양과 가격 평가가 엇갈리고 혼잡하면 합석 가능"],
+    familyCaveat: "9인 한 테이블, 유모차, 어린이용 단순 메뉴를 전화로 확인합니다.",
+    verdict: "예약 회신이 오면 추천",
+    reviewUrl: "https://www.tripadvisor.com/Restaurant_Review-g293974-d940372-Reviews-Pandeli-Istanbul.html",
+    image: "https://www.pandeli.com.tr/assets/images/about-thumb-01.jpg",
+    imageSource: "https://www.pandeli.com.tr/index.html"
+  },
+  hamdi: {
+    reviewSignal: "Eminönü와 Bosphorus 전망, kebab은 장점이지만 가격, 급한 서비스와 청구 관련 불만도 반복됩니다.",
+    pros: ["큰 매장이라 9인 그룹을 받기 쉬움", "전망, kebab과 highchair 정보"],
+    cons: ["창가석 보장이 어렵고 가격, 서비스와 계산서 불만"],
+    familyCaveat: "창가 9인석, highchair, 맵기 조절을 예약서에 쓰고 계산서를 한 명이 확인합니다.",
+    verdict: "Pandeli가 안 될 때",
+    reviewUrl: "https://www.tripadvisor.com/Restaurant_Review-g293974-d808629-Reviews-Hamdi_Restaurant-Istanbul.html",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Galata_K%C3%B6pr%C3%BCs%C3%BC_-%C4%B0stanbul_%28Hamdi_restaurant_balkonundan_%29_-_panoramio.jpg/1280px-Galata_K%C3%B6pr%C3%BCs%C3%BC_-%C4%B0stanbul_%28Hamdi_restaurant_balkonundan_%29_-_panoramio.jpg",
+    imageSource: "https://commons.wikimedia.org/wiki/File:Galata_K%C3%B6pr%C3%BCs%C3%BC_-%C4%B0stanbul_(Hamdi_restaurant_balkonundan_)_-_panoramio.jpg"
+  },
+  namli: {
+    reviewSignal: "진열 식재료를 고르는 터키식 아침과 이른 영업은 호평받지만 처음에는 주문 방식이 혼란스럽고 가격이 올랐다는 평가가 있습니다.",
+    pros: ["오전 7시 영업과 다양한 식단 선택", "가족마다 원하는 음식을 고르기 쉬움"],
+    cons: ["카운터 주문이 낯설고 주말 대기, 아침치고 높은 가격"],
+    familyCaveat: "성인 한 명이 전체 주문을 맡고 9인 테이블부터 확보합니다.",
+    verdict: "가벼운 아침 추천",
+    reviewUrl: "https://www.tripadvisor.com/Restaurant_Review-g293974-d1028246-Reviews-NamlI_Gurme-Istanbul.html",
+    image: "https://www.meyhankoli.com/img/places/source_seo/namli-gurme-5.jpg",
+    imageSource: "https://www.meyhankoli.com/restoran/istanbul-beyoglu-namli-gurme-1026"
+  },
+  hafiz: {
+    reviewSignal: "Baklava, künefe와 sütlaç 선택 폭, 아이 가족에게 친절한 응대가 강점이지만 매장별 혼잡과 계단은 변수입니다.",
+    pros: ["아이들이 바로 이해하는 디저트 목적지", "여러 종류를 나눠 맛보기 좋음"],
+    cons: ["혼잡, 일부 지점의 계단, 매우 단 디저트와 견과류"],
+    familyCaveat: "Galataport 지점으로 확정하고 견과 알레르기와 9인 좌석을 확인합니다.",
+    verdict: "지점 확정 뒤 추천",
+    reviewUrl: "https://www.tripadvisor.com/Restaurant_Review-g293974-d23731562-Reviews-HafIz_Mustafa_1864_Galataport-Istanbul.html",
+    image: "https://static.wixstatic.com/media/99649a_1f4476132c964d728160b399ed40134a~mv2.jpg/v1/fill/w_1920%2Ch_1200%2Cal_c%2Cq_90%2Cenc_avif%2Cquality_auto/99649a_1f4476132c964d728160b399ed40134a~mv2.jpg",
+    imageSource: "https://www.hafizmustafa.com/"
+  },
+  ciya: {
+    reviewSignal: "지역별 Anatolian 음식과 반 접시로 다양하게 먹는 방식은 강점이지만 가격 설명, 계산서, 서비스와 청결 불만도 적지 않습니다.",
+    pros: ["일반적인 kebab 외의 지역 요리", "반 접시로 여러 음식과 채식 선택을 맛볼 수 있음"],
+    cons: ["중량과 가격이 직관적이지 않고 Kuzguncuk과 같은 날 붙이기에는 멂"],
+    familyCaveat: "Kadıköy로 일정을 바꿀 때만 메뉴와 단가를 먼저 받고 반 접시 네 개에서 다섯 개만 주문합니다.",
+    verdict: "Kadıköy로 바꿀 때만",
+    reviewUrl: "https://www.tripadvisor.com/Restaurant_Review-g293974-d776065-Reviews-Ciya_Sofrasi-Istanbul.html",
+    image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/02/5f/9c/41/lunch-at-ciya-sofrasi.jpg?h=500&s=1&w=900",
+    imageSource: "https://www.ciya.com.tr/"
+  },
+  gallada: {
+    reviewSignal: "Bosphorus 전망, Turk-Asian 음식과 분위기는 호평받지만 높은 가격, 음악, 공유 접시와 서비스 편차가 단점입니다.",
+    pros: ["Peninsula 투숙 시 이동이 없음", "특별한 저녁의 공간과 전망"],
+    cons: ["매우 높은 가격과 늦은 음악, 공유 접시와 서비스 편차"],
+    familyCaveat: "어린이 정책, 9인석, 음악 시작 시간과 맵지 않은 메뉴를 서면 확인합니다.",
+    verdict: "Peninsula 투숙 때 조건부",
+    reviewUrl: "https://www.tripadvisor.com/Restaurant_Review-g293974-d26432353-Reviews-GALLADA_by_Fatih_Tutak-Istanbul.html",
+    image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/b7/26/dc/gallada-and-topside-bar.jpg?h=500&s=1&w=900",
+    imageSource: "https://www.peninsula.com/en/istanbul/hotel-fine-dining/gallada"
+  },
+  "karakoy-lokantasi": {
+    reviewSignal: "Mezze와 실내 디자인은 좋은 평가를 받지만 저녁의 소음, 가격과 혼잡 불만이 있고 공식 가족 정책이 이번 구성과 맞지 않습니다.",
+    pros: ["잘 만든 mezze와 해산물", "Karaköy의 세련된 실내"],
+    cons: ["저녁 그룹 예약 최대 6명이며 14세 초과 어린이만 가능"],
+    familyCaveat: "이번 가족에는 정책상 맞지 않으므로 리뷰가 좋아도 되살리지 않습니다.",
+    verdict: "제외",
+    reviewUrl: "https://www.tripadvisor.com/Restaurant_Review-g293974-d1198609-Reviews-Karakoy_Lokantasi-Istanbul.html",
+    image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/b9/91/30/musterisiz.jpg?h=-1&s=1&w=900",
+    imageSource: "https://www.karakoylokantasi.com/en/reservation"
+  },
+  lokanta1741: {
+    reviewSignal: "역사적 hamam 공간, 현대식 터키 음식과 서비스는 높은 평가를 받지만 작은 양과 높은 가격이 단점입니다.",
+    pros: ["독특한 역사 건축", "정교한 현대 터키 음식과 서비스"],
+    cons: ["공식 정책상 15세 미만 입장 불가이며 긴 코스와 높은 가격"],
+    familyCaveat: "만 9세, 7세, 6세가 있어 명백히 제외합니다.",
+    verdict: "제외",
+    reviewUrl: "https://www.tripadvisor.com/Restaurant_Review-g293974-d17664604-Reviews-Lokanta_1741-Istanbul.html",
+    image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/1c/55/81/lokanta-1741-turkish.jpg?h=500&s=1&w=900",
+    imageSource: "https://lokanta1741.com/tr/anasayfa/"
+  },
+  feriye: {
+    reviewSignal: "Bosphorus 전망과 음식, 아이 식이 요구 대응은 긍정적이지만 예약 연락, 느린 서비스와 가격 불만도 있습니다.",
+    pros: ["Ortaköy의 강한 전망", "Highchair 정보와 주말 아침 운영"],
+    cons: ["17시 이후 만 10세 이상만 가능하고 예약 연락, 서비스 속도 편차"],
+    familyCaveat: "세 아이 모두 저녁 정책에 맞지 않으므로 주말 10시 또는 12시 아침만 전화 예약 뒤 씁니다.",
+    verdict: "주말 아침만 조건부",
+    reviewUrl: "https://www.tripadvisor.com/Restaurant_Review-g293974-d806286-Reviews-Feriye-Istanbul.html",
+    image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/9e/37/c2/ristorante.jpg?h=-1&s=1&w=900",
+    imageSource: "https://feriye.com/eat-drink/"
+  }
+};
+
+const placeAssetExtensions = {
+  hafiz: "avif"
+};
+
+for (const item of places) {
+  const details = placeDetails[item.id];
+  const originalImage = item.image || images.skyline;
+  Object.assign(item, {
+    remoteImage: details.image,
+    imageFallback: details.image || originalImage,
+    image: `./assets/places/${item.id}.${placeAssetExtensions[item.id] || "jpg"}`,
+    photoSource: details.imageSource || (String(details.image).includes("wikimedia") ? "https://commons.wikimedia.org/" : item.official),
+    photoLabel: `${item.name} 실제 장소 사진`,
+    bestFor: details.verdict,
+    skipIf: details.cons[0],
+    kids: details.familyCaveat,
+    groupFit: item.category === "식당" || item.category === "카페" || item.category === "조건부" ? "9인 한 테이블과 어린이 의자, 연령 정책을 예약 전에 확인합니다." : "아이 셋이 함께 움직이므로 관람 상한과 중간 이탈 지점을 먼저 정합니다.",
+    reservation: item.warning,
+    reviews: {
+      summary: details.reviewSignal,
+      liked: details.pros,
+      disliked: details.cons,
+      familyTip: details.familyCaveat,
+      sources: [{ platform: "Tripadvisor 최근 여행자 리뷰", url: details.reviewUrl, checkedAt: CHECKED_AT }]
+    }
+  });
+}
 
 export const climate = {
   source: "Turkish State Meteorological Service",

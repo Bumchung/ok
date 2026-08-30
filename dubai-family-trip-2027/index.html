@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#6f4d25">
-  <meta name="description" content="2027년 3월, 세 가족 9명의 저강도 두바이 여행 플래너">
+  <meta name="description" content="2027년 3월, 세 가족 9명이 무리하지 않고 함께 쓰는 두바이 여행 앱">
   <title>Dubai Family Trip 2027</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%236f4d25'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Arial' font-size='22' font-weight='700' fill='white'%3EDX%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://upload.wikimedia.org">
@@ -33,9 +33,9 @@
       <div class="hero-scrim"></div>
       <div class="hero-content wrap">
         <div class="hero-copy-block">
-          <p class="eyebrow">저강도 여행 모드, 2027.03.20—03.31</p>
+          <p class="eyebrow">아이 셋과 천천히, 2027.03.20—03.31</p>
           <h1><span>두바이</span> 가족여행</h1>
-          <p class="hero-copy">세 가족 9명이 4베드룸 빌라에 머물며, 관광과 리조트 회복일을 교대로 두는 10박 11일 계획입니다.</p>
+          <p class="hero-copy">관광하는 날과 리조트에서 쉬는 날을 번갈아 넣었어요. 아이들 수영 시간은 먼저 비워뒀고요.</p>
         </div>
         <div class="hero-metrics" aria-label="여행 핵심 정보">
           <article><span>여행 기간</span><strong>3월 20일—31일</strong><small>체크인은 21일, 정확히 10박</small></article>
@@ -52,6 +52,13 @@
         <a href="#plan"><span>03</span><strong>12일 일정</strong><small>비와 피로 대안 포함</small></a>
         <a href="#guide"><span>04</span><strong>검증한 장소</strong><small>가족에게 맞는 곳만</small></a>
         <a class="compare-link" href="../family-trip-2027/"><span>VS</span><strong>이스탄불과 비교</strong><small>어디가 더 맞는지 판단</small></a>
+      </div>
+    </section>
+
+    <section class="section nearby-section" id="nearby">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="kicker">지금 여기서</p><h2>가까운 곳부터 고르기</h2></div><p class="section-note">처음에는 추천 숙소 기준입니다. 현지에서는 현재 위치를 허용하면 거리순이 바로 바뀝니다.</p></div>
+        <div class="nearby-shell"><div class="nearby-head"><p id="nearby-status">숙소 기준 장소를 준비하고 있습니다.</p><div class="button-row"><button id="locate-me" type="button">현재 위치로 보기</button><button id="nearby-reset" type="button">숙소 기준</button></div></div><div class="nearby-list" id="nearby-list"></div></div>
       </div>
     </section>
 
@@ -73,14 +80,14 @@
           <p class="section-note">아이들은 만 9세, 7세, 6세. 도착 시각보다 직항과 개별 픽업을 우선합니다.</p>
         </div>
         <div class="family-grid" id="family-grid"></div>
-        <div class="callout warning"><strong>항공 주의</strong><span>2027년 3월의 편명, 요일, 가격은 아직 확정 자료가 아닙니다. 앱은 직항 노선과 도착 시간대만 의사결정 기준으로 제공합니다.</span></div>
+        <div class="callout warning"><strong>항공 주의</strong><span>2027년 3월 시간표와 요금은 아직 열리지 않았어요. 지금은 두 팀 모두 직항으로 오는 원칙만 정하고, 편명은 발권할 때 다시 확인합니다.</span></div>
       </div>
     </section>
 
     <section class="section lodging-section" id="stay">
       <div class="wrap">
         <div class="section-heading">
-          <div><p class="kicker">ONE VILLA</p><h2>4베드룸은 정원보다<br>이동을 먼저 봅니다</h2></div>
+          <div><p class="kicker">한 빌라에서 지내기</p><h2>9명이 잘 수 있는지 보고<br>그다음 이동 시간을 봤어요</h2></div>
           <p class="section-note">정확한 수용은 Zabeel Saray, 이동 균형은 Marsa Al Arab이 우세합니다.</p>
         </div>
         <div class="lodging-tabs" id="lodging-tabs" role="tablist" aria-label="숙소 후보"></div>
@@ -122,8 +129,8 @@
     <section class="section guide-section" id="guide">
       <div class="wrap wide">
         <div class="section-heading">
-          <div><p class="kicker">CURATED, NOT PADDED</p><h2>실제로 쓸 장소만</h2></div>
-          <p class="section-note"><span id="place-count">0</span>곳. 제외한 장소도 이유를 남겼습니다.</p>
+          <div><p class="kicker">가볼 곳과 뺀 곳</p><h2>아이 셋과 실제로 갈 만한 곳</h2></div>
+          <p class="section-note"><span id="place-count">0</span>곳. 최근 후기의 장점과 불편, 뺄 조건까지 함께 적었습니다.</p>
         </div>
         <div class="guide-controls">
           <label class="search-field"><span class="sr-only">장소 검색</span><input id="place-search" type="search" placeholder="장소, 동네, 주의사항 검색"></label>
@@ -152,8 +159,8 @@
     <section class="section assistant-section" id="ask">
       <div class="wrap">
         <div class="section-heading">
-          <div><p class="kicker">FAMILY DESK</p><h2>이 일정에 바로 물어보기</h2></div>
-          <p class="section-note">AI 서버가 없어도 앱 자료로 먼저 답합니다.</p>
+          <div><p class="kicker">여행 검색</p><h2>이 일정에서 바로 찾기</h2></div>
+          <p class="section-note">숙소, 바람 부는 날, 아이 컨디션을 물어보면 이 계획 안에서 찾아드려요.</p>
         </div>
         <div class="prompt-chips" id="prompt-chips">
           <button type="button">비 오면 뭘 하지?</button>
@@ -166,7 +173,7 @@
           <textarea id="question" maxlength="500" rows="3" placeholder="예: 3월 26일 바람이 강하면 보트 대신 뭘 하지?"></textarea>
           <button class="primary-button" type="submit">가족 데스크에 묻기</button>
         </form>
-        <p class="assistant-state" id="assistant-state">앱 내장 가이드 사용 중</p>
+        <p class="assistant-state" id="assistant-state">이 여행 계획에서 답변합니다</p>
         <div class="answer-board" id="answer-board" aria-live="polite"></div>
       </div>
     </section>
@@ -179,6 +186,7 @@
         <div class="utility-grid">
           <button class="utility-card" id="download-csv" type="button"><strong>CSV</strong><span>장소와 주의사항 표</span></button>
           <button class="utility-card" id="download-kml" type="button"><strong>KML</strong><span>Google My Maps용 핀</span></button>
+          <button class="utility-card" id="download-ics" type="button"><strong>CAL</strong><span>전체 일정을 캘린더 파일로</span></button>
           <a class="utility-card" href="https://www.google.com/maps/d/" target="_blank" rel="noreferrer"><strong>MY MAPS</strong><span>KML 불러오기</span></a>
         </div>
         <details class="sources-panel budget-panel">
@@ -209,6 +217,8 @@
     <a href="#map"><span>⌖</span>지도</a>
     <a href="#ask"><span>?</span>질문</a>
   </nav>
+
+  <a class="ask-fab" href="#ask" aria-label="여행 계획에 질문하기">질문</a>
 
   <footer>
     <p>DUBAI FAMILY TRIP 2027</p>

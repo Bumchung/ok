@@ -1,0 +1,194 @@
+[
+  {
+    "id": "hagia",
+    "ok": true,
+    "bytes": 232388,
+    "type": "image/jpeg",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Hagia_Sophia_%28228968325%29.jpeg/1280px-Hagia_Sophia_%28228968325%29.jpeg",
+    "asset": "hagia.jpg"
+  },
+  {
+    "id": "blue",
+    "ok": true,
+    "bytes": 360900,
+    "type": "image/jpeg",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Istanbul_%2834223582516%29_%28cropped%29.jpg/1280px-Istanbul_%2834223582516%29_%28cropped%29.jpg",
+    "asset": "blue.jpg"
+  },
+  {
+    "id": "cistern",
+    "ok": true,
+    "bytes": 712528,
+    "type": "image/jpeg",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Cisterna_Bas%C3%ADlica%2C_Estambul%2C_Turqu%C3%ADa%2C_2024-09-28%2C_DD_58-60_HDR.jpg/1280px-Cisterna_Bas%C3%ADlica%2C_Estambul%2C_Turqu%C3%ADa%2C_2024-09-28%2C_DD_58-60_HDR.jpg",
+    "asset": "cistern.jpg"
+  },
+  {
+    "id": "topkapi",
+    "ok": true,
+    "bytes": 269193,
+    "type": "image/jpeg",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Topkap%C4%B1_-_01.jpg/1280px-Topkap%C4%B1_-_01.jpg",
+    "asset": "topkapi.jpg"
+  },
+  {
+    "id": "gulhane",
+    "ok": true,
+    "bytes": 487172,
+    "type": "image/jpeg",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/G%C3%BClhane_Park%2C_Istanbul.jpg/1280px-G%C3%BClhane_Park%2C_Istanbul.jpg",
+    "asset": "gulhane.jpg"
+  },
+  {
+    "id": "dolmabahce",
+    "ok": true,
+    "bytes": 294300,
+    "type": "image/jpeg",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Dolmabahce_Istanbul_Turkey.jpg/1280px-Dolmabahce_Istanbul_Turkey.jpg",
+    "asset": "dolmabahce.jpg"
+  },
+  {
+    "id": "modern",
+    "ok": true,
+    "bytes": 272485,
+    "type": "image/jpeg",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Istanbul%2C_Turkey_%28November_2023%29_-_611.jpg/1280px-Istanbul%2C_Turkey_%28November_2023%29_-_611.jpg",
+    "asset": "modern.jpg"
+  },
+  {
+    "id": "galata",
+    "ok": true,
+    "bytes": 651243,
+    "type": "image/jpeg",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Galata_tower_01_23.jpg/1280px-Galata_tower_01_23.jpg",
+    "asset": "galata.jpg"
+  },
+  {
+    "id": "rahmi",
+    "ok": true,
+    "bytes": 292928,
+    "type": "image/jpeg",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Istanbul_asv2021-11_img14_Rahmi_Ko%C3%A7_Museum.jpg/1280px-Istanbul_asv2021-11_img14_Rahmi_Ko%C3%A7_Museum.jpg",
+    "asset": "rahmi.jpg"
+  },
+  {
+    "id": "grand",
+    "ok": true,
+    "bytes": 1000588,
+    "type": "image/jpeg",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Istanbul_asv2021-11_img41_Grand_Bazaar.jpg/1280px-Istanbul_asv2021-11_img41_Grand_Bazaar.jpg",
+    "asset": "grand.jpg"
+  },
+  {
+    "id": "spice",
+    "ok": true,
+    "bytes": 678150,
+    "type": "image/jpeg",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Spice_Bazaar_Istanbul_Feb_2020%2C_img_2.jpg/1280px-Spice_Bazaar_Istanbul_Feb_2020%2C_img_2.jpg",
+    "asset": "spice.jpg"
+  },
+  {
+    "id": "kuzguncuk",
+    "ok": true,
+    "bytes": 887819,
+    "type": "image/jpeg",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Selfie_time_in_Istanbul_streets_%2816428058798%29.jpg/1280px-Selfie_time_in_Istanbul_streets_%2816428058798%29.jpg",
+    "asset": "kuzguncuk.jpg"
+  },
+  {
+    "id": "beylerbeyi",
+    "ok": true,
+    "bytes": 265179,
+    "type": "image/jpeg",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Beylerbeyi_Palace_%28cropped%29.jpg/1280px-Beylerbeyi_Palace_%28cropped%29.jpg",
+    "asset": "beylerbeyi.jpg"
+  },
+  {
+    "id": "ortakoy",
+    "ok": true,
+    "bytes": 636966,
+    "type": "image/jpeg",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Istanbul_asv2020-02_img60_Ortak%C3%B6y_Mosque.jpg/1280px-Istanbul_asv2020-02_img60_Ortak%C3%B6y_Mosque.jpg",
+    "asset": "ortakoy.jpg"
+  },
+  {
+    "id": "galataport",
+    "ok": true,
+    "bytes": 243041,
+    "type": "image/jpeg",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Galataport_from_Istanbul_Museum_of_Modern_Art_in_2024_5623.jpg/1280px-Galataport_from_Istanbul_Museum_of_Modern_Art_in_2024_5623.jpg",
+    "asset": "galataport.jpg"
+  },
+  {
+    "id": "pandeli",
+    "ok": true,
+    "bytes": 13089,
+    "type": "image/jpeg",
+    "source": "https://www.pandeli.com.tr/assets/images/about-thumb-01.jpg",
+    "asset": "pandeli.jpg"
+  },
+  {
+    "id": "hamdi",
+    "ok": true,
+    "bytes": 478786,
+    "type": "image/jpeg",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Galata_K%C3%B6pr%C3%BCs%C3%BC_-%C4%B0stanbul_%28Hamdi_restaurant_balkonundan_%29_-_panoramio.jpg/1280px-Galata_K%C3%B6pr%C3%BCs%C3%BC_-%C4%B0stanbul_%28Hamdi_restaurant_balkonundan_%29_-_panoramio.jpg",
+    "asset": "hamdi.jpg"
+  },
+  {
+    "id": "namli",
+    "ok": true,
+    "asset": "namli.jpg",
+    "bytes": 628093,
+    "type": "image/jpeg",
+    "source": "https://www.meyhankoli.com/img/places/source_seo/namli-gurme-5.jpg"
+  },
+  {
+    "id": "hafiz",
+    "ok": true,
+    "bytes": 513778,
+    "type": "image/avif",
+    "source": "https://static.wixstatic.com/media/99649a_1f4476132c964d728160b399ed40134a~mv2.jpg/v1/fill/w_1920%2Ch_1200%2Cal_c%2Cq_90%2Cenc_avif%2Cquality_auto/99649a_1f4476132c964d728160b399ed40134a~mv2.jpg",
+    "asset": "hafiz.avif"
+  },
+  {
+    "id": "ciya",
+    "ok": true,
+    "bytes": 98985,
+    "type": "image/jpeg",
+    "source": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/02/5f/9c/41/lunch-at-ciya-sofrasi.jpg?h=500&s=1&w=900",
+    "asset": "ciya.jpg"
+  },
+  {
+    "id": "gallada",
+    "ok": true,
+    "bytes": 172970,
+    "type": "image/jpeg",
+    "source": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/b7/26/dc/gallada-and-topside-bar.jpg?h=500&s=1&w=900",
+    "asset": "gallada.jpg"
+  },
+  {
+    "id": "karakoy-lokantasi",
+    "ok": true,
+    "bytes": 108138,
+    "type": "image/jpeg",
+    "source": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/b9/91/30/musterisiz.jpg?h=-1&s=1&w=900",
+    "asset": "karakoy-lokantasi.jpg"
+  },
+  {
+    "id": "lokanta1741",
+    "ok": true,
+    "bytes": 139942,
+    "type": "image/jpeg",
+    "source": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/1c/55/81/lokanta-1741-turkish.jpg?h=500&s=1&w=900",
+    "asset": "lokanta1741.jpg"
+  },
+  {
+    "id": "feriye",
+    "ok": true,
+    "bytes": 117281,
+    "type": "image/jpeg",
+    "source": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/9e/37/c2/ristorante.jpg?h=-1&s=1&w=900",
+    "asset": "feriye.jpg"
+  }
+]

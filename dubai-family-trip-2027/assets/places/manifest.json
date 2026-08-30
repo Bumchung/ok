@@ -1,0 +1,122 @@
+[
+  {
+    "id": "future",
+    "ok": true,
+    "bytes": 939201,
+    "type": "image/jpeg",
+    "source": "https://commons.wikimedia.org/wiki/Special:FilePath/Museum%20of%20The%20Future.jpg?width=1600",
+    "asset": "future.jpg"
+  },
+  {
+    "id": "burj",
+    "ok": true,
+    "asset": "burj.jpg",
+    "bytes": 750936,
+    "type": "image/jpeg",
+    "source": "https://commons.wikimedia.org/wiki/Special:FilePath/Burj%20Khalifa%20-%20Dubai.jpg?width=1600"
+  },
+  {
+    "id": "mall",
+    "ok": true,
+    "bytes": 877692,
+    "type": "image/jpeg",
+    "source": "https://commons.wikimedia.org/wiki/Special:FilePath/Dubai%20MALL%20Waterfalls.jpg?width=1600",
+    "asset": "mall.jpg"
+  },
+  {
+    "id": "aquarium",
+    "ok": true,
+    "bytes": 1051222,
+    "type": "image/jpeg",
+    "source": "https://commons.wikimedia.org/wiki/Special:FilePath/Dubai%20Aquarium2.jpg?width=1600",
+    "asset": "aquarium.jpg"
+  },
+  {
+    "id": "madinat",
+    "ok": true,
+    "bytes": 375078,
+    "type": "image/webp",
+    "source": "https://cdn.jumeirah.com/api/public/content/ab9d70e684384a6bb2b429463cb6b010?v=4b1de950",
+    "asset": "madinat.webp"
+  },
+  {
+    "id": "burjalarab",
+    "ok": true,
+    "bytes": 107376,
+    "type": "image/avif",
+    "source": "https://cdn.jumeirah.com/api/public/content/873b4b015d044362adf1ca2a9c225c71?v=138d4724",
+    "asset": "burjalarab.avif"
+  },
+  {
+    "id": "shindagha",
+    "ok": true,
+    "bytes": 513786,
+    "type": "image/jpeg",
+    "source": "https://commons.wikimedia.org/wiki/Special:FilePath/Shindagha%20Museum-%20Dubai.jpg?width=1600",
+    "asset": "shindagha.jpg"
+  },
+  {
+    "id": "etihad",
+    "ok": true,
+    "bytes": 390546,
+    "type": "image/jpeg",
+    "source": "https://commons.wikimedia.org/wiki/Special:FilePath/UAE%20flat%20with%20Etihad%20Museum%20in%20background%2C%20Dubai%2C%20UAE.jpg?width=1600",
+    "asset": "etihad.jpg"
+  },
+  {
+    "id": "aquaventure",
+    "ok": true,
+    "bytes": 900866,
+    "type": "image/jpeg",
+    "source": "https://dam.kerzner.com/i/kerzner/AquaventureWaterpark-Lifestyle-RagingRapids-Friends-jpg",
+    "asset": "aquaventure.jpg"
+  },
+  {
+    "id": "lost",
+    "ok": true,
+    "bytes": 127406,
+    "type": "image/jpeg",
+    "source": "https://commons.wikimedia.org/wiki/Special:FilePath/TheLostChambers.jpg?width=1600",
+    "asset": "lost.jpg"
+  },
+  {
+    "id": "green",
+    "ok": true,
+    "bytes": 1385193,
+    "type": "image/jpeg",
+    "source": "https://commons.wikimedia.org/wiki/Special:FilePath/Green%20Planet%20Tree%20%26%20Waterfall.jpg?width=1600",
+    "asset": "green.jpg"
+  },
+  {
+    "id": "kite",
+    "ok": true,
+    "bytes": 133018,
+    "type": "image/avif",
+    "source": "https://www.visitdubai.com/-/media/gathercontent/poi/k/kite-beach/2026-update/kite-beach-det-jan-2026.jpg",
+    "asset": "kite.avif"
+  },
+  {
+    "id": "zabeel",
+    "ok": true,
+    "bytes": 503653,
+    "type": "image/avif",
+    "source": "https://cdn.jumeirah.com/api/public/content/f4a463d2ea49431285b9bb197ab1c687?v=9591cee1",
+    "asset": "zabeel.avif"
+  },
+  {
+    "id": "marsa",
+    "ok": true,
+    "bytes": 75611,
+    "type": "image/avif",
+    "source": "https://cdn.jumeirah.com/api/public/content/9b7d4967d86548b2bea484990aa19510?v=b8f3733c",
+    "asset": "marsa.avif"
+  },
+  {
+    "id": "desert",
+    "ok": true,
+    "bytes": 831727,
+    "type": "image/jpeg",
+    "source": "https://commons.wikimedia.org/wiki/Special:FilePath/Desert%20Safari%20-%20Dubai.JPG?width=1600",
+    "asset": "desert.jpg"
+  }
+]
