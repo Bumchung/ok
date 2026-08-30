@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>DUBAI FAMILY TRIP</name>
+    <Placemark>
+      <name>Museum of the Future</name>
+      <description>Trade Centre | 박물관 | 아이와 어른이 함께 몰입할 수 있는 대표 실내 일정이다. | 주의: 모든 표가 날짜와 시간 지정, 사전 예약 필요</description>
+      <Point><coordinates>55.2822,25.2192,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Burj Khalifa At The Top</name>
+      <description>Downtown | 전망 | 10시 입장으로 혼잡과 피로를 낮추기 좋다. | 주의: 표는 지정 날짜와 시간에만 유효</description>
+      <Point><coordinates>55.2744,25.1972,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Dubai Mall</name>
+      <description>Downtown | 쇼핑 | 전망대와 점심을 한 건물권에서 끝낼 수 있다. | 주의: 규모가 커서 목적 식당과 출입구를 미리 고정</description>
+      <Point><coordinates>55.2796,25.1985,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Dubai Aquarium</name>
+      <description>Downtown | 수족관 | Burj 일정의 선택형 실내 대안이다. | 주의: 같은 날 의무로 묶으면 아이 피로가 커짐</description>
+      <Point><coordinates>55.2793,25.1975,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Madinat Jumeirah Abra</name>
+      <description>Jumeirah | 보트 | Jumeirah 숙소에서 짧고 상징적인 저녁 전 일정이 된다. | 주의: 더운 시간과 주말 혼잡을 피함</description>
+      <Point><coordinates>55.1858,25.1339,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Burj Al Arab waterfront</name>
+      <description>Jumeirah | 산책 | Madinat와 같은 권역에서 사진과 짧은 산책을 끝낼 수 있다. | 주의: 공공 해변과 호텔 출입 규정은 다름</description>
+      <Point><coordinates>55.1853,25.1412,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Al Shindagha Museum</name>
+      <description>Old Dubai | 박물관 | Children’s House 중심으로 문화 일정을 아이 눈높이에 맞춘다. | 주의: Palm 서쪽 숙소에서는 이동 대비 효용이 낮아 선택 일정</description>
+      <Point><coordinates>55.2893,25.2689,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Etihad Museum</name>
+      <description>Jumeirah 1 | 박물관 | Old Dubai보다 짧은 실내 대안으로 쓰기 좋다. | 주의: 전시 관심도가 낮으면 생략</description>
+      <Point><coordinates>55.2696,25.2413,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Aquaventure World</name>
+      <description>Palm | 워터파크 | 아이 셋에게 두바이 선택의 가장 분명한 이유다. | 주의: 1.2m 신장 제한, 구명조끼, 13세 미만 보호자 규정 확인</description>
+      <Point><coordinates>55.1171,25.1305,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>The Lost Chambers Aquarium</name>
+      <description>Palm | 수족관 | Aquaventure를 감당하기 어려운 날의 저강도 대안이다. | 주의: 운영시간과 묶음표 조건 확인</description>
+      <Point><coordinates>55.1175,25.13,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>The Green Planet</name>
+      <description>City Walk | 실내자연 | 강풍이나 피로가 큰 날의 실내 생태 대안이다. | 주의: 주말 혼잡과 시간 지정표 확인</description>
+      <Point><coordinates>55.2627,25.2075,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Kite Beach</name>
+      <description>Jumeirah | 해변 | Jumeirah 숙소에서 짧은 야외 회복 일정으로 쓸 수 있다. | 주의: 한낮 햇빛과 바람을 피하고 수영은 안전요원 구역만</description>
+      <Point><coordinates>55.2073,25.1612,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Jumeirah Zabeel Saray</name>
+      <description>Palm West | 숙소 | 공식적으로 6성인과 4아동까지 받는 정확한 4베드룸 후보다. | 주의: 도심 이동이 길어 리조트 중심 일정으로 운영</description>
+      <Point><coordinates>55.1233,25.0986,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Jumeirah Marsa Al Arab</name>
+      <description>Jumeirah | 숙소 | 도심과 해변 이동 균형이 가장 좋은 입지 후보다. | 주의: 6성인과 3아동 수용 서면 승인 필요</description>
+      <Point><coordinates>55.1848,25.1419,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Desert safari</name>
+      <description>Desert | 제외 | 대표 경험이지만 이번 저피로 원칙과 충돌한다. | 주의: 장거리 차량, 모래길, 늦은 귀환 때문에 핵심 일정에서 제외</description>
+      <Point><coordinates>55.42,25.11,0</coordinates></Point>
+    </Placemark>
+  </Document>
+</kml>
