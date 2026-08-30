@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>ISTANBUL TOGETHER</name>
+    <Placemark>
+      <name>Hagia Sophia</name>
+      <description>Sultanahmet | 명소 | 도시의 역사 층위를 한 장면에서 보여준다. | 주의: 예배와 방문 동선이 바뀔 수 있어 직전 확인</description>
+      <Point><coordinates>28.9802,41.0086,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Blue Mosque</name>
+      <description>Sultanahmet | 명소 | 광장 동선 안에서 선택 가능한 모스크다. | 주의: 금요 예배와 기도 시간에는 관광 입장 제한</description>
+      <Point><coordinates>28.9768,41.0054,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Basilica Cistern</name>
+      <description>Sultanahmet | 명소 | 비와 추위를 피하면서 아이도 몰입하기 좋다. | 주의: 바닥이 어둡고 미끄러울 수 있음</description>
+      <Point><coordinates>28.9779,41.0084,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Topkapı Palace</name>
+      <description>Sultanahmet | 궁전 | 이스탄불의 대표 궁전이지만 핵심 구역만 봐야 피로가 낮다. | 주의: 화요일 휴관, 넓은 야외 동선</description>
+      <Point><coordinates>28.9834,41.0115,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Gülhane Park</name>
+      <description>Sultanahmet | 공원 | Topkapı 뒤 아이들이 뛰고 어른이 쉬기 좋다. | 주의: 비가 오면 생략</description>
+      <Point><coordinates>28.981,41.0137,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Dolmabahçe Palace</name>
+      <description>Beşiktaş | 궁전 | 숙소 후보지에서 가깝고 한 곳만 보기 좋다. | 주의: 월요일 휴관, 입장 정책 직전 확인</description>
+      <Point><coordinates>29.0005,41.0392,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Istanbul Modern</name>
+      <description>Karaköy | 박물관 | 비 오는 휴식일에 숙소와 가깝게 쓸 수 있다. | 주의: 전시 교체와 휴관일 확인</description>
+      <Point><coordinates>28.9833,41.0259,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Galata Tower</name>
+      <description>Karaköy | 전망 | Karaköy 산책의 시각적 기준점이다. | 주의: 언덕과 대기 때문에 탑 입장은 기본 일정에서 제외</description>
+      <Point><coordinates>28.9741,41.0256,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Rahmi M. Koç Museum</name>
+      <description>Golden Horn | 박물관 | 교통수단 전시가 많아 세 아이의 우천 대안으로 강하다. | 주의: 화요일 일정 후보이므로 운영시간 직전 확인</description>
+      <Point><coordinates>28.9486,41.0427,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Grand Bazaar</name>
+      <description>Beyazıt | 시장 | 가이드와 목적 상점만 보면 좋은 가족 쇼핑이 된다. | 주의: 혼잡, 흥정, 출구가 많아 자유 산책 금지</description>
+      <Point><coordinates>28.968,41.0107,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Spice Bazaar</name>
+      <description>Eminönü | 시장 | Pandeli 점심과 결합해 짧게 끝낼 수 있다. | 주의: 입구 혼잡과 유모차 주의</description>
+      <Point><coordinates>28.9705,41.0165,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Kuzguncuk</name>
+      <description>Asian Side | 동네 | 작은 동네 단위로 이스탄불의 생활감을 본다. | 주의: 언덕을 피하고 해안 가까운 짧은 구간만</description>
+      <Point><coordinates>29.029,41.037,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Beylerbeyi Palace</name>
+      <description>Asian Side | 궁전 | Kuzguncuk과 가까운 우천 대안이다. | 주의: 월요일 휴관, 관람 동선 직전 재확인</description>
+      <Point><coordinates>29.04,41.0427,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Ortaköy waterfront</name>
+      <description>Bosphorus | 산책 | 보트에서 본 뒤 짧은 간식 정차로 쓰기 좋다. | 주의: 주말 혼잡 시 하선하지 않음</description>
+      <Point><coordinates>29.027,41.0472,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Galataport promenade</name>
+      <description>Karaköy | 산책 | 도착일과 휴식일에 화장실과 식사가 안정적이다. | 주의: 크루즈 입항일에는 혼잡</description>
+      <Point><coordinates>28.9832,41.0251,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Pandeli</name>
+      <description>Eminönü | 식당 | Spice Bazaar 위에서 이동을 늘리지 않고 전통적인 점심을 먹는다. | 주의: 9인과 어린이 좌석을 직접 예약 확인</description>
+      <Point><coordinates>28.9706,41.0164,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Hamdi Restaurant Eminönü</name>
+      <description>Eminönü | 식당 | 큰 규모라 9인 가족 점심 후보로 운영 여유가 있다. | 주의: 전망석과 어린이 의자, 맵기 조절을 예약 시 확인</description>
+      <Point><coordinates>28.97,41.0174,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Namlı Gurme Karaköy</name>
+      <description>Karaköy | 식당 | 예약 부담이 적은 캐주얼한 터키식 아침 후보다. | 주의: 주말 대기 가능, 9명이 한 테이블인지 전화 확인</description>
+      <Point><coordinates>28.9748,41.0238,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Hafız Mustafa 1864 Karaköy</name>
+      <description>Karaköy | 카페 | 아이들과 디저트를 짧게 먹고 쉬기 쉽다. | 주의: 당류와 견과 알레르기 확인</description>
+      <Point><coordinates>28.975,41.0218,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Çiya Sofrası</name>
+      <description>Kadıköy | 식당 | 아시아 쪽을 Kadıköy로 바꿀 때 쓸 수 있는 음식 중심 목적지다. | 주의: Kuzguncuk 일정과 같은 날 억지로 결합하지 않음</description>
+      <Point><coordinates>29.0267,40.9909,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Gallada</name>
+      <description>Karaköy | 식당 | Peninsula 투숙 시 이동 없는 특별 저녁이 된다. | 주의: 어린이 정책과 9인 좌석을 컨시어지에 확인</description>
+      <Point><coordinates>28.9801,41.0255,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Karaköy Lokantası</name>
+      <description>Karaköy | 제외 | 성인끼리라면 좋지만 이번 가족 구성에는 맞지 않는다. | 주의: 공식 정책상 저녁은 14세 초과, 예약 최대 6명이라 제외</description>
+      <Point><coordinates>28.978,41.0227,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Lokanta 1741</name>
+      <description>Old City | 제외 | 건축과 음식은 매력적이지만 아이 동반 조건이 맞지 않는다. | 주의: 공식 사이트에 15세 미만 입장 불가 안내, 제외</description>
+      <Point><coordinates>28.9744,41.0138,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Feriye</name>
+      <description>Bosphorus | 조건부 | Bosphorus 전망의 주말 아침 후보가 될 수 있다. | 주의: 17시 이후 10세 이상 정책이라 저녁은 제외</description>
+      <Point><coordinates>29.0278,41.0463,0</coordinates></Point>
+    </Placemark>
+  </Document>
+</kml>

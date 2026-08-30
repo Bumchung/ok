@@ -1,0 +1,9 @@
+{
+  "name": "istanbul-family-trip-2027",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test *.test.mjs",
+    "build:data": "node build-map-data.mjs"
+  }
+}
