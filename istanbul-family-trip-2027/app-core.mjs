@@ -1,4 +1,4 @@
-import { CHECKED_AT, climate, familyGroups, itinerary, lodgingOptions, mealSuggestions, places, rentalChecklist, sources, trip } from "./trip-data.mjs";
+import { CHECKED_AT, climate, familyGroups, itinerary, lodgingOptions, mealSuggestions, observedTripComQuotes, places, rentalChecklist, sources, trip, tripComCostSummary } from "./trip-data.mjs";
 
 const DAY_MS = 86400000;
 
@@ -65,8 +65,22 @@ export function filterPlaces(filters = {}) {
   });
 }
 
-function searchableRecords() {
-  const dayRecords = itinerary.map((day) => ({
+export function itineraryForPace(pace = trip.paceModes?.default || "gentle", days = itinerary) {
+  const label = trip.paceModes?.options?.find((option) => option.id === pace)?.label || "기본";
+  return days.map((day) => {
+    const variant = day.variants?.[pace] || {};
+    return {
+      ...day,
+      ...variant,
+      needs: { ...day.needs, ...(variant.needs || {}) },
+      paceId: pace,
+      paceLabel: label
+    };
+  });
+}
+
+function searchableRecords(days = itinerary) {
+  const dayRecords = days.map((day) => ({
     kind: "일정",
     title: `${day.date.slice(5).replace("-", "/")} ${day.title}`,
     subtitle: `${day.zone}, 강도 ${day.intensity}`,
@@ -94,13 +108,27 @@ function searchableRecords() {
     body: `${item.target}. ${item.carriers}. ${item.status}`,
     url: sources.find((source) => source.title.includes(item.origin === "ICN" ? "Seoul" : "LAX"))?.url || ""
   }));
-  return [...dayRecords, ...placeRecords, ...lodgingRecords, ...flightRecords];
+  const quoteRecords = observedTripComQuotes.map((quote) => ({
+    kind: "비용",
+    title: `${lodgingOptions.find((item) => item.id === quote.lodgingId)?.name || quote.lodgingId} Trip.com 참고가`,
+    subtitle: `${quote.nightlyDisplay}, 4실 10박 환산 ${quote.projectedDisplay}`,
+    body: `${quote.referenceStay}, ${quote.occupancy}. ${quote.roomPlan}. ${quote.inventoryNote}. 세금 포함 여부와 환불 조건은 공개 페이지에서 확인되지 않았습니다.`,
+    url: quote.sourceUrl
+  }));
+  const benchmarkRecord = {
+    kind: "비용",
+    title: tripComCostSummary.benchmarkLabel,
+    subtitle: `${tripComCostSummary.benchmarkNightly}, 4실 10박 ${tripComCostSummary.benchmarkTotal}`,
+    body: `${tripComCostSummary.benchmarkFormula}. ${tripComCostSummary.exactQuoteStatus}`,
+    url: tripComCostSummary.sourceUrl
+  };
+  return [...dayRecords, ...placeRecords, ...lodgingRecords, ...quoteRecords, benchmarkRecord, ...flightRecords];
 }
 
-export function searchContext(question, limit = 6) {
+export function searchContext(question, limit = 6, days = itinerary) {
   const input = normalize(question);
   const tokens = String(question || "").toLocaleLowerCase("ko-KR").split(/[\s,?!.]+/).map(normalize).filter((token) => token.length >= 2);
-  return searchableRecords()
+  return searchableRecords(days)
     .map((record) => {
       const haystack = normalize([record.kind, record.title, record.subtitle, record.body].join(" "));
       let score = input && haystack.includes(input) ? 8 : 0;
@@ -119,12 +147,16 @@ export function searchContext(question, limit = 6) {
 
 const questionRules = [
   {
-    terms: ["비", "우천", "날씨"],
+    terms: ["비오", "비가", "우천", "날씨"],
     answer: "비가 오면 멀리 가지 말고 Basilica Cistern, Istanbul Modern, Rahmi M. Koç Museum 중 숙소에서 가까운 한 곳만 가요. 바람까지 세면 Bosphorus 보트는 미루는 게 낫습니다."
   },
   {
+    terms: ["트립닷컴", "trip.com", "가격", "비용", "경비", "예산"],
+    answer: "Trip.com에 2027년 3월 21일부터 31일까지 성인 6명과 아이 3명, 호텔 4실을 넣었지만 이스탄불 후보들은 정확히 맞는 재고와 세금 포함 총액이 나오지 않았어요. 현재 공개 시작가를 4실 10박으로 단순 환산하면 Swissotel 약 1,455만원, CVK 약 1,572만원, Ritz-Carlton 약 1,973만원입니다. 이것은 실견적이 아니라 비교선이고, 결제 전 동일 조건으로 다시 받아야 합니다."
+  },
+  {
     terms: ["숙소", "호텔", "에어비앤비", "airbnb", "한집"],
-    answer: "한 집으로 묵으려면 CVK Park Bosphorus의 4 Bedroom Residence를 먼저 물어보세요. 정원 9명이고 침실과 욕실이 각각 4개라 조건에 가장 가깝습니다. 다만 2027년 10박 재고와 아이들 침대 배치는 이메일로 답을 받아야 합니다."
+    answer: "한 집으로 묵으려면 CVK Park Bosphorus 4 Bedroom Residence가 1순위예요. 호텔식이면 The Peninsula, Swissotel, Ritz-Carlton의 객실 4실을 같은 층 또는 연결 조합으로 요청하세요. Trip.com에는 아직 2027년 동일 조건의 확정 총액이 없으니, 공개 시작가는 비교선으로만 보고 호텔의 서면 배정 답변까지 받아야 합니다."
   },
   {
     terms: ["피곤", "힘들", "쉬", "낮잠"],
@@ -148,10 +180,10 @@ const questionRules = [
   }
 ];
 
-export function localAnswer(question) {
+export function localAnswer(question, days = itinerary) {
   const normalized = normalize(question);
   const rule = questionRules.find((candidate) => candidate.terms.some((term) => normalized.includes(normalize(term))));
-  const context = searchContext(question);
+  const context = searchContext(question, 6, days);
   const defaultAnswer = context.length
     ? `이 내용부터 보세요: “${context[0].title}”. ${context[0].body}`
     : "바로 맞는 내용을 못 찾았어요. 날짜나 장소 이름을 넣어 다시 물어봐 주세요. 예: ‘3월 24일 비 오면 어디 가?’";
@@ -215,7 +247,8 @@ function nextDate(dateKey) {
 }
 
 function dayPlanText(day) {
-  return `${day.main}\n\n왜 이날 하나요: ${day.whyNow || "가족의 이동과 휴식 리듬에 맞춘 일정입니다."}\n\n부모가 기대할 것: ${day.needs.parents}\n아이들이 기다릴 것: ${day.needs.kids}\n같이 남길 장면: ${day.needs.together}\n오후 회복: ${day.needs.recovery}\n\n시간표:\n${day.timeline.map((item) => `- ${item}`).join("\n")}\n\n비 오면: ${day.rain}\n힘들면: ${day.low}\n식사: ${mealSuggestions[day.date] || "당일 확인"}`;
+  const pace = day.paceLabel ? `여행 모드: ${day.paceLabel}\n\n` : "";
+  return `${pace}${day.main}\n\n왜 이날 하나요: ${day.whyNow || "가족의 이동과 휴식 리듬에 맞춘 일정입니다."}\n\n부모가 기대할 것: ${day.needs.parents}\n아이들이 기다릴 것: ${day.needs.kids}\n같이 남길 장면: ${day.needs.together}\n오후 회복: ${day.needs.recovery}\n\n시간표:\n${day.timeline.map((item) => `- ${item}`).join("\n")}\n\n비 오면: ${day.rain}\n힘들면: ${day.low}\n식사: ${mealSuggestions[day.date] || "당일 확인"}`;
 }
 
 export function makeGoogleCalendarUrl(day) {
@@ -262,8 +295,8 @@ export function buildMapPoints(items = places, width = 1000, height = 560) {
   }));
 }
 
-export function makeAssistantPayload(question) {
-  return { question: String(question || "").trim(), context: searchContext(question) };
+export function makeAssistantPayload(question, days = itinerary) {
+  return { question: String(question || "").trim(), context: searchContext(question, 6, days) };
 }
 
-export const coreData = { climate, itinerary, lodgingOptions, mealSuggestions, places, rentalChecklist, sources, trip };
+export const coreData = { climate, itinerary, lodgingOptions, mealSuggestions, observedTripComQuotes, places, rentalChecklist, sources, trip, tripComCostSummary };

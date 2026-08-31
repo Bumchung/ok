@@ -1,4 +1,4 @@
-import { CHECKED_AT, climate, familyGroups, itinerary, lodgingOptions, mealSuggestions, places, rentalChecklist, sources, trip } from "./trip-data.mjs";
+import { CHECKED_AT, climate, familyGroups, itinerary, lodgingOptions, mealSuggestions, observedTripComQuotes, places, rentalChecklist, sources, trip, tripComCostSummary } from "./trip-data.mjs";
 
 const DAY_MS = 86400000;
 
@@ -65,8 +65,16 @@ export function filterPlaces(filters = {}) {
   });
 }
 
-function searchableRecords() {
-  const dayRecords = itinerary.map((day) => ({
+export function itineraryForPace(pace = trip.paceModes?.default || "gentle", days = itinerary) {
+  const label = trip.paceModes?.options?.find((option) => option.id === pace)?.label || "기본";
+  return days.map((day) => {
+    const variant = day.variants?.[pace] || {};
+    return { ...day, ...variant, needs: { ...day.needs, ...(variant.needs || {}) }, paceId: pace, paceLabel: label };
+  });
+}
+
+function searchableRecords(days = itinerary) {
+  const dayRecords = days.map((day) => ({
     kind: "일정",
     title: `${day.date.slice(5).replace("-", "/")} ${day.title}`,
     subtitle: `${day.zone}, 강도 ${day.intensity}`,
@@ -94,13 +102,27 @@ function searchableRecords() {
     body: `${item.target}. ${item.carriers}. ${item.status}`,
     url: sources.find((source) => source.title.includes(item.origin === "ICN" ? "Seoul" : "LAX"))?.url || ""
   }));
-  return [...dayRecords, ...placeRecords, ...lodgingRecords, ...flightRecords];
+  const quoteRecords = observedTripComQuotes.map((quote) => ({
+    kind: "비용",
+    title: `${lodgingOptions.find((item) => item.id === quote.lodgingId)?.name || quote.lodgingId} Trip.com ${quote.status === "observed_exact" ? "실견적" : "참고가"}`,
+    subtitle: `${quote.nightlyDisplay}, 10박 총액 ${quote.projectedDisplay}`,
+    body: `${quote.referenceStay}, ${quote.occupancy}. ${quote.roomPlan}. ${quote.inventoryNote}.`,
+    url: quote.sourceUrl
+  }));
+  const benchmarkRecord = {
+    kind: "비용",
+    title: tripComCostSummary.benchmarkLabel,
+    subtitle: `${tripComCostSummary.benchmarkNightly}, 4실 10박 ${tripComCostSummary.benchmarkTotal}`,
+    body: `${tripComCostSummary.benchmarkFormula}. ${tripComCostSummary.exactQuoteStatus}`,
+    url: tripComCostSummary.sourceUrl
+  };
+  return [...dayRecords, ...placeRecords, ...lodgingRecords, ...quoteRecords, benchmarkRecord, ...flightRecords];
 }
 
-export function searchContext(question, limit = 6) {
+export function searchContext(question, limit = 6, days = itinerary) {
   const input = normalize(question);
   const tokens = String(question || "").toLocaleLowerCase("ko-KR").split(/[\s,?!.]+/).map(normalize).filter((token) => token.length >= 2);
-  return searchableRecords()
+  return searchableRecords(days)
     .map((record) => {
       const haystack = normalize([record.kind, record.title, record.subtitle, record.body].join(" "));
       let score = input && haystack.includes(input) ? 8 : 0;
@@ -119,12 +141,16 @@ export function searchContext(question, limit = 6) {
 
 const questionRules = [
   {
-    terms: ["비", "우천", "날씨"],
+    terms: ["비오", "비가", "우천", "날씨"],
     answer: "두바이는 비보다 센 바람과 한낮 더위를 먼저 봐야 해요. 바람이 세면 Aquaventure와 abra는 미루고, Museum of the Future, Dubai Aquarium, Green Planet 중 숙소에서 가까운 한 곳만 갑니다."
   },
   {
+    terms: ["트립닷컴", "trip.com", "가격", "비용", "경비", "예산"],
+    answer: "2027년 3월 21일부터 31일까지 성인 6명과 아이 3명을 넣은 Trip.com 세금 포함 총액은 한집형 Zabeel Saray 5베드룸 빌라 US$42,151, 호텔 4실형 Mandarin Oriental US$44,344, Jumeirah Beach Hotel US$47,177 순입니다. Marsa Al Arab은 US$89,066로 가장 비쌉니다. 무료 취소 마감일과 결제 시점, 연결 객실은 결제 전에 다시 확인해야 해요."
+  },
+  {
     terms: ["숙소", "호텔", "에어비앤비", "airbnb", "한집"],
-    answer: "아홉 명이 한 빌라에 묵으려면 Jumeirah Zabeel Saray의 Four Bedroom Lagoon Royal Villa부터 보세요. 공식 정원은 6성인과 4아동이라 우리 가족이 들어갑니다. 시내 이동은 Marsa Al Arab이 낫지만 6성인과 3아동 투숙이 되는지 이메일 답을 받아야 합니다."
+    answer: "아홉 명이 한집에 묵으려면 Jumeirah Zabeel Saray Five Bedroom Pool Royal Villa가 현재 1순위예요. Trip.com 10박 세금 포함 총액은 US$42,151입니다. 호텔 4실을 원하면 Mandarin Oriental US$44,344 또는 Jumeirah Beach Hotel US$47,177부터 보고, 같은 층과 연결 객실은 호텔에 서면 요청하세요."
   },
   {
     terms: ["피곤", "힘들", "쉬", "낮잠"],
@@ -148,10 +174,10 @@ const questionRules = [
   }
 ];
 
-export function localAnswer(question) {
+export function localAnswer(question, days = itinerary) {
   const normalized = normalize(question);
   const rule = questionRules.find((candidate) => candidate.terms.some((term) => normalized.includes(normalize(term))));
-  const context = searchContext(question);
+  const context = searchContext(question, 6, days);
   const defaultAnswer = context.length
     ? `이 내용부터 보세요: “${context[0].title}”. ${context[0].body}`
     : "바로 맞는 내용을 못 찾았어요. 날짜나 장소 이름을 넣어 다시 물어봐 주세요. 예: ‘3월 29일 바람이 세면 어디 가?’";
@@ -215,7 +241,8 @@ function nextDate(dateKey) {
 }
 
 function dayPlanText(day) {
-  return `${day.main}\n\n왜 이날 하나요: ${day.whyNow || "가족의 이동과 휴식 리듬에 맞춘 일정입니다."}\n\n부모가 기대할 것: ${day.needs.parents}\n아이들이 기다릴 것: ${day.needs.kids}\n같이 남길 장면: ${day.needs.together}\n오후 회복: ${day.needs.recovery}\n\n시간표:\n${day.timeline.map((item) => `- ${item}`).join("\n")}\n\n비 오면: ${day.rain}\n힘들면: ${day.low}\n식사: ${mealSuggestions[day.date] || "당일 확인"}`;
+  const pace = day.paceLabel && day.paceLabel !== "기본" ? `여행 모드: ${day.paceLabel}\n\n` : "";
+  return `${pace}${day.main}\n\n왜 이날 하나요: ${day.whyNow || "가족의 이동과 휴식 리듬에 맞춘 일정입니다."}\n\n부모가 기대할 것: ${day.needs.parents}\n아이들이 기다릴 것: ${day.needs.kids}\n같이 남길 장면: ${day.needs.together}\n오후 회복: ${day.needs.recovery}\n\n시간표:\n${day.timeline.map((item) => `- ${item}`).join("\n")}\n\n비 오면: ${day.rain}\n힘들면: ${day.low}\n식사: ${mealSuggestions[day.date] || "당일 확인"}`;
 }
 
 export function makeGoogleCalendarUrl(day) {
@@ -262,8 +289,8 @@ export function buildMapPoints(items = places, width = 1000, height = 560) {
   }));
 }
 
-export function makeAssistantPayload(question) {
-  return { question: String(question || "").trim(), context: searchContext(question) };
+export function makeAssistantPayload(question, days = itinerary) {
+  return { question: String(question || "").trim(), context: searchContext(question, 6, days) };
 }
 
-export const coreData = { climate, itinerary, lodgingOptions, mealSuggestions, places, rentalChecklist, sources, trip };
+export const coreData = { climate, itinerary, lodgingOptions, mealSuggestions, observedTripComQuotes, places, rentalChecklist, sources, trip, tripComCostSummary };

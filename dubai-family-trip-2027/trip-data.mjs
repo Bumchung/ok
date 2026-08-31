@@ -1,4 +1,4 @@
-export const CHECKED_AT = "2026-08-31";
+export const CHECKED_AT = "2026-09-01";
 
 export const trip = {
   title: "DUBAI FAMILY TRIP",
@@ -45,31 +45,35 @@ export const familyGroups = [
 export const lodgingOptions = [
   {
     id: "zabeel", rank: 1,
-    name: "Jumeirah Zabeel Saray, Four Bedroom Lagoon Royal Villa",
-    type: "서비스와 수영장이 결합된 4베드룸 빌라",
-    verdict: "공식 정원에 성인 6명과 아이 3명이 들어가는 가장 안전한 선택",
-    capacity: "최대 10명, 6성인과 4아동 명시",
-    layout: "461㎡, 침실 4, 완전한 주방, 별도 출입구, 라군 풀",
+    name: "Jumeirah Zabeel Saray, Five Bedroom Pool Royal Villa",
+    type: "실제 2027 견적이 잡힌 5베드룸 빌라",
+    verdict: "한 집 생활과 Trip.com 실경비를 같이 만족하는 현재 1순위",
+    capacity: "공식 최대 12명, 이번 6성인과 3아동 수용 가능",
+    layout: "침실 5, 전용 수영장, 완전한 주방과 거실",
     location: "Palm Jumeirah West Crescent", fit: 94,
-    good: ["이번 6+3 구성을 공식 수용", "한 빌라와 전용 생활 공간", "키즈클럽, 해변, 24시간 버틀러", "쉬는 날은 호텔 밖으로 나가지 않아도 됨"],
-    cautions: ["Downtown과 Old Dubai까지 이동이 길다", "각 방의 정확한 침대 배치 확인", "10박 연속 재고와 취소 조건 미확인"],
-    action: "6성인과 만 9세, 7세, 6세의 침대 배치도와 10박 총액을 서면 요청",
-    official: "https://www.jumeirah.com/en/stay/dubai/jumeirah-zabeel-saray/accommodation/four-bedroom-lagoon-royal-residences-exclusive",
+    good: ["이번 6+3 구성을 한 채에 공식 수용", "Trip.com에서 2027년 10박 실견적 확인", "키즈클럽, 해변, 조식 포함 표기", "쉬는 날은 호텔 밖으로 나가지 않아도 됨"],
+    cautions: ["Downtown과 Old Dubai까지 이동이 길다", "무료 취소와 결제 시점은 미노출", "4베드룸보다 큰 5베드룸이라 공간은 남음"],
+    action: "실견적을 기준으로 취소 규정과 결제 시점, 침대 배치도를 서면 요청",
+    bookingModel: "hotel_residence",
+    hotelPlan: { rooms: 1, arrangement: "Five Bedroom Pool Royal Villa 1채", connection: "not_required", occupancyApproved: true },
+    official: "https://www.jumeirah.com/en/stay/dubai/jumeirah-zabeel-saray/accommodation/five-bedroom-royal-residences-with-private-pool-exclusive",
     maps: "https://www.google.com/maps/search/?api=1&query=Jumeirah%20Zabeel%20Saray%20Dubai",
     lat: 25.0986, lng: 55.1233
   },
   {
     id: "marsa", rank: 2,
-    name: "Jumeirah Residences Marsa Al Arab, Four Bedroom Panoramic Residence",
-    type: "저피로 입지가 좋은 4베드룸 레지던스",
-    verdict: "도심과 해변의 균형은 최고지만 6+3 승인이 필요함",
-    capacity: "공식 9명 또는 8성인과 2아동 조합",
-    layout: "418㎡, 침실 4, 오픈 키친, 연결 레지던스 구조",
-    location: "Jumeirah, Madinat 권역", fit: 91,
-    good: ["Madinat와 해변을 짧게 이용", "Downtown과 Palm 사이 이동 균형", "주방과 넓은 거실", "24시간 프라이빗 다이닝"],
-    cautions: ["6성인과 3아동 조합은 공식 표기에 없음", "두 레지던스를 연결한 구조 확인", "침대 배치와 아동 정책 서면 승인 필수"],
-    action: "총 9명이라는 이유만으로 예약하지 말고 6+3 수용과 요금을 호텔이 서면 확약할 때만 선택",
-    official: "https://www.jumeirah.com/en/stay/dubai/jumeirah-residences-marsa-al-arab/accommodation/four-bedroom-panoramic-residence-marina-view",
+    name: "Jumeirah Marsa Al Arab, Marina Deluxe 4실",
+    type: "실제 2027 견적이 잡힌 호텔 객실형",
+    verdict: "한 집은 아니지만 이동이 가장 편하고 Trip.com에서 요청한 6+3, 4실 조합이 실제로 검색됨",
+    capacity: "성인 6명과 아이 3명, Marina Deluxe 객실 4실",
+    layout: "호텔 객실 4실, 같은 층과 인접 배정은 별도 요청",
+    location: "Jumeirah, Madinat 권역", fit: 93,
+    good: ["Madinat와 해변이 가까움", "Downtown과 Palm 사이 이동 균형", "Trip.com에서 2027년 10박 4실 실견적 확인", "키즈클럽과 워터파크 이용"],
+    cautions: ["네 객실이 연결되거나 같은 층이라는 보장은 없음", "세 가족이 한 거실을 공유할 수 없음", "객실별 침대 배치와 어린이 기존 침대 사용 조건 확인"],
+    action: "Trip.com 환불 가능 조건을 보존하고 호텔에 같은 층 인접 4실과 어린이 침대 배치를 서면 요청",
+    bookingModel: "hotel_rooms",
+    hotelPlan: { rooms: 4, arrangement: "Marina Deluxe 객실 4실", connection: "request_only", occupancyApproved: true },
+    official: "https://www.jumeirah.com/en/stay/dubai/jumeirah-marsa-al-arab",
     maps: "https://www.google.com/maps/search/?api=1&query=Jumeirah%20Marsa%20Al%20Arab%20Dubai",
     lat: 25.1419, lng: 55.1848
   },
@@ -84,6 +88,8 @@ export const lodgingOptions = [
     good: ["3 king과 1 twin 표기", "전용 수영장과 주방", "기사와 도우미 공간", "24시간 인룸 다이닝"],
     cautions: ["twin 표기의 실제 침대 수가 모호함", "Downtown 왕복이 길다", "아동별 침대와 rollaway 확인 필요"],
     action: "floor plan과 9인 침대표를 받은 뒤 Zabeel Saray와 비교",
+    bookingModel: "hotel_residence",
+    hotelPlan: { rooms: 1, arrangement: "Royal Villa Four Bedroom 1채", connection: "not_required", occupancyApproved: false },
     official: "https://www.raffles.com/thepalm-dubai/rooms-and-suites/v4a/",
     maps: "https://www.google.com/maps/search/?api=1&query=Raffles%20The%20Palm%20Dubai",
     lat: 25.1057, lng: 55.1218
@@ -99,11 +105,161 @@ export const lodgingOptions = [
     good: ["성인 6명용 king 3개", "주방과 넓은 공용 공간", "공식 최대 10명", "리조트 서비스 이용"],
     cautions: ["어린이 3명 대비 twin 2개", "세 번째 아동 extra bed 확약 필요", "도시 관광에는 이동이 길다"],
     action: "extra bed를 포함한 총 침대 수와 10박 조건을 서면 확인",
+    bookingModel: "hotel_residence",
+    hotelPlan: { rooms: 1, arrangement: "Superior Four-Bedroom Penthouse 1채", connection: "not_required", occupancyApproved: false },
     official: "https://www.kempinski.com/en/palm-jumeirah/rooms-suites/penthouses/superior-four-bedroom-penthouse",
     maps: "https://www.google.com/maps/search/?api=1&query=Kempinski%20Hotel%20Palm%20Jumeirah",
     lat: 25.1112, lng: 55.1137
+  },
+  {
+    id: "mandarin-jumeira", rank: 5,
+    name: "Mandarin Oriental Jumeira, 호텔 객실 4실",
+    type: "Jumeirah 해변의 호텔 객실형",
+    verdict: "서비스와 도심 접근이 좋지만 한집 생활은 포기하고 보증금과 조식을 따로 계산해야 함",
+    capacity: "성인 6명과 아이 3명, 객실 4실 조합",
+    layout: "킹 또는 트윈 객실 4실, 인접 객실 요청",
+    location: "Jumeira 1", fit: 82,
+    good: ["Downtown과 Old Dubai 접근이 Palm보다 짧음", "해변과 키즈클럽", "Trip.com에서 2027년 10박 4실 실견적 확인"],
+    cautions: ["인접 또는 연결 객실 확약 필요", "무료 취소와 결제 시점은 미노출", "조식 포함 표기가 없어 별도 확인 필요"],
+    action: "같은 층 객실 4실, 어린이 침대, 보증금, 조식, 세금 포함 총액을 한 문서로 요청",
+    bookingModel: "hotel_rooms",
+    hotelPlan: { rooms: 4, arrangement: "더블 2실과 트윈 2실 우선", connection: "request_only", occupancyApproved: false },
+    official: "https://www.mandarinoriental.com/en/dubai/jumeira-beach",
+    maps: "https://www.google.com/maps/search/?api=1&query=Mandarin%20Oriental%20Jumeira%20Dubai",
+    lat: 25.2290, lng: 55.2603
+  },
+  {
+    id: "four-seasons", rank: 6,
+    name: "Four Seasons Resort Dubai at Jumeirah Beach, 호텔 객실 4실",
+    type: "도심과 해변 사이 호텔 객실형",
+    verdict: "Jumeirah 입지와 가족 서비스는 좋지만 같은 가격으로 4실을 동시에 잡을 수 있는지가 약점",
+    capacity: "성인 6명과 아이 3명, 객실 4실 조합",
+    layout: "킹 또는 트윈 객실 4실, 인접 객실 요청",
+    location: "Jumeirah Beach", fit: 80,
+    good: ["Downtown과 해변 사이 이동 균형", "키즈클럽과 수영장", "호텔형 서비스를 선호할 때 강한 선택"],
+    cautions: ["한 거실을 공유할 수 없음", "검색 카드에 이 가격 객실이 1실만 남았다고 표시됨", "무료 취소 마감일과 결제 시점은 미노출"],
+    action: "동일 요금으로 4실이 실제 결제 단계까지 유지되는지 먼저 확인하고 같은 층 배정을 요청",
+    bookingModel: "hotel_rooms",
+    hotelPlan: { rooms: 4, arrangement: "더블 2실과 트윈 2실 우선", connection: "request_only", occupancyApproved: false },
+    official: "https://www.fourseasons.com/dubaijb/",
+    maps: "https://www.google.com/maps/search/?api=1&query=Four%20Seasons%20Resort%20Dubai%20at%20Jumeirah%20Beach",
+    lat: 25.2025, lng: 55.2402
+  },
+  {
+    id: "jumeirah-beach", rank: 7,
+    name: "Jumeirah Beach Hotel, Ocean Deluxe 4실",
+    type: "이동과 가격 균형이 좋은 호텔 객실형",
+    verdict: "호텔 4실 중 가격이 낮고 Madinat 권역이 가깝지만 Wild Wadi 재개 여부는 다시 봐야 함",
+    capacity: "성인 6명과 아이 3명, Ocean Deluxe 객실 4실",
+    layout: "호텔 객실 4실, 같은 층과 인접 배정 요청",
+    location: "Jumeirah, Burj Al Arab 옆", fit: 86,
+    good: ["Trip.com 2027년 4실 실견적 확인", "Madinat와 해변이 가까움", "Marsa보다 총액이 크게 낮음"],
+    cautions: ["Wild Wadi가 현재 별도 공지까지 폐장 상태", "무료 취소 마감일은 미노출", "연결 객실과 조식 포함 여부 확인 필요"],
+    action: "Wild Wadi 재개와 공사 종료, 같은 층 4실, 조식과 취소 마감일을 한 번에 확인",
+    bookingModel: "hotel_rooms",
+    hotelPlan: { rooms: 4, arrangement: "Ocean Deluxe 객실 4실", connection: "request_only", occupancyApproved: true },
+    official: "https://www.jumeirah.com/en/Stay/Dubai/Jumeirah-Beach-Hotel",
+    maps: "https://www.google.com/maps/search/?api=1&query=Jumeirah%20Beach%20Hotel%20Dubai",
+    lat: 25.1412, lng: 55.1911
+  },
+  {
+    id: "al-naseem", rank: 8,
+    name: "Jumeirah Al Naseem, Resort Room 4실",
+    type: "Madinat 안쪽의 호텔 객실형",
+    verdict: "입지는 매우 편하지만 Trip.com 침대 표기가 이상해 결제 전 객실 구성을 다시 확인해야 함",
+    capacity: "성인 6명과 아이 3명, Resort Room 4실",
+    layout: "호텔 객실 4실, 같은 층과 인접 배정 요청",
+    location: "Madinat Jumeirah", fit: 84,
+    good: ["Madinat Abra와 해변이 바로 옆", "Trip.com 2027년 4실 실견적 확인", "무료 취소 표기"],
+    cautions: ["Trip.com 카드에 침대가 싱글 1개로 표시돼 오류 가능성", "무료 취소 마감일과 결제 시점 미노출", "한 거실을 공유할 수 없음"],
+    action: "실제 king 또는 twin 구성, 소파베드, 연결 가능 객실과 취소 마감일을 호텔에 확인",
+    bookingModel: "hotel_rooms",
+    hotelPlan: { rooms: 4, arrangement: "Resort Room 객실 4실", connection: "request_only", occupancyApproved: false },
+    official: "https://www.jumeirah.com/Stay/Dubai/Jumeirah-Al-Naseem",
+    maps: "https://www.google.com/maps/search/?api=1&query=Jumeirah%20Al%20Naseem%20Dubai",
+    lat: 25.1329, lng: 55.1865
   }
 ];
+
+export const tripComCostSummary = {
+  provider: "Trip.com",
+  capturedAt: CHECKED_AT,
+  requestedStay: "2027-03-21부터 03-31, 10박",
+  requestedOccupancy: "성인 6명, 아이 3명, 호텔 객실 4실",
+  exactQuoteStatus: "동일 조건의 세금 포함 실견적을 호텔 5곳과 5베드룸 빌라 1곳에서 확인했습니다.",
+  benchmarkLabel: "Trip.com 최근 12개월 두바이 5성급 평균",
+  benchmarkNightly: "평일 1,065,110원, 주말 1,054,208원",
+  benchmarkTotal: "약 42,517,184원",
+  benchmarkFormula: "평일 8박과 주말 2박, 객실 4실 단순 환산",
+  sourceUrl: "https://kr.trip.com/hotels/dubai-hotels-list-220/"
+};
+
+export const observedTripComQuotes = [
+  {
+    id: "tripcom-zabeel-exact", lodgingId: "zabeel", provider: "Trip.com", capturedAt: CHECKED_AT,
+    referenceStay: "2027-03-21부터 03-31, 10박", occupancy: "5베드룸 빌라 1채, 성인 6명, 아이 3명", roomPlan: "Five Bedroom Pool Royal Villa 1채",
+    nightlyDisplay: "US$3,419/채, 세금 전", projectedDisplay: "US$42,151", currency: "USD", nightlyValue: 3419, projectedValue: 42151,
+    totalIncludesTaxes: true, refundable: null, breakfast: true, status: "observed_exact",
+    inventoryNote: "세전 약 US$34,190, 세금과 수수료 포함 US$42,151. 조식 포함 표기, 무료 취소와 결제 시점은 미노출",
+    sourceUrl: "https://www.trip.com/hotels/list?city=220&searchWord=Jumeirah%20Zabeel%20Saray%20Dubai&checkin=2027/03/21&checkout=2027/03/31&optionId=1562873&optionType=Hotel&display=Jumeirah%20Zabeel%20Saray%20Dubai&adult=6&children=3&crn=1&ages=9%2C7%2C6"
+  },
+  {
+    id: "tripcom-mandarin-exact", lodgingId: "mandarin-jumeira", provider: "Trip.com", capturedAt: CHECKED_AT,
+    referenceStay: "2027-03-21부터 03-31, 10박", occupancy: "객실 4실, 성인 6명, 아이 3명", roomPlan: "Superior King 객실 4실",
+    nightlyDisplay: "US$901/실, 세금 전", projectedDisplay: "US$44,344", currency: "USD", nightlyValue: 901, projectedValue: 44344,
+    totalIncludesTaxes: true, refundable: null, breakfast: false, status: "observed_exact",
+    inventoryNote: "세전 약 US$36,040, 세금과 수수료 포함 US$44,344. 무료 취소, 조식, 결제 시점은 미노출",
+    sourceUrl: "https://www.trip.com/hotels/list?city=220&searchWord=Mandarin%20Oriental%20Jumeira%20Dubai&checkin=2027/03/21&checkout=2027/03/31&optionId=23884107&optionType=Hotel&display=Mandarin%20Oriental%20Jumeira%20Dubai&adult=6&children=3&crn=4&ages=9%2C7%2C6"
+  },
+  {
+    id: "tripcom-jumeirah-beach-exact", lodgingId: "jumeirah-beach", provider: "Trip.com", capturedAt: CHECKED_AT,
+    referenceStay: "2027-03-21부터 03-31, 10박", occupancy: "객실 4실, 성인 6명, 아이 3명", roomPlan: "Ocean Deluxe 객실 4실",
+    nightlyDisplay: "US$958/실, 세금 전", projectedDisplay: "US$47,177", currency: "USD", nightlyValue: 958, projectedValue: 47177,
+    totalIncludesTaxes: true, refundable: true, breakfast: false, status: "observed_exact",
+    inventoryNote: "세전 약 US$38,320, 세금과 수수료 포함 US$47,177. 무료 취소 표기, 마감일과 조식, 결제 시점은 미노출",
+    sourceUrl: "https://www.trip.com/hotels/list?city=220&searchWord=Jumeirah%20Beach%20Hotel%20Dubai&checkin=2027/03/21&checkout=2027/03/31&optionId=1562773&optionType=Hotel&display=Jumeirah%20Beach%20Hotel%20Dubai&adult=6&children=3&crn=4&ages=9%2C7%2C6"
+  },
+  {
+    id: "tripcom-marsa-exact", lodgingId: "marsa", provider: "Trip.com", capturedAt: CHECKED_AT,
+    referenceStay: "2027-03-21부터 03-31, 10박", occupancy: "객실 4실, 성인 6명, 아이 3명", roomPlan: "Marina Deluxe 객실 4실",
+    nightlyDisplay: "US$1,813/실, 세금 전", projectedDisplay: "US$89,066", currency: "USD", nightlyValue: 1813, projectedValue: 89066,
+    totalIncludesTaxes: true, refundable: true, status: "observed_exact",
+    inventoryNote: "세금 전 US$72,520, 세금과 수수료 US$16,546, 최종 US$89,066. 무료 취소 표시는 있으나 마감일과 결제 시점은 미노출. 조식은 포함 표시가 없고 AED 2,000/박 보증금의 부과 단위는 불명확",
+    sourceUrl: "https://www.trip.com/hotels/list?city=220&searchWord=Jumeirah%20Marsa%20Al%20Arab%20Dubai&checkin=2027/03/21&checkout=2027/03/31&optionId=123008303&optionType=Hotel&display=Jumeirah%20Marsa%20Al%20Arab%20Dubai&adult=6&children=3&crn=4&ages=9%2C7%2C6"
+  },
+  {
+    id: "tripcom-four-seasons-exact", lodgingId: "four-seasons", provider: "Trip.com", capturedAt: CHECKED_AT,
+    referenceStay: "2027-03-21부터 03-31, 10박", occupancy: "객실 4실, 성인 6명, 아이 3명", roomPlan: "Deluxe King City View 객실 4실",
+    nightlyDisplay: "US$1,245/실, 세금 전", projectedDisplay: "US$61,244", currency: "USD", nightlyValue: 1245, projectedValue: 61244,
+    totalIncludesTaxes: true, refundable: true, breakfast: false, status: "observed_exact",
+    inventoryNote: "세전 약 US$49,800, 세금과 수수료 포함 US$61,244. 무료 취소 표기지만 같은 가격 객실이 1실만 남았다고 표시돼 4실 동시 확정 위험",
+    sourceUrl: "https://www.trip.com/hotels/list?city=220&searchWord=Four%20Seasons%20Resort%20Dubai%20at%20Jumeirah%20Beach&checkin=2027/03/21&checkout=2027/03/31&optionId=1778281&optionType=Hotel&display=Four%20Seasons%20Resort%20Dubai%20at%20Jumeirah%20Beach&adult=6&children=3&crn=4&ages=9%2C7%2C6"
+  },
+  {
+    id: "tripcom-al-naseem-exact", lodgingId: "al-naseem", provider: "Trip.com", capturedAt: CHECKED_AT,
+    referenceStay: "2027-03-21부터 03-31, 10박", occupancy: "객실 4실, 성인 6명, 아이 3명", roomPlan: "Resort Room 객실 4실",
+    nightlyDisplay: "US$1,723/실, 세금 전", projectedDisplay: "US$84,664", currency: "USD", nightlyValue: 1723, projectedValue: 84664,
+    totalIncludesTaxes: true, refundable: true, breakfast: false, status: "observed_exact",
+    inventoryNote: "세전 약 US$68,920, 세금과 수수료 포함 US$84,664. 무료 취소 표기, 침대가 싱글 1개로 표시돼 실제 구성 재확인 필요",
+    sourceUrl: "https://www.trip.com/hotels/list?city=220&searchWord=Jumeirah%20Al%20Naseem%20Dubai&checkin=2027/03/21&checkout=2027/03/31&optionId=6445488&optionType=Hotel&display=Jumeirah%20Al%20Naseem%20Dubai&adult=6&children=3&crn=4&ages=9%2C7%2C6"
+  }
+];
+
+const lodgingMedia = {
+  zabeel: ["./assets/places/zabeel.avif", "Jumeirah Zabeel Saray 실제 숙소 사진", "https://www.jumeirah.com/en/stay/dubai/jumeirah-zabeel-saray"],
+  marsa: ["./assets/places/marsa.avif", "Jumeirah Marsa Al Arab 실제 숙소 사진", "https://www.jumeirah.com/en/stay/dubai/jumeirah-marsa-al-arab"],
+  raffles: ["./assets/places/zabeel.avif", "Palm West 권역 참고 사진", "https://commons.wikimedia.org/"],
+  kempinski: ["./assets/places/zabeel.avif", "Palm West 권역 참고 사진", "https://commons.wikimedia.org/"],
+  "mandarin-jumeira": ["./assets/places/kite.avif", "Jumeirah 해변 권역 참고 사진", "https://commons.wikimedia.org/"],
+  "four-seasons": ["./assets/places/kite.avif", "Jumeirah 해변 권역 참고 사진", "https://commons.wikimedia.org/"],
+  "jumeirah-beach": ["./assets/places/burjalarab.avif", "Jumeirah Beach Hotel 권역 참고 사진", "https://commons.wikimedia.org/"],
+  "al-naseem": ["./assets/places/madinat.webp", "Madinat Jumeirah 권역 참고 사진", "https://commons.wikimedia.org/"]
+};
+
+for (const item of lodgingOptions) {
+  const [image, photoLabel, photoSource] = lodgingMedia[item.id];
+  Object.assign(item, { image, imageFallback: image, photoLabel, photoSource });
+}
 
 export const rentalChecklist = [
   "예약서에 성인 6명과 아동 3명의 투숙 승인이 명시되는가",
@@ -190,8 +346,8 @@ export const places = [
   place("lost", "Lost World Aquarium (구 Lost Chambers)", "Palm", "수족관", 25.1300, 55.1175, "60-90분", 1, true, "Aquaventure가 어렵거나 바람이 강한 날 한 시간만 보는 실내 선택입니다.", "운영시간과 묶음표 조건 확인", "https://www.atlantis.com/atlantis-the-palm/the-lost-chambers-aquarium", images.coast),
   place("green", "The Green Planet", "City Walk", "실내자연", 25.2075, 55.2627, "90분", 1, true, "강풍이나 피로가 큰 날의 실내 생태 대안이다.", "주말 혼잡과 시간 지정표 확인", "https://www.thegreenplanetdubai.com/", images.city),
   place("kite", "Kite Beach", "Jumeirah", "해변", 25.1612, 55.2073, "60-90분", 1, false, "Jumeirah 숙소에서 짧은 야외 회복 일정으로 쓸 수 있다.", "한낮 햇빛과 바람을 피하고 수영은 안전요원 구역만", "https://www.visitdubai.com/en/places-to-visit/kite-beach", images.coast),
-  place("zabeel", "Jumeirah Zabeel Saray", "Palm West", "숙소", 25.0986, 55.1233, "기준점", 1, true, "공식적으로 6성인과 4아동까지 받는 정확한 4베드룸 후보다.", "도심 이동이 길어 리조트 중심 일정으로 운영", lodgingOptions[0].official, images.coast),
-  place("marsa", "Jumeirah Marsa Al Arab", "Jumeirah", "숙소", 25.1419, 55.1848, "기준점", 1, true, "도심과 해변 이동 균형이 가장 좋은 입지 후보다.", "6성인과 3아동 수용 서면 승인 필요", lodgingOptions[1].official, images.coast),
+  place("zabeel", "Jumeirah Zabeel Saray", "Palm West", "숙소", 25.0986, 55.1233, "기준점", 1, true, "공식 최대 12명인 5베드룸 풀 빌라 한 채에 아홉 명이 함께 머물 수 있다.", "도심 이동이 길어 리조트 중심 일정으로 운영", lodgingOptions[0].official, images.coast),
+  place("marsa", "Jumeirah Marsa Al Arab", "Jumeirah", "숙소", 25.1419, 55.1848, "기준점", 1, true, "호텔 객실 4실로 잡으면 도심과 해변 이동 균형이 가장 좋다.", "같은 층 또는 연결 배정은 호텔의 서면 확약 필요", lodgingOptions[1].official, images.coast),
   place("desert", "Desert safari", "Desert", "제외", 25.1100, 55.4200, "반일 이상", 3, false, "대표 경험이지만 이번 저피로 원칙과 충돌한다.", "장거리 차량, 모래길, 늦은 귀환 때문에 핵심 일정에서 제외", "https://www.visitdubai.com/en/things-to-do/itineraries/desert-safari", images.desert)
 ];
 
@@ -412,8 +568,8 @@ const placeDetails = {
     reviews: {
       summary: "빌라 공간, 라군, 해변, 버틀러와 가족 시설은 호평받지만 Palm 서쪽의 긴 이동과 무거운 장식 취향은 갈립니다.",
       liked: ["넓은 빌라와 전용 라군", "키즈클럽, 해변, 버틀러를 한곳에서 이용"],
-      disliked: ["Downtown과 Old Dubai 왕복이 길고 4베드룸 전용 후기 표본은 적음"],
-      familyTip: "관광 횟수를 줄이는 조건으로 고르고 침대 배치와 10박 재고를 서면으로 받습니다.",
+      disliked: ["Downtown과 Old Dubai 왕복이 길고 5베드룸 빌라 전용 후기 표본은 적음"],
+      familyTip: "관광 횟수를 줄이는 조건으로 고르고 침대 배치, 취소 마감일, 결제 시점을 서면으로 받습니다.",
       sources: [{ platform: "Tripadvisor 호텔 리뷰", url: "https://www.tripadvisor.com/Hotel_Review-g295424-d1949597-Reviews-Jumeirah_Zabeel_Saray-Dubai_Emirate_of_Dubai.html", checkedAt: CHECKED_AT }]
     }
   },
@@ -421,17 +577,17 @@ const placeDetails = {
     image: "https://cdn.jumeirah.com/api/public/content/9b7d4967d86548b2bea484990aa19510?v=b8f3733c",
     imageFallback: images.coast,
     photoSource: lodgingOptions[1].official,
-    bestFor: "해변과 Downtown 사이 이동을 줄이면서 레지던스의 주방과 거실을 쓰고 싶을 때",
-    skipIf: "호텔이 성인 6명과 아이 3명 투숙을 서면으로 승인하지 않을 때",
+    bestFor: "한집 생활보다 호텔 서비스와 해변, Downtown 사이의 짧은 이동을 중요하게 볼 때",
+    skipIf: "네 객실이 서로 떨어져 배정되거나 공용 거실이 꼭 필요할 때",
     kids: "해변과 버기 이동이 편하지만 Family Club 추가 비용을 확인합니다.",
-    groupFit: "총 9명만 보고 예약하지 말고 6+3 조합을 서면으로 승인받아야 합니다.",
-    reservation: "승인되면 이동 기준 1순위",
+    groupFit: "Trip.com에서 6+3, 객실 4실의 실견적은 잡혔지만 같은 층과 연결 배정은 별도입니다.",
+    reservation: "이동 최우선 호텔형",
     reviews: {
-      summary: "현대적인 디자인, 해변, 서비스와 넓은 Residence는 호평받지만 신생 호텔이라 운영 이력과 리뷰 표본이 짧습니다.",
-      liked: ["Downtown, Madinat, Palm 사이 좋은 위치", "주방과 테라스가 있는 넓은 레지던스"],
-      disliked: ["신생 호텔의 서비스 편차와 6성인, 3아동 공식 수용 문구 부재"],
-      familyTip: "호텔이 6+3을 서면 승인할 때만 Zabeel Saray보다 위로 올립니다.",
-      sources: [{ platform: "Tripadvisor 호텔 리뷰", url: "https://www.tripadvisor.co.uk/Hotel_Review-g295424-d26325849-Reviews-Jumeirah_Residences_Marsa_Al_Arab-Dubai_Emirate_of_Dubai.html", checkedAt: CHECKED_AT }]
+      summary: "현대적인 디자인, 해변과 서비스는 호평받지만 신생 호텔이라 운영 이력과 리뷰 표본이 짧고 가격이 높습니다.",
+      liked: ["Downtown, Madinat, Palm 사이 좋은 위치", "새 호텔의 해변과 가족 시설"],
+      disliked: ["신생 호텔의 서비스 편차와 네 객실이 떨어질 위험"],
+      familyTip: "Marina Deluxe 4실을 같은 층에 배정한다는 답을 받은 뒤에만 결제합니다.",
+      sources: [{ platform: "Tripadvisor 호텔 리뷰", url: "https://www.tripadvisor.com/Hotel_Review-g295424-d28148432-Reviews-Jumeirah_Marsa_Al_Arab-Dubai_Emirate_of_Dubai.html", checkedAt: CHECKED_AT }]
     }
   },
   desert: {
@@ -479,8 +635,15 @@ export const climate = {
 
 export const sources = [
   ["Original family trip planning deck", trip.sourceDeck],
-  ["Jumeirah Zabeel Saray Four Bedroom Villa", lodgingOptions[0].official],
-  ["Jumeirah Marsa Al Arab Four Bedroom Residence", lodgingOptions[1].official],
+  ["Trip.com Dubai 5-star market benchmark", tripComCostSummary.sourceUrl],
+  ["Trip.com Zabeel Saray exact quote", observedTripComQuotes[0].sourceUrl],
+  ["Trip.com Mandarin Oriental exact quote", observedTripComQuotes[1].sourceUrl],
+  ["Trip.com Jumeirah Beach Hotel exact quote", observedTripComQuotes[2].sourceUrl],
+  ["Trip.com Marsa Al Arab exact quote", observedTripComQuotes[3].sourceUrl],
+  ["Trip.com Four Seasons exact quote", observedTripComQuotes[4].sourceUrl],
+  ["Trip.com Al Naseem exact quote", observedTripComQuotes[5].sourceUrl],
+  ["Jumeirah Zabeel Saray Five Bedroom Pool Royal Villa", lodgingOptions[0].official],
+  ["Jumeirah Marsa Al Arab hotel", lodgingOptions[1].official],
   ["Raffles The Palm Royal Villa", lodgingOptions[2].official],
   ["Kempinski Four Bedroom Penthouse", lodgingOptions[3].official],
   ["Emirates Seoul to Dubai", "https://www.emirates.com/kr/korean/destinations/icn/dxb/flights-from-seoul-to-dubai/"],

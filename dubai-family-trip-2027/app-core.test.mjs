@@ -15,7 +15,7 @@ import {
   tripStatus,
   weatherMode
 } from "./app-core.mjs";
-import { familyGroups, itinerary, lodgingOptions, mealSuggestions, places, trip } from "./trip-data.mjs";
+import { familyGroups, itinerary, lodgingOptions, mealSuggestions, observedTripComQuotes, places, trip, tripComCostSummary } from "./trip-data.mjs";
 
 test("travel dates are internally consistent and total ten nights", () => {
   assert.equal(daysBetween(trip.arrivalDate, trip.checkoutDate), 10);
@@ -36,9 +36,33 @@ test("family totals match six adults and three children", () => {
 test("recommended residence satisfies the one-home capacity constraint", () => {
   const recommended = lodgingOptions[0];
   assert.equal(recommended.id, "zabeel");
-  assert.match(recommended.capacity, /10명/);
-  assert.match(recommended.layout, /침실 4/);
+  assert.match(recommended.capacity, /12명/);
+  assert.match(recommended.layout, /침실 5/);
   assert.ok(recommended.fit >= 90);
+});
+
+test("lodging comparison includes one-villa and four-hotel-room choices", () => {
+  assert.equal(new Set(lodgingOptions.map((item) => item.id)).size, lodgingOptions.length);
+  assert.ok(lodgingOptions.filter((item) => item.bookingModel === "hotel_rooms").length >= 5);
+  assert.ok(lodgingOptions.some((item) => item.hotelPlan?.rooms === 1));
+  assert.ok(lodgingOptions.some((item) => item.hotelPlan?.rooms === 4));
+  for (const item of lodgingOptions) {
+    assert.match(item.image, /^\.\/assets\//, item.name);
+    assert.ok(item.photoLabel.length >= 8, item.name);
+  }
+});
+
+test("Trip.com Dubai quotes match the requested 2027 stay and separate one villa from four rooms", () => {
+  assert.match(tripComCostSummary.exactQuoteStatus, /호텔 5곳과 5베드룸 빌라 1곳/);
+  assert.equal(observedTripComQuotes.length, 6);
+  assert.ok(observedTripComQuotes.every((quote) => quote.status === "observed_exact" && quote.totalIncludesTaxes === true));
+  assert.ok(observedTripComQuotes.every((quote) => quote.referenceStay.includes("2027-03-21")));
+  const zabeel = observedTripComQuotes.find((quote) => quote.lodgingId === "zabeel");
+  const hotels = observedTripComQuotes.filter((quote) => quote.lodgingId !== "zabeel");
+  assert.match(zabeel.roomPlan, /1채/);
+  assert.equal(zabeel.projectedValue, 42151);
+  assert.ok(hotels.every((quote) => quote.occupancy.includes("객실 4실")));
+  assert.equal(Math.min(...hotels.map((quote) => quote.projectedValue)), 44344);
 });
 
 test("place data has unique ids, safe links, and plausible local coordinates", () => {
@@ -104,6 +128,8 @@ test("local guide answers high-risk family questions without a server", () => {
   assert.match(localAnswer("9명이 한 집에서 자려면?").answer, /Zabeel Saray/);
   assert.match(localAnswer("비 오면 아이들과 어디 가?").answer, /Museum of the Future/);
   assert.match(localAnswer("사막 사파리도 갈까?").answer, /이번에는 빼는 게 맞/);
+  assert.match(localAnswer("Trip.com 실경비는?").answer, /US\$42,151/);
+  assert.ok(searchContext("호텔 4실 Trip.com").some((item) => item.kind === "비용"));
   assert.ok(searchContext("Aquaventure 아이").length > 0);
   assert.ok(searchContext("Burj Khalifa 유모차 보관").some((item) => item.title.includes("Burj Khalifa")));
   assert.equal(makeAssistantPayload("숙소 추천").question, "숙소 추천");

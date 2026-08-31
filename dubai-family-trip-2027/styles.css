@@ -763,3 +763,33 @@ body.theme-dubai .map-section { background: #3f3326; }
   .map-canvas { min-height: 430px; }
   .utility-grid { grid-template-columns: 1fr 1fr; }
 }
+
+/* Trip.com comparison cards */
+.cost-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin: 34px 0 16px; }
+.cost-heading h3 { margin: 0; font-size: clamp(24px, 3vw, 34px); letter-spacing: -.04em; }
+.cost-heading > p { max-width: 610px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.tripcom-cost-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.tripcom-cost-card { display: flex; min-height: 290px; flex-direction: column; padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--white); box-shadow: 0 8px 26px rgba(28,39,51,.04); }
+.tripcom-cost-card.benchmark { color: white; border-color: transparent; background: linear-gradient(145deg, #775022, #9d7040); }
+.tripcom-cost-card.exact { border-color: rgba(44,126,92,.28); background: linear-gradient(180deg, #fffef9, #f4faf6); }
+.tripcom-cost-card h3 { margin: 14px 0 10px; font-size: 17px; line-height: 1.35; }
+.tripcom-cost-card > strong { font-size: clamp(24px, 3vw, 32px); letter-spacing: -.04em; }
+.tripcom-cost-card p { margin: 12px 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.tripcom-cost-card small { display: block; margin-bottom: 18px; color: var(--muted); font-size: 11px; line-height: 1.55; }
+.tripcom-cost-card a { margin-top: auto; color: #8a5d22; font-size: 12px; font-weight: 800; }
+.tripcom-cost-card.benchmark p, .tripcom-cost-card.benchmark small { color: rgba(255,255,255,.74); }
+.tripcom-cost-card.benchmark a { color: white; }
+.quote-status { align-self: flex-start; padding: 5px 8px; border-radius: 999px; color: #6c4b20; background: #f4e6ca; font-size: 10px; font-weight: 850; }
+.quote-status.exact { color: #1f6849; background: #dff2e7; }
+.quote-status.warning { color: #8a422c; background: #f7e3dc; }
+
+@media (max-width: 960px) {
+  .tripcom-cost-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 720px) {
+  .cost-heading { display: block; }
+  .cost-heading > p { margin-top: 10px; }
+  .tripcom-cost-grid { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+  .tripcom-cost-card { flex: 0 0 min(84vw, 330px); min-height: 280px; scroll-snap-align: start; }
+}

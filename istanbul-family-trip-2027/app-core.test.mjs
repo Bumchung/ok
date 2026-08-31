@@ -5,6 +5,7 @@ import {
   distanceKm,
   daysBetween,
   filterPlaces,
+  itineraryForPace,
   localAnswer,
   makeGoogleCalendarUrl,
   makeAssistantPayload,
@@ -15,7 +16,7 @@ import {
   tripStatus,
   weatherMode
 } from "./app-core.mjs";
-import { familyGroups, itinerary, lodgingOptions, mealSuggestions, places, trip } from "./trip-data.mjs";
+import { familyGroups, itinerary, lodgingOptions, mealSuggestions, observedTripComQuotes, places, trip, tripComCostSummary } from "./trip-data.mjs";
 
 test("travel dates are internally consistent and total ten nights", () => {
   assert.equal(daysBetween(trip.arrivalDate, trip.checkoutDate), 10);
@@ -40,6 +41,28 @@ test("recommended residence satisfies the one-home capacity constraint", () => {
   assert.match(recommended.layout, /침실 4/);
   assert.match(recommended.layout, /욕실 4/);
   assert.ok(recommended.fit >= 90);
+});
+
+test("lodging comparison includes both one-home and hotel-room plans", () => {
+  assert.equal(new Set(lodgingOptions.map((item) => item.id)).size, lodgingOptions.length);
+  assert.ok(lodgingOptions.some((item) => item.bookingModel === "whole_home"));
+  assert.ok(lodgingOptions.filter((item) => item.bookingModel === "hotel_rooms").length >= 3);
+  for (const item of lodgingOptions) {
+    assert.ok(item.hotelPlan?.rooms >= 1, item.name);
+    assert.match(item.image, /^\.\/assets\//, item.name);
+    assert.ok(item.photoLabel.length >= 8, item.name);
+  }
+});
+
+test("Trip.com Istanbul values are clearly marked as reference prices, not 2027 quotes", () => {
+  assert.match(tripComCostSummary.exactQuoteStatus, /확인되지 않았/);
+  assert.equal(observedTripComQuotes.length, 4);
+  for (const quote of observedTripComQuotes) {
+    assert.equal(quote.status, "reference_start_price");
+    assert.equal(quote.projectedValue, quote.nightlyValue * 4 * 10);
+    assert.equal(quote.totalIncludesTaxes, null);
+    assert.match(quote.sourceUrl, /^https:\/\/kr\.trip\.com\//);
+  }
 });
 
 test("place data has unique ids, safe links, and plausible local coordinates", () => {
@@ -78,6 +101,21 @@ test("closure-sensitive itinerary avoids known weekly conflicts", () => {
   assert.match(itinerary.find((day) => day.date === "2027-03-26").main, /금요 예배/);
 });
 
+test("focused mode adds more Istanbul without changing dates or crossing the city needlessly", () => {
+  assert.equal(trip.paceModes.default, "focused");
+  const gentle = itineraryForPace("gentle");
+  const focused = itineraryForPace("focused");
+  assert.deepEqual(focused.map((day) => day.date), gentle.map((day) => day.date));
+  assert.equal(focused.length, 12);
+  assert.ok(focused.reduce((sum, day) => sum + day.timeline.length, 0) > gentle.reduce((sum, day) => sum + day.timeline.length, 0));
+  assert.ok(focused.filter((day) => day.paceLabel === "집중 여행" && day.intensity === 3).length >= 6);
+  assert.doesNotMatch(focused.find((day) => day.dow === "화").title, /Topkapı/);
+  assert.match(focused.find((day) => day.date === "2027-03-29").title, /Grand Bazaar/);
+  for (const day of focused) {
+    for (const key of ["parents", "kids", "together", "recovery"]) assert.ok(day.needs[key].length >= 12, `${day.date} ${key}`);
+  }
+});
+
 test("every day has a nine-person meal operating rule", () => {
   assert.equal(Object.keys(mealSuggestions).length, itinerary.length);
   for (const day of itinerary) assert.ok(mealSuggestions[day.date]?.length > 20, day.date);
@@ -106,6 +144,8 @@ test("local guide answers high-risk family questions without a server", () => {
   assert.match(localAnswer("9명이 한 집에서 자려면?").answer, /CVK Park Bosphorus/);
   assert.match(localAnswer("비 오면 아이들과 어디 가?").answer, /Basilica Cistern/);
   assert.match(localAnswer("카파도키아도 갈까?").answer, /이번에는 빼는 게 맞/);
+  assert.match(localAnswer("Trip.com 실경비는?").answer, /실견적이 아니라 비교선/);
+  assert.ok(searchContext("호텔 4실 Trip.com").some((item) => item.kind === "비용"));
   assert.ok(searchContext("Topkapı 화요일").length > 0);
   assert.ok(searchContext("Dolmabahçe 사진 금지").some((item) => item.title.includes("Dolmabahçe")));
   assert.equal(makeAssistantPayload("숙소 추천").question, "숙소 추천");
@@ -137,5 +177,10 @@ test("calendar and nearby utilities work without private credentials", () => {
   assert.match(ics, /오후 회복/);
   assert.match(ics, /시간표/);
   assert.equal((ics.match(/BEGIN:VEVENT/g) || []).length, itinerary.length);
+  const focused = itineraryForPace("focused");
+  const focusedIcs = makeIcs(focused);
+  assert.match(focusedIcs, /여행 모드: 집중 여행/);
+  assert.match(focusedIcs, /구시가지 대표 장면 네 개/);
+  assert.equal((focusedIcs.match(/BEGIN:VEVENT/g) || []).length, focused.length);
   assert.ok(distanceKm({ lat: 41.0086, lng: 28.9802 }, { lat: 41.0367, lng: 28.9864 }) > 2);
 });

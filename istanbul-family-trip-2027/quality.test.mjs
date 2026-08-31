@@ -14,6 +14,8 @@ test("page exposes every major Sydney-parity feature surface", async () => {
   assert.match(html, /download-kml/);
   assert.match(html, /download-ics/);
   assert.match(html, /answer-template/);
+  assert.match(html, /tripcom-cost-grid/);
+  assert.match(html, /trip-mode-switch/);
 });
 
 test("mobile layout, reduced motion, and safe viewport rules exist", async () => {
@@ -30,7 +32,7 @@ test("mobile layout, reduced motion, and safe viewport rules exist", async () =>
 
 test("assistant remains useful without a deployed remote endpoint", async () => {
   const app = `${await readFile(join(here, "app.mjs"), "utf8")}\n${await readFile(join(here, "trip-app.mjs"), "utf8")}`;
-  assert.match(app, /localAnswer\(clean\)/);
+  assert.match(app, /localAnswer\(clean,\s*activeItinerary\(\)\)/);
   assert.match(app, /연결이 안 되어 저장된 여행 자료에서 찾았어요/);
   assert.match(app, /istanbul-assistant-endpoint/);
 });
@@ -46,6 +48,8 @@ test("Sydney-parity details include day photos, reviews, location sorting, and c
   assert.match(app, /makeGoogleCalendarUrl/);
   assert.match(app, /reviews\.liked/);
   assert.match(app, /day-photo/);
+  assert.match(app, /renderTripComCosts/);
+  assert.match(app, /aria-pressed/);
   for (const label of ["부모가 기대할 것", "아이들이 기다릴 것", "같이 남길 장면", "오후 회복"]) assert.match(app, new RegExp(label));
   assert.match(css, /review-signal/);
   assert.match(css, /nearby-list/);

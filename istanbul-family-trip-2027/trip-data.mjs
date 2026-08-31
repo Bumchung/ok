@@ -1,4 +1,4 @@
-export const CHECKED_AT = "2026-08-31";
+export const CHECKED_AT = "2026-09-01";
 
 export const trip = {
   title: "ISTANBUL TOGETHER",
@@ -10,9 +10,16 @@ export const trip = {
   nights: 10,
   adults: 6,
   children: [9, 7, 6],
+  paceModes: {
+    default: "focused",
+    options: [
+      { id: "gentle", label: "천천히", description: "오전 한 곳을 보고 오후에는 숙소로 돌아옵니다." },
+      { id: "focused", label: "집중 여행", description: "같은 권역을 묶어 하루 두세 장면까지 봅니다." }
+    ]
+  },
   principles: [
-    "하루 핵심 일정은 하나만 잡는다.",
-    "점심 뒤에는 숙소로 돌아와 세 시간쯤 쉬고 낮잠을 잔다.",
+    "천천히 모드는 하루 한 곳, 집중 여행은 같은 권역 안에서 두세 장면을 묶는다.",
+    "집중 여행도 오후 3시 전후에는 숙소로 돌아와 저녁 전 회복 시간을 남긴다.",
     "도보 15분을 넘기면 9인 전용차나 배를 먼저 검토한다.",
     "비, 피로, 임신 가능성에 대비해 매일 대안을 준비한다."
   ],
@@ -56,6 +63,8 @@ export const lodgingOptions = [
     good: ["9명이 한 거실을 공유", "매일 청소와 호텔 서비스", "전용차 진입이 쉬운 중심지", "비 오는 날 실내 시설 활용"],
     cautions: ["정확한 침대 구성과 어린이 추가 침대 확인", "2027년 10박 연속 재고는 아직 미확인", "구시가지 관광은 차량 이동 필요"],
     action: "4 Bedroom Bosphorus View Residence 1개를 3월 21일부터 31일까지 직접 문의",
+    bookingModel: "hotel_residence",
+    hotelPlan: { rooms: 1, arrangement: "4베드룸 레지던스 1채", connection: "not_required", occupancyApproved: true },
     official: "https://www.cvkhotelsandresorts.com/park-prestige-suites/residences/four-bedroom-residence-with-bosphorus-view",
     maps: "https://www.google.com/maps/search/?api=1&query=CVK%20Park%20Bosphorus%20Hotel%20Istanbul",
     lat: 41.0367,
@@ -74,6 +83,8 @@ export const lodgingOptions = [
     good: ["가족 패키지에 12세 미만 인접 객실 명시", "구시가지와 아시아 쪽을 배로 연결 가능", "도착일과 휴식일 운영이 편함"],
     cautions: ["모두 한 집에 머무는 형태는 아님", "공식 가족 패키지는 그룹 예약에 적용되지 않음", "객실 조합과 연결문을 서면 확약해야 함"],
     action: "패키지 자동 적용을 기대하지 말고, 9명 전체의 맞춤 객실 배치도와 PEN1 보트 조건을 컨시어지에 요청",
+    bookingModel: "hotel_rooms",
+    hotelPlan: { rooms: 4, arrangement: "객실 4실 또는 스위트와 인접 객실 조합", connection: "request_only", occupancyApproved: false },
     official: "https://www.peninsula.com/en/istanbul/special-offers/rooms/family-package",
     maps: "https://www.google.com/maps/search/?api=1&query=The%20Peninsula%20Istanbul",
     lat: 41.0255,
@@ -92,6 +103,8 @@ export const lodgingOptions = [
     good: ["한 집 선호를 가장 자연스럽게 충족", "세탁과 간단한 아침 준비", "아이 취침 뒤 어른 공용 공간 확보"],
     cautions: ["100일 이하 관광 임대 허가번호 확인 필수", "엘리베이터와 차량 문 앞 접근을 영상으로 확인", "사진보다 경사와 소음이 더 중요"],
     action: "허가번호, 9인 정원, 엘리베이터, 난방, 취소 조건을 메시지로 서면 확인",
+    bookingModel: "whole_home",
+    hotelPlan: { rooms: 1, arrangement: "4베드룸 전체 숙소 1채", connection: "not_required", occupancyApproved: false },
     official: "https://www.airbnb.com/s/Istanbul--T%C3%BCrkiye/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&date_picker_type=calendar&checkin=2027-03-21&checkout=2027-03-31&adults=6&children=3&room_types%5B%5D=Entire%20home%2Fapt",
     maps: "https://www.google.com/maps/search/?api=1&query=Gumussuyu%20Istanbul",
     lat: 41.0335,
@@ -110,12 +123,116 @@ export const lodgingOptions = [
     good: ["9인 정원과 주방", "장기 투숙 운영 경험"],
     cautions: ["주요 관광지까지 매일 긴 차량 이동", "러시아워에 걸리면 아이들 쉬는 시간이 줄어듦"],
     action: "가격 차이가 매우 커도 우선순위에서 제외",
+    bookingModel: "hotel_residence",
+    hotelPlan: { rooms: 1, arrangement: "4베드룸 서비스드 아파트 1채", connection: "not_required", occupancyApproved: true },
     official: "https://www.discoverasr.com/en/somerset-serviced-residence/turkiye/somerset-maslak-istanbul",
     maps: "https://www.google.com/maps/search/?api=1&query=Somerset%20Maslak%20Istanbul",
     lat: 41.1271,
     lng: 29.0241
+  },
+  {
+    id: "swissotel",
+    rank: 5,
+    name: "Swissotel The Bosphorus, 호텔 객실 4실",
+    type: "호텔 객실형",
+    verdict: "한 집은 아니지만 수영장과 돌마바흐체 접근, 현재 공개가의 균형이 좋음",
+    capacity: "성인 6명과 아이 3명, 객실 4실 조합",
+    layout: "킹 또는 트윈 객실 4실, 인접 객실 요청",
+    location: "Beşiktaş, Dolmabahçe 위쪽",
+    fit: 77,
+    good: ["실내 수영장과 정원", "Dolmabahçe와 Beşiktaş 접근이 편함", "Trip.com 현재 공개 시작가가 비교적 낮음"],
+    cautions: ["인접 또는 연결 객실은 확약이 아님", "언덕 위라 도보 귀환보다 차량이 편함", "2027년 4실 연속 재고와 세금 포함 총액은 미확인"],
+    action: "객실 4실을 같은 층에 배정할 수 있는지와 어린이 침대 3개를 서면 요청",
+    bookingModel: "hotel_rooms",
+    hotelPlan: { rooms: 4, arrangement: "더블 2실과 트윈 2실 우선", connection: "request_only", occupancyApproved: false },
+    official: "https://www.swissotel.com/hotels/istanbul/",
+    maps: "https://www.google.com/maps/search/?api=1&query=Swissotel%20The%20Bosphorus%20Istanbul",
+    lat: 41.0419,
+    lng: 28.9976
+  },
+  {
+    id: "ritz",
+    rank: 6,
+    name: "The Ritz-Carlton Istanbul, 호텔 객실 4실",
+    type: "호텔 객실형",
+    verdict: "서비스와 중심 입지는 좋지만 방음과 객실 상태에 대한 최근 후기 편차가 있음",
+    capacity: "성인 6명과 아이 3명, 객실 4실 조합",
+    layout: "킹 또는 트윈 객실 4실, 같은 층 요청",
+    location: "Dolmabahçe, Taksim 남쪽",
+    fit: 74,
+    good: ["탁심과 보스포루스 사이의 중심 입지", "실내 수영장과 호텔 서비스", "차량 승하차가 비교적 편함"],
+    cautions: ["연결 객실 확약 필요", "방음과 체크인 속도 불만이 일부 반복됨", "2027년 4실 총액과 취소 조건은 미확인"],
+    action: "4실 같은 층 배정, 연결 가능 객실, 조식과 어린이 추가 침대 총액을 한 견적으로 요청",
+    bookingModel: "hotel_rooms",
+    hotelPlan: { rooms: 4, arrangement: "더블 2실과 트윈 2실 우선", connection: "request_only", occupancyApproved: false },
+    official: "https://www.ritzcarlton.com/en/hotels/istrz-the-ritz-carlton-istanbul/overview/",
+    maps: "https://www.google.com/maps/search/?api=1&query=The%20Ritz-Carlton%20Istanbul",
+    lat: 41.0406,
+    lng: 28.9924
   }
 ];
+
+export const tripComCostSummary = {
+  provider: "Trip.com",
+  capturedAt: CHECKED_AT,
+  requestedStay: "2027-03-21부터 03-31, 10박",
+  requestedOccupancy: "성인 6명, 아이 3명, 호텔 객실 4실",
+  exactQuoteStatus: "2027년 동일 조건의 객실 조합과 세금 포함 총액은 공개 페이지에서 확인되지 않았습니다.",
+  benchmarkLabel: "Trip.com 최근 12개월 이스탄불 5성급 평균",
+  benchmarkNightly: "평일 615,652원, 주말 628,070원",
+  benchmarkTotal: "약 24,725,424원",
+  benchmarkFormula: "평일 8박과 주말 2박, 객실 4실 단순 환산",
+  sourceUrl: "https://kr.trip.com/hotels/istanbul-hotels-list-532/"
+};
+
+export const observedTripComQuotes = [
+  {
+    id: "tripcom-cvk", lodgingId: "cvk", provider: "Trip.com", capturedAt: CHECKED_AT,
+    referenceStay: "2026-08-21부터 08-27", occupancy: "1실, 성인 2명 시작가", roomPlan: "객실 4실로 환산",
+    nightlyDisplay: "393,034원", projectedDisplay: "15,721,360원", currency: "KRW", nightlyValue: 393034, projectedValue: 15721360,
+    totalIncludesTaxes: null, refundable: null, status: "reference_start_price",
+    inventoryNote: "2027년 6+3, 4실 또는 4베드룸 레지던스의 실제 재고와 요금은 미노출",
+    sourceUrl: "https://kr.trip.com/hotels/istanbul-hotel-detail-2245771/cvk-park-bosphorus-hotel-istanbul/?curr=&locale=ko-KR&rankingId=100200214877"
+  },
+  {
+    id: "tripcom-swissotel", lodgingId: "swissotel", provider: "Trip.com", capturedAt: CHECKED_AT,
+    referenceStay: "2026-08-21부터 08-27", occupancy: "1실, 성인 2명 시작가", roomPlan: "객실 4실로 환산",
+    nightlyDisplay: "363,749원", projectedDisplay: "14,549,960원", currency: "KRW", nightlyValue: 363749, projectedValue: 14549960,
+    totalIncludesTaxes: null, refundable: null, status: "reference_start_price",
+    inventoryNote: "인접 객실과 어린이 침대, 2027년 4실 총액은 별도 재견적 필요",
+    sourceUrl: "https://kr.trip.com/hotels/istanbul-hotel-detail-744401/swissotel-the-bosphorus-istanbul/?curr=&locale=ko-KR&rankingId=100200214877"
+  },
+  {
+    id: "tripcom-ritz", lodgingId: "ritz", provider: "Trip.com", capturedAt: CHECKED_AT,
+    referenceStay: "2026-05-29부터 06-04", occupancy: "1실, 성인 2명 시작가", roomPlan: "객실 4실로 환산",
+    nightlyDisplay: "493,333원", projectedDisplay: "19,733,320원", currency: "KRW", nightlyValue: 493333, projectedValue: 19733320,
+    totalIncludesTaxes: null, refundable: null, status: "reference_start_price",
+    inventoryNote: "계절이 다른 공개 시작가이며 연결 객실, 세금, 조식, 취소 조건은 미확인",
+    sourceUrl: "https://kr.trip.com/hotels/istanbul-hotel-detail-2109006/the-ritz-carlton-istanbul/"
+  },
+  {
+    id: "tripcom-peninsula", lodgingId: "peninsula", provider: "Trip.com", capturedAt: CHECKED_AT,
+    referenceStay: "2026-06-26부터 07-02", occupancy: "1실, 성인 2명 시작가", roomPlan: "객실 4실로 환산",
+    nightlyDisplay: "EUR 753", projectedDisplay: "EUR 30,120", currency: "EUR", nightlyValue: 753, projectedValue: 30120,
+    totalIncludesTaxes: null, refundable: null, status: "reference_start_price",
+    inventoryNote: "환율 변환 전 원표시이며 가족 패키지, 연결 객실, 세금과 환불 조건은 미확인",
+    sourceUrl: "https://kr.trip.com/hotels/istanbul-hotel-detail-112025256/the-peninsula-istanbul/"
+  }
+];
+
+const lodgingMedia = {
+  cvk: ["./assets/places/galataport.jpg", "탁심과 보스포루스 권역 참고 사진", "https://commons.wikimedia.org/"],
+  peninsula: ["./assets/places/modern.jpg", "페닌슐라와 갈라타포트 권역 참고 사진", "https://commons.wikimedia.org/"],
+  "licensed-home": ["./assets/places/galata.jpg", "지한기르와 갈라타 권역 참고 사진", "https://commons.wikimedia.org/"],
+  somerset: ["./assets/places/galataport.jpg", "이스탄불 도시 권역 참고 사진", "https://commons.wikimedia.org/"],
+  swissotel: ["./assets/places/dolmabahce.jpg", "스위소텔과 돌마바흐체 권역 참고 사진", "https://commons.wikimedia.org/"],
+  ritz: ["./assets/places/dolmabahce.jpg", "리츠칼튼과 돌마바흐체 권역 참고 사진", "https://commons.wikimedia.org/"]
+};
+
+for (const item of lodgingOptions) {
+  const [image, photoLabel, photoSource] = lodgingMedia[item.id];
+  Object.assign(item, { image, imageFallback: image, photoLabel, photoSource });
+}
 
 export const rentalChecklist = [
   "관광 임대 허가번호가 광고와 건물에 표시되는가",
@@ -233,6 +350,103 @@ const dayDetails = {
 };
 
 for (const day of itinerary) Object.assign(day, dayDetails[day.date]);
+
+const focusedItineraryOverrides = {
+  "2027-03-22": {
+    title: "갈라타에서 카라쾨이까지 걷는 첫날", zone: "Galata / Karaköy / Galataport", intensity: 2,
+    main: "시차가 괜찮다면 갈라타 탑 아래에서 시작해 카라쾨이 골목과 Galataport 해안까지 내리막 위주로 이어 봅니다.",
+    timeline: ["09:30 차량으로 갈라타 탑 아래 도착", "09:50 갈라타 탑 외관과 골목 40분", "10:40 카라쾨이까지 내리막 산책과 디저트", "12:00 예약 점심", "13:30 Galataport 해안과 서점", "15:00 숙소 복귀와 수영"],
+    rain: "갈라타 외관을 빼고 카라쾨이 점심, Galataport 실내만 봅니다.", low: "기존 천천히 모드의 Galataport 45분만 남깁니다.",
+    transport: "갈라타까지 차량, 이후 내리막 도보 약 1.6km, 귀환 차량", notes: "Istanbul Modern은 월요일 휴관이라 넣지 않습니다.",
+    whyNow: "월요일 휴관 시설을 피해 첫날부터 도시의 높낮이와 바다를 한 번에 익히되 오르막은 걷지 않습니다.",
+    needs: { parents: "갈라타 건축, 카라쾨이 카페와 해안 풍경", kids: "탑 찾기, 트램과 배 세기, 디저트 하나 고르기", together: "갈라타 탑과 보스포루스를 잇는 첫 도시 산책", recovery: "15시에는 숙소로 돌아와 수영이나 낮잠으로 끝냅니다." },
+    featuredPlace: "galata"
+  },
+  "2027-03-23": {
+    title: "구시가지 대표 장면 네 개", zone: "Sultanahmet", intensity: 3,
+    main: "Basilica Cistern, Hippodrome, Blue Mosque, Hagia Sophia를 같은 광장에서 이어 보는 집중일입니다.",
+    timeline: ["08:20 전용차 출발", "09:00 Basilica Cistern 첫 회차", "10:05 Hippodrome과 Blue Mosque", "11:15 Hagia Sophia 관람 가능 구역", "12:30 예약 점심", "14:00 광장 마지막 사진", "14:30 숙소 복귀"],
+    rain: "지하 궁전, Blue Mosque, 점심만 남깁니다.", low: "지하 궁전과 광장 외관만 보고 12시 전에 나옵니다.",
+    transport: "왕복 전용차, 광장 안 도보 약 1.8km", notes: "Topkapı는 화요일 휴관, 기도 시간과 Hagia Sophia 관광 동선은 전날 확인합니다.",
+    whyNow: "첫 구시가지 날에 광장 안 대표 장면을 모아 보고, 다른 날 같은 길을 다시 오지 않게 합니다.",
+    needs: { parents: "비잔틴과 오스만 역사가 맞닿는 대표 건축", kids: "메두사, 오벨리스크, 푸른 타일 찾기", together: "광장 네 장면 중 가족 1등을 투표하기", recovery: "14시 30분 복귀 뒤 저녁 외출은 하지 않습니다." },
+    featuredPlace: "cistern"
+  },
+  "2027-03-24": {
+    title: "Topkapı에서 향신료 시장까지", zone: "Topkapı / Gülhane / Eminönü", intensity: 3,
+    main: "개장과 함께 궁전 핵심을 보고 Gülhane 내리막으로 나와 Spice Bazaar까지 같은 역사 지구를 이어 갑니다.",
+    timeline: ["08:20 숙소 출발", "09:00 Harem과 보물실", "11:15 제4정원 전망", "11:50 Gülhane 내리막 산책", "12:40 예약 점심", "14:00 Spice Bazaar 45분", "15:20 차량 귀환"],
+    rain: "궁전 실내와 Spice Bazaar만 차량으로 연결합니다.", low: "Topkapı Harem과 보물실 뒤 바로 점심, 귀환합니다.",
+    transport: "왕복 전용차, 궁전에서 Gülhane까지 내리막, 시장 구간은 차량", notes: "궁전 관람은 세 시간 전에 강제로 끝냅니다.",
+    whyNow: "화요일 휴관 다음 날 Topkapı 첫 회차를 잡고, 같은 반도 동선을 한 번에 끝냅니다.",
+    needs: { parents: "오스만 궁정과 역사 시장을 하루에 잇는 밀도", kids: "궁전 보석과 향신료 냄새 맞히기", together: "보물 하나와 향신료 하나를 각자 골라 설명하기", recovery: "15시 30분부터 숙소에서 두 시간 쉽니다." },
+    featuredPlace: "topkapi"
+  },
+  "2027-03-25": {
+    title: "Dolmabahçe, Beşiktaş, Ortaköy", zone: "Beşiktaş / Ortaköy", intensity: 3,
+    main: "궁전 실내 뒤 Beşiktaş 점심과 Ortaköy 해안까지 보스포루스 남쪽 세 장면을 묶습니다.",
+    timeline: ["09:15 숙소 출발", "10:00 Dolmabahçe 핵심 관람", "12:00 Beşiktaş 예약 점심", "13:20 차량으로 Ortaköy", "13:40 모스크 외관과 해안 50분", "15:00 숙소 복귀"],
+    rain: "궁전과 Beşiktaş 점심만 남깁니다.", low: "Dolmabahçe 핵심 실내와 점심 뒤 바로 돌아옵니다.",
+    transport: "차량으로 짧게 이어 이동, 총 도보 약 1.5km", notes: "Ortaköy가 붐비면 하차하지 않고 차량 창밖과 해안 사진으로 끝냅니다.",
+    whyNow: "목요일에 여는 Dolmabahçe를 중심으로 같은 해안선의 두 동네를 한 번에 봅니다.",
+    needs: { parents: "궁전 실내와 보스포루스 생활 동네", kids: "샹들리에, 배, 모스크 찾기", together: "Ortaköy Mosque와 다리가 함께 보이는 가족사진", recovery: "15시 이후 숙소 수영과 이른 저녁만 둡니다." },
+    featuredPlace: "dolmabahce"
+  },
+  "2027-03-26": {
+    title: "보트에서 두 대륙을 훑는 날", zone: "Bosphorus / Ortaköy / Galataport", intensity: 2,
+    main: "난방 가능한 전용 보트로 궁전, 두 다리, Rumeli Fortress를 보고 Galataport에 내려 점심까지 해결합니다.",
+    timeline: ["09:40 선착장 이동", "10:15 전용 보트 승선", "10:50 Ortaköy와 첫 다리", "11:25 Rumeli Fortress 외관과 두 번째 다리", "12:25 Galataport 하선", "12:40 점심과 해안 45분", "14:40 숙소 복귀"],
+    rain: "강풍이 아니면 밀폐형 보트, 강풍이면 Istanbul Modern과 Galataport로 바꿉니다.", low: "Golden Horn 60분 보트만 타고 바로 돌아옵니다.",
+    transport: "전용 보트와 짧은 차량", notes: "아이용 구명조끼, 화장실, 난방, 강풍 취소 기준을 계약서에 적습니다.",
+    whyNow: "금요 예배 혼잡을 피하면서 이동 자체를 관광으로 바꿔 멀리 떨어진 해안 장면을 한 번에 봅니다.",
+    needs: { parents: "배 위에서 보는 궁전, 요새, 해안 저택", kids: "다리 두 개와 성 하나를 먼저 찾는 빙고", together: "유럽과 아시아를 한 화면에 담는 보트 사진", recovery: "15시 전에 돌아오고 멀미가 있으면 바로 눕습니다." },
+    featuredPlace: "ortakoy"
+  },
+  "2027-03-27": {
+    title: "Istanbul Modern과 갈라타 전망", zone: "Galataport / Galata", intensity: 3,
+    main: "오전 미술관 뒤 점심을 먹고, 예약 시간에 맞춰 Galata Tower 전망까지 올라갑니다.",
+    timeline: ["09:30 숙소 출발", "10:00 Istanbul Modern 90분", "11:45 Galataport 점심", "13:15 차량으로 갈라타 탑 아래", "13:40 예약 입장과 전망", "15:20 숙소 복귀"],
+    rain: "미술관과 점심만, 갈라타 탑은 비가 그칠 때만 갑니다.", low: "Istanbul Modern 작품 세 점과 점심만 남깁니다.",
+    transport: "구간별 차량, 갈라타 탑 주변 짧은 언덕 도보", notes: "탑 대기가 20분을 넘으면 외관만 보고 귀환합니다.",
+    whyNow: "토요일에 여는 미술관과 갈라타 전망을 같은 신시가지 축으로 묶어 두 번 오지 않습니다.",
+    needs: { parents: "현대미술과 360도 도시 전망", kids: "작품 세 점 미션과 탑 오르기", together: "미술관에서 고른 색을 갈라타 전망에서 다시 찾기", recovery: "15시 30분부터 숙소, 저녁 예약은 넣지 않습니다." },
+    featuredPlace: "modern"
+  },
+  "2027-03-28": {
+    title: "아시아 쪽 궁전과 동네와 해안", zone: "Beylerbeyi / Kuzguncuk / Üsküdar", intensity: 3,
+    main: "배로 건너 Beylerbeyi Palace, Kuzguncuk 평지 골목, Üsküdar 해안까지 아시아 쪽 하루를 완성합니다.",
+    timeline: ["09:15 선착장 이동", "09:45 배로 Üsküdar", "10:15 차량으로 Beylerbeyi Palace", "11:40 Kuzguncuk 평지 산책", "12:45 예약 점심", "14:15 Üsküdar 해안과 차", "15:15 배 또는 차량 귀환"],
+    rain: "Beylerbeyi Palace와 Üsküdar 점심만 남깁니다.", low: "Kuzguncuk과 점심, Üsküdar 해안만 봅니다.",
+    transport: "배와 현지 대기 차량, 평지 도보 약 1.4km", notes: "Beylerbeyi 월요일 휴관을 피한 일요일 일정입니다.",
+    whyNow: "아시아 쪽에 한 번만 건너가 궁전과 생활 동네, 해안을 모두 보고 돌아옵니다.",
+    needs: { parents: "보스포루스 궁전과 목조 주택 동네", kids: "배, 고양이, 색깔 집, 궁전 방 찾기", together: "아시아에서 유럽을 배경으로 찍는 가족사진", recovery: "16시 전후 숙소에 돌아와 발을 쉬게 합니다." },
+    featuredPlace: "beylerbeyi"
+  },
+  "2027-03-29": {
+    title: "Grand Bazaar에서 Süleymaniye까지", zone: "Beyazıt / Süleymaniye / Eminönü", intensity: 3,
+    main: "Grand Bazaar 한 구역, Süleymaniye 전망, Spice Bazaar를 정한 입구와 차량으로 잇습니다.",
+    timeline: ["08:25 숙소 출발", "09:00 Grand Bazaar 75분", "10:30 Süleymaniye Mosque와 전망", "11:40 차량으로 Eminönü", "12:00 Pandeli 또는 Hamdi 점심", "13:40 Spice Bazaar 40분", "14:45 숙소 복귀"],
+    rain: "Grand Bazaar, 점심, Spice Bazaar만 남깁니다.", low: "Spice Bazaar와 점심만 봅니다.",
+    transport: "구간별 전용차, 시장 안 도보 약 1.5km", notes: "Süleymaniye 기도 시간과 차량 진입 지점을 전날 확인합니다.",
+    whyNow: "월요일에 여는 시장들을 같은 반도 축으로 끝내고 마지막 날에 쇼핑을 남기지 않습니다.",
+    needs: { parents: "시장 건축, 모스크 전망, 전통 식당", kids: "정해 둔 선물 하나와 향신료 게임", together: "각 가족이 고른 물건과 전망 사진을 한 장씩 남기기", recovery: "15시부터 숙소에서 쉬고 구매품을 정리합니다." },
+    featuredPlace: "grand"
+  },
+  "2027-03-30": {
+    title: "Rahmi Koç, Balat, Pierre Loti", zone: "Golden Horn", intensity: 3,
+    main: "아이들이 좋아할 탈것 박물관을 중심에 두고 Balat 색깔 거리와 Golden Horn 전망을 같은 권역에서 붙입니다.",
+    timeline: ["08:55 숙소 출발", "09:30 Rahmi M. Koç Museum 2시간 20분", "12:00 박물관 점심", "13:10 Balat 평지 골목 45분", "14:15 Pierre Loti 케이블카와 전망", "15:30 숙소 귀환", "18:00 마지막 가족 저녁과 시상식"],
+    rain: "박물관과 점심만 보고 돌아와 짐을 쌉니다.", low: "자동차와 기차 전시 90분만 보고 귀환합니다.",
+    transport: "권역 내 전용차, 케이블카 대기가 길면 전망은 생략", notes: "15시 30분 출발 상한을 지켜 출국 전 포장 시간을 남깁니다.",
+    whyNow: "마지막 관광일을 아이가 좋아할 박물관으로 시작하고, Golden Horn의 서로 다른 표정을 한 번에 봅니다.",
+    needs: { parents: "산업 디자인, Balat 도시 풍경, Golden Horn 전망", kids: "자동차와 기차, 색깔 집, 케이블카", together: "각자 뽑은 여행 최고의 장면을 마지막 저녁에 발표하기", recovery: "16시부터 짐 정리, 18시 이후에는 숙소 밖으로 나가지 않습니다." },
+    featuredPlace: "rahmi"
+  }
+};
+
+for (const day of itinerary) {
+  if (focusedItineraryOverrides[day.date]) day.variants = { focused: focusedItineraryOverrides[day.date] };
+}
 
 export const mealSuggestions = {
   "2027-03-20": "공항 라운지와 기내식만. 도착 전 과식하지 않는다.",
@@ -569,6 +783,11 @@ export const climate = {
 
 export const sources = [
   ["Original family trip planning deck", trip.sourceDeck],
+  ["Trip.com Istanbul 5-star market benchmark", tripComCostSummary.sourceUrl],
+  ["Trip.com CVK reference price", observedTripComQuotes[0].sourceUrl],
+  ["Trip.com Swissotel reference price", observedTripComQuotes[1].sourceUrl],
+  ["Trip.com Ritz-Carlton reference price", observedTripComQuotes[2].sourceUrl],
+  ["Trip.com Peninsula reference price", observedTripComQuotes[3].sourceUrl],
   ["CVK 4 Bedroom Residence", lodgingOptions[0].official],
   ["The Peninsula family package", lodgingOptions[1].official],
   ["The Peninsula transportation", "https://www.peninsula.com/en/istanbul/transportation-service-reservation"],

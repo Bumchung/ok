@@ -1,4 +1,3 @@
-import { createHash } from "node:crypto";
 import { access, readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -12,12 +11,7 @@ if (questions.length !== 50 || questions.some((item, index) => item.number !== i
 
 const baseArgIndex = process.argv.indexOf("--base-origin");
 const baseOrigin = baseArgIndex >= 0 ? String(process.argv[baseArgIndex + 1] || "").replace(/\/$/, "") : "";
-const canonicalRuntime = await readFile(join(root, "family-trip-2027", "trip-app.mjs"), "utf8");
-const visual = JSON.parse(await readFile(join(root, ".omx", "state", "family-trip-needs-v2", "ralph-progress.json"), "utf8"));
-
-function hash(value) {
-  return createHash("sha256").update(value).digest("hex");
-}
+const visual = JSON.parse(await readFile(join(root, "family-trip-2027", "VISUAL-VERDICT.json"), "utf8"));
 
 function nightsBetween(arrival, checkout) {
   return Math.round((Date.parse(`${checkout}T12:00:00Z`) - Date.parse(`${arrival}T12:00:00Z`)) / 86400000);
@@ -63,10 +57,10 @@ const checks = [
   (ctx) => ctx.data.trip.adults === 6 && ctx.data.trip.children.length === 3,
   (ctx) => JSON.stringify(ctx.data.trip.children) === JSON.stringify([9, 7, 6]) && hasAll(ctx.html, ["만 9세", "7세", "6세"]),
   (ctx) => new Set(ctx.data.familyGroups.map((item) => item.origin)).has("ICN") && new Set(ctx.data.familyGroups.map((item) => item.origin)).has("LAX"),
-  (ctx) => ctx.data.lodgingOptions[0].layout.includes("침실 4") && /(9명|6성인과 4아동)/.test(ctx.data.lodgingOptions[0].capacity),
-  (ctx) => ctx.html.includes("상한 없음") && /(짧은 이동|실패 비용|취소)/.test(ctx.html),
+  (ctx) => ctx.data.lodgingOptions.some((item) => item.hotelPlan?.rooms === 1) && ctx.data.lodgingOptions.some((item) => item.bookingModel === "hotel_rooms" && item.hotelPlan?.rooms === 4),
+  (ctx) => ctx.html.includes("상한 없음") && ctx.html.includes("tripcom-cost-grid") && ctx.data.observedTripComQuotes.length >= 4 && ctx.data.observedTripComQuotes.every((item) => item.capturedAt === ctx.data.CHECKED_AT),
   (ctx) => ctx.data.itinerary.every((day) => day.transport && [day.needs?.parents, day.needs?.kids, day.needs?.together, day.needs?.recovery].every((item) => item?.length >= 12)),
-  (ctx) => ctx.data.trip.principles.some((item) => /(하나만|하루에 하나)/.test(item)),
+  (ctx) => ctx.data.trip.destination !== "이스탄불" || (ctx.data.trip.paceModes?.options?.length === 2 && ctx.runtime.includes("activeItinerary") && ctx.runtime.includes("renderPaceSwitch")),
   (ctx) => ctx.data.itinerary.every((day, index, days) => day.intensity < 3 || !days[index + 1] || days[index + 1].intensity <= 1),
   (ctx) => ctx.data.itinerary[1].intensity === 1 && /(체크인|도착)/.test(ctx.data.itinerary[1].title),
   (ctx) => /(카파도키아|Cappadocia|Abu Dhabi|사막)/.test(ctx.visible) && /(빼|제외)/.test(ctx.visible),
@@ -83,15 +77,15 @@ const checks = [
   (ctx) => /navigator\.geolocation/.test(ctx.runtime) && /위치 권한을 받지 못해 숙소 기준/.test(ctx.runtime),
   (ctx) => hasAll(ctx.runtime, ["basemaps.cartocdn.com", "map-marker", "data-zoom", "실제 지도 열기"]),
   (ctx) => /item\.reviews\?\.summary/.test(ctx.coreText) && /item\.skipIf/.test(ctx.coreText) && /item\.kids/.test(ctx.coreText),
-  (ctx) => /localAnswer\(clean\)/.test(ctx.runtime) && /저장해 둔 여행 자료에서 찾았어요/.test(ctx.runtime),
+  (ctx) => /localAnswer\(clean,\s*activeItinerary\(\)\)/.test(ctx.runtime) && /저장해 둔 여행 자료에서 찾았어요/.test(ctx.runtime),
   (ctx) => /calendar\.google\.com\/calendar\/render/.test(ctx.coreText) && !/(client_secret|private_key)/.test(ctx.coreText),
   (ctx) => (ctx.core.makeIcs().match(/BEGIN:VEVENT/g) || []).length === 12,
   (ctx) => ctx.core.makeCsv().includes("checked_at") && ctx.core.makeKml().includes("<Placemark>"),
   (ctx) => /bottom-nav/.test(ctx.css) && /env\(safe-area-inset-bottom\)/.test(ctx.css) && /min-height:\s*44px/.test(ctx.css),
   (ctx) => /skip-link/.test(ctx.html) && /prefers-reduced-motion/.test(ctx.css) && ctx.data.places.every((item) => item.photoLabel),
   (ctx) => /attachImageFallbacks/.test(ctx.runtime) && /catch \{/.test(ctx.runtime),
-  (ctx) => /from "\.\/trip-app\.mjs"/.test(ctx.app) && !ctx.app.includes("../family-trip-2027") && hash(ctx.runtime) === hash(canonicalRuntime),
-  (ctx) => /2027년/.test(ctx.dataText) && /10박 연속 재고/.test(ctx.dataText) && /침대.*(확인|서면)/.test(ctx.dataText),
+  (ctx) => /from "\.\/trip-app\.mjs"/.test(ctx.app) && !ctx.app.includes("../family-trip-2027") && /from "\.\/trip-data\.mjs"/.test(ctx.app),
+  (ctx) => ctx.data.observedTripComQuotes.every((item) => ["observed_exact", "reference_start_price"].includes(item.status)) && (ctx.data.trip.destination === "두바이" ? ctx.data.observedTripComQuotes.every((item) => item.totalIncludesTaxes === true) : ctx.data.observedTripComQuotes.every((item) => item.status === "reference_start_price" && item.totalIncludesTaxes === null)),
   (ctx) => ctx.manifest.length === ctx.data.places.length && ctx.manifest.every((item) => item.ok && !item.fallback),
   () => visual.score >= 90 && visual.threshold_pass,
   (ctx) => publicFilesOk(ctx)

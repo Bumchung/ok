@@ -2,8 +2,8 @@ const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
 export function bootTripApp({ data, core }) {
-  const { CHECKED_AT, climate, familyGroups, heroImage, itinerary, lodgingOptions, mealSuggestions, places, rentalChecklist, sources, trip } = data;
-  const { distanceKm, filterPlaces, localAnswer, makeAssistantPayload, makeCsv, makeGoogleCalendarUrl, makeIcs, makeKml, tripStatus, weatherMode } = core;
+  const { CHECKED_AT, climate, familyGroups, heroImage, itinerary, lodgingOptions, mealSuggestions, observedTripComQuotes = [], places, rentalChecklist, sources, trip, tripComCostSummary } = data;
+  const { distanceKm, filterPlaces, itineraryForPace = (_pace, days) => days, localAnswer, makeAssistantPayload, makeCsv, makeGoogleCalendarUrl, makeIcs, makeKml, tripStatus, weatherMode } = core;
   const cityKey = trip.destination === "두바이" ? "dubai" : "istanbul";
   const answerKey = `${cityKey}-family-trip-answers-v2`;
   const endpointKey = trip.destination === "두바이" ? "dubai-assistant-endpoint" : "istanbul-assistant-endpoint";
@@ -11,6 +11,7 @@ export function bootTripApp({ data, core }) {
   const state = {
     lodging: lodgingOptions[0].id,
     day: tripStatus().day?.date || itinerary[0].date,
+    pace: trip.paceModes?.default || "gentle",
     mapPlace: places.find((item) => item.id === lodgingOptions[0].id)?.id || places[0].id,
     mapZoom: trip.destination === "두바이" ? 11 : 12,
     filters: { query: "", zone: "all", category: "all", rain: false, energy: null },
@@ -19,6 +20,8 @@ export function bootTripApp({ data, core }) {
     userLocation: null,
     answers: readStoredAnswers()
   };
+
+  function activeItinerary() { return itineraryForPace(state.pace, itinerary); }
 
   function escapeHtml(value) {
     return String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
@@ -55,7 +58,8 @@ export function bootTripApp({ data, core }) {
 
   function renderToday() {
     const status = tripStatus();
-    const day = status.day || itinerary[0];
+    const days = activeItinerary();
+    const day = days.find((item) => item.date === status.day?.date) || days[0];
     $("#today-heading").textContent = status.mode === "planning" ? "가장 먼저 결정할 것" : status.mode === "travel" ? "오늘은 이만큼만" : "다시 볼 여행 기록";
     $("#today-card").innerHTML = `<div class="today-copy"><span class="today-date">${escapeHtml(status.label)} / ${escapeHtml(day.date.slice(5).replace("-", "/"))}</span><h3>${escapeHtml(status.mode === "planning" ? lodgingOptions[0].name : day.title)}</h3><p>${escapeHtml(status.mode === "planning" ? lodgingOptions[0].verdict : day.main)}</p></div><div class="today-actions"><a href="${status.mode === "planning" ? "#stay" : "#plan"}">${status.mode === "planning" ? "숙소 비교 보기" : "오늘 일정 보기"}</a><a href="#nearby">지금 가까운 곳</a><a href="#ask">이 계획에 질문하기</a></div>`;
     $("#principles").innerHTML = trip.principles.map((item, index) => `<article class="principle-card"><span>원칙 ${index + 1}</span><p>${escapeHtml(item)}</p></article>`).join("");
@@ -71,20 +75,36 @@ export function bootTripApp({ data, core }) {
   }
 
   function lodgingPhoto(item) {
-    return places.find((place) => place.id === item.id) || { image: heroImage, imageFallback: heroImage, photoSource: item.official, photoLabel: `${item.name} 주변 이미지` };
+    return places.find((place) => place.id === item.id) || (item.image ? item : null) || { image: heroImage, imageFallback: heroImage, photoSource: item.official, photoLabel: `${item.name} 주변 이미지` };
   }
 
   function renderLodgingDetail() {
     const item = lodgingOptions.find((candidate) => candidate.id === state.lodging) || lodgingOptions[0];
     const photo = lodgingPhoto(item);
-    $("#lodging-detail").innerHTML = `<figure class="lodging-photo photo-frame"><img src="${escapeHtml(photo.image)}" data-fallback="${escapeHtml(photo.imageFallback || heroImage)}" alt="${escapeHtml(photo.photoLabel)}"><figcaption><a href="${escapeHtml(photo.photoSource || item.official)}" target="_blank" rel="noreferrer">사진 출처</a></figcaption></figure><div class="lodging-copy"><div class="lodging-rank">현재 ${item.rank}순위</div><h3>${escapeHtml(item.name)}</h3><p class="lodging-verdict">${escapeHtml(item.verdict)}</p><div class="spec-grid"><div class="spec"><small>정원</small><strong>${escapeHtml(item.capacity)}</strong></div><div class="spec"><small>위치</small><strong>${escapeHtml(item.location)}</strong></div><div class="spec wide"><small>구조</small><strong>${escapeHtml(item.layout)}</strong></div></div><div class="pros-cons"><div><h4>우리 가족에게 좋은 점</h4><ul>${item.good.map((point) => `<li>${escapeHtml(point)}</li>`).join("")}</ul></div><div><h4>예약 전에 물어볼 것</h4><ul>${item.cautions.map((point) => `<li>${escapeHtml(point)}</li>`).join("")}</ul></div></div><div class="lodging-action"><strong>지금 보낼 문의</strong><p>${escapeHtml(item.action)}</p></div><div class="button-row"><a class="text-button primary" href="${escapeHtml(item.official)}" target="_blank" rel="noreferrer">공식 페이지</a><a class="text-button" href="${escapeHtml(item.maps)}" target="_blank" rel="noreferrer">Google Maps</a></div></div>`;
+    const connection = { guaranteed: "연결 확약", request_only: "인접 또는 연결 요청", not_required: "연결 불필요" }[item.hotelPlan?.connection] || "직접 확인";
+    $("#lodging-detail").innerHTML = `<figure class="lodging-photo photo-frame"><img src="${escapeHtml(photo.image)}" data-fallback="${escapeHtml(photo.imageFallback || heroImage)}" alt="${escapeHtml(photo.photoLabel)}"><figcaption><span>${escapeHtml(photo.photoLabel)}</span><a href="${escapeHtml(photo.photoSource || item.official)}" target="_blank" rel="noreferrer">사진 출처</a></figcaption></figure><div class="lodging-copy"><div class="lodging-rank">현재 ${item.rank}순위 / ${escapeHtml(item.bookingModel === "hotel_rooms" ? "호텔 4실" : "한 집형")}</div><h3>${escapeHtml(item.name)}</h3><p class="lodging-verdict">${escapeHtml(item.verdict)}</p><div class="spec-grid"><div class="spec"><small>정원</small><strong>${escapeHtml(item.capacity)}</strong></div><div class="spec"><small>위치</small><strong>${escapeHtml(item.location)}</strong></div><div class="spec wide"><small>객실 조합</small><strong>${escapeHtml(item.hotelPlan?.arrangement || item.layout)} / ${escapeHtml(connection)}</strong></div></div><div class="pros-cons"><div><h4>우리 가족에게 좋은 점</h4><ul>${item.good.map((point) => `<li>${escapeHtml(point)}</li>`).join("")}</ul></div><div><h4>예약 전에 물어볼 것</h4><ul>${item.cautions.map((point) => `<li>${escapeHtml(point)}</li>`).join("")}</ul></div></div><div class="lodging-action"><strong>지금 보낼 문의</strong><p>${escapeHtml(item.action)}</p></div><div class="button-row"><a class="text-button primary" href="${escapeHtml(item.official)}" target="_blank" rel="noreferrer">공식 페이지</a><a class="text-button" href="${escapeHtml(item.maps)}" target="_blank" rel="noreferrer">Google Maps</a></div></div>`;
     attachImageFallbacks($("#lodging-detail"));
+  }
+
+  function renderTripComCosts() {
+    const root = $("#tripcom-cost-grid");
+    if (!root || !tripComCostSummary) return;
+    const lodgingName = (id) => lodgingOptions.find((item) => item.id === id)?.name || id;
+    root.innerHTML = `<article class="tripcom-cost-card benchmark"><span class="quote-status">시장 평균 비교선</span><h3>${escapeHtml(tripComCostSummary.benchmarkLabel)}</h3><strong>${escapeHtml(tripComCostSummary.benchmarkTotal)}</strong><p>${escapeHtml(tripComCostSummary.benchmarkNightly)}<br>${escapeHtml(tripComCostSummary.benchmarkFormula)}</p><small>${escapeHtml(tripComCostSummary.exactQuoteStatus)}</small><a href="${escapeHtml(tripComCostSummary.sourceUrl)}" target="_blank" rel="noreferrer">Trip.com 평균 원문</a></article>${observedTripComQuotes.map((quote) => `<article class="tripcom-cost-card"><span class="quote-status warning">2027 재견적 필요</span><h3>${escapeHtml(lodgingName(quote.lodgingId))}</h3><strong>${escapeHtml(quote.projectedDisplay)}</strong><p>${escapeHtml(quote.nightlyDisplay)} × 4실 × 10박<br>${escapeHtml(quote.referenceStay)} / ${escapeHtml(quote.occupancy)}</p><small>${escapeHtml(quote.inventoryNote)}. 세금 포함 여부와 환불 조건은 공개 페이지에서 확인되지 않았습니다.</small><a href="${escapeHtml(quote.sourceUrl)}" target="_blank" rel="noreferrer">Trip.com에서 다시 견적</a></article>`).join("")}`;
   }
 
   function renderRentalChecklist() { $("#rental-checklist").innerHTML = rentalChecklist.map((item) => `<li>${escapeHtml(item)}</li>`).join(""); }
 
+  function renderPaceSwitch() {
+    const root = $("#trip-mode-switch");
+    if (!root || !trip.paceModes?.options?.length) { if (root) root.hidden = true; return; }
+    root.hidden = false;
+    root.innerHTML = `<div class="pace-copy"><strong>오늘 얼마나 볼까요?</strong><span>${escapeHtml(trip.paceModes.options.find((item) => item.id === state.pace)?.description)}</span></div><div class="pace-buttons">${trip.paceModes.options.map((option) => `<button type="button" data-pace="${escapeHtml(option.id)}" aria-pressed="${option.id === state.pace}">${escapeHtml(option.label)}</button>`).join("")}</div>`;
+    $$('[data-pace]', root).forEach((button) => button.addEventListener("click", () => { state.pace = button.dataset.pace; renderPaceSwitch(); renderToday(); renderDateRail(); renderDayDetail(); renderItineraryList(); }));
+  }
+
   function renderDateRail() {
-    $("#date-rail").innerHTML = itinerary.map((day) => `<button class="date-tab" type="button" role="tab" aria-selected="${day.date === state.day}" data-day="${day.date}"><small>${escapeHtml(day.dow)}요일</small><strong>${Number(day.date.slice(-2))}</strong></button>`).join("");
+    $("#date-rail").innerHTML = activeItinerary().map((day) => `<button class="date-tab" type="button" role="tab" aria-selected="${day.date === state.day}" data-day="${day.date}"><small>${escapeHtml(day.dow)}요일</small><strong>${Number(day.date.slice(-2))}</strong></button>`).join("");
     $$('[data-day]').forEach((button) => button.addEventListener("click", () => { state.day = button.dataset.day; renderDateRail(); renderDayDetail(); }));
     requestAnimationFrame(() => { const rail = $("#date-rail"); const selected = $("[data-day][aria-selected='true']"); if (rail && selected) rail.scrollLeft = Math.max(0, selected.offsetLeft - rail.clientWidth / 2 + selected.clientWidth / 2); });
   }
@@ -94,14 +114,15 @@ export function bootTripApp({ data, core }) {
   }
 
   function renderDayDetail() {
-    const day = itinerary.find((item) => item.date === state.day) || itinerary[0];
+    const days = activeItinerary();
+    const day = days.find((item) => item.date === state.day) || days[0];
     const photo = dayPhoto(day);
-    $("#day-detail").innerHTML = `<figure class="day-photo photo-frame"><img src="${escapeHtml(photo.image)}" data-fallback="${escapeHtml(photo.imageFallback || heroImage)}" alt="${escapeHtml(photo.photoLabel || photo.name)}"><figcaption><span>${escapeHtml(photo.name)}</span><a href="${escapeHtml(photo.photoSource || photo.official || trip.sourceDeck)}" target="_blank" rel="noreferrer">사진 출처</a></figcaption></figure><div class="day-panel"><div class="day-heading"><div><span>${escapeHtml(day.date)} / ${escapeHtml(day.dow)}요일</span><h3>${escapeHtml(day.title)}</h3></div><b>체력 ${day.intensity}/3</b></div><p class="day-main-copy">${escapeHtml(day.main)}</p><div class="day-facts"><span>${escapeHtml(day.zone)}</span><span>${escapeHtml(day.transport)}</span></div><div class="day-why"><strong>왜 이날 하나요</strong><p>${escapeHtml(day.whyNow)}</p></div><div class="day-needs" aria-label="부모와 아이가 오늘 얻는 것"><article><strong>부모가 기대할 것</strong><p>${escapeHtml(day.needs.parents)}</p></article><article><strong>아이들이 기다릴 것</strong><p>${escapeHtml(day.needs.kids)}</p></article><article><strong>같이 남길 장면</strong><p>${escapeHtml(day.needs.together)}</p></article><article><strong>오후 회복</strong><p>${escapeHtml(day.needs.recovery)}</p></article></div><ol class="timeline">${day.timeline.map((item, index) => `<li data-index="${String(index + 1).padStart(2, "0")}">${escapeHtml(item)}</li>`).join("")}</ol><div class="plan-switcher"><div class="plan-option"><strong>비 오면</strong><span>${escapeHtml(day.rain)}</span></div><div class="plan-option"><strong>힘들면</strong><span>${escapeHtml(day.low)}</span></div><div class="plan-option"><strong>아홉 명 식사</strong><span>${escapeHtml(mealSuggestions[day.date])}</span></div></div><div class="button-row day-buttons"><a class="text-button primary" href="${escapeHtml(makeGoogleCalendarUrl(day))}" target="_blank" rel="noreferrer">Google Calendar에 추가</a><a class="text-button" href="${escapeHtml(photo.maps || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(day.zone)}`)}" target="_blank" rel="noreferrer">그날 지도 열기</a></div></div>`;
+    $("#day-detail").innerHTML = `<figure class="day-photo photo-frame"><img src="${escapeHtml(photo.image)}" data-fallback="${escapeHtml(photo.imageFallback || heroImage)}" alt="${escapeHtml(photo.photoLabel || photo.name)}"><figcaption><span>${escapeHtml(photo.name)}</span><a href="${escapeHtml(photo.photoSource || photo.official || trip.sourceDeck)}" target="_blank" rel="noreferrer">사진 출처</a></figcaption></figure><div class="day-panel"><div class="day-heading"><div><span>${escapeHtml(day.date)} / ${escapeHtml(day.dow)}요일 / ${escapeHtml(day.paceLabel)} 모드</span><h3>${escapeHtml(day.title)}</h3></div><b>체력 ${day.intensity}/3</b></div><p class="day-main-copy">${escapeHtml(day.main)}</p><div class="day-facts"><span>${escapeHtml(day.zone)}</span><span>${escapeHtml(day.transport)}</span></div><div class="day-why"><strong>왜 이날 하나요</strong><p>${escapeHtml(day.whyNow)}</p></div><div class="day-needs" aria-label="부모와 아이가 오늘 얻는 것"><article><strong>부모가 기대할 것</strong><p>${escapeHtml(day.needs.parents)}</p></article><article><strong>아이들이 기다릴 것</strong><p>${escapeHtml(day.needs.kids)}</p></article><article><strong>같이 남길 장면</strong><p>${escapeHtml(day.needs.together)}</p></article><article><strong>오후 회복</strong><p>${escapeHtml(day.needs.recovery)}</p></article></div><ol class="timeline">${day.timeline.map((item, index) => `<li data-index="${String(index + 1).padStart(2, "0")}">${escapeHtml(item)}</li>`).join("")}</ol><div class="plan-switcher"><div class="plan-option"><strong>비 오면</strong><span>${escapeHtml(day.rain)}</span></div><div class="plan-option"><strong>힘들면</strong><span>${escapeHtml(day.low)}</span></div><div class="plan-option"><strong>아홉 명 식사</strong><span>${escapeHtml(mealSuggestions[day.date])}</span></div></div><div class="button-row day-buttons"><a class="text-button primary" href="${escapeHtml(makeGoogleCalendarUrl(day))}" target="_blank" rel="noreferrer">Google Calendar에 추가</a><a class="text-button" href="${escapeHtml(photo.maps || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(day.zone)}`)}" target="_blank" rel="noreferrer">그날 지도 열기</a></div></div>`;
     attachImageFallbacks($("#day-detail"));
   }
 
   function renderItineraryList() {
-    $("#itinerary-list").innerHTML = itinerary.map((day) => `<a class="itinerary-row" href="#plan" data-list-day="${day.date}" id="day-${day.date}"><time>${day.date.slice(5).replace("-", "/")}</time><div><strong>${escapeHtml(day.title)}</strong><small>${escapeHtml(day.whyNow)}</small></div><span class="row-zone">${escapeHtml(day.zone)}</span><span class="energy-label">체력 ${day.intensity}/3</span></a>`).join("");
+    $("#itinerary-list").innerHTML = activeItinerary().map((day) => `<a class="itinerary-row" href="#plan" data-list-day="${day.date}" id="day-${day.date}"><time>${day.date.slice(5).replace("-", "/")}</time><div><strong>${escapeHtml(day.title)}</strong><small>${escapeHtml(day.whyNow)}</small></div><span class="row-zone">${escapeHtml(day.zone)}</span><span class="energy-label">체력 ${day.intensity}/3</span></a>`).join("");
     $$('[data-list-day]').forEach((link) => link.addEventListener("click", () => { state.day = link.dataset.listDay; renderDateRail(); renderDayDetail(); }));
   }
 
@@ -220,7 +241,7 @@ export function bootTripApp({ data, core }) {
   }
 
   async function askRemote(question, endpoint) {
-    const response = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(makeAssistantPayload(question)) });
+    const response = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(makeAssistantPayload(question, activeItinerary())) });
     const result = await response.json().catch(() => ({}));
     if (!response.ok || !result.answer) throw new Error(result.error || `AI ${response.status}`);
     return result;
@@ -248,8 +269,8 @@ export function bootTripApp({ data, core }) {
     $("#assistant-state").textContent = "이 여행 계획에서 답을 찾는 중입니다";
     const endpoint = endpointFromSettings();
     let result;
-    try { result = endpoint ? await askRemote(clean, endpoint) : localAnswer(clean); $("#assistant-state").textContent = endpoint ? `${result.provider || "여행 검색"}에서 찾았어요` : "저장해 둔 여행 자료에서 찾았어요"; }
-    catch { result = localAnswer(clean); $("#assistant-state").textContent = "연결이 안 되어 저장된 여행 자료에서 찾았어요"; }
+    try { result = endpoint ? await askRemote(clean, endpoint) : localAnswer(clean, activeItinerary()); $("#assistant-state").textContent = endpoint ? `${result.provider || "여행 검색"}에서 찾았어요` : "저장해 둔 여행 자료에서 찾았어요"; }
+    catch { result = localAnswer(clean, activeItinerary()); $("#assistant-state").textContent = "연결이 안 되어 저장된 여행 자료에서 찾았어요"; }
     finally { button.disabled = false; }
     state.answers.unshift({ question: clean, answer: result.answer, provider: result.provider || "여행 계획", sources: (result.sources || []).slice(0, 5), time: new Intl.DateTimeFormat("ko-KR", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" }).format(new Date()) });
     state.answers = state.answers.slice(0, 6);
@@ -278,7 +299,7 @@ export function bootTripApp({ data, core }) {
   function wireUtilities() {
     $("#download-csv").addEventListener("click", () => downloadFile(`${cityKey}-family-trip-places.csv`, `\uFEFF${makeCsv()}`, "text/csv;charset=utf-8"));
     $("#download-kml").addEventListener("click", () => downloadFile(`${cityKey}-family-trip-places.kml`, makeKml(), "application/vnd.google-earth.kml+xml"));
-    $("#download-ics").addEventListener("click", () => downloadFile(`${cityKey}-family-trip-2027.ics`, makeIcs(), "text/calendar;charset=utf-8"));
+    $("#download-ics").addEventListener("click", () => downloadFile(`${cityKey}-family-trip-2027-${state.pace}.ics`, makeIcs(activeItinerary()), "text/calendar;charset=utf-8"));
     $("#source-list").innerHTML = sources.map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer"><span>${escapeHtml(source.title)}</span><time>${escapeHtml(source.checkedAt)}</time></a>`).join("");
   }
 
@@ -297,6 +318,6 @@ export function bootTripApp({ data, core }) {
   }
 
   $("#hero-image").src = heroImage;
-  renderStatus(); renderToday(); renderFamily(); renderLodgingTabs(); renderLodgingDetail(); renderRentalChecklist(); renderDateRail(); renderDayDetail(); renderItineraryList(); renderWeather(); renderFilters(); renderPlaces(); renderNearby(); wireNearby(); renderMap(); wireAssistant(); wireUtilities(); wireNavigation(); restoreDeepLink();
+  renderStatus(); renderToday(); renderFamily(); renderLodgingTabs(); renderLodgingDetail(); renderTripComCosts(); renderRentalChecklist(); renderPaceSwitch(); renderDateRail(); renderDayDetail(); renderItineraryList(); renderWeather(); renderFilters(); renderPlaces(); renderNearby(); wireNearby(); renderMap(); wireAssistant(); wireUtilities(); wireNavigation(); restoreDeepLink();
   document.documentElement.dataset.checkedAt = CHECKED_AT;
 }

@@ -44,6 +44,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--base-origin", default="http://127.0.0.1:8765")
     parser.add_argument("--scope", default="family-trip-parity-v8")
+    parser.add_argument("--app", choices=APPS)
     return parser.parse_args()
 
 
@@ -58,9 +59,11 @@ def main():
             headless=True,
             args=["--no-sandbox"],
         )
-        for app in APPS:
+        for app in (args.app,) if args.app else APPS:
             for mode, viewport in VIEWPORTS.items():
                 page = browser.new_page(viewport=viewport, locale="ko-KR")
+                page_errors = []
+                page.on("pageerror", lambda error: page_errors.append(str(error)))
                 page.goto(f"{args.base_origin.rstrip('/')}/{app}/", wait_until="networkidle")
                 page.wait_for_selector(".place-card img")
                 load_every_image(page)
@@ -71,8 +74,23 @@ def main():
                     "document.documentElement.scrollWidth > document.documentElement.clientWidth"
                 )
                 page.screenshot(path=output / f"{app.split('-')[0]}-{mode}-scrolled.png", full_page=True)
-                print(f"{app} {mode}: broken_images={len(broken)} horizontal_overflow={overflow}")
+                if app.startswith("istanbul"):
+                    gentle = page.locator('[data-pace="gentle"]')
+                    focused = page.locator('[data-pace="focused"]')
+                    gentle.click()
+                    page.wait_for_timeout(200)
+                    if gentle.get_attribute("aria-pressed") != "true" or "천천히" not in page.locator("#day-detail").inner_text():
+                        failures.append(f"{app} {mode}: gentle pace button did not activate")
+                    focused.click()
+                    page.wait_for_timeout(250)
+                    if focused.get_attribute("aria-pressed") != "true":
+                        failures.append(f"{app} {mode}: focused pace button did not activate")
+                    if "집중 여행" not in page.locator("#day-detail").inner_text():
+                        failures.append(f"{app} {mode}: focused itinerary did not reach day detail")
+                    page.screenshot(path=output / f"{app.split('-')[0]}-{mode}-focused.png", full_page=True)
+                print(f"{app} {mode}: broken_images={len(broken)} horizontal_overflow={overflow} page_errors={len(page_errors)}")
                 failures.extend(f"{app} {mode}: {url}" for url in broken)
+                failures.extend(f"{app} {mode}: page error {error}" for error in page_errors)
                 if overflow:
                     failures.append(f"{app} {mode}: horizontal overflow")
                 page.close()
