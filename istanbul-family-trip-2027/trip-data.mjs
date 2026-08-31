@@ -133,103 +133,103 @@ export const rentalChecklist = [
 export const itinerary = [
   {
     date: "2027-03-20", dow: "토", title: "각 도시에서 출발", zone: "ICN / LAX", intensity: 1, stay: false,
-    main: "두 팀 모두 환승 없는 직항을 우선한다. 도착 시각을 억지로 맞추지 않는다.",
-    timeline: ["ICN팀: 밤 출발편 목표", "LAX팀: 같은 날짜 직항 출발", "가족 단체 채팅에 항공편과 기사 연락처 고정"],
-    rain: "해당 없음", low: "공항 라운지와 기내 수면을 일정의 전부로 본다.",
+    main: "두 팀은 각자 가장 편한 직항으로 출발하고, 두 공항에서 같은 포즈의 출발 사진을 남겨 여행을 함께 시작합니다.",
+    timeline: ["출발 4시간 전 가족별 여권과 좌석 확인", "ICN팀과 LAX팀 각자 라운지에서 가벼운 식사", "탑승 전 같은 포즈 사진을 단체 채팅에 올리고 기내 수면"],
+    rain: "공항 이동 시간만 여유 있게 조정", low: "출발 사진도 생략하고 라운지와 기내 수면만 챙깁니다.",
     transport: "출발 공항 개별 이동", notes: "최종 편명은 2027년 운항표가 열린 뒤 확정"
   },
   {
-    date: "2027-03-21", dow: "일", title: "도착, 체크인만", zone: "숙소 주변", intensity: 1, stay: true,
-    main: "공항에서 서로 기다리지 않고 각 팀이 전용차로 바로 숙소에 들어갑니다.",
-    timeline: ["공항별 Sprinter 1대 또는 밴 2대", "얼리 체크인 또는 데이룸", "숙소 300m 안에서 이른 저녁"],
+    date: "2027-03-21", dow: "일", title: "체크인과 첫 식탁", zone: "숙소 주변", intensity: 1, stay: true,
+    main: "공항에서는 기다리지 않고 각자 숙소로 갑니다. 모두 깨어 있으면 저녁 한 끼만 함께하고 바로 쉽니다.",
+    timeline: ["팀별 전용차로 숙소 이동", "얼리 체크인 또는 데이룸, 샤워와 짐 정리", "17:30 아이 상태 확인", "18:00 숙소 안이나 300m 안에서 첫 식탁, 19:30 취침 준비"],
     rain: "호텔 수영장, 룸서비스", low: "저녁도 숙소에서 해결하고 바로 취침",
     transport: "IST 공항에서 숙소까지 예약 차량", notes: "정상 체크인 전 도착팀을 위한 객실 확보가 핵심"
   },
   {
-    date: "2027-03-22", dow: "월", title: "아무 데도 안 가는 날", zone: "Taksim / Galataport", intensity: 1, stay: true,
-    main: "늦은 아침, 수영, 짧은 산책만 한다. 시차 적응을 관광보다 우선한다.",
-    timeline: ["10:00 늦은 아침", "12:00 수영 또는 낮잠", "16:00 45분 산책", "18:00 이른 저녁"],
-    rain: "숙소 안에서 하루", low: "산책도 취소",
+    date: "2027-03-22", dow: "월", title: "동네 적응과 첫 바다", zone: "Taksim / Galataport", intensity: 1, stay: true,
+    main: "늦은 아침과 수영으로 시차를 풀고, 오후에는 Galataport 해안에서 바다와 디저트만 보고 돌아옵니다.",
+    timeline: ["10:00 늦은 조식", "11:30 부모 한 팀은 장보기, 아이들은 수영 45분", "13:00 낮잠과 자유시간", "16:30 차량으로 Galataport 해안 45분", "18:00 이른 저녁"],
+    rain: "숙소 수영장과 가족 영화", low: "오후 산책을 빼고 수영과 낮잠만 남깁니다.",
     transport: "도보 또는 5분 차량", notes: "Dolmabahçe는 월요일 휴관이라 넣지 않음"
   },
   {
-    date: "2027-03-23", dow: "화", title: "구시가지 첫 장면", zone: "Sultanahmet", intensity: 2, stay: true,
-    main: "Hagia Sophia 외관과 Basilica Cistern을 3시간 안에 본다. Blue Mosque는 컨디션에 따라 선택한다.",
-    timeline: ["09:30 전용차 출발", "10:00 Basilica Cistern", "11:15 Hagia Sophia와 광장", "12:30 점심 후 숙소 복귀"],
+    date: "2027-03-23", dow: "화", title: "메두사 찾는 구시가지", zone: "Sultanahmet", intensity: 2, stay: true,
+    main: "부모는 이스탄불의 첫 역사 장면을 보고, 아이들은 Basilica Cistern에서 메두사와 물기둥을 찾습니다.",
+    timeline: ["09:15 전용차 출발", "10:00 Basilica Cistern 메두사 찾기", "11:10 Hippodrome과 Hagia Sophia 외관", "12:00 예약 점심", "13:30 숙소 복귀"],
     rain: "Basilica Cistern과 식사만", low: "Hagia Sophia 광장 30분과 점심만",
     transport: "왕복 전용차, 현지 이동 도보 약 1km", notes: "Topkapı는 화요일 휴관"
   },
   {
-    date: "2027-03-24", dow: "수", title: "Topkapı Palace", zone: "Sultanahmet", intensity: 2, stay: true,
-    main: "개장 직후 Topkapı 핵심 구역만 2시간 30분 보고 나온다.",
-    timeline: ["09:00 숙소 출발", "09:30 Topkapı 입장", "12:00 Gülhane 쪽 점심", "13:30 숙소 복귀와 낮잠"],
-    rain: "궁전 실내 중심, 정원 생략", low: "보물관과 전망만 선택",
-    transport: "왕복 전용차", notes: "오후 일정 없음"
+    date: "2027-03-24", dow: "수", title: "술탄의 집에서 보물찾기", zone: "Topkapı / Gülhane", intensity: 2, stay: true,
+    main: "개장과 함께 Harem, 보물실, Bosphorus 전망 세 곳만 봅니다. 아이들은 방, 보석, 고양이를 찾는 세 칸짜리 보물지도를 씁니다.",
+    timeline: ["08:25 숙소 출발", "09:00 입장과 Harem 우선 관람", "10:20 보물실, 11:05 제4정원 전망", "11:40 Gülhane에서 30분 휴식", "12:15 예약 점심, 14:00 숙소 복귀"],
+    rain: "Harem과 보물실만 보고 정원은 생략", low: "Harem과 전망만 보고 10시 45분에 나옵니다.",
+    transport: "왕복 전용차, 기사 대기", notes: "화요일 휴관 다음 날 첫 회차, 9인 가이드 장비 규정 재확인"
   },
   {
-    date: "2027-03-25", dow: "목", title: "Dolmabahçe Palace", zone: "Beşiktaş", intensity: 2, stay: true,
-    main: "가이드와 궁전 한 곳만 본 뒤 Bosphorus가 보이는 점심으로 끝낸다.",
-    timeline: ["09:30 출발", "10:00 궁전 관람", "12:30 점심", "14:00 숙소 복귀"],
+    date: "2027-03-25", dow: "목", title: "샹들리에와 궁전 정원", zone: "Beşiktaş", intensity: 2, stay: true,
+    main: "부모는 Dolmabahçe의 건축과 실내를 보고, 아이들은 큰 샹들리에와 시계와 정원 동물을 찾습니다.",
+    timeline: ["09:20 숙소 출발", "10:00 가이드와 핵심 실내 관람", "11:40 정원에서 20분 쉬기", "12:30 Bosphorus가 보이는 예약 점심", "14:00 숙소 복귀"],
     rain: "동일 진행 가능", low: "궁전 대신 Çırağan 또는 호텔 라운지 점심",
     transport: "차량 10분 안팎", notes: "사진 촬영과 유모차 제한은 직전 재확인"
   },
   {
-    date: "2027-03-26", dow: "금", title: "가족 전용 Bosphorus", zone: "Bosphorus", intensity: 2, stay: true,
-    main: "금요 예배 시간의 모스크 혼잡을 피하고, 난방 가능한 전용 보트로 바다에서 도시를 본다.",
-    timeline: ["10:30 호텔 또는 Karaköy 선착장", "11:00 전용 크루즈 2시간", "13:30 점심", "15:00 숙소"],
+    date: "2027-03-26", dow: "금", title: "다리와 성을 찾는 Bosphorus", zone: "Bosphorus", intensity: 1, stay: true,
+    main: "금요 예배 시간에는 육상 관광 대신 난방 가능한 전용 보트에서 부모는 도시 풍경을, 아이들은 다리와 성과 깃발을 찾습니다.",
+    timeline: ["10:30 Karaköy 선착장 이동", "11:00 전용 크루즈와 아이용 Bosphorus 빙고", "12:30 보트 안 간식 또는 하선", "13:15 Ortaköy 배경 가족사진", "14:30 숙소 복귀"],
     rain: "파도가 약하면 밀폐형 보트, 강풍이면 Istanbul Modern", low: "1시간 Golden Horn 보트 또는 호텔 휴식",
     transport: "전용 보트와 짧은 차량", notes: "구명조끼 3개 어린이 사이즈, 화장실, 실내 난방 확인"
   },
   {
-    date: "2027-03-27", dow: "토", title: "두 번째 완전 휴식일", zone: "숙소 / Karaköy", intensity: 1, stay: true,
-    main: "아무것도 예약하지 않는다. 원하는 사람만 Istanbul Modern 또는 Galataport로 나간다.",
-    timeline: ["늦은 아침", "수영과 세탁", "선택 일정 90분", "숙소에서 가족 저녁"],
-    rain: "Istanbul Modern", low: "하루 종일 숙소",
-    transport: "차량 5분 또는 도보", notes: "여행 중간에 실제로 비워 둔 날"
+    date: "2027-03-27", dow: "토", title: "아이 셋의 작은 미술관", zone: "Istanbul Modern / Galataport", intensity: 1, stay: true,
+    main: "작품 세 점과 건축만 깊게 보고 점심 뒤 돌아옵니다. 오후에는 아이 그림으로 거실에 15분짜리 작은 전시회를 엽니다.",
+    timeline: ["09:30 숙소 출발", "10:00 가족 워크숍 또는 작품 세 점 미션", "11:30 테라스와 Renzo Piano 건축", "12:15 Galataport 점심", "13:20 복귀와 휴식", "17:30 아이 작품 전시회와 가족 영화"],
+    rain: "그대로 진행", low: "워크숍을 빼고 작품 세 점만 골라 60분 안에 나옵니다.",
+    transport: "전용차 왕복, 박물관과 점심은 한 건물권", notes: "현재 가족 워크숍 대상은 2-10세, 2027년 편성과 언어는 재확인"
   },
   {
-    date: "2027-03-28", dow: "일", title: "아시아 쪽 동네 산책", zone: "Üsküdar / Kuzguncuk", intensity: 2, stay: true,
-    main: "전용 보트나 차량으로 건너가 Kuzguncuk의 짧은 평지 구간과 Beylerbeyi를 선택한다.",
-    timeline: ["10:00 출발", "10:30 Kuzguncuk", "12:00 점심", "13:30 Beylerbeyi 선택", "15:00 숙소"],
+    date: "2027-03-28", dow: "일", title: "배 타고 색깔 골목 찾기", zone: "Üsküdar / Kuzguncuk", intensity: 2, stay: true,
+    main: "부모는 아시아 쪽 생활 동네와 목조 주택을 보고, 아이들은 배와 고양이와 색깔 집을 찾습니다.",
+    timeline: ["09:45 선착장 이동", "10:15 배로 아시아 쪽 건너기", "10:45 Kuzguncuk 평지에서 색깔 집과 고양이 찾기", "12:15 9인 예약 점심", "14:00 Üsküdar 해안 가족사진 후 귀환"],
     rain: "Beylerbeyi Palace와 차량 전망", low: "Üsküdar 해안 점심만",
     transport: "전용 보트 우선, 귀환 차량 대기", notes: "언덕 골목은 경로에서 제외"
   },
   {
-    date: "2027-03-29", dow: "월", title: "시장 2시간", zone: "Grand Bazaar / Eminönü", intensity: 2, stay: true,
-    main: "Grand Bazaar는 가이드와 정한 가게 두 곳만 보고, 더 짧고 보기 쉬운 Spice Bazaar에서 점심을 먹습니다.",
-    timeline: ["09:30 Grand Bazaar", "11:30 차량으로 Eminönü", "12:00 Pandeli 점심", "14:00 숙소"],
-    rain: "동일 진행 가능", low: "Spice Bazaar와 점심만",
-    transport: "구간별 차량, 시장 안 걷기 약 1.2km", notes: "Dolmabahçe는 월요일 휴관"
+    date: "2027-03-29", dow: "월", title: "두 시장을 헤매지 않고 맛보기", zone: "Grand Bazaar / Spice Bazaar", intensity: 2, stay: true,
+    main: "Grand Bazaar는 정한 입구와 가게 두 곳만 보고, Spice Bazaar에서는 향신료 게임과 한 가지 선물 구매로 끝냅니다.",
+    timeline: ["08:30 숙소 출발", "09:00 Grand Bazaar 한 구역 75분", "10:35 차량으로 Spice Bazaar", "10:50 향신료 냄새 맞히기", "11:45 Pandeli 예약 점심", "13:15 출발, 14:00 숙소 복귀"],
+    rain: "시장 안에서 동일 진행", low: "Grand Bazaar를 빼고 Spice Bazaar와 점심만 남깁니다.",
+    transport: "구간별 전용차, 가이드가 입구와 출구 고정", notes: "성인 한 명만 결제하고 구매 품목과 상한은 전날 정함"
   },
   {
-    date: "2027-03-30", dow: "화", title: "비가 오거나 지쳤을 때 쓰는 빈 날", zone: "선택", intensity: 1, stay: true,
-    main: "앞서 놓친 한 곳만 보거나, 아이들과 Rahmi M. Koç Museum을 선택한다.",
-    timeline: ["전날 밤 가족 투표", "10:30 선택 일정", "13:00 점심", "14:30 짐 정리"],
-    rain: "Rahmi M. Koç Museum", low: "좋았던 동네의 점심만 반복",
-    transport: "전용차", notes: "Topkapı는 화요일 휴관, 새 관광지를 추가하지 않음"
+    date: "2027-03-30", dow: "화", title: "자동차와 기차로 끝내는 하루", zone: "Golden Horn", intensity: 2, stay: true,
+    main: "Rahmi M. Koç Museum의 자동차, 기차, 비행기, 체험 전시만 골라 보고 돌아와 짐 정리와 가족 시상식으로 마칩니다.",
+    timeline: ["09:00 숙소 출발", "09:30 자동차와 철도 전시", "10:40 과학 체험, 11:40 아이가 고른 탈것 앞 사진", "12:10 박물관 점심", "13:15 출발, 14:00 짐 정리와 낮잠", "17:30 마지막 거실 저녁과 가족 시상식"],
+    rain: "실내 전시만 그대로 진행", low: "자동차와 기차만 보고 90분에 나옵니다.",
+    transport: "왕복 전용차, 기사 대기", notes: "공식 운영시간은 화요일부터 금요일 09:30-17:30, 2027년 직전 재확인"
   },
   {
     date: "2027-03-31", dow: "수", title: "귀국", zone: "숙소 → IST", intensity: 1, stay: false,
-    main: "팀별 비행 시각에 맞춰 따로 출발한다. 마지막 공동 일정을 만들지 않는다.",
-    timeline: ["개별 조식", "항공편 3시간 전 공항 도착 목표", "팀별 전용차"],
+    main: "팀별 비행 시각에 맞춰 따로 출발하고, 아이들은 여행에서 가장 좋았던 장면 하나를 고릅니다.",
+    timeline: ["개별 조식과 마지막 짐 점검", "아이 셋이 가장 좋았던 장면 하나씩 고르기", "항공편 3시간 전 공항 도착", "팀별 전용차 출발"],
     rain: "해당 없음", low: "해당 없음",
     transport: "수하물 포함 전용 밴", notes: "LAX 장거리팀은 레이트 체크아웃 우선"
   }
 ];
 
 const dayDetails = {
-  "2027-03-20": { featuredPlace: "galataport", whyNow: "장거리 비행이 시작되는 날이라 다른 약속을 잡지 않고, 두 팀 모두 기내에서 잘 수 있는 리듬만 맞춥니다." },
-  "2027-03-21": { featuredPlace: "galataport", whyNow: "도착 시간이 달라도 공항에서 기다리지 않도록 첫날은 체크인, 가까운 저녁, 잠만 남겨 둡니다." },
-  "2027-03-22": { featuredPlace: "galataport", whyNow: "시차가 가장 크게 느껴지는 첫 아침입니다. 산책은 45분까지만 하고 힘들면 숙소 밖으로 나가지 않습니다." },
-  "2027-03-23": { featuredPlace: "cistern", whyNow: "첫 외출은 날씨 영향을 덜 받고 한 시간 안에 끝낼 수 있는 Basilica Cistern부터 시작합니다." },
-  "2027-03-24": { featuredPlace: "topkapi", whyNow: "화요일 휴관을 피한 첫 개장일입니다. Harem과 보물실을 먼저 보고 2시간 30분 안에 나옵니다." },
-  "2027-03-25": { featuredPlace: "dolmabahce", whyNow: "구시가지를 연달아 걷지 않도록 숙소 가까운 궁전으로 옮깁니다. 정원과 핵심 실내만 봅니다." },
-  "2027-03-26": { featuredPlace: "ortakoy", whyNow: "금요 예배 시간의 모스크 혼잡을 피하고, 난방과 화장실이 있는 전용 보트에서 도시를 봅니다." },
-  "2027-03-27": { featuredPlace: "modern", whyNow: "여행 중간에 예약을 비운 날입니다. 원하는 가족만 Istanbul Modern을 90분 보고 돌아옵니다." },
-  "2027-03-28": { featuredPlace: "kuzguncuk", whyNow: "궁전과 구시가지 뒤에는 생활 동네를 봅니다. 해안과 낮은 골목만 골라 다리 피로를 줄입니다." },
-  "2027-03-29": { featuredPlace: "spice", whyNow: "큰 시장은 월요일 오전에 가이드와 짧게 보고, 아이에게 더 쉬운 Spice Bazaar에서 점심으로 끝냅니다." },
-  "2027-03-30": { featuredPlace: "rahmi", whyNow: "비가 오거나 역사 명소에 지친 아이들에게 가장 확실한 교체 카드입니다. 자동차와 기차 전시만 골라도 충분합니다." },
-  "2027-03-31": { featuredPlace: "galataport", whyNow: "출국일에는 관광을 넣지 않습니다. 두 팀이 서로 기다리지 않고 항공편 순서대로 공항으로 갑니다." }
+  "2027-03-20": { featuredPlace: "galataport", whyNow: "장거리 비행이 시작되는 날입니다. 두 공항에서 같은 출발 사진만 남기고 수면을 지킵니다.", needs: { parents: "환승 없이 이동하고 좌석과 기사 연락처를 미리 끝내는 안도감", kids: "좋아하는 간식과 수면 키트, 두 공항 출발 사진 놀이", together: "ICN과 LAX에서 같은 포즈로 찍은 두 장의 출발 사진", recovery: "탑승 뒤에는 화면을 끄고 현지 밤에 맞춰 잡니다." } },
+  "2027-03-21": { featuredPlace: "galataport", whyNow: "도착 시간이 달라도 공항에서 기다리지 않습니다. 첫 공동 장면은 모두 깨어 있을 때의 짧은 저녁뿐입니다.", needs: { parents: "샤워, 짐 정리, 방 배정부터 끝내는 시간", kids: "침대와 거실을 고르고 가능하면 수영장 20분 보기", together: "아홉 명이 처음 한 식탁에 앉아 여행 규칙 세 가지 정하기", recovery: "19시 30분부터 조명을 낮추고 관광 이야기는 다음 날로 미룹니다." } },
+  "2027-03-22": { featuredPlace: "galataport", whyNow: "시차를 푸는 날도 할 일이 보이게 구성했습니다. 수영, 장보기, 바다 산책까지만 하고 예약은 넣지 않습니다.", needs: { parents: "커피와 장보기, 숙소 생활을 정리할 한 시간", kids: "수영 45분과 바닷가 디저트", together: "Galataport 해안에서 첫 Bosphorus 가족사진", recovery: "13시부터 세 시간은 모두 숙소에서 눕습니다." } },
+  "2027-03-23": { featuredPlace: "cistern", whyNow: "첫 외출은 비 영향을 덜 받고 아이가 탐험처럼 느낄 수 있는 Basilica Cistern으로 시작합니다.", needs: { parents: "Hagia Sophia와 구시가지의 역사적 규모를 처음 마주하는 장면", kids: "어두운 물기둥 사이에서 메두사 머리 두 개 찾기", together: "Hippodrome에서 오늘 가장 신기했던 것을 한 명씩 말하기", recovery: "점심이 끝나면 다른 모스크 내부를 더 넣지 않고 바로 돌아옵니다." } },
+  "2027-03-24": { featuredPlace: "topkapi", whyNow: "화요일 휴관 다음 날 개장 시간에 맞춰 넓은 궁전 전체가 아니라 핵심 세 장면만 봅니다.", needs: { parents: "오스만 궁정의 Harem 건축, 보물, Bosphorus 전망", kids: "방 하나, 보석 하나, 궁전 고양이 하나를 찾는 보물지도", together: "제4정원에서 Bosphorus를 배경으로 찍는 아홉 명 사진", recovery: "두 시간 반이 되면 Gülhane으로 나와 점심 뒤 바로 돌아옵니다." } },
+  "2027-03-25": { featuredPlace: "dolmabahce", whyNow: "아이 주도 박물관 다음 날에 부모가 기대할 궁전을 넣고, 정원 찾기 놀이로 아이 몫도 만듭니다.", needs: { parents: "Dolmabahçe의 건축, 역사, Bosphorus 전망", kids: "큰 샹들리에, 시계, 정원의 새를 찾는 세 가지 미션", together: "궁전 정원에서 아홉 명이 20분 앉아 간식 먹기", recovery: "14시까지 숙소로 돌아와 궁전 설명을 더 이어가지 않습니다." } },
+  "2027-03-26": { featuredPlace: "ortakoy", whyNow: "금요 예배 혼잡을 피하면서 이스탄불의 양쪽 해안을 한 번에 보는 날입니다.", needs: { parents: "차에 갇히지 않고 보는 궁전, 저택, 해안선", kids: "보트에서 다리 두 개, 성 하나, 큰 깃발 찾기", together: "Ortaköy Mosque가 보이는 지점에서 가족사진 한 장", recovery: "멀미하거나 바람이 세면 한 시간 코스로 줄이고 숙소로 돌아옵니다." } },
+  "2027-03-27": { featuredPlace: "modern", whyNow: "역사 명소의 언어를 끊고 현대미술과 아이 중심 활동으로 여행 중간의 리듬을 바꿉니다.", needs: { parents: "터키 현대미술과 Renzo Piano 건축을 가까운 거리에서 보는 시간", kids: "작품 세 점 미션이나 현재 2-10세 대상 가족 워크숍", together: "아이들이 자기 작품 제목을 발표하고 어른이 관람객이 되는 거실 전시", recovery: "점심 뒤 돌아와 세 시간 쉬고 저녁 외출은 하지 않습니다." } },
+  "2027-03-28": { featuredPlace: "kuzguncuk", whyNow: "왕실 명소 사이에 생활 동네를 넣어 어른의 도시 취향과 아이의 놀이를 같이 만족시킵니다.", needs: { parents: "목조 주택, 동네 카페, 아시아 쪽 생활 풍경", kids: "배 타기와 고양이, 색깔 집 찾기", together: "Üsküdar 해안에서 유럽 쪽을 배경으로 찍는 사진", recovery: "Beylerbeyi는 비가 올 때만 쓰고 맑은 날에는 동네와 점심으로 끝냅니다." } },
+  "2027-03-29": { featuredPlace: "spice", whyNow: "Grand Bazaar가 여는 월요일에 가되 자유 쇼핑이 아니라 75분짜리 시장 경험으로 제한합니다.", needs: { parents: "지정한 공예 가게 두 곳과 역사적인 시장 건축", kids: "향신료 세 가지 냄새 맞히기와 기념품 하나 고르기", together: "거실에서 각자 고른 물건과 선택한 이유 발표", recovery: "전날 피로가 남으면 Grand Bazaar를 빼고 Spice Bazaar와 점심만 봅니다." } },
+  "2027-03-30": { featuredPlace: "rahmi", whyNow: "마지막 날을 어른의 보충 관광이 아니라 아이들이 여행을 다시 좋아하게 만드는 날로 씁니다.", needs: { parents: "산업 디자인과 교통 역사를 아이 몰입과 함께 느긋하게 관람", kids: "자동차, 기차, 비행기, 배 중 다음 전시를 고르는 권한", together: "가장 타 보고 싶은 탈것 앞 사진과 마지막 가족 시상식", recovery: "90분 축소 코스를 열어 두고 14시부터 짐 정리와 낮잠을 보장합니다." } },
+  "2027-03-31": { featuredPlace: "galataport", whyNow: "출국일에는 새 관광을 넣지 않고 여행 기억을 정리하는 것으로 마칩니다.", needs: { parents: "여권, 짐, 차량을 가족별로 확인하고 서두르지 않는 출국", kids: "가장 좋았던 장면 하나를 고르고 비행용 간식 받기", together: "단체 채팅에 각 가족의 베스트 장면 한 장씩 올리기", recovery: "공항에서 합류하려 하지 않고 팀별 비행 시간에 맞춰 움직입니다." } }
 };
 
 for (const day of itinerary) Object.assign(day, dayDetails[day.date]);
@@ -239,13 +239,13 @@ export const mealSuggestions = {
   "2027-03-21": "룸서비스 또는 숙소 300m 안. 첫날에는 유명 식당 예약을 넣지 않는다.",
   "2027-03-22": "Namlı Gurme 이른 아침 또는 숙소 조식, 저녁은 주방과 배달을 활용한다.",
   "2027-03-23": "Sultanahmet 안에서 9인 점심을 가이드가 사전 확정하고 13시 전에 끝낸다.",
-  "2027-03-24": "Gülhane 출구 쪽에서 예약 점심 후 바로 귀환한다. 시장 쪽으로 더 걷지 않는다.",
+  "2027-03-24": "Topkapı에서 나온 뒤 Gülhane 출구 가까운 곳에 12시 15분 9인 테이블을 잡는다.",
   "2027-03-25": "Feriye는 점심만 후보로 두고 9인 좌석을 확인한다. 17시 이후 어린이 정책 때문에 저녁은 제외한다.",
   "2027-03-26": "보트 케이터링을 가볍게 하거나 하선 뒤 숙소 가까운 예약 식당 한 곳만 이용한다.",
-  "2027-03-27": "숙소 주방에서 먹고, 외식하고 싶으면 Namlı 또는 Gallada의 어린이 정책을 먼저 확인한다.",
+  "2027-03-27": "Galataport에서 12시 15분 점심을 예약하고 저녁은 아이들이 고른 피자와 샐러드를 거실에서 먹는다.",
   "2027-03-28": "Kuzguncuk의 작은 식당을 현장 탐색하지 말고 컨시어지가 9인 점심을 전날 확정한다.",
-  "2027-03-29": "Pandeli 12시 점심을 우선 문의한다. 불가하면 인근 Hamdi의 9인 테이블을 확인한다.",
-  "2027-03-30": "아이들이 다시 먹고 싶어 한 곳을 반복한다. 새 파인다이닝을 추가하지 않는다.",
+  "2027-03-29": "Pandeli 11시 45분 점심을 우선 문의하고, 계단과 9인 좌석이 어렵다면 Hamdi로 바꾼다.",
+  "2027-03-30": "Rahmi M. Koç Museum 안이나 Hasköy에서 12시 10분 9인 점심을 예약하고 마지막 저녁은 거실에서 먹는다.",
   "2027-03-31": "팀별 출발 시각에 맞춘 조식 또는 포장식. 공항에서 합류 식사를 만들지 않는다."
 };
 

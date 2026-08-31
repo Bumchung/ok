@@ -70,7 +70,7 @@ function searchableRecords() {
     kind: "일정",
     title: `${day.date.slice(5).replace("-", "/")} ${day.title}`,
     subtitle: `${day.zone}, 강도 ${day.intensity}`,
-    body: `${day.main} ${day.timeline.join(" ")} 비 오면: ${day.rain} 힘들면: ${day.low} 식사: ${mealSuggestions[day.date] || "미정"} ${day.notes}`,
+    body: `${day.main} ${day.timeline.join(" ")} 부모: ${day.needs.parents} 아이: ${day.needs.kids} 함께: ${day.needs.together} 회복: ${day.needs.recovery} 비 오면: ${day.rain} 힘들면: ${day.low} 식사: ${mealSuggestions[day.date] || "미정"} ${day.notes}`,
     url: `#day-${day.date}`
   }));
   const placeRecords = places.map((item) => ({
@@ -214,12 +214,16 @@ function nextDate(dateKey) {
   return date.toISOString().slice(0, 10);
 }
 
+function dayPlanText(day) {
+  return `${day.main}\n\n왜 이날 하나요: ${day.whyNow || "가족의 이동과 휴식 리듬에 맞춘 일정입니다."}\n\n부모가 기대할 것: ${day.needs.parents}\n아이들이 기다릴 것: ${day.needs.kids}\n같이 남길 장면: ${day.needs.together}\n오후 회복: ${day.needs.recovery}\n\n시간표:\n${day.timeline.map((item) => `- ${item}`).join("\n")}\n\n비 오면: ${day.rain}\n힘들면: ${day.low}\n식사: ${mealSuggestions[day.date] || "당일 확인"}`;
+}
+
 export function makeGoogleCalendarUrl(day) {
   const query = new URLSearchParams({
     action: "TEMPLATE",
     text: `${trip.destination} 가족여행, ${day.title}`,
     dates: `${compactDate(day.date)}/${compactDate(nextDate(day.date))}`,
-    details: `${day.main}\n\n왜 이날 하나요: ${day.whyNow || "가족의 이동과 휴식 리듬에 맞춘 일정입니다."}\n\n비 오면: ${day.rain}\n힘들면: ${day.low}\n식사: ${mealSuggestions[day.date] || "당일 확인"}`,
+    details: dayPlanText(day),
     location: day.zone
   });
   return `https://calendar.google.com/calendar/render?${query.toString()}`;
@@ -242,7 +246,7 @@ export function makeIcs(days = itinerary) {
     `DTEND;VALUE=DATE:${compactDate(nextDate(day.date))}`,
     `SUMMARY:${icsText(`${trip.destination} 가족여행, ${day.title}`)}`,
     `LOCATION:${icsText(day.zone)}`,
-    `DESCRIPTION:${icsText(`${day.main}\n왜 이날 하나요: ${day.whyNow || "가족의 이동과 휴식 리듬에 맞춘 일정입니다."}\n비 오면: ${day.rain}\n힘들면: ${day.low}\n식사: ${mealSuggestions[day.date] || "당일 확인"}`)}`,
+    `DESCRIPTION:${icsText(dayPlanText(day))}`,
     "END:VEVENT"
   ].join("\r\n")).join("\r\n");
   return ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Family Trip 2027//KO", "CALSCALE:GREGORIAN", events, "END:VCALENDAR", ""].join("\r\n");

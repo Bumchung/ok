@@ -63,7 +63,11 @@ test("every travel day has a visual anchor and a human reason for its position",
   for (const day of itinerary) {
     assert.ok(day.featuredPlace || day.photo, `${day.date} visual anchor`);
     assert.ok(day.whyNow?.length >= 20, `${day.date} why now`);
+    for (const key of ["parents", "kids", "together", "recovery"]) {
+      assert.ok(day.needs?.[key]?.length >= 12, `${day.date} ${key}`);
+    }
   }
+  assert.ok(searchContext("가족 시상식").some((item) => item.kind === "일정"));
 });
 
 test("closure-sensitive itinerary avoids known weekly conflicts", () => {
@@ -122,9 +126,16 @@ test("CSV, KML, and map points retain all curated places", () => {
 test("calendar and nearby utilities work without private credentials", () => {
   const url = makeGoogleCalendarUrl(itinerary[3]);
   assert.match(url, /^https:\/\/calendar\.google\.com\/calendar\/render\?/);
-  assert.match(decodeURIComponent(url), /20270323/);
+  const calendarUrl = new URL(url);
+  assert.match(calendarUrl.searchParams.get("dates"), /20270323/);
+  assert.match(calendarUrl.searchParams.get("details"), /부모가 기대할 것/);
+  assert.match(calendarUrl.searchParams.get("details"), /아이들이 기다릴 것/);
+  assert.match(calendarUrl.searchParams.get("details"), /시간표/);
   const ics = makeIcs();
   assert.match(ics, /BEGIN:VCALENDAR/);
+  assert.match(ics, /같이 남길 장면/);
+  assert.match(ics, /오후 회복/);
+  assert.match(ics, /시간표/);
   assert.equal((ics.match(/BEGIN:VEVENT/g) || []).length, itinerary.length);
   assert.ok(distanceKm({ lat: 41.0086, lng: 28.9802 }, { lat: 41.0367, lng: 28.9864 }) > 2);
 });

@@ -358,7 +358,6 @@ footer p { margin: 4px; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
-+
 /* Family-trip rebuild v3: compact mobile hub, review evidence, real maps. */
 :root {
   --surface: #ffffff;
@@ -436,6 +435,11 @@ body { color: var(--text); background: var(--canvas); }
 .day-why { margin: 18px 0; padding: 14px; border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; background: var(--accent-soft); }
 .day-why strong { font-size: 12px; }
 .day-why p { margin: 5px 0 0; font-size: 13px; line-height: 1.55; }
+.day-needs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 18px 0; }
+.day-needs article { min-width: 0; padding: 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+.day-needs article:nth-child(2), .day-needs article:nth-child(3) { background: var(--accent-soft); }
+.day-needs strong { display: block; color: var(--accent); font-size: 11px; }
+.day-needs p { margin: 5px 0 0; color: var(--subtle); font-size: 12px; line-height: 1.5; }
 .day-panel .timeline li { color: var(--text); border-color: var(--border); }
 .day-panel .timeline li::before { color: var(--accent); }
 .plan-switcher { grid-template-columns: repeat(3, 1fr); }
@@ -531,6 +535,7 @@ body { color: var(--text); background: var(--canvas); }
   .lodging-copy h3 { font-size: 27px; }
   .pros-cons, .review-columns { grid-template-columns: 1fr; }
   .plan-switcher { grid-template-columns: 1fr; }
+  .day-needs { grid-template-columns: 1fr; }
   .day-heading h3 { font-size: 30px; }
   .day-main-copy { font-size: 15px; }
   .day-buttons { display: grid; grid-template-columns: 1fr; }

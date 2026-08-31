@@ -46,8 +46,10 @@ test("Sydney-parity details include day photos, reviews, location sorting, and c
   assert.match(app, /makeGoogleCalendarUrl/);
   assert.match(app, /reviews\.liked/);
   assert.match(app, /day-photo/);
+  for (const label of ["부모가 기대할 것", "아이들이 기다릴 것", "같이 남길 장면", "오후 회복"]) assert.match(app, new RegExp(label));
   assert.match(css, /review-signal/);
   assert.match(css, /nearby-list/);
+  assert.match(css, /day-needs/);
 });
 
 test("visible copy avoids the rejected planning-document voice", async () => {

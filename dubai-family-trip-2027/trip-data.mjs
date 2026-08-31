@@ -119,33 +119,33 @@ export const rentalChecklist = [
 ];
 
 export const itinerary = [
-  { date: "2027-03-20", dow: "토", title: "각 도시에서 출발", zone: "ICN / LAX", intensity: 1, stay: false, main: "두 팀 모두 Emirates 직항을 우선하고 도착 시각을 억지로 맞추지 않는다.", timeline: ["ICN팀 직항 출발", "LAX팀 직항 출발", "단체 채팅에 항공편과 차량 담당자 고정"], rain: "해당 없음", low: "라운지와 기내 수면만 일정으로 본다.", transport: "출발 공항 개별 이동", notes: "2027년 시간표가 열리면 확정" },
-  { date: "2027-03-21", dow: "일", title: "도착과 체크인만", zone: "DXB / 숙소", intensity: 1, stay: true, main: "공항에서 서로 기다리지 않고 팀별 차량으로 바로 숙소에 들어갑니다.", timeline: ["DXB 입국 패스트트랙", "숙소별 얼리 체크인 또는 데이룸", "인룸 다이닝과 수면"], rain: "숙소 안에서 동일", low: "외출 없음", transport: "DXB 전용차 30-45분", notes: "Palm 서쪽은 교통에 따라 더 길 수 있음" },
-  { date: "2027-03-22", dow: "월", title: "완전 회복일", zone: "리조트", intensity: 1, stay: true, main: "수영장이나 해변을 60-90분만 사용하고 낮잠을 일정의 중심에 둔다.", timeline: ["늦은 조식", "아이 수영 60-90분", "오후 낮잠과 빌라 저녁"], rain: "키즈클럽과 실내 수영장", low: "하루 종일 빌라", transport: "도보", notes: "예약 일정 없음" },
-  { date: "2027-03-23", dow: "화", title: "Museum of the Future", zone: "Trade Centre", intensity: 2, stay: true, main: "10시 30분 시간 지정 입장 한 곳만 보고 이른 점심 뒤 15시 전에 복귀한다.", timeline: ["09:45 숙소 출발", "10:30-13:00 관람", "인근 점심 후 즉시 귀환"], rain: "그대로 진행", low: "관람 90분 후 귀환", transport: "전용차 편도 20-35분", notes: "시간 지정 표는 사전 예약" },
-  { date: "2027-03-24", dow: "수", title: "리조트 데이", zone: "리조트", intensity: 1, stay: true, main: "키즈클럽과 성인 스파를 교대하고 이동하지 않는다.", timeline: ["아이 키즈클럽", "성인 교대 스파", "해 질 무렵 짧은 산책"], rain: "실내 시설", low: "빌라와 룸서비스", transport: "도보", notes: "관광 예약 없음" },
-  { date: "2027-03-25", dow: "목", title: "Burj Khalifa 한 블록", zone: "Downtown", intensity: 2, stay: true, main: "10시 전망대와 이른 점심만 고정하고 Aquarium은 체력이 남을 때만 선택한다.", timeline: ["09:15 숙소 출발", "10:00 At The Top", "Dubai Mall 이른 점심, 14:30 귀환"], rain: "그대로 진행", low: "전망대만 보고 귀환", transport: "전용차 편도 20-40분", notes: "유모차와 큰 가방 보관 규정 확인" },
-  { date: "2027-03-26", dow: "금", title: "Madinat abra와 이른 저녁", zone: "Jumeirah", intensity: 1, stay: true, main: "Jumeirah 숙소라면 짧은 배와 저녁만, Palm 숙소라면 리조트 일정으로 교체한다.", timeline: ["오후까지 휴식", "16:30 abra", "18:00 이른 저녁 후 귀환"], rain: "Madinat 실내 식사만", low: "숙소 해변 산책", transport: "전용차 편도 5-30분", notes: "숙소 위치에 따라 가치가 달라짐" },
-  { date: "2027-03-27", dow: "토", title: "Al Shindagha Children’s House", zone: "Old Dubai", intensity: 2, stay: true, main: "어린이 전시 두 곳만 2시간 보고 나옵니다. Palm 서쪽에 묵는다면 빼도 아쉽지 않습니다.", timeline: ["09:30 전용차 출발", "10:15-12:30 관람", "점심 후 바로 귀환"], rain: "그대로 진행", low: "Etihad Museum으로 축소", transport: "전용차 편도 30-50분", notes: "Palm 숙소에서는 선택 일정" },
-  { date: "2027-03-28", dow: "일", title: "두 번째 완전 휴식일", zone: "리조트", intensity: 1, stay: true, main: "관광 예약을 넣지 않고 아이들이 원하는 수영과 식사만 반복한다.", timeline: ["늦은 조식", "수영 또는 키즈클럽", "가족 사진과 인룸 저녁"], rain: "실내 시설", low: "빌라", transport: "도보", notes: "아무것도 추가하지 않음" },
-  { date: "2027-03-29", dow: "월", title: "Aquaventure 짧고 확실하게", zone: "Palm", intensity: 3, stay: true, main: "개장할 때 들어가 15시 전에 나옵니다. Cabana를 잡아 아이들이 중간에 눕고 물을 마실 자리를 만듭니다.", timeline: ["개장 시각 입장", "Cabana에서 점심과 휴식", "15:00 이전 숙소 귀환"], rain: "강풍이나 운영 제한 시 Green Planet", low: "Lost World Aquarium만 90분", transport: "전용차 편도 5-30분", notes: "신장 제한과 구명조끼 규정 확인" },
-  { date: "2027-03-30", dow: "화", title: "비가 오거나 지쳤을 때 쓰는 빈 날", zone: "숙소 주변", intensity: 1, stay: true, main: "앞에서 놓친 곳이 정말 아쉬울 때만 한 곳을 다시 잡고, 아니면 숙소에서 쉽니다. 사막 사파리는 넣지 않습니다.", timeline: ["아침 컨디션 확인", "필요하면 이전 일정 하나 복구", "짐 정리와 이른 취침"], rain: "Museum of the Future 또는 Aquarium", low: "숙소", transport: "선택 일정만 차량", notes: "사막은 장거리와 늦은 귀환 때문에 제외" },
-  { date: "2027-03-31", dow: "수", title: "체크아웃과 출국", zone: "숙소 / DXB", intensity: 1, stay: false, main: "두 팀은 각자 항공편 시간에 맞춰 출발하고 공항에서 다시 모이지 않습니다.", timeline: ["객실별 짐과 여권 점검", "팀별 전용차 출발", "DXB 항공사 카운터 확인"], rain: "동일", low: "동일", transport: "전용차 30-50분", notes: "항공편 3시간 전 DXB 도착" }
+  { date: "2027-03-20", dow: "토", title: "두 공항에서 같은 여행 시작", zone: "ICN / LAX", intensity: 1, stay: false, main: "출발 시각은 맞추지 않고 두 공항에서 같은 구도의 사진만 남긴 뒤 기내 수면을 지킵니다.", timeline: ["각 가족 공항 도착과 라운지", "아이 여행 파우치와 수면 키트 전달", "같은 포즈의 출발 사진 후 직항 탑승"], rain: "해당 없음", low: "영상통화를 기다리지 않고 사진 한 장만 단체방에 남긴다.", transport: "출발 공항 개별 이동", notes: "2027년 시간표가 열리면 확정" },
+  { date: "2027-03-21", dow: "일", title: "도착보다 합류가 늦는 날", zone: "DXB / 숙소", intensity: 1, stay: true, main: "공항에서 서로 기다리지 않고 팀별 차량으로 바로 입실합니다. 첫 공동 장면은 모두 깨어 있을 때의 짧은 식사뿐입니다.", timeline: ["ICN팀 입국과 즉시 입실, 수면", "깨어난 가족만 45분 수영과 식사", "LAX팀 도착, 따뜻한 음식과 바로 취침"], rain: "숙소 안에서 동일", low: "도착 환영식도 생략하고 가족별로 바로 잔다.", transport: "DXB 전용차 편도 30-50분", notes: "ICN팀 객실은 전날부터 확보" },
+  { date: "2027-03-22", dow: "월", title: "집을 우리 집으로 만드는 날", zone: "리조트", intensity: 1, stay: true, main: "회복일도 빈 날로 두지 않습니다. 방 이름표, 짧은 수영, 해변 보물찾기로 공동생활의 리듬을 만듭니다.", timeline: ["08:30 첫 전체 아침식사와 방 이름 정하기", "10:30 수영 60분, 13:30 조용한 방 시간", "16:30 해변 보물찾기와 빌라 저녁"], rain: "키즈클럽에서 여행 깃발 만들기", low: "이름표와 저녁만 하고 하루 종일 빌라에 머문다.", transport: "도보", notes: "장보기, 세탁, 아이 담당 순서도 이날 확정" },
+  { date: "2027-03-23", dow: "화", title: "두 시간의 미래 탐험", zone: "Trade Centre", intensity: 2, stay: true, main: "건축과 Future Heroes를 중심으로 두 시간만 봅니다. Dubai Mall을 덧붙이지 않고 점심 뒤 숙소로 돌아옵니다.", timeline: ["09:10 출발, 10:00 시간 지정 입장", "주요 전시와 11:30 Future Heroes", "12:30 예약 점심, 14:15 전후 숙소 복귀"], rain: "그대로 진행", low: "90분 뒤 Future Heroes도 생략하고 바로 점심을 먹는다.", transport: "전용차 편도 20-40분", notes: "날짜와 시간 지정표 9장 사전 예약" },
+  { date: "2027-03-24", dow: "수", title: "어른도 아이도 따로 쉬는 날", zone: "리조트", intensity: 1, stay: true, main: "성인은 교대로 90분씩 완전히 쉬고, 아이들은 키즈클럽과 가족 수영대회로 자기 하루를 가집니다.", timeline: ["10:00 키즈클럽과 성인 교대 휴식", "13:30 방 휴식", "16:30 가족 미니 수영대회와 거실 영화"], rain: "실내 키즈 프로그램과 영화", low: "키즈클럽 대신 가족별로 방과 수영장에 나뉜다.", transport: "도보", notes: "관광 예약 없음, 성인 개인 시간은 일정으로 보호" },
+  { date: "2027-03-25", dow: "목", title: "828m 높이를 보는 아침", zone: "Downtown", intensity: 2, stay: true, main: "오전 At The Top과 같은 권역의 점심만 고정합니다. 대기가 30분을 넘으면 전망대를 포기합니다.", timeline: ["09:00 출발, 10:00 At The Top", "11:30 강제 종료와 11:45 예약 점심", "폭포 앞 10분 사진 후 14시대 숙소 복귀"], rain: "그대로 진행", low: "외부 타워 사진과 점심만 하고 돌아온다.", transport: "전용차 편도 20-45분", notes: "Aquarium은 아이 셋이 모두 원할 때만 60분 선택" },
+  { date: "2027-03-26", dow: "금", title: "늦게 나가 Abra 한 번", zone: "Jumeirah", intensity: 1, stay: true, main: "낮에는 쉬고 20분짜리 Abra, 가족사진, 이른 저녁을 한 권역에서 끝냅니다.", timeline: ["오전 수영 또는 성인 교대 자유시간", "13:30 방 휴식, 16:30 Madinat Abra", "17:00 가족사진과 17:30 저녁, 19:00 귀환"], rain: "Abra를 빼고 Madinat 실내 식사만", low: "배 대기가 길면 예약 저녁만 먹는다.", transport: "전용차 편도 5-35분", notes: "Palm 서쪽 숙소면 실제 이동시간 확인" },
+  { date: "2027-03-27", dow: "토", title: "두바이가 생긴 이야기", zone: "Old Dubai", intensity: 2, stay: true, main: "Children’s House와 Birth of a City 두 곳만 골라 초고층 이전의 두바이를 아이 눈높이로 봅니다.", timeline: ["09:00 출발", "10:00 Children’s House, 11:00 Birth of a City", "12:40 예약 점심, 14:30 전후 숙소 복귀"], rain: "그대로 진행", low: "Children’s House 50분 뒤 바로 점심과 귀환", transport: "전용차 편도 30-55분", notes: "Palm 서쪽에서 편도 45분을 넘으면 리조트 데이로 교체" },
+  { date: "2027-03-28", dow: "일", title: "가장 좋았던 것을 다시 하는 날", zone: "리조트", intensity: 1, stay: true, main: "차를 타지 않고 아이가 고른 숙소 활동을 반복합니다. 어른은 사진, 세탁, 개인 시간을 실제 일정으로 확보합니다.", timeline: ["늦은 조식과 아이 선택 수영 또는 키즈클럽", "14:00 방 휴식, 사진 12장 고르기", "17:30 해변 노을과 인룸 디저트"], rain: "실내 시설과 엽서 쓰기", low: "룸서비스와 침실만 열어 둔다.", transport: "도보", notes: "다음 날 Aquaventure를 위한 완전 회복" },
+  { date: "2027-03-29", dow: "월", title: "아이들이 주인공인 물의 날", zone: "Palm", intensity: 3, stay: true, main: "개장할 때 들어가 카바나를 기준점으로 씁니다. 키 1.2m를 기준으로 팀을 나누고 15시에 나옵니다.", timeline: ["09:30 도착, 카바나와 락커 준비", "10:00 신장별 팀 놀이, 11:30 카바나 휴식", "13:15 점심, 14:00 마지막 한 종목, 15:00 출발"], rain: "강풍이나 운영 제한 시 Lost World Aquarium 90분만", low: "Aquaventure를 취소하고 숙소 수영과 점심으로 바꾼다.", transport: "전용차 편도 5-35분", notes: "카바나, 빠른 입장, 실제 신장과 구명조끼 확인" },
+  { date: "2027-03-30", dow: "화", title: "마지막 수영과 가족 시상식", zone: "리조트", intensity: 1, stay: true, main: "버퍼를 빈 날로 남기지 않습니다. 마지막 수영, 교대 포장, 사진 상영과 가족 시상식으로 여행을 닫습니다.", timeline: ["09:00 늦은 아침과 10:30 마지막 수영", "13:00 성인 교대 포장, 아이 보물지도와 감사 카드", "16:30 마지막 해변 사진, 19:30 사진 상영과 시상식"], rain: "실내 수영 또는 거실 보물지도와 사진 상영", low: "수영도 생략하고 포장과 시상식만 한다.", transport: "도보", notes: "놓친 시내 일정은 전원 컨디션 4/5 이상일 때 오전 하나만 복구" },
+  { date: "2027-03-31", dow: "수", title: "팀별 출국", zone: "숙소 / DXB", intensity: 1, stay: false, main: "짐과 작별 인사는 전날 끝냅니다. 두 팀은 각자 항공편 시간에 맞춰 별도 차량으로 공항에 갑니다.", timeline: ["전날 닫아 둔 객실별 짐과 여권 확인", "비행 시간에 맞춘 팀별 전용차 출발", "아이 여행 파우치와 포장식 전달"], rain: "동일", low: "공동 차량과 단체 조식을 만들지 않는다.", transport: "전용차 편도 30-55분", notes: "2027년 출국편 확정 후 팀별 출발 시각 입력" }
 ];
 
 const dayDetails = {
-  "2027-03-20": { featuredPlace: "zabeel", whyNow: "장거리 비행이 시작되는 날이라 다른 약속을 잡지 않고, 두 팀 모두 기내에서 잘 수 있는 리듬만 맞춥니다." },
-  "2027-03-21": { featuredPlace: "zabeel", whyNow: "도착 시간이 다른 세 가족이 공항에서 기다리지 않도록, 첫날은 체크인과 잠만 남겨 둡니다." },
-  "2027-03-22": { featuredPlace: "zabeel", whyNow: "시차가 가장 크게 느껴지는 첫 아침입니다. 수영도 한 번만 하고 오후에는 모두 방으로 돌아갑니다." },
-  "2027-03-23": { featuredPlace: "future", whyNow: "첫 외출은 날씨 영향을 받지 않고 아이 셋 모두 들어갈 수 있는 Future Heroes부터 시작합니다." },
-  "2027-03-24": { featuredPlace: "marsa", whyNow: "첫 외출 다음 날에는 차를 타지 않습니다. 아이 수영과 어른 휴식을 번갈아 쓰는 날입니다." },
-  "2027-03-25": { featuredPlace: "burj", whyNow: "전망대는 오전 첫 시간에만 시도합니다. 줄이 길면 포기하고 Dubai Mall에서 점심만 먹고 돌아옵니다." },
-  "2027-03-26": { featuredPlace: "madinat", whyNow: "관광 사이에 넣을 수 있는 가장 짧은 외출입니다. 배는 20분 남짓이고 이른 저녁까지 한 권역에서 끝납니다." },
-  "2027-03-27": { featuredPlace: "shindagha", whyNow: "리뷰에서 아이 전시, 직원 설명, 낮은 혼잡도가 반복된 문화 일정이라 주말 오전에 두 건물만 봅니다." },
-  "2027-03-28": { featuredPlace: "zabeel", whyNow: "Aquaventure 전날에는 다리를 아껴야 합니다. 예약을 하나도 넣지 않고 아이들이 좋아한 수영과 식사를 반복합니다." },
-  "2027-03-29": { featuredPlace: "aquaventure", whyNow: "이번 여행에서 가장 체력이 많이 드는 날입니다. 전날을 비우고 평일 개장 시간에 맞춰 대기와 더위를 피합니다." },
-  "2027-03-30": { featuredPlace: "green", whyNow: "비, 바람, 피로 때문에 놓친 일정이 있을 때만 씁니다. 모두 괜찮았다면 숙소에서 짐을 싸고 쉽니다." },
-  "2027-03-31": { featuredPlace: "zabeel", whyNow: "출국일에는 관광을 넣지 않습니다. 세 가족이 서로 기다리지 않고 항공편 순서대로 공항으로 갑니다." }
+  "2027-03-20": { featuredPlace: "zabeel", whyNow: "첫 공동 경험을 공항 집결이 아니라 두 도시에서 동시에 시작한 사진으로 만듭니다.", needs: { parents: "각 가족이 자기 공항에서 서두르지 않고 직항과 수면에만 집중", kids: "스티커 여권, 간식, 헤드폰이 든 자기 여행 파우치", together: "ICN과 LAX에서 같은 포즈로 찍은 두 장의 출발 사진", recovery: "영상통화를 기다리지 않고 탑승 뒤 현지 밤에 맞춰 잡니다." } },
+  "2027-03-21": { featuredPlace: "zabeel", whyNow: "시차가 다른 두 팀을 억지로 한 일정에 묶지 않아야 다음 날부터 함께 움직일 수 있습니다.", needs: { parents: "로비 대기 없이 도착 순서대로 침대, 샤워, 식사를 보장", kids: "서울팀의 짧은 첫 수영과 LA팀의 바로 잘 수 있는 방", together: "먼저 도착한 아이들이 현관에 남기는 환영 카드와 방 이름표", recovery: "LAX팀 도착 때 단체 환영식을 하지 않고 모두 수면을 지킵니다." } },
+  "2027-03-22": { featuredPlace: "marsa", whyNow: "회복일을 비워 두는 대신 숙소 자체를 공동 여행의 첫 무대로 만듭니다.", needs: { parents: "식료품, 세탁, 방 배정, 아이 담당 순서를 정리할 시간", kids: "방 이름표, 수영, 해변 보물찾기", together: "세 아이가 함께 만드는 여행 깃발이나 현관 표지", recovery: "모든 활동에 예약이 없어 피곤한 가족은 바로 방으로 돌아갑니다." } },
+  "2027-03-23": { featuredPlace: "future", whyNow: "첫 외출은 날씨 영향을 받지 않고 아이 셋이 Future Heroes에서 직접 움직이는 한 곳으로 시작합니다.", needs: { parents: "Museum of the Future의 건축과 두바이 미래 서사", kids: "만 10세 이하 Future Heroes에서 움직이고 선택하는 탐험", together: "각 아이가 가장 갖고 싶은 미래 발명품 하나 고르기", recovery: "두 시간 뒤 점심만 먹고 쇼핑몰을 붙이지 않은 채 복귀합니다." } },
+  "2027-03-24": { featuredPlace: "marsa", whyNow: "명소 사이에 이동 없는 날을 넣되, 어른과 아이 모두 기다릴 프로그램을 분명하게 만듭니다.", needs: { parents: "아이를 보지 않는 90분의 스파, 카페 또는 완전한 개인 시간", kids: "키즈클럽과 가족 미니 수영대회", together: "아이들이 만든 종이 메달과 가족별 별명으로 시상식", recovery: "13시 30분부터 두 시간은 모두 방에서 쉽니다." } },
+  "2027-03-25": { featuredPlace: "burj", whyNow: "대표 전망은 오전 한 번만 시도하고, 줄이 가족 경험을 망치기 시작하면 즉시 포기합니다.", needs: { parents: "두바이의 도시 규모를 한눈에 보는 대표 전망", kids: "빠른 엘리베이터와 828m 높이를 몸으로 느끼는 경험", together: "세 아이의 키 합계와 828m를 비교한 사진이나 그림", recovery: "대기 30분이면 외부 사진과 점심만 하고 14시대에 돌아옵니다." } },
+  "2027-03-26": { featuredPlace: "madinat", whyNow: "20분짜리 Abra는 이동 부담에 비해 배, 건축, 식사, 사진을 한 번에 남기는 밀도가 높습니다.", needs: { parents: "Madinat의 건축과 수변 풍경, 예약한 좋은 저녁", kids: "길지 않은 나무배와 Burj Al Arab 찾기", together: "운하와 Burj Al Arab이 같이 보이는 아홉 명 가족사진", recovery: "오전과 이른 오후를 비우고 배 대기가 길면 저녁만 먹습니다." } },
+  "2027-03-27": { featuredPlace: "shindagha", whyNow: "넓은 박물관 전체가 아니라 어린이 집과 도시 탄생 이야기만 골라 부모와 아이의 관심을 겹칩니다.", needs: { parents: "초고층 이전의 두바이, 향과 무역의 도시 맥락", kids: "Children’s House의 상호작용형 전시", together: "각 가족이 옛 두바이를 설명할 물건 하나로 30초 이야기", recovery: "아이 한 명이라도 처지면 첫 전시 뒤 점심으로 바로 전환합니다." } },
+  "2027-03-28": { featuredPlace: "zabeel", whyNow: "다음 날 워터파크의 만족도는 오늘 다리를 얼마나 아꼈는지에 달려 있습니다.", needs: { parents: "사진 백업, 세탁, 성인 교대 휴식을 실제 일정으로 확보", kids: "지금까지 가장 좋았던 숙소 활동을 한 번 더 선택", together: "아이마다 여행 전반부의 1등 사진 한 장 고르기", recovery: "차를 타지 않고 룸서비스와 침실을 하루 종일 열어 둡니다." } },
+  "2027-03-29": { featuredPlace: "aquaventure", whyNow: "이번 여행의 아이 주인공 날입니다. 큰 공원을 다 보려 하지 않고 카바나를 중심으로 핵심만 탑니다.", needs: { parents: "카바나와 교대 담당으로 체력을 통제하며 아이에게 하루를 온전히 주기", kids: "신장에 맞는 놀이기구와 가족 래프트를 마음껏 고르기", together: "가족이 함께 탄 한 번의 래프트를 오늘의 대표 장면으로 남기기", recovery: "14시에 마지막 한 종목만 고르고 15시에 반드시 나옵니다." } },
+  "2027-03-30": { featuredPlace: "marsa", whyNow: "버퍼를 비워 두지 않고 포장과 여행 회고를 가족 활동으로 바꿔 마지막 날의 질을 지킵니다.", needs: { parents: "낮에 짐과 출국 서류를 끝내 새벽 출발 스트레스를 없애기", kids: "마지막 수영, 보물지도, 가족상", together: "가장 웃긴 순간과 최고의 도전을 뽑는 10분 사진 상영", recovery: "기본값은 숙소이며 놓친 관광은 전원 컨디션이 좋을 때만 복구합니다." } },
+  "2027-03-31": { featuredPlace: "zabeel", whyNow: "귀국편 시간 차이가 커서 마지막 순간까지 함께 움직이면 두 팀 모두 피곤해집니다.", needs: { parents: "전날 닫아 둔 짐을 싣고 별도 차량으로 서두르지 않는 출국", kids: "익숙한 여행 파우치와 아침 상자", together: "작별 인사는 전날 저녁에 끝내고 각 가족의 베스트 사진 공유", recovery: "공동 공항 차량과 단체 아침식사를 계획하지 않습니다." } }
 };
 
 for (const day of itinerary) Object.assign(day, dayDetails[day.date]);
@@ -153,15 +153,15 @@ for (const day of itinerary) Object.assign(day, dayDetails[day.date]);
 export const mealSuggestions = {
   "2027-03-20": "라운지와 기내식만 이용하고 도착 직전 과식하지 않는다.",
   "2027-03-21": "인룸 다이닝 또는 빌라 주방. 도착일 유명 식당 예약은 넣지 않는다.",
-  "2027-03-22": "리조트 조식과 수영장 옆 이른 점심, 저녁은 빌라에서 먹는다.",
-  "2027-03-23": "Museum of the Future 인근에서 9인 예약 점심 후 바로 귀환한다.",
-  "2027-03-24": "호텔 안에서 해결하고 외부 파인다이닝을 추가하지 않는다.",
-  "2027-03-25": "Dubai Mall에서 11시 45분 점심을 예약해 혼잡 전에 끝낸다.",
+  "2027-03-22": "리조트 조식과 수영장 옆 이른 점심, 저녁은 아이들과 빌라에서 함께 만든다.",
+  "2027-03-23": "Museum of the Future 인근에서 12시 30분 9인 점심 후 바로 귀환한다.",
+  "2027-03-24": "풀사이드 점심과 함께 만드는 저녁, 거실 영화 간식으로 마친다.",
+  "2027-03-25": "Dubai Mall에서 11시 45분 9인 테이블을 예약해 혼잡 전에 끝낸다.",
   "2027-03-26": "Madinat에서 17시 30분 9인 테이블과 어린이 메뉴를 사전 확인한다.",
   "2027-03-27": "Old Dubai 점심은 차량 동선 안의 한 곳만 예약하고 시장 탐색은 하지 않는다.",
-  "2027-03-28": "아이들이 좋아한 리조트 식사를 반복한다.",
-  "2027-03-29": "Aquaventure cabana에서 점심을 먹고 물을 자주 마신다.",
-  "2027-03-30": "새 식당을 추가하지 않고 숙소 또는 이미 검증한 곳을 반복한다.",
+  "2027-03-28": "아이들이 좋아한 리조트 식사를 반복하고 해변 노을 뒤 인룸 디저트를 먹는다.",
+  "2027-03-29": "Aquaventure 카바나에서 13시 15분 점심을 먹고 물을 자주 마신다.",
+  "2027-03-30": "빌라에서 마지막 저녁을 먹고 사진 상영용 간단한 디저트만 준비한다.",
   "2027-03-31": "항공편별 조식 또는 포장식, 공항에서 단체 식사를 만들지 않는다."
 };
 

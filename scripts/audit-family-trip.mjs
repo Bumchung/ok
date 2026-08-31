@@ -13,7 +13,7 @@ if (questions.length !== 50 || questions.some((item, index) => item.number !== i
 const baseArgIndex = process.argv.indexOf("--base-origin");
 const baseOrigin = baseArgIndex >= 0 ? String(process.argv[baseArgIndex + 1] || "").replace(/\/$/, "") : "";
 const canonicalRuntime = await readFile(join(root, "family-trip-2027", "trip-app.mjs"), "utf8");
-const visual = JSON.parse(await readFile(join(root, ".omx", "state", "family-trip-parity-v7", "ralph-progress.json"), "utf8"));
+const visual = JSON.parse(await readFile(join(root, ".omx", "state", "family-trip-needs-v2", "ralph-progress.json"), "utf8"));
 
 function hash(value) {
   return createHash("sha256").update(value).digest("hex");
@@ -65,7 +65,7 @@ const checks = [
   (ctx) => new Set(ctx.data.familyGroups.map((item) => item.origin)).has("ICN") && new Set(ctx.data.familyGroups.map((item) => item.origin)).has("LAX"),
   (ctx) => ctx.data.lodgingOptions[0].layout.includes("침실 4") && /(9명|6성인과 4아동)/.test(ctx.data.lodgingOptions[0].capacity),
   (ctx) => ctx.html.includes("상한 없음") && /(짧은 이동|실패 비용|취소)/.test(ctx.html),
-  (ctx) => ctx.data.trip.principles.some((item) => /(낮잠|수영|휴식)/.test(item)) && ctx.data.itinerary.every((day) => day.transport),
+  (ctx) => ctx.data.itinerary.every((day) => day.transport && [day.needs?.parents, day.needs?.kids, day.needs?.together, day.needs?.recovery].every((item) => item?.length >= 12)),
   (ctx) => ctx.data.trip.principles.some((item) => /(하나만|하루에 하나)/.test(item)),
   (ctx) => ctx.data.itinerary.every((day, index, days) => day.intensity < 3 || !days[index + 1] || days[index + 1].intensity <= 1),
   (ctx) => ctx.data.itinerary[1].intensity === 1 && /(체크인|도착)/.test(ctx.data.itinerary[1].title),
