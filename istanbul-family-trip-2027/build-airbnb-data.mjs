@@ -1,7 +1,14 @@
 import { readFile, writeFile } from "node:fs/promises";
 
 const source = new URL("./research/airbnb-9guests.jsonl", import.meta.url);
-const text = await readFile(source, "utf8");
+const imageManifestSource = new URL("./research/card-images.json", import.meta.url);
+const [text, imageManifestText] = await Promise.all([
+  readFile(source, "utf8"),
+  readFile(imageManifestSource, "utf8")
+]);
+const imageManifest = JSON.parse(imageManifestText);
+const imageRecords = imageManifest.records.filter((item) => item.kind === "airbnb");
+const imageById = new Map(imageRecords.map((item) => [item.id, item]));
 const rawRecords = text.split(/\r?\n/).filter(Boolean).map((line, index) => {
   try { return JSON.parse(line); }
   catch (error) { throw new Error(`${source.pathname}:${index + 1} ${error.message}`); }
@@ -31,10 +38,13 @@ if (new Set(rawRecords.map((item) => item.listing_id)).size !== rawRecords.lengt
 if (priority.length !== rawRecords.length || new Set(priority).size !== priority.length || rawRecords.some((item) => !order.has(item.listing_id))) throw new Error("Airbnb priority list does not cover every listing exactly once");
 if (rawRecords.filter((item) => item.availability.status === "available_exact").length !== 12) throw new Error("expected 12 available Airbnb records");
 if (rawRecords.filter((item) => item.availability.status === "unavailable_exact").length !== 3) throw new Error("expected 3 unavailable Airbnb records");
+if (imageRecords.length !== rawRecords.length || imageRecords.some((item) => item.status !== "verified")) throw new Error("Airbnb image manifest must contain 15 verified records");
 
 const options = rawRecords
   .sort((a, b) => order.get(a.listing_id) - order.get(b.listing_id))
   .map((item, index) => {
+    const photo = imageById.get(item.id);
+    if (!photo) throw new Error(`missing Airbnb photo: ${item.id}`);
     const available = item.availability.status === "available_exact";
     const baths = Number(item.space.bathrooms);
     const fit = !available ? "제외" : item.space.bedrooms >= 4 && baths >= 2 ? "상" : baths >= 2 ? "중" : "조건부";
@@ -68,7 +78,12 @@ const options = rawRecords
       referenceCancellation: !available ? item.cancellation.policy_summary : null,
       freeCancellationUntil: item.cancellation.free_cancellation_until,
       observedAt: item.observed_at,
-      url: item.date_query_url
+      url: item.date_query_url,
+      image: photo.localPath,
+      photoSource: photo.sourcePageUrl,
+      photoLabel: photo.alt,
+      photoCheckedAt: photo.checkedAt,
+      photoMethod: photo.method
     };
   });
 

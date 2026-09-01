@@ -963,7 +963,14 @@ body.theme-dubai .map-section { background: #3f3326; }
 .airbnb-evidence small { margin: 3px 0 6px; }
 .airbnb-summary a { padding: 9px 11px; border-radius: 8px; color: white; background: var(--accent); text-decoration: none; white-space: nowrap; font-size: 10px; font-weight: 850; }
 .airbnb-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-.airbnb-card { min-width: 0; padding: 17px; border: 1px solid var(--border); border-radius: 13px; background: white; }
+.airbnb-card { min-width: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 13px; background: white; content-visibility: auto; contain-intrinsic-size: 590px; }
+.airbnb-card-body { padding: 17px; }
+.card-photo { position: relative; aspect-ratio: 16 / 10; margin: 0; overflow: hidden; background: var(--accent-soft); }
+.card-image-link { display: block; width: 100%; height: 100%; }
+.card-photo img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .35s ease; }
+.airbnb-card:hover .card-photo img, .dining-card:hover .card-photo img { transform: scale(1.025); }
+.card-photo figcaption { pointer-events: none; }
+.card-photo figcaption a { min-height: 44px; display: inline-flex; align-items: center; padding-inline: 4px; pointer-events: auto; }
 .airbnb-card.unavailable { opacity: .7; border-style: dashed; background: #f3f3f1; }
 .airbnb-card.unavailable .airbnb-rank span { background: var(--subtle); }
 .airbnb-card.unavailable .airbnb-price { background: #e7e7e3; }
@@ -974,7 +981,7 @@ body.theme-dubai .map-section { background: #3f3326; }
 .airbnb-card h4 { margin: 10px 0 7px; font-size: 15px; line-height: 1.3; }
 .airbnb-specs { display: flex; gap: 5px; flex-wrap: wrap; }
 .airbnb-specs span { padding: 4px 6px; border-radius: 5px; color: var(--subtle); background: var(--canvas); font-size: 9px; }
-.airbnb-card > p { min-height: 48px; margin: 10px 0; color: var(--subtle); font-size: 11px; line-height: 1.5; }
+.airbnb-card-body > p { min-height: 48px; margin: 10px 0; color: var(--subtle); font-size: 11px; line-height: 1.5; }
 .airbnb-price { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 10px; border-radius: 8px; background: #fff3df; }
 .airbnb-price small { color: #76512c; font-size: 9px; }
 .airbnb-price strong { color: #8c451f; font-size: 11px; }
@@ -982,7 +989,7 @@ body.theme-dubai .map-section { background: #3f3326; }
 .airbnb-card summary { padding: 9px 0; cursor: pointer; font-size: 10px; font-weight: 820; }
 .airbnb-card details p { margin: 0 0 7px; color: var(--subtle); font-size: 10px; line-height: 1.5; }
 .airbnb-card details small { display: block; margin-bottom: 9px; color: var(--subtle); font-size: 9px; }
-.airbnb-card > a { color: var(--accent); font-size: 10px; font-weight: 850; }
+.airbnb-booking-link { min-height: 44px; display: inline-flex; align-items: center; color: var(--accent); font-size: 10px; font-weight: 850; }
 
 .budget-section { background: #eef2ee; }
 .budget-calculator { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(320px, .6fr); gap: 14px; }
@@ -1027,14 +1034,15 @@ body.theme-dubai .map-section { background: #3f3326; }
 .dining-section { background: #f7f3ea; }
 .dining-controls { grid-template-columns: minmax(220px, 1fr) 180px 180px auto; }
 .dining-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-.dining-card { min-width: 0; display: flex; flex-direction: column; padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: white; }
+.dining-card { min-width: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 12px; background: white; content-visibility: auto; contain-intrinsic-size: 600px; }
+.dining-card-body { min-height: 338px; display: flex; flex-direction: column; padding: 14px; }
 .dining-card-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .dining-card-rank { width: 25px; height: 25px; display: grid; place-items: center; border-radius: 50%; color: white; background: var(--accent); font-size: 9px; font-weight: 850; }
 .dining-card-type { color: var(--accent); font-size: 9px; font-weight: 850; }
 .dining-card h3 { min-height: 38px; margin: 8px 0 5px; font-size: 15px; line-height: 1.25; }
 .dining-meta { display: flex; gap: 4px; flex-wrap: wrap; }
 .dining-meta span { padding: 3px 5px; border-radius: 4px; color: var(--subtle); background: var(--canvas); font-size: 8px; }
-.dining-card > p { min-height: 49px; margin: 9px 0; color: var(--subtle); font-size: 10px; line-height: 1.55; }
+.dining-card-body > p { min-height: 49px; margin: 9px 0; color: var(--subtle); font-size: 10px; line-height: 1.55; }
 .dining-card details { margin-top: auto; border-top: 1px solid var(--border); }
 .dining-card summary { padding: 9px 0; cursor: pointer; font-size: 9px; font-weight: 850; }
 .dining-card details ul { margin: 0 0 7px; padding-left: 16px; color: var(--subtle); font-size: 9px; line-height: 1.45; }
@@ -1111,4 +1119,11 @@ body.theme-dubai .map-section { background: #3f3326; }
   .principle-grid.compact { grid-template-columns: 1fr 1fr; }
   .principle-grid.compact .principle-card { padding: 8px; }
   .principle-grid.compact .principle-card p { font-size: 9px; line-height: 1.35; }
+  .card-photo { aspect-ratio: 16 / 9; }
+  .airbnb-card-body, .dining-card-body { padding: 13px; }
+  .dining-card-body { min-height: 0; }
+  .dining-card h3 { min-height: 0; font-size: 17px; }
+  .dining-card-body > p, .airbnb-card-body > p { min-height: 0; }
+  .dining-actions a, .dining-actions button, .dining-review-source { min-height: 44px; }
+  .card-photo figcaption { right: 8px; bottom: 8px; left: 8px; font-size: 9px; }
 }

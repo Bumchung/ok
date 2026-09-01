@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "fetch:card-images": "node fetch-card-images.mjs",
     "test": "node --test *.test.mjs",
     "build:airbnb": "node build-airbnb-data.mjs",
     "build:data": "node build-map-data.mjs",

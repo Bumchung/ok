@@ -25,7 +25,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g293974-d833427-Reviews-YanyalI_Fehmi_LokantasI-Istanbul.html",
     "checkedAt": "2026-09-01",
     "status": "open_michelin_bib_official_site_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/yanyali-fehmi.webp",
+    "photoSource": "https://yanyalifehmi.com/tr/fotograflar",
+    "photoLabel": "Yanyalı Fehmi Lokantası 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "official_gallery_reviewed"
   },
   {
     "rank": 2,
@@ -52,7 +57,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g293974-d1228891-Reviews-Tarihi_Sultanahmet_Koftecisi-Istanbul.html",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/tarihi-sultanahmet-koftecisi.webp",
+    "photoSource": "https://istanbulclues.com/best-restaurants-sultanahmet-old-city/",
+    "photoLabel": "Tarihi Sultanahmet Köftecisi Selim Usta 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 3,
@@ -79,7 +89,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.co.uk/Restaurant_Review-g293974-d808629-Reviews-Hamdi_Restaurant-Istanbul.html",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_tripadvisor_group9_observed",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/hamdi-eminonu.webp",
+    "photoSource": "https://istanbultourstudio.com/things-to-do/hamdi-kebap",
+    "photoLabel": "Hamdi Restaurant Eminönü 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 4,
@@ -106,7 +121,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.co.uk/Restaurant_Review-g293974-d3351140-Reviews-Galata_Kitchen-Istanbul.html",
     "checkedAt": "2026-09-01",
     "status": "open_no_standalone_official_site_tripadvisor_verified",
-    "informationLabel": "정보 페이지"
+    "informationLabel": "정보 페이지",
+    "image": "./assets/card-images/galata-kitchen.webp",
+    "photoSource": "https://www.happycow.net/reviews/galata-kitchen-istanbul-70805",
+    "photoLabel": "Galata Kitchen 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 5,
@@ -133,7 +153,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g293974-d1028246-Reviews-NamlI_Gurme-Istanbul.html",
     "checkedAt": "2026-09-01",
     "status": "open_official_branch_page_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/namli-gurme-karakoy.webp",
+    "photoSource": "https://www.meyhankoli.com/restoran/istanbul-beyoglu-namli-gurme-1026",
+    "photoLabel": "Namlı Gurme Karaköy 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 6,
@@ -160,7 +185,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=%C3%87iya%20Sofras%C4%B1%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_michelin_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/ciya-sofrasi.webp",
+    "photoSource": "https://www.cornucopia.net/guide/listings/restaurants/ciya/",
+    "photoLabel": "Çiya Sofrası 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 7,
@@ -187,7 +217,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Emirgan%20S%C3%BCti%C5%9F%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_google_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/emirgan-sutis.webp",
+    "photoSource": "https://www.parkzirve.com.tr/emirgan-sutis.php",
+    "photoLabel": "Emirgan Sütiş 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 8,
@@ -214,7 +249,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Develi%201912%20Samatya%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_branch_page_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/develi-samatya.webp",
+    "photoSource": "https://newyearistanbul.net/party/develi-restaurant-samatya-istanbul/",
+    "photoLabel": "Develi 1912 Samatya 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 9,
@@ -241,7 +281,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Beyti%20Restaurant%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_michelin_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/beyti.webp",
+    "photoSource": "https://www.timeout.com/istanbul/restaurants/beyti",
+    "photoLabel": "Beyti 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 10,
@@ -268,7 +313,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g293974-d919185-Reviews-Dilruba_I_stanbul-Istanbul.html",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_children_menu_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/dilruba.webp",
+    "photoSource": "https://dugunbuketi.com/fiyati/dilruba-restaurant-davet-uskudar-istanbul",
+    "photoLabel": "Dilruba İstanbul 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 11,
@@ -295,7 +345,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g293974-d940372-Reviews-Pandeli-Istanbul.html",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_michelin_bib_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/pandeli.webp",
+    "photoSource": "https://restaurantguru.com/Pandeli-Istanbul",
+    "photoLabel": "Pandeli 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 12,
@@ -322,7 +377,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=H%C3%BCnkar%20Lokantas%C4%B1%20Ni%C5%9Fanta%C5%9F%C4%B1",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_apple_maps_kid_friendly_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/hunkar-nisantasi.webp",
+    "photoSource": "https://m.mekan.com/blog/her-ogun-nisantasi",
+    "photoLabel": "Hünkar Lokantası Nişantaşı 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 13,
@@ -349,7 +409,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com.tr/Restaurant_Review-g293974-d7885944-Reviews-Metet_Kozde_Doner-Istanbul.html",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_google_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/metet-kuzguncuk.webp",
+    "photoSource": "https://metetdoner.com/",
+    "photoLabel": "Metet Közde Döner Kuzguncuk 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "page_meta"
   },
   {
     "rank": 14,
@@ -376,7 +441,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Matbah%20Ottoman%20Palace%20Cuisine%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/matbah.webp",
+    "photoSource": "https://www.turkiyeroutes.com/restaurant/matbah-restaurant",
+    "photoLabel": "Matbah Ottoman Palace Cuisine 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 15,
@@ -403,7 +473,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Deraliye%20Ottoman%20Cuisine%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_michelin_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/deraliye.webp",
+    "photoSource": "https://za.hotels.com/ho455624/sura-hagia-sophia-hotel-istanbul-turkey/",
+    "photoLabel": "Deraliye Ottoman Cuisine 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 16,
@@ -430,7 +505,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=%C5%9Eehzade%20Ca%C4%9F%20Kebap%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_profile_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/sehzade-cag-kebap.webp",
+    "photoSource": "https://sehzadecagkebap.eatbu.com/?lang=en",
+    "photoLabel": "Şehzade Cağ Kebap 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "page_meta"
   },
   {
     "rank": 17,
@@ -457,7 +537,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Me%C5%9Fhur%20Filibe%20K%C3%B6ftecisi%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_good_for_kids_review_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/meshur-filibe-koftecisi.webp",
+    "photoSource": "https://www.odatv.com/guncel/kurum-ve-imamoglunun-polemigi-akillara-getirdi-odatv-yazari-istanbulun-en-iyilerini-derledi-siyasileri-goturmek-istedigim-kofteciler-120036246",
+    "photoLabel": "Meşhur Filibe Köftecisi 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 18,
@@ -484,7 +569,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Bitlisli%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_no_reliable_standalone_official_site_review_platform_verified",
-    "informationLabel": "정보 페이지"
+    "informationLabel": "정보 페이지",
+    "image": "./assets/card-images/bitlisli.webp",
+    "photoSource": "https://bitlislikebap.com/iletisim.html",
+    "photoLabel": "Bitlisli 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 19,
@@ -511,7 +601,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g293974-d15222680-Reviews-Tershane_Karakoy-Istanbul.html",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_michelin_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/tersane-karakoy.webp",
+    "photoSource": "https://www.tershanerestaurant.com/",
+    "photoLabel": "Tershane Karaköy 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "official_gallery_reviewed"
   },
   {
     "rank": 20,
@@ -538,7 +633,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=GALLADA%20by%20Fatih%20Tutak%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_private_room_20_michelin_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/gallada.webp",
+    "photoSource": "https://guide.michelin.com/gb/en/istanbul-province/istanbul/restaurant/gallada",
+    "photoLabel": "GALLADA by Fatih Tutak 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 21,
@@ -565,7 +665,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Bal%C4%B1k%C3%A7%C4%B1%20Sabahattin%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_michelin_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/balikci-sabahattin.webp",
+    "photoSource": "https://turkiyevedunyadanlezzetler.wordpress.com/2011/10/12/balikci-sabahattin-2/",
+    "photoLabel": "Balıkçı Sabahattin 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 22,
@@ -592,7 +697,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Giritli%20Restaurant%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_michelin_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/giritli.webp",
+    "photoSource": "https://www.meyhankoli.com/restoran/istanbul-fatih-giritli-restaurant-1006",
+    "photoLabel": "Giritli Restaurant 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 23,
@@ -619,7 +729,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Avlu%20Restaurant%20Four%20Seasons%20Sultanahmet",
     "checkedAt": "2026-09-01",
     "status": "open_official_hotel_site_michelin_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/avlu-four-seasons-sultanahmet.webp",
+    "photoSource": "https://www.gastrofill.com/gastromekan/avlu-restoran-four-seasons-sultanahmette-anadolunun-essiz-lezzetlerini-surdurulebilirlik-ilkesiyle-sunuyor/112264",
+    "photoLabel": "Avlu Restaurant 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 24,
@@ -646,7 +761,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g293974-d4986100-Reviews-Ali_OcakbasI_Karakoy-Istanbul.html",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_michelin_bib_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/ali-ocakbasi-karakoy.webp",
+    "photoSource": "https://www.meyhankoli.com/restoran/istanbul-beyoglu-ali-ocakbasi-karakoy-54",
+    "photoLabel": "Ali Ocakbaşı Karaköy 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 25,
@@ -673,7 +793,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Karak%C3%B6y%20G%C3%BCmr%C3%BCk%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_google_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/karakoy-gumruk.webp",
+    "photoSource": "https://mindtrip.ai/restaurant/istanbul-turkiye/karakoy-gumruk/re-VnNv3Lwr",
+    "photoLabel": "Karaköy Gümrük 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 26,
@@ -700,7 +825,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Privato%20Cafe%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/privato-cafe.webp",
+    "photoSource": "https://yemek.com/privato-cafe-istanbul/",
+    "photoLabel": "Privato Cafe 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 27,
@@ -727,7 +857,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=G%C3%BCney%20Restaurant%20Galata%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_no_reliable_standalone_official_site_review_platform_verified",
-    "informationLabel": "정보 페이지"
+    "informationLabel": "정보 페이지",
+    "image": "./assets/card-images/guney-restaurant.webp",
+    "photoSource": "https://www.galata-tower.com/nearby-restaurants",
+    "photoLabel": "Güney Restaurant 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 28,
@@ -754,7 +889,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=F%C4%B1cc%C4%B1n%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/ficcin.webp",
+    "photoSource": "https://labobouffe.blogspot.com/2014/10/fccn-istanbul.html",
+    "photoLabel": "Fıccın 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 29,
@@ -781,7 +921,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Pera%20Antakya%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_no_standalone_official_site_google_tripadvisor_verified",
-    "informationLabel": "정보 페이지"
+    "informationLabel": "정보 페이지",
+    "image": "./assets/card-images/pera-antakya.webp",
+    "photoSource": "https://www.thewestist.com/restaurant/",
+    "photoLabel": "Pera Antakya 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 30,
@@ -808,7 +953,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Hac%C4%B1%20Abdullah%20Lokantas%C4%B1%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/haci-abdullah.webp",
+    "photoSource": "https://www.tasteatlas.com/hac-abdullah-lokantas",
+    "photoLabel": "Hacı Abdullah Lokantası 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 31,
@@ -835,7 +985,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Z%C3%BCbeyir%20Ocakba%C5%9F%C4%B1%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/zubeyir-ocakbasi.webp",
+    "photoSource": "https://www.tripadvisor.com/Restaurant_Review-g293974-d1192712-Reviews-Zubeyir_Ocakbasi-Istanbul.html",
+    "photoLabel": "Zübeyir Ocakbaşı 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 32,
@@ -862,7 +1017,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Aheste%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_michelin_official_site_tripadvisor_signals_group9_conditional",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/aheste.webp",
+    "photoSource": "https://www.theworlds50best.com/discovery/Establishments/T%C3%BCrkiye/Istanbul/Aheste.html",
+    "photoLabel": "Aheste 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 33,
@@ -889,7 +1049,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Cuma%20%C3%87ukurcuma%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cuma-cukurcuma.webp",
+    "photoSource": "https://tr.pinterest.com/pin/cafe-cuma-ukurcuma--412712753326217030/",
+    "photoLabel": "Cuma 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 34,
@@ -916,7 +1081,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Lades%20Menemen%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_culinary_backstreets_apple_maps_review_signals_no_official_site_found",
-    "informationLabel": "정보 페이지"
+    "informationLabel": "정보 페이지",
+    "image": "./assets/card-images/lades-menemen.webp",
+    "photoSource": "https://www.worldofmouth.app/articles/best-casual-restaurants-in-istanbul",
+    "photoLabel": "Lades Menemen 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 35,
@@ -943,7 +1113,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=St.%20Regis%20Brasserie%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_hotel_site_michelin_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/st-regis-brasserie.webp",
+    "photoSource": "https://www.marriott.com/en-us/hotels/istxr-the-st-regis-istanbul/dining/",
+    "photoLabel": "St. Regis Brasserie 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "page_meta"
   },
   {
     "rank": 36,
@@ -970,7 +1145,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com.tr/Restaurant_Review-g293974-d2670690-Reviews-Tatbak-Istanbul.html",
     "checkedAt": "2026-09-01",
     "status": "open_no_standalone_official_site_tripadvisor_verified",
-    "informationLabel": "정보 페이지"
+    "informationLabel": "정보 페이지",
+    "image": "./assets/card-images/tatbak.webp",
+    "photoSource": "https://thevendry.com/venue/223230/tatbak-sisli-turkiye",
+    "photoLabel": "Tatbak 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 37,
@@ -997,7 +1177,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Kruvasan%20Te%C5%9Fvikiye%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_google_review_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/kruvasan.webp",
+    "photoSource": "https://www.artfulliving.com.tr/kultur-ve-yasam/cikolatali-bademli-ruya-kruvasan-istanbul-i-4840",
+    "photoLabel": "Kruvasan 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 38,
@@ -1024,7 +1209,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g293974-d806286-Reviews-Feriye-Istanbul.html",
     "checkedAt": "2026-09-01",
     "status": "open_official_age_policy_children_under10_lunch_only_michelin",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/lokanta-feriye.webp",
+    "photoSource": "https://www.universaltravel-tr.com/guide/venues/feriye-restaurant/",
+    "photoLabel": "Lokanta Feriye 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 39,
@@ -1051,7 +1241,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=The%20House%20Cafe%20Ortak%C3%B6y%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_google_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/house-cafe-ortakoy.webp",
+    "photoSource": "https://www.meyhankoli.com/restoran/the-house-cafe-ortakoy-552",
+    "photoLabel": "The House Cafe Ortaköy 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 40,
@@ -1078,7 +1273,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=The%20Lobby%20Peninsula%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_hotel_site_review_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/peninsula-lobby.webp",
+    "photoSource": "https://www.timeout.com/istanbul/hotels/the-peninsula-istanbul",
+    "photoLabel": "The Lobby, The Peninsula Istanbul 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 41,
@@ -1105,7 +1305,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Gazebo%20Lounge%20Ciragan%20Palace%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_hotel_site_family_alternative_to_tugra",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/gazebo-lounge.webp",
+    "photoSource": "https://www.kempinski.com/en/ciragan-palace/restaurants-bars/gazebo-lounge",
+    "photoLabel": "Gazebo Lounge, Çırağan Palace Kempinski 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "page_meta"
   },
   {
     "rank": 42,
@@ -1132,7 +1337,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Lokma%20Rumelihisar%C4%B1%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_google_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/lokma-rumelihisari.webp",
+    "photoSource": "https://m.mekan.com/mekan/lokma",
+    "photoLabel": "Lokma Rumelihisarı 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 43,
@@ -1159,7 +1369,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Mangerie%20Bebek%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_apple_maps_group_friendly_mixed_reviews",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/mangerie-bebek.webp",
+    "photoSource": "https://www.timeout.com/istanbul/restaurants/mangerie",
+    "photoLabel": "Mangerie Bebek 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 44,
@@ -1186,7 +1401,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Lacivert%20Restaurant%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_michelin_tripadvisor_signals_weather_dependent",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/lacivert.webp",
+    "photoSource": "https://www.lacivertrestaurant.com/en/private-dining",
+    "photoLabel": "Lacivert 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "official_gallery_reviewed"
   },
   {
     "rank": 45,
@@ -1213,7 +1433,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Rumelihisar%C4%B1%20%C4%B0skele%20Restaurant",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_michelin_apple_maps_good_for_kids",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/rumelihisari-iskele.webp",
+    "photoSource": "https://www.restaurants.com.tr/restoran/rumelihisar%C4%B1-iskele-restaurant-156",
+    "photoLabel": "Rumelihisarı İskele Restaurant 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 46,
@@ -1240,7 +1465,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Sur%20Bal%C4%B1k%20Arnavutk%C3%B6y%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/sur-balik-arnavutkoy.webp",
+    "photoSource": "https://gq.com.tr/yeme-icme/mahalle-turu-arnavutkoy",
+    "photoLabel": "Sur Balık Arnavutköy 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 47,
@@ -1267,7 +1497,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=K%C4%B1y%C4%B1%20Restaurant%20Tarabya%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_michelin_gault_millau_review_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/kiyi-tarabya.webp",
+    "photoSource": "https://www.geccemekan.com/haber/tarabyadan-sehre-yayilan-bir-efsane-kiyi-balik-226.html",
+    "photoLabel": "Kıyı Restaurant 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 48,
@@ -1294,7 +1529,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Bebek%20Bal%C4%B1k%C3%A7%C4%B1%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/bebek-balikci.webp",
+    "photoSource": "https://www.meyhankoli.com/restoran/bebek-balikci-94",
+    "photoLabel": "Bebek Balıkçı 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 49,
@@ -1321,7 +1561,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=AQUA%20Four%20Seasons%20Bosphorus%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_hotel_site_michelin_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/aqua-four-seasons-bosphorus.webp",
+    "photoSource": "https://planetescape.pl/en/luxury/hotel/turcja-stambul-four-seasons-bosphorus/",
+    "photoLabel": "AQUA, Four Seasons Hotel Istanbul at the Bosphorus 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 50,
@@ -1348,7 +1593,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Kandilli%20Borsa%20Restaurant%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_michelin_apple_maps_group_friendly",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/borsa-kandilli.webp",
+    "photoSource": "https://borsarestaurants.com/",
+    "photoLabel": "Kandilli Borsa Restaurant 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "page_meta"
   },
   {
     "rank": 51,
@@ -1375,7 +1625,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=%C3%87iya%20Kebap%20Kad%C4%B1k%C3%B6y",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/ciya-kebap.webp",
+    "photoSource": "https://galatagelato.wordpress.com/2013/11/18/ciya-kadikoy-istanbul/",
+    "photoLabel": "Çiya Kebap 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 52,
@@ -1402,7 +1657,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Naga%20Putrika%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_google_profile_tripadvisor_signals_no_official_site_found",
-    "informationLabel": "정보 페이지"
+    "informationLabel": "정보 페이지",
+    "image": "./assets/card-images/naga-putrika.webp",
+    "photoSource": "https://nagaputrika.com.tr/en/",
+    "photoLabel": "Naga Putrika 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 53,
@@ -1429,7 +1689,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Cibalikap%C4%B1%20Bal%C4%B1k%C3%A7%C4%B1s%C4%B1%20Moda",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_tripadvisor_signals_children_conditional",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cibalikapi-moda.webp",
+    "photoSource": "https://www.meyhankoli.com/restoran/istanbul-kadikoy-cibalikapi-balikcisi-442-442",
+    "photoLabel": "Cibalikapı Balıkçısı Moda 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 54,
@@ -1456,7 +1721,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=K%C3%B6%C5%9Feba%C5%9F%C4%B1%20Levent%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_group_friendly_review_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/kosebasi-levent.webp",
+    "photoSource": "https://www.kosebasi.com/sube/levent",
+    "photoLabel": "Köşebaşı Levent 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 55,
@@ -1483,7 +1753,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Ka%C5%9F%C4%B1beyaz%20Florya%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_group_friendly_tripadvisor_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/kasibeyaz-florya.webp",
+    "photoSource": "https://kasibeyazgroup.com/branches.php",
+    "photoLabel": "Kaşıbeyaz Florya 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "official_gallery_reviewed"
   },
   {
     "rank": 56,
@@ -1510,7 +1785,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=%C5%9Eazeli%20Florya%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_group_friendly_review_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/sazeli-florya.webp",
+    "photoSource": "https://www.enuygun.com/bilgi/istanbul-iftar-restoranlari/",
+    "photoLabel": "Şazeli Florya 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 57,
@@ -1537,7 +1817,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Tavac%C4%B1%20Recep%20Usta%20Bostanc%C4%B1",
     "checkedAt": "2026-09-01",
     "status": "open_michelin_bib_official_site_review_signals",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/tavaci-recep-usta-bostanci.webp",
+    "photoSource": "https://guide.michelin.com/tr/tr/istanbul-province/istanbul/restaurant/tavac%C4%B1-recep-usta-bostanc%C4%B1",
+    "photoLabel": "Tavacı Recep Usta Bostancı 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 58,
@@ -1564,7 +1849,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Search?q=Parvus%20Kalam%C4%B1%C5%9F%20Istanbul",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_michelin_bib_five_tables_group9_conditional",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/parvus-kalamis.webp",
+    "photoSource": "https://parvus.com.tr/hakkimizda/",
+    "photoLabel": "Parvus Kalamış 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "page_meta"
   },
   {
     "rank": 59,
@@ -1591,7 +1881,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com/Restaurant_Review-g293974-d10293137-Reviews-Basta-Istanbul.html",
     "checkedAt": "2026-09-01",
     "status": "open_review_platform_verified_group9_seating_risk",
-    "informationLabel": "정보 페이지"
+    "informationLabel": "정보 페이지",
+    "image": "./assets/card-images/basta-kadikoy.webp",
+    "photoSource": "https://culinarybackstreets.com/stories/istanbul/basta-street-food-bar",
+    "photoLabel": "Basta! Street Food Bar 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 60,
@@ -1618,7 +1913,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.tripadvisor.com.tr/Restaurant_Review-g293974-d10901243-Reviews-Cesmidil_Cafe_Restaurant-Istanbul.html",
     "checkedAt": "2026-09-01",
     "status": "open_official_site_apple_maps_good_for_kids_mixed_reviews",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cesmidil-beylerbeyi.webp",
+    "photoSource": "https://www.pinterest.com/pin/848506386014815976/",
+    "photoLabel": "Çeşmidil Cafe & Restaurant 음식점 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 61,
@@ -1645,7 +1945,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Hafiz+Mustafa+1864+Sirkeci+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-061-hafiz-mustafa-sirkeci.webp",
+    "photoSource": "https://hafizmustafa.com/",
+    "photoLabel": "Hafız Mustafa 1864 Sirkeci 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "page_meta"
   },
   {
     "rank": 62,
@@ -1672,7 +1977,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Karakoy+Gulluoglu+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-062-karakoy-gulluoglu.webp",
+    "photoSource": "https://addmimarlik.com/portfolio/karakoy-gulluoglu/",
+    "photoLabel": "Karaköy Güllüoğlu 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 63,
@@ -1699,7 +2009,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Baylan+Kadikoy+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-063-baylan-kadikoy.webp",
+    "photoSource": "https://www.themagger.com/bir-istanbul-klasigi-kadikoy-baylan/",
+    "photoLabel": "Baylan Kadıköy 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 64,
@@ -1726,7 +2041,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Sekerci+Cafer+Erol+Kadikoy+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-064-sekerci-cafer-erol.webp",
+    "photoSource": "https://nelerimeshur.com/istanbul/gezi-rehberi/ailecek-restoranlar",
+    "photoLabel": "Şekerci Cafer Erol Kadıköy 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 65,
@@ -1753,7 +2073,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Vefa+Bozacisi+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-065-vefa-bozacisi.webp",
+    "photoSource": "https://tr.pinterest.com/pin/470485492292205698/",
+    "photoLabel": "Vefa Bozacısı 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 66,
@@ -1780,7 +2105,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Ali+Muhiddin+Haci+Bekir+Eminonu+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-066-haci-bekir-eminonu.webp",
+    "photoSource": "https://mekanlar.com/mekan/ali-muhiddin-haci-bekir-lokumlari-eminonu-merkez-subesi-hobyar",
+    "photoLabel": "Ali Muhiddin Hacı Bekir Eminönü 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 67,
@@ -1807,7 +2137,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Inci+Pastanesi+Mis+Sokak+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_review_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-067-inci-pastanesi.webp",
+    "photoSource": "https://newloggers.com/tag/inci-pastanesi/",
+    "photoLabel": "İnci Pastanesi 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 68,
@@ -1834,7 +2169,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Ali+Usta+Moda+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_review_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-068-ali-usta-moda.webp",
+    "photoSource": "https://hedofoodia.blogspot.com/2015/07/meshur-dondurmac-ali-usta-istamboul.html",
+    "photoLabel": "Meşhur Dondurmacı Ali Usta 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 69,
@@ -1861,7 +2201,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Saray+Muhallebicisi+Beyoglu+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-069-saray-muhallebicisi.webp",
+    "photoSource": "https://www.tasteatlas.com/saraymuhallebicisi",
+    "photoLabel": "Saray Muhallebicisi Beyoğlu 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 70,
@@ -1888,7 +2233,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Ozkonak+Muhallebicisi+Cihangir+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_review_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-070-ozkonak-muhallebicisi.webp",
+    "photoSource": "https://t24.com.tr/yazarlar/mehmet-yalcin/lokantanin-olumu%2C33506",
+    "photoLabel": "Özkonak Muhallebicisi 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 71,
@@ -1915,7 +2265,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Savoy+Pastanesi+Cihangir+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_review_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-071-savoy-pastanesi.webp",
+    "photoSource": "https://lezzetarayanlara.com/blog/beyoglu-kahvalti-mekanlari",
+    "photoLabel": "Savoy Pastanesi 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 72,
@@ -1942,7 +2297,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Divan+Pastanesi+Taksim+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-072-divan-pastanesi-taksim.webp",
+    "photoSource": "https://istanbulclues.com/best-turkish-desserts-in-istanbul/",
+    "photoLabel": "Divan Pastanesi Taksim 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 73,
@@ -1969,7 +2329,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Gezi+Istanbul+Taksim",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-073-gezi-istanbul.webp",
+    "photoSource": "https://www.medyaradar.net/bir-istiklal-klasigi-daha-veda-etti-gezi-pastanesi-kapandi-haberi-2139579",
+    "photoLabel": "Gezi İstanbul 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 74,
@@ -1996,7 +2361,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Patisserie+de+Pera+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-074-patisserie-de-pera.webp",
+    "photoSource": "https://carmensluxurytravel.com/the-historic-pera-palace-hotel-jumeirah-istanbul-celebrating-125-years-of-excellenceluxury/",
+    "photoLabel": "Patisserie de Pera 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 75,
@@ -2023,7 +2393,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Kubbeli+Saloon+Pera+Palace+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-075-kubbeli-saloon.webp",
+    "photoSource": "https://perapalace.com/en/restaurants/kubbeli-lounge/",
+    "photoLabel": "Kubbeli Saloon Tea Lounge 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "page_meta"
   },
   {
     "rank": 76,
@@ -2050,7 +2425,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Tarihi+Sariyer+Muhallebicisi+ve+Borek+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-076-tarihi-sariyer-muhallebicisi.webp",
+    "photoSource": "https://fr.restaurantguru.com/Tarihi-Sariyer-Muhallebicisi-Istanbul",
+    "photoLabel": "Tarihi Sarıyer Muhallebicisi ve Börek 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 77,
@@ -2077,7 +2457,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Tarihi+Cinaralti+Cengelkoy+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_review_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-077-tarihi-cinaralti.webp",
+    "photoSource": "https://www.istanbulugeziyorum.com/en/cengelkoy-historical-cinaralti-family-tea-garden-24.html",
+    "photoLabel": "Çengelköy Tarihi Çınaraltı 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 78,
@@ -2104,7 +2489,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Moda+Cay+Bahcesi+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_review_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-078-moda-cay-bahcesi.webp",
+    "photoSource": "https://www.spottedbylocals.com/istanbul/moda-tea-gardens/",
+    "photoLabel": "Moda Çay Bahçesi 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 79,
@@ -2131,7 +2521,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Bebek+Kahvesi+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_review_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-079-bebek-kahvesi.webp",
+    "photoSource": "https://www.milliyet.com.tr/pazar/evvel-zaman-icinde-bebek-sahilinde-7050056",
+    "photoLabel": "Bebek Kahvesi 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 80,
@@ -2158,7 +2553,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=The+House+Cafe+Ortakoy+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-080-house-cafe-ortakoy.webp",
+    "photoSource": "https://www.pinterest.com/pin/the-house-cafe-ortaky-stanbul--302374562458628475/",
+    "photoLabel": "The House Café Ortaköy 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 81,
@@ -2185,7 +2585,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Viyana+Kahvesi+Galata+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-081-viyana-kahvesi-galata.webp",
+    "photoSource": "https://www.leta.com.tr/proje/viyana-kahvesi/",
+    "photoLabel": "Viyana Kahvesi Galata 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 82,
@@ -2212,7 +2617,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Rumeli+Kale+Cafe+Restaurant+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_review_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-082-rumeli-kale-cafe.webp",
+    "photoSource": "https://kalecafe.com/about-us/",
+    "photoLabel": "Rumeli Kale Café and Restaurant 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 83,
@@ -2239,7 +2649,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Minoa+Village+Akaretler+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-083-minoa-village.webp",
+    "photoSource": "https://restoranim.net/istanbul/besiktas/restoran/minoa-village",
+    "photoLabel": "Minoa Village Akaretler 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 84,
@@ -2266,7 +2681,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Minoa+Pera+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-084-minoa-pera.webp",
+    "photoSource": "https://www.rexby.com/Scoprireistanbul/ttd/best-of-cafe-and-pastry-1",
+    "photoLabel": "Minoa Pera 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 85,
@@ -2293,7 +2713,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Turk+Alman+Kitabevi+Cafe+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-085-turk-alman-kitabevi.webp",
+    "photoSource": "https://istiklalcaddesi.istanbul/turk-alman-kitabevi-cafe/",
+    "photoLabel": "Türk Alman Kitabevi Café 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 86,
@@ -2320,7 +2745,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Petra+Roasting+Co+Gayrettepe+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-086-petra-gayrettepe.webp",
+    "photoSource": "https://www.petracoffee.com/blogs/jurnal/16756377-petra-coffee-sprudgeda",
+    "photoLabel": "Petra Roasting Co. Gayrettepe 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "official_gallery_reviewed"
   },
   {
     "rank": 87,
@@ -2347,7 +2777,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Kronotrop+Cihangir+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-087-kronotrop-cihangir.webp",
+    "photoSource": "https://sprudge.com/kronotrop-modern-coffee-bar-istanbul-57571.html",
+    "photoLabel": "Kronotrop Cihangir 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 88,
@@ -2374,7 +2809,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Montag+Coffee+Kadikoy+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-088-montag-kadikoy.webp",
+    "photoSource": "https://www.themagger.com/montag-coffee-roasters-kadikoy/",
+    "photoLabel": "Montag Coffee Kadıköy 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 89,
@@ -2401,7 +2841,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Walters+Coffee+Roastery+Kadikoy+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-089-walters-kadikoy.webp",
+    "photoSource": "https://morrehber.com/mekanlar/walters-coffee-roastery-moda-kadikoy-istanbul/",
+    "photoLabel": "Walter's Coffee Roastery Kadıköy 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 90,
@@ -2428,7 +2873,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Story+Coffee+Yeldegirmeni+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_review_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-090-story-coffee-yeldegirmeni.webp",
+    "photoSource": "https://morrehber.com/mekanlar/story-coffee-roasters-moda-kadikoy-istanbul/",
+    "photoLabel": "Story Coffee Yeldeğirmeni 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 91,
@@ -2455,7 +2905,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Dem+Moda+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_review_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-091-dem-moda.webp",
+    "photoSource": "https://www.thedatepoint.com/mekan/dem-moda",
+    "photoLabel": "Dem Moda 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 92,
@@ -2482,7 +2937,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Mandabatmaz+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_review_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-092-mandabatmaz.webp",
+    "photoSource": "https://www.grandsirkeci.com/de/articles/places-to-enjoy-turkish-coffee-in-istanbul",
+    "photoLabel": "Mandabatmaz 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 93,
@@ -2509,7 +2969,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Fazil+Bey+Turkish+Coffee+Kadikoy",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-093-fazil-bey.webp",
+    "photoSource": "https://www.hurriyet.com.tr/galeri-turk-kahvesinin-en-iyi-10-adresi-41094626",
+    "photoLabel": "Fazıl Bey'in Türk Kahvesi 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 94,
@@ -2536,7 +3001,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://maps.apple.com/place?place-id=I130BE79A4D1C40F",
     "checkedAt": "2026-09-01",
     "status": "active_review_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-094-velvet-cafe-balat.webp",
+    "photoSource": "https://www.closerlives.com/blog/post/balat-istanbul-colorful-streets-and-cafe-culture",
+    "photoLabel": "Velvet Café Balat 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 95,
@@ -2563,7 +3033,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://wanderlog.com/place/details/1677630/bblok-bakery-akaretler",
     "checkedAt": "2026-09-01",
     "status": "active_review_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-095-bblok-bakery.webp",
+    "photoSource": "https://www.timeout.com/istanbul/tr/restoranlar/b-blok-bakery",
+    "photoLabel": "B.Blok Bakery Akaretler 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 96,
@@ -2590,7 +3065,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Brekkie+Caddebostan+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_review_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-096-brekkie-caddebostan.webp",
+    "photoSource": "https://www.lokantalarim.net/lokantalarim/brekkie-breakfast-club/",
+    "photoLabel": "Brekkie Caddebostan 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 97,
@@ -2617,7 +3097,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Mendels+Chocolatier+Akaretler+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-097-mendels-akaretler.webp",
+    "photoSource": "https://universitev.com/mekanlar/istanbul-besiktas-mendels-chocolatier",
+    "photoLabel": "Mendel's Chocolatier Akaretler 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 98,
@@ -2644,7 +3129,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Vakko+LAtelier+Akmerkez+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-098-vakko-latelier-akmerkez.webp",
+    "photoSource": "https://restaurantguru.com/Vakko-Bistrot-AKMERKEZ-Istanbul/menu",
+    "photoLabel": "Vakko L'Atelier Akmerkez 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 99,
@@ -2671,7 +3161,12 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Fethi+Pasa+Sosyal+Tesisleri+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-099-beltur-fethi-pasa.webp",
+    "photoSource": "https://gezilecekyerler.com/fethi-pasa-korusu/",
+    "photoLabel": "BELTUR Fethi Paşa Sosyal Tesisi 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   },
   {
     "rank": 100,
@@ -2698,6 +3193,11 @@ export const diningSpots = [
     "reviewSourceUrl": "https://www.google.com/maps/search/?api=1&query=Hidiv+Kasri+Istanbul",
     "checkedAt": "2026-09-01",
     "status": "active_official_verified",
-    "informationLabel": "공식 정보"
+    "informationLabel": "공식 정보",
+    "image": "./assets/card-images/cafe-100-beltur-hidiv-kasri.webp",
+    "photoSource": "https://gezentianne.com/hidiv-kasri-nerede-nasil-gidilir-kahvalti-guncel-giris-ucreti/",
+    "photoLabel": "BELTUR Hidiv Kasrı 카페 대표 사진",
+    "photoCheckedAt": "2026-09-01",
+    "photoMethod": "google_image_search_reviewed"
   }
 ];

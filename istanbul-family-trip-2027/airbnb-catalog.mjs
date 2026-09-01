@@ -39,7 +39,12 @@ export const airbnbSearch = {
       "referenceCancellation": null,
       "freeCancellationUntil": "2027-02-19",
       "observedAt": "2026-09-01",
-      "url": "https://www.airbnb.com/rooms/31092297?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3"
+      "url": "https://www.airbnb.com/rooms/31092297?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3",
+      "image": "./assets/card-images/airbnb-31092297.webp",
+      "photoSource": "https://www.airbnb.com/rooms/31092297",
+      "photoLabel": "Penthouse 4BR, Terrace, Bosphorus View Airbnb 숙소 대표 사진",
+      "photoCheckedAt": "2026-09-01",
+      "photoMethod": "page_meta"
     },
     {
       "rank": 2,
@@ -70,7 +75,12 @@ export const airbnbSearch = {
       "referenceCancellation": null,
       "freeCancellationUntil": "2027-03-07",
       "observedAt": "2026-09-01",
-      "url": "https://www.airbnb.com/rooms/1585341457182878132?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3"
+      "url": "https://www.airbnb.com/rooms/1585341457182878132?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3",
+      "image": "./assets/card-images/airbnb-1585341457182878132.webp",
+      "photoSource": "https://www.airbnb.com/rooms/1585341457182878132",
+      "photoLabel": "Premium Family Home for 10, Near Taksim, 4BR Airbnb 숙소 대표 사진",
+      "photoCheckedAt": "2026-09-01",
+      "photoMethod": "page_meta"
     },
     {
       "rank": 3,
@@ -101,7 +111,12 @@ export const airbnbSearch = {
       "referenceCancellation": null,
       "freeCancellationUntil": "2027-03-16",
       "observedAt": "2026-09-01",
-      "url": "https://www.airbnb.com/rooms/733361398293897874?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3"
+      "url": "https://www.airbnb.com/rooms/733361398293897874?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3",
+      "image": "./assets/card-images/airbnb-733361398293897874.webp",
+      "photoSource": "https://www.airbnb.com/rooms/733361398293897874",
+      "photoLabel": "Artistically Renovated Triplex Villa 400m2 Ortaköy Airbnb 숙소 대표 사진",
+      "photoCheckedAt": "2026-09-01",
+      "photoMethod": "page_meta"
     },
     {
       "rank": 4,
@@ -132,7 +147,12 @@ export const airbnbSearch = {
       "referenceCancellation": null,
       "freeCancellationUntil": "2027-03-20",
       "observedAt": "2026-09-01",
-      "url": "https://www.airbnb.com/rooms/1283892058506904338?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3"
+      "url": "https://www.airbnb.com/rooms/1283892058506904338?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3",
+      "image": "./assets/card-images/airbnb-1283892058506904338.webp",
+      "photoSource": "https://www.airbnb.com/rooms/1283892058506904338",
+      "photoLabel": "3 Master BR Apt with Sea View Airbnb 숙소 대표 사진",
+      "photoCheckedAt": "2026-09-01",
+      "photoMethod": "page_meta"
     },
     {
       "rank": 5,
@@ -163,7 +183,12 @@ export const airbnbSearch = {
       "referenceCancellation": null,
       "freeCancellationUntil": "2027-03-07",
       "observedAt": "2026-09-01",
-      "url": "https://www.airbnb.com/rooms/1248360830079976262?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3"
+      "url": "https://www.airbnb.com/rooms/1248360830079976262?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3",
+      "image": "./assets/card-images/airbnb-1248360830079976262.webp",
+      "photoSource": "https://www.airbnb.com/rooms/1248360830079976262",
+      "photoLabel": "Amazing Sea View Flat in Karaköy, 4BR, 5AC, 2BA Airbnb 숙소 대표 사진",
+      "photoCheckedAt": "2026-09-01",
+      "photoMethod": "page_meta"
     },
     {
       "rank": 6,
@@ -194,7 +219,12 @@ export const airbnbSearch = {
       "referenceCancellation": null,
       "freeCancellationUntil": "2027-03-16",
       "observedAt": "2026-09-01",
-      "url": "https://www.airbnb.com/rooms/1665364785885022959?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3"
+      "url": "https://www.airbnb.com/rooms/1665364785885022959?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3",
+      "image": "./assets/card-images/airbnb-1665364785885022959.webp",
+      "photoSource": "https://www.airbnb.com/rooms/1665364785885022959",
+      "photoLabel": "4BR Apt In Old City, Terrace, Hot Tub, AC, Wifi Airbnb 숙소 대표 사진",
+      "photoCheckedAt": "2026-09-01",
+      "photoMethod": "page_meta"
     },
     {
       "rank": 7,
@@ -225,7 +255,12 @@ export const airbnbSearch = {
       "referenceCancellation": null,
       "freeCancellationUntil": "2027-03-16",
       "observedAt": "2026-09-01",
-      "url": "https://www.airbnb.com/rooms/1751016276471845889?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3"
+      "url": "https://www.airbnb.com/rooms/1751016276471845889?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3",
+      "image": "./assets/card-images/airbnb-1751016276471845889.webp",
+      "photoSource": "https://www.airbnb.com/rooms/1751016276471845889",
+      "photoLabel": "3BR Ocean House 9 Guests Prime Location Airbnb 숙소 대표 사진",
+      "photoCheckedAt": "2026-09-01",
+      "photoMethod": "page_meta"
     },
     {
       "rank": 8,
@@ -256,7 +291,12 @@ export const airbnbSearch = {
       "referenceCancellation": null,
       "freeCancellationUntil": "2027-02-19",
       "observedAt": "2026-09-01",
-      "url": "https://www.airbnb.com/rooms/37868735?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3"
+      "url": "https://www.airbnb.com/rooms/37868735?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3",
+      "image": "./assets/card-images/airbnb-37868735.webp",
+      "photoSource": "https://www.airbnb.com/rooms/37868735",
+      "photoLabel": "Spacious 3BR, Bosphorus and Dolmabahçe View Airbnb 숙소 대표 사진",
+      "photoCheckedAt": "2026-09-01",
+      "photoMethod": "page_meta"
     },
     {
       "rank": 9,
@@ -287,7 +327,12 @@ export const airbnbSearch = {
       "referenceCancellation": null,
       "freeCancellationUntil": "2027-03-16",
       "observedAt": "2026-09-01",
-      "url": "https://www.airbnb.com/rooms/886052227843874450?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3"
+      "url": "https://www.airbnb.com/rooms/886052227843874450?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3",
+      "image": "./assets/card-images/airbnb-886052227843874450.webp",
+      "photoSource": "https://www.airbnb.com/rooms/886052227843874450",
+      "photoLabel": "Taksim Square, Unique Penthouse for 12, 5BR Airbnb 숙소 대표 사진",
+      "photoCheckedAt": "2026-09-01",
+      "photoMethod": "page_meta"
     },
     {
       "rank": 10,
@@ -318,7 +363,12 @@ export const airbnbSearch = {
       "referenceCancellation": null,
       "freeCancellationUntil": "2027-03-16",
       "observedAt": "2026-09-01",
-      "url": "https://www.airbnb.com/rooms/1329307242595134008?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3"
+      "url": "https://www.airbnb.com/rooms/1329307242595134008?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3",
+      "image": "./assets/card-images/airbnb-1329307242595134008.webp",
+      "photoSource": "https://www.airbnb.com/rooms/1329307242595134008",
+      "photoLabel": "Spacious 4+1 Sea and Mosque View Apartment in Sultanahmet Airbnb 숙소 대표 사진",
+      "photoCheckedAt": "2026-09-01",
+      "photoMethod": "page_meta"
     },
     {
       "rank": 11,
@@ -349,7 +399,12 @@ export const airbnbSearch = {
       "referenceCancellation": null,
       "freeCancellationUntil": "2027-03-20",
       "observedAt": "2026-09-01",
-      "url": "https://www.airbnb.com/rooms/1150573948484205391?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3"
+      "url": "https://www.airbnb.com/rooms/1150573948484205391?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3",
+      "image": "./assets/card-images/airbnb-1150573948484205391.webp",
+      "photoSource": "https://www.airbnb.com/rooms/1150573948484205391",
+      "photoLabel": "Large and Private Apartment for 9 People in the Center of Şişli Airbnb 숙소 대표 사진",
+      "photoCheckedAt": "2026-09-01",
+      "photoMethod": "page_meta"
     },
     {
       "rank": 12,
@@ -380,7 +435,12 @@ export const airbnbSearch = {
       "referenceCancellation": null,
       "freeCancellationUntil": "2027-02-19",
       "observedAt": "2026-09-01",
-      "url": "https://www.airbnb.com/rooms/1155770524163347634?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3"
+      "url": "https://www.airbnb.com/rooms/1155770524163347634?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3",
+      "image": "./assets/card-images/airbnb-1155770524163347634.webp",
+      "photoSource": "https://www.airbnb.com/rooms/1155770524163347634",
+      "photoLabel": "Waterfront Villa, Sea View, Private Terrace with Dome Airbnb 숙소 대표 사진",
+      "photoCheckedAt": "2026-09-01",
+      "photoMethod": "page_meta"
     },
     {
       "rank": 13,
@@ -411,7 +471,12 @@ export const airbnbSearch = {
       "referenceCancellation": "예약 후 24시간은 무료 취소라고 표시됐다. 3월 14일 전까지는 일부 환불이다.",
       "freeCancellationUntil": null,
       "observedAt": "2026-09-01",
-      "url": "https://www.airbnb.com/rooms/905809?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3"
+      "url": "https://www.airbnb.com/rooms/905809?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3",
+      "image": "./assets/card-images/airbnb-905809.webp",
+      "photoSource": "https://www.airbnb.com/rooms/905809",
+      "photoLabel": "Urban Loft for 12 Guests, 5BR, 3.5 BA, Galata Airbnb 숙소 대표 사진",
+      "photoCheckedAt": "2026-09-01",
+      "photoMethod": "page_meta"
     },
     {
       "rank": 14,
@@ -442,7 +507,12 @@ export const airbnbSearch = {
       "referenceCancellation": null,
       "freeCancellationUntil": null,
       "observedAt": "2026-09-01",
-      "url": "https://www.airbnb.com/rooms/2320332?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3"
+      "url": "https://www.airbnb.com/rooms/2320332?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3",
+      "image": "./assets/card-images/airbnb-2320332.webp",
+      "photoSource": "https://www.airbnb.com/rooms/2320332",
+      "photoLabel": "Scarlet, Queens Color Concept, 3 Bedroom and 4 Bathroom Airbnb 숙소 대표 사진",
+      "photoCheckedAt": "2026-09-01",
+      "photoMethod": "page_meta"
     },
     {
       "rank": 15,
@@ -473,7 +543,12 @@ export const airbnbSearch = {
       "referenceCancellation": null,
       "freeCancellationUntil": null,
       "observedAt": "2026-09-01",
-      "url": "https://www.airbnb.com/rooms/726854148956034383?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3"
+      "url": "https://www.airbnb.com/rooms/726854148956034383?check_in=2027-03-21&check_out=2027-03-31&guests=9&adults=6&children=3",
+      "image": "./assets/card-images/airbnb-726854148956034383.webp",
+      "photoSource": "https://www.airbnb.com/rooms/726854148956034383",
+      "photoLabel": "Luxury Villa, Sleeps 9, Terrace Taksim 4BR and 4BA Airbnb 숙소 대표 사진",
+      "photoCheckedAt": "2026-09-01",
+      "photoMethod": "page_meta"
     }
   ]
 };

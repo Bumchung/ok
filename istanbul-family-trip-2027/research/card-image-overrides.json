@@ -1,0 +1,573 @@
+{
+  "hamdi-eminonu": {
+    "remoteUrl": "https://istanbultourstudio.s3.amazonaws.com/uploads/sight/cover_photo/33/Hamdi_Eminonu.png",
+    "sourcePageUrl": "https://istanbultourstudio.com/things-to-do/hamdi-kebap",
+    "pageTitle": "Hamdi Restaurant Eminönü terrace",
+    "method": "google_image_search_reviewed",
+    "exact": true
+  },
+  "emirgan-sutis": {
+    "remoteUrl": "https://www.parkzirve.com.tr/style/images/balo/sutis-1.jpg",
+    "sourcePageUrl": "https://www.parkzirve.com.tr/emirgan-sutis.php",
+    "pageTitle": "Emirgan Sütiş dining room",
+    "method": "google_image_search_reviewed",
+    "exact": true
+  },
+  "dilruba": {
+    "remoteUrl": "https://cdn-europe.dugunbuketi.com/media/46826/conversions/dilruba-restaurant-davet-alanlari-uskudar-istanbul9-lg.jpg",
+    "sourcePageUrl": "https://dugunbuketi.com/fiyati/dilruba-restaurant-davet-uskudar-istanbul",
+    "pageTitle": "Dilruba Restaurant Bosphorus terrace",
+    "method": "google_image_search_reviewed",
+    "exact": true
+  },
+  "tersane-karakoy": {
+    "remoteUrl": "https://lirp.cdn-website.com/64e5847a/dms3rep/multi/opt/TersaneRes00030-1920w.jpg",
+    "sourcePageUrl": "https://www.tershanerestaurant.com/",
+    "pageTitle": "Tershane Restaurant Karaköy interior",
+    "method": "official_gallery_reviewed",
+    "exact": true
+  },
+  "privato-cafe": {
+    "remoteUrl": "https://cdn.yemek.com/uploads/2014/08/privato-kafe-girisi.jpg",
+    "sourcePageUrl": "https://yemek.com/privato-cafe-istanbul/",
+    "pageTitle": "Privato Cafe Galata entrance",
+    "method": "google_image_search_reviewed",
+    "exact": true
+  },
+  "haci-abdullah": {
+    "remoteUrl": "https://www.tasteatlas.com/images/restaurants/648a9b2f62b740bf9b39ef0fa13faa34.jpg?mw=1300",
+    "sourcePageUrl": "https://www.tasteatlas.com/hac-abdullah-lokantas",
+    "pageTitle": "Hacı Abdullah Lokantası dining room",
+    "method": "google_image_search_reviewed",
+    "exact": true
+  },
+  "aheste": {
+    "remoteUrl": "https://www.theworlds50best.com/discovery/filestore/jpg/Aheste-Istanbul-Turkey-02.jpg",
+    "sourcePageUrl": "https://www.theworlds50best.com/discovery/Establishments/T%C3%BCrkiye/Istanbul/Aheste.html",
+    "pageTitle": "Aheste Istanbul interior",
+    "method": "google_image_search_reviewed",
+    "exact": true
+  },
+  "mangerie-bebek": {
+    "remoteUrl": "https://media.timeout.com/images/103375864/750/422/image.jpg",
+    "sourcePageUrl": "https://www.timeout.com/istanbul/restaurants/mangerie",
+    "pageTitle": "Mangerie Bebek terrace",
+    "method": "google_image_search_reviewed",
+    "exact": true
+  },
+  "lacivert": {
+    "remoteUrl": "https://www.lacivertrestaurant.com/static/uploads/2025/11/bg-14.webp",
+    "sourcePageUrl": "https://www.lacivertrestaurant.com/en/private-dining",
+    "pageTitle": "Lacivert Restaurant private dining room",
+    "method": "official_gallery_reviewed",
+    "exact": true
+  },
+  "cibalikapi-moda": {
+    "remoteUrl": "https://www.meyhankoli.com/img/places/source_seo/cibalikapi-balikcisi-moda-3.jpg",
+    "sourcePageUrl": "https://www.meyhankoli.com/restoran/istanbul-kadikoy-cibalikapi-balikcisi-442-442",
+    "pageTitle": "Cibalikapı Balıkçısı Moda interior",
+    "method": "google_image_search_reviewed",
+    "exact": true
+  },
+  "tavaci-recep-usta-bostanci": {
+    "remoteUrl": "https://axwwgrkdco.cloudimg.io/v7/__gmpics__/2490fe1c89654c99a71df8f8ee8926cd",
+    "sourcePageUrl": "https://guide.michelin.com/tr/tr/istanbul-province/istanbul/restaurant/tavac%C4%B1-recep-usta-bostanc%C4%B1",
+    "pageTitle": "Tavacı Recep Usta Bostancı exterior",
+    "method": "google_image_search_reviewed",
+    "exact": true
+  },
+  "cafe-086-petra-gayrettepe": {
+    "remoteUrl": "https://www.petracoffee.com/cdn/shop/articles/Petra-Istanbul-_DSC9487-740x492.jpg?v=1687530748&width=1200",
+    "sourcePageUrl": "https://www.petracoffee.com/blogs/jurnal/16756377-petra-coffee-sprudgeda",
+    "pageTitle": "Petra Roasting Co. Gayrettepe interior",
+    "method": "official_gallery_reviewed",
+    "exact": true
+  },
+  "cafe-087-kronotrop-cihangir": {
+    "remoteUrl": "https://sprudge.com/wp-content/uploads/2014/06/Kronotrop-2793.jpg",
+    "sourcePageUrl": "https://sprudge.com/kronotrop-modern-coffee-bar-istanbul-57571.html",
+    "pageTitle": "Kronotrop Cihangir coffee bar",
+    "method": "google_image_search_reviewed",
+    "exact": true
+  },
+  "cafe-088-montag-kadikoy": {
+    "remoteUrl": "https://images.themagger.net/wp-content/uploads/2015/04/montag-1-1200x900.jpg",
+    "sourcePageUrl": "https://www.themagger.com/montag-coffee-roasters-kadikoy/",
+    "pageTitle": "Montag Coffee Roasters Kadıköy interior",
+    "method": "google_image_search_reviewed",
+    "exact": true
+  },
+  "cafe-098-vakko-latelier-akmerkez": {
+    "remoteUrl": "https://img.restaurantguru.com/w550/h367/r452-Vakko-Bistrot-interior-2022-10.jpg",
+    "sourcePageUrl": "https://restaurantguru.com/Vakko-Bistrot-AKMERKEZ-Istanbul/menu",
+    "pageTitle": "Vakko Patisserie Akmerkez interior",
+    "method": "google_image_search_reviewed",
+    "exact": true
+  },
+  "yanyali-fehmi": {
+    "remoteUrl": "https://yanyalifehmi.com/tr/images/Yanyali_K/IMG_1000.jpg",
+    "sourcePageUrl": "https://yanyalifehmi.com/tr/fotograflar",
+    "pageTitle": "Yanyalı Fehmi Lokantası resmi 갤러리",
+    "method": "official_gallery_reviewed"
+  },
+  "tarihi-sultanahmet-koftecisi": {
+    "remoteUrl": "https://istanbulclues.com/wp-content/uploads/2018/11/Sultanahmet-Koftecisi-Restaurant.jpg",
+    "sourcePageUrl": "https://istanbulclues.com/best-restaurants-sultanahmet-old-city/",
+    "pageTitle": "Sultanahmet Köftecisi Selim Usta",
+    "method": "google_image_search_reviewed",
+    "exact": true
+  },
+  "galata-kitchen": {
+    "remoteUrl": "https://images.happycow.net/venues/1024/70/80/hcmp70805_837446.jpeg",
+    "sourcePageUrl": "https://www.happycow.net/reviews/galata-kitchen-istanbul-70805",
+    "pageTitle": "Galata Kitchen Exterior and Interior View",
+    "method": "google_image_search_reviewed"
+  },
+  "namli-gurme-karakoy": {
+    "remoteUrl": "https://www.meyhankoli.com/img/places/source_seo/namli-gurme-5.jpg",
+    "sourcePageUrl": "https://www.meyhankoli.com/restoran/istanbul-beyoglu-namli-gurme-1026",
+    "pageTitle": "Namlı Gurme Outdoor Dining Scene",
+    "method": "google_image_search_reviewed",
+    "exact": true
+  },
+  "ciya-sofrasi": {
+    "remoteUrl": "https://www.cornucopia.net/library/guide/ciya.jpg",
+    "sourcePageUrl": "https://www.cornucopia.net/guide/listings/restaurants/ciya/",
+    "pageTitle": "Çiya Sofrası Restaurant Exterior",
+    "method": "google_image_search_reviewed",
+    "exact": true
+  },
+  "develi-samatya": {
+    "remoteUrl": "https://newyearistanbul.net/wp-content/uploads/2017/02/Develi-Restaurant-Samatya-Istanbul-10.jpg",
+    "sourcePageUrl": "https://newyearistanbul.net/party/develi-restaurant-samatya-istanbul/",
+    "pageTitle": "Develi Restaurant Samatya Terrace",
+    "method": "google_image_search_reviewed",
+    "exact": true
+  },
+  "beyti": {
+    "remoteUrl": "https://media.timeout.com/images/105552225/1372/772/image.jpg",
+    "sourcePageUrl": "https://www.timeout.com/istanbul/restaurants/beyti",
+    "pageTitle": "Beyti Restaurant Entrance",
+    "method": "google_image_search_reviewed"
+  },
+  "pandeli": {
+    "remoteUrl": "https://img.restaurantguru.com/reviews/small/w166/1173051.jpg",
+    "sourcePageUrl": "https://restaurantguru.com/Pandeli-Istanbul",
+    "pageTitle": "Pandeli Restaurant Entrance",
+    "method": "google_image_search_reviewed"
+  },
+  "hunkar-nisantasi": {
+    "remoteUrl": "https://mekan.com/files/images/blog-post-image/file/raw/0/6675_7d30.jpg?r=1",
+    "sourcePageUrl": "https://m.mekan.com/blog/her-ogun-nisantasi",
+    "pageTitle": "Hünkar Restaurant Entrance in Nişantaşı",
+    "method": "google_image_search_reviewed"
+  },
+  "matbah": {
+    "remoteUrl": "https://www.turkiyeroutes.com/images/urunler/isletme-12472-matbah-restaurant-81098.jpg",
+    "sourcePageUrl": "https://www.turkiyeroutes.com/restaurant/matbah-restaurant",
+    "pageTitle": "Matbah Restaurant Courtyard Dining",
+    "method": "google_image_search_reviewed"
+  },
+  "deraliye": {
+    "remoteUrl": "https://images.trvl-media.com/lodging/9000000/8050000/8046700/8046669/9bdcd8ea.jpg?impolicy=resizecrop&ra=fill&rh=575&rw=575",
+    "sourcePageUrl": "https://za.hotels.com/ho455624/sura-hagia-sophia-hotel-istanbul-turkey/",
+    "pageTitle": "Deraliye Ottoman Cuisine Entrance",
+    "method": "google_image_search_reviewed"
+  },
+  "meshur-filibe-koftecisi": {
+    "remoteUrl": "https://img.odatv.com/rcman/Cw820h922q95gm/storage/files/images/2024/03/29/dfxvcvcf-t4ip.jpg",
+    "sourcePageUrl": "https://www.odatv.com/guncel/kurum-ve-imamoglunun-polemigi-akillara-getirdi-odatv-yazari-istanbulun-en-iyilerini-derledi-siyasileri-goturmek-istedigim-kofteciler-120036246",
+    "pageTitle": "Meşhur Filibe Köftecisi Storefront",
+    "method": "google_image_search_reviewed"
+  },
+  "bitlisli": {
+    "remoteUrl": "https://bitlislikebap.com/images/sirkeci/g3.jpg",
+    "sourcePageUrl": "https://bitlislikebap.com/iletisim.html",
+    "pageTitle": "Bitlisli Kebab Restaurant Front",
+    "method": "google_image_search_reviewed"
+  },
+  "gallada": {
+    "remoteUrl": "https://axwwgrkdco.cloudimg.io/v7/__gmpics3__/505e29b4e649476eb0b8db513d026c7f.jpeg?width=1000",
+    "sourcePageUrl": "https://guide.michelin.com/gb/en/istanbul-province/istanbul/restaurant/gallada",
+    "pageTitle": "Gallada Rooftop Dining Experience",
+    "method": "google_image_search_reviewed"
+  },
+  "balikci-sabahattin": {
+    "remoteUrl": "https://2.bp.blogspot.com/-LrWfyhH_2ss/TpWChp7NhyI/AAAAAAABA0E/tNs5CIeCYbg/s1600/066.JPG",
+    "sourcePageUrl": "https://turkiyevedunyadanlezzetler.wordpress.com/2011/10/12/balikci-sabahattin-2/",
+    "pageTitle": "Balıkçı Sabahattin Restaurant Entrance",
+    "method": "google_image_search_reviewed"
+  },
+  "giritli": {
+    "remoteUrl": "https://www.meyhankoli.com/img/places/source_seo/giritli-restaurant-5.jpg",
+    "sourcePageUrl": "https://www.meyhankoli.com/restoran/istanbul-fatih-giritli-restaurant-1006",
+    "pageTitle": "Giritli Restaurant Evening Dining",
+    "method": "google_image_search_reviewed"
+  },
+  "avlu-four-seasons-sultanahmet": {
+    "remoteUrl": "https://www.gastrofill.com/cropImages/1280x720/uploads/haberler/2025/12/4235-avlu-restoran-four-seasons-sultanahmette-anadolunun-essiz-lezzetlerini-surdurulebilirlik-ilkesiyle-sunuyor.jpg",
+    "sourcePageUrl": "https://www.gastrofill.com/gastromekan/avlu-restoran-four-seasons-sultanahmette-anadolunun-essiz-lezzetlerini-surdurulebilirlik-ilkesiyle-sunuyor/112264",
+    "pageTitle": "Avlu Restaurant Courtyard Dining",
+    "method": "google_image_search_reviewed"
+  },
+  "ali-ocakbasi-karakoy": {
+    "remoteUrl": "https://www.meyhankoli.com/img/places/source_seo/ali-ocakbasi-karakoy-3.jpg",
+    "sourcePageUrl": "https://www.meyhankoli.com/restoran/istanbul-beyoglu-ali-ocakbasi-karakoy-54",
+    "pageTitle": "Ali Ocakbaşı Karaköy Interior",
+    "method": "google_image_search_reviewed"
+  },
+  "karakoy-gumruk": {
+    "remoteUrl": "https://tcdn.mindtrip.ai/images/359362/i1oujz.png",
+    "sourcePageUrl": "https://mindtrip.ai/restaurant/istanbul-turkiye/karakoy-gumruk/re-VnNv3Lwr",
+    "pageTitle": "Karaköy Gümrük Café Exterior",
+    "method": "google_image_search_reviewed"
+  },
+  "guney-restaurant": {
+    "remoteUrl": "https://media1.thrillophilia.com/filestore/f61gz8zg0ntqw0z9l1daf7f0qhz8_100i0n000000ec9c47371.png",
+    "sourcePageUrl": "https://www.galata-tower.com/nearby-restaurants",
+    "pageTitle": "Guney Restaurant Al Fresco Dining",
+    "method": "google_image_search_reviewed"
+  },
+  "ficcin": {
+    "remoteUrl": "https://4.bp.blogspot.com/-0ZRDx53C1Ww/VEt5U4uLvaI/AAAAAAAAG_s/3i-689itOo8/s1600/DSC05887.JPG",
+    "sourcePageUrl": "https://labobouffe.blogspot.com/2014/10/fccn-istanbul.html",
+    "pageTitle": "Dinner at Fıccın in Istanbul",
+    "method": "google_image_search_reviewed"
+  },
+  "pera-antakya": {
+    "remoteUrl": "https://www.thewestist.com/upload/restaurant-4-763.jpg",
+    "sourcePageUrl": "https://www.thewestist.com/restaurant/",
+    "pageTitle": "Pera Antakya Restaurant Interior",
+    "method": "google_image_search_reviewed"
+  },
+  "zubeyir-ocakbasi": {
+    "remoteUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/a9/05/bc/photo0jpg.jpg?h=1200&s=1&w=1200",
+    "sourcePageUrl": "https://www.tripadvisor.com/Restaurant_Review-g293974-d1192712-Reviews-Zubeyir_Ocakbasi-Istanbul.html",
+    "pageTitle": "Zubeyir Ocakbaşı Restaurant Exterior",
+    "method": "google_image_search_reviewed"
+  },
+  "cuma-cukurcuma": {
+    "remoteUrl": "https://i.pinimg.com/736x/98/2d/77/982d775d1ec759b1d3f4d89a62a54130.jpg",
+    "sourcePageUrl": "https://tr.pinterest.com/pin/cafe-cuma-ukurcuma--412712753326217030/",
+    "pageTitle": "Cafe Cuma Outdoor Courtyard",
+    "method": "google_image_search_reviewed"
+  },
+  "lades-menemen": {
+    "remoteUrl": "https://production-data.worldofmouth.app/images/7553df9a-e187-4462-9deb-ca1258cf8077-1080x1080.jpg",
+    "sourcePageUrl": "https://www.worldofmouth.app/articles/best-casual-restaurants-in-istanbul",
+    "pageTitle": "Lades Menemen Restaurant Front",
+    "method": "google_image_search_reviewed"
+  },
+  "tatbak": {
+    "remoteUrl": "https://thevendry.com/cdn-cgi/image/width%3D3840%2Cquality%3D75%2Cfit%3Dcontain%2Cmetadata%3Dnone%2Cformat%3Dauto/https%3A%2F%2Fs3.us-east-1.amazonaws.com%2Fuploads.thevendry.co%2F24989%2F1695295588703_unnamed---2023-09-21T192613.jpg",
+    "sourcePageUrl": "https://thevendry.com/venue/223230/tatbak-sisli-turkiye",
+    "pageTitle": "Tatbak Restaurant Interior",
+    "method": "google_image_search_reviewed"
+  },
+  "kruvasan": {
+    "remoteUrl": "https://www.artfulliving.com.tr/image_data/content_pane_image/a992953f24a6178718b491ab68b24774.jpg",
+    "sourcePageUrl": "https://www.artfulliving.com.tr/kultur-ve-yasam/cikolatali-bademli-ruya-kruvasan-istanbul-i-4840",
+    "pageTitle": "Kruvasan Café Outdoor Seating",
+    "method": "google_image_search_reviewed"
+  },
+  "lokanta-feriye": {
+    "remoteUrl": "https://www.universaltravel-tr.com/assets/Feriye1.jpg",
+    "sourcePageUrl": "https://www.universaltravel-tr.com/guide/venues/feriye-restaurant/",
+    "pageTitle": "Feriye Restaurant at Night",
+    "method": "google_image_search_reviewed"
+  },
+  "peninsula-lobby": {
+    "remoteUrl": "https://media.timeout.com/images/106080999/750/422/image.jpg",
+    "sourcePageUrl": "https://www.timeout.com/istanbul/hotels/the-peninsula-istanbul",
+    "pageTitle": "The Peninsula Istanbul Lobby dining",
+    "method": "google_image_search_reviewed"
+  },
+  "lokma-rumelihisari": {
+    "remoteUrl": "https://m.mekan.com/files/images/business/image/1200x627/0/941_8ead.jpg?r=3",
+    "sourcePageUrl": "https://m.mekan.com/mekan/lokma",
+    "pageTitle": "Lokma Riverside Café",
+    "method": "google_image_search_reviewed"
+  },
+  "sur-balik-arnavutkoy": {
+    "remoteUrl": "https://i.tmgrup.com.tr/gq/original/17-01/18/sur-balik.png",
+    "sourcePageUrl": "https://gq.com.tr/yeme-icme/mahalle-turu-arnavutkoy",
+    "pageTitle": "Sur Balık Arnavutköy waterfront restaurant",
+    "method": "google_image_search_reviewed"
+  },
+  "kiyi-tarabya": {
+    "remoteUrl": "https://www.geccemekan.com/files/uploads/news/default/20230729-tarabyadan-sehre-yayilan-bir-efsane-kiyi-balik-623931-d3b9e127d493797cc9bb.jpg",
+    "sourcePageUrl": "https://www.geccemekan.com/haber/tarabyadan-sehre-yayilan-bir-efsane-kiyi-balik-226.html",
+    "pageTitle": "Kıyı Balık Terrace Overlooking Tarabya Marina",
+    "method": "google_image_search_reviewed"
+  },
+  "bebek-balikci": {
+    "remoteUrl": "https://www.meyhankoli.com/img/places/source_seo/bebek-balikci-4.jpg",
+    "sourcePageUrl": "https://www.meyhankoli.com/restoran/bebek-balikci-94",
+    "pageTitle": "Waterfront Dining at Bebek Balıkçı",
+    "method": "google_image_search_reviewed"
+  },
+  "aqua-four-seasons-bosphorus": {
+    "remoteUrl": "https://planetescape.pl/app/uploads/2025/01/Four-Seasons-Bosphorus-Aqua.jpg",
+    "sourcePageUrl": "https://planetescape.pl/en/luxury/hotel/turcja-stambul-four-seasons-bosphorus/",
+    "pageTitle": "Four Seasons Bosphorus Aqua Terrace",
+    "method": "google_image_search_reviewed"
+  },
+  "ciya-kebap": {
+    "remoteUrl": "https://galatagelato.wordpress.com/wp-content/uploads/2013/11/image005.jpg",
+    "sourcePageUrl": "https://galatagelato.wordpress.com/2013/11/18/ciya-kadikoy-istanbul/",
+    "pageTitle": "Çiya Kebap in Kadıköy",
+    "method": "google_image_search_reviewed"
+  },
+  "naga-putrika": {
+    "remoteUrl": "https://nagaputrika.com.tr/wp-content/uploads/naga-putrika-mekan-girisi.jpg",
+    "sourcePageUrl": "https://nagaputrika.com.tr/en/",
+    "pageTitle": "Garden Breakfast at Naga Putrika",
+    "method": "google_image_search_reviewed"
+  },
+  "kosebasi-levent": {
+    "remoteUrl": "https://www.kosebasi.com/storage/posts/677f7fbac2af0.jpg",
+    "sourcePageUrl": "https://www.kosebasi.com/sube/levent",
+    "pageTitle": "Köşebaşı Levent Outdoor Dining",
+    "method": "google_image_search_reviewed"
+  },
+  "kasibeyaz-florya": {
+    "remoteUrl": "https://kasibeyazgroup.com/assets/img/Kasibeyaz%20Florya%20exterior%20and%20garden.webp",
+    "sourcePageUrl": "https://kasibeyazgroup.com/branches.php",
+    "pageTitle": "Kasibeyaz Florya official branch exterior",
+    "method": "official_gallery_reviewed"
+  },
+  "sazeli-florya": {
+    "remoteUrl": "https://cdn2.enuygun.com/media/lib/825x620/uploads/image/florya-sazeli-65320.webp",
+    "sourcePageUrl": "https://www.enuygun.com/bilgi/istanbul-iftar-restoranlari/",
+    "pageTitle": "Florya Şazeli Restaurant Entrance",
+    "method": "google_image_search_reviewed"
+  },
+  "basta-kadikoy": {
+    "remoteUrl": "https://culinarybackstreets.s3.us-east-2.amazonaws.com/culinarybackstreets/uploads/cb_istanbul_basta_jh_final3.jpg",
+    "sourcePageUrl": "https://culinarybackstreets.com/stories/istanbul/basta-street-food-bar",
+    "pageTitle": "Basta! Street Food Bar Exterior",
+    "method": "google_image_search_reviewed"
+  },
+  "cesmidil-beylerbeyi": {
+    "remoteUrl": "https://i.pinimg.com/736x/ae/ae/a9/aeaea975b611cbcf3ec490737e3446e8--istanbul-on-instagram.jpg",
+    "sourcePageUrl": "https://www.pinterest.com/pin/848506386014815976/",
+    "pageTitle": "Bosphorus Breakfast at Çeşmidil Restaurant",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-062-karakoy-gulluoglu": {
+    "remoteUrl": "https://addmimarlik.com/wp-content/uploads/2023/12/karakoy-gulluoglu-11-scaled.jpg",
+    "sourcePageUrl": "https://addmimarlik.com/portfolio/karakoy-gulluoglu/",
+    "pageTitle": "Karaköy Güllüoğlu Outdoor Courtyard",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-063-baylan-kadikoy": {
+    "remoteUrl": "https://images.themagger.net/wp-content/uploads/2012/10/photo-10-600x433.jpg",
+    "sourcePageUrl": "https://www.themagger.com/bir-istanbul-klasigi-kadikoy-baylan/",
+    "pageTitle": "Baylan Kadıköy Pastanesi Entrance",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-064-sekerci-cafer-erol": {
+    "remoteUrl": "https://nelerimeshur.com/media/sekerci-cafer-erol-kadikoy/mekan-1.jpeg",
+    "sourcePageUrl": "https://nelerimeshur.com/istanbul/gezi-rehberi/ailecek-restoranlar",
+    "pageTitle": "Şekerci Cafer Erol Confectionery",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-065-vefa-bozacisi": {
+    "remoteUrl": "https://i.pinimg.com/originals/a1/f2/38/a1f2385668c50e392cff4d6e4781b246.jpg",
+    "sourcePageUrl": "https://tr.pinterest.com/pin/470485492292205698/",
+    "pageTitle": "Vefa Bozacısı in Istanbul",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-066-haci-bekir-eminonu": {
+    "remoteUrl": "https://mekanlar.com/img/img142/8e0debfad7ca0df6e980e2e31d81ceccc819fa95_plc_93d1af264340fce34a504d2e92efeacf.jpg",
+    "sourcePageUrl": "https://mekanlar.com/mekan/ali-muhiddin-haci-bekir-lokumlari-eminonu-merkez-subesi-hobyar",
+    "pageTitle": "Ali Muhiddin Hacı Bekir Lokum Shopfront",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-067-inci-pastanesi": {
+    "remoteUrl": "https://i0.wp.com/newloggers.com/wp-content/uploads/2023/05/Inci-Pastanesi-2.jpg?resize=640%2C472&ssl=1",
+    "sourcePageUrl": "https://newloggers.com/tag/inci-pastanesi/",
+    "pageTitle": "İnci Pastanesi Bakery Front",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-068-ali-usta-moda": {
+    "remoteUrl": "https://4.bp.blogspot.com/-YYVRJz-1Lk0/Va-qSXcVQlI/AAAAAAAAXI0/D5QWCnUdkNg/s1600/DSC_0594.JPG",
+    "sourcePageUrl": "https://hedofoodia.blogspot.com/2015/07/meshur-dondurmac-ali-usta-istamboul.html",
+    "pageTitle": "Ali Usta Ice Cream Parlor",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-069-saray-muhallebicisi": {
+    "remoteUrl": "https://www.tasteatlas.com/images/restaurants/507bf4b6e2bb4f4dbdcff68b16b6c479.jpg?mw=1300",
+    "sourcePageUrl": "https://www.tasteatlas.com/saraymuhallebicisi",
+    "pageTitle": "Saray Muhallebicisi Dessert Shop in Beyoğlu",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-070-ozkonak-muhallebicisi": {
+    "remoteUrl": "https://media-cdn.t24.com.tr/media/library/2021/12/1639771624758-whats-app-image-2021-12-17-at-11.00",
+    "sourcePageUrl": "https://t24.com.tr/yazarlar/mehmet-yalcin/lokantanin-olumu%2C33506",
+    "pageTitle": "Özkonak Lokantası Vitrini",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-071-savoy-pastanesi": {
+    "remoteUrl": "https://cdn.myikas.com/images/03c1c362-c455-4f99-87c0-97e037b787f6/d666eb5e-e7d7-4da7-90a6-9b32f197bd42/image_1080.webp",
+    "sourcePageUrl": "https://lezzetarayanlara.com/blog/beyoglu-kahvalti-mekanlari",
+    "pageTitle": "Savoy Pastanesi Holiday Display",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-072-divan-pastanesi-taksim": {
+    "remoteUrl": "https://istanbulclues.com/wp-content/uploads/2018/07/Divan-Pastanesi-Istanbul.jpg",
+    "sourcePageUrl": "https://istanbulclues.com/best-turkish-desserts-in-istanbul/",
+    "pageTitle": "Divan Pastanesi Interior",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-073-gezi-istanbul": {
+    "remoteUrl": "https://i.medyaradar.com/storage/files/images/2023/08/23/gezi-istanbul-taksim-UP2u.jpg",
+    "sourcePageUrl": "https://www.medyaradar.net/bir-istiklal-klasigi-daha-veda-etti-gezi-pastanesi-kapandi-haberi-2139579",
+    "pageTitle": "Gezi İstanbul Brasserie Farewell",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-074-patisserie-de-pera": {
+    "remoteUrl": "https://carmensluxurytravel.com/wp-content/uploads/2017/11/PatisseriedePera-2-770x578.jpeg",
+    "sourcePageUrl": "https://carmensluxurytravel.com/the-historic-pera-palace-hotel-jumeirah-istanbul-celebrating-125-years-of-excellenceluxury/",
+    "pageTitle": "Patisserie de Pera at Pera Palace Hotel Jumeirah",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-076-tarihi-sariyer-muhallebicisi": {
+    "remoteUrl": "https://img02.restaurantguru.com/cc46-Desserts-Tarihi-Sar-yer-Muhallebicisi-Ve-Borek-food.jpg",
+    "sourcePageUrl": "https://fr.restaurantguru.com/Tarihi-Sariyer-Muhallebicisi-Istanbul",
+    "pageTitle": "Turkish Desserts at Tarihi Sarıyer Muhallebicisi",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-077-tarihi-cinaralti": {
+    "remoteUrl": "https://www.istanbulugeziyorum.com/en/i/img/cengelkoy_cinaralti.jpg",
+    "sourcePageUrl": "https://www.istanbulugeziyorum.com/en/cengelkoy-historical-cinaralti-family-tea-garden-24.html",
+    "pageTitle": "Çengelköy’s Historic Çınaraltı Tea Garden",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-078-moda-cay-bahcesi": {
+    "remoteUrl": "https://media.spottedbylocals.com/spot/img_2063.jpg",
+    "sourcePageUrl": "https://www.spottedbylocals.com/istanbul/moda-tea-gardens/",
+    "pageTitle": "Moda Tea Gardens overlooking the Bosphorus",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-079-bebek-kahvesi": {
+    "remoteUrl": "https://image.milimaj.com/i/milliyet/75/770x0/657cb635c03d08a353c4efd2.jpg",
+    "sourcePageUrl": "https://www.milliyet.com.tr/pazar/evvel-zaman-icinde-bebek-sahilinde-7050056",
+    "pageTitle": "Bebek Kahve by the Bosphorus",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-081-viyana-kahvesi-galata": {
+    "remoteUrl": "https://www.leta.com.tr/wp-content/uploads/2022/08/viyana-kahvesi-galata-3.jpg",
+    "sourcePageUrl": "https://www.leta.com.tr/proje/viyana-kahvesi/",
+    "pageTitle": "Viyana Kahvesi Galata Café",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-082-rumeli-kale-cafe": {
+    "remoteUrl": "https://kalecafe.com/wp-content/uploads/2019/05/kalecafe-hakkinda-2.jpg",
+    "sourcePageUrl": "https://kalecafe.com/about-us/",
+    "pageTitle": "Rumeli Kale Cafe & Restaurant",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-083-minoa-village": {
+    "remoteUrl": "https://cdn.restoranim.net/minoa-village-yorum-foto-672a6156.jpg",
+    "sourcePageUrl": "https://restoranim.net/istanbul/besiktas/restoran/minoa-village",
+    "pageTitle": "Minoa Village Restaurant Interior",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-084-minoa-pera": {
+    "remoteUrl": "https://cdn.prod.rexby.com/image/ceeabab9c1554d42bc138365de55d4d3",
+    "sourcePageUrl": "https://www.rexby.com/Scoprireistanbul/ttd/best-of-cafe-and-pastry-1",
+    "pageTitle": "Minoa Pera Café Entrance",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-085-turk-alman-kitabevi": {
+    "remoteUrl": "https://istiklalcaddesi.istanbul/wp-content/uploads/2017/08/T%C3%BCrk-Alman-Kitabevi-Cafe-770x470.jpg",
+    "sourcePageUrl": "https://istiklalcaddesi.istanbul/turk-alman-kitabevi-cafe/",
+    "pageTitle": "Türk Alman Kitabevi & Cafe Interior",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-089-walters-kadikoy": {
+    "remoteUrl": "https://morrehber.com/wp-content/uploads/2021/05/walters-coffee-moda-5.jpeg",
+    "sourcePageUrl": "https://morrehber.com/mekanlar/walters-coffee-roastery-moda-kadikoy-istanbul/",
+    "pageTitle": "Walter’s Coffee Roastery on a Rainy Moda Street",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-090-story-coffee-yeldegirmeni": {
+    "remoteUrl": "https://morrehber.com/wp-content/uploads/2021/05/story-coffee-moda-3.jpeg",
+    "sourcePageUrl": "https://morrehber.com/mekanlar/story-coffee-roasters-moda-kadikoy-istanbul/",
+    "pageTitle": "Story Coffee Roasters Outdoor Seating",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-091-dem-moda": {
+    "remoteUrl": "https://www.thedatepoint.com/_next/image?q=75&url=https%3A%2F%2Flh3.googleusercontent.com%2Fp%2FAF1QipMqmNn-N0GQELlss-cHYyONazRytA1sGLvEUG9O%3Dw800-h600-p-k-no&w=1920",
+    "sourcePageUrl": "https://www.thedatepoint.com/mekan/dem-moda",
+    "pageTitle": "Dem Moda Cafe Exterior",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-092-mandabatmaz": {
+    "remoteUrl": "https://www.grandsirkeci.com/_next/image?q=100&url=https%3A%2F%2Fwww.grandsirkeci.com%2Fuploads%2Fblog%2Fgrand-sirkeci-blog-767-17-01-2022.jpg&w=2048",
+    "sourcePageUrl": "https://www.grandsirkeci.com/de/articles/places-to-enjoy-turkish-coffee-in-istanbul",
+    "pageTitle": "Mandabatmaz Coffee Shop Entrance",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-093-fazil-bey": {
+    "remoteUrl": "https://image.hurimg.com/i/hurriyet/90/0x0/5c4afbe4c03c0e1c408553d7.jpg",
+    "sourcePageUrl": "https://www.hurriyet.com.tr/galeri-turk-kahvesinin-en-iyi-10-adresi-41094626",
+    "pageTitle": "Fazıl Bey Café in Kadıköy",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-094-velvet-cafe-balat": {
+    "remoteUrl": "https://static.wixstatic.com/media/971500_4cf0223486404818a7e5b017f837216f~mv2.webp/v1/fill/w_980%2Ch_551%2Cal_c%2Cq_85%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/971500_4cf0223486404818a7e5b017f837216f~mv2.webp",
+    "sourcePageUrl": "https://www.closerlives.com/blog/post/balat-istanbul-colorful-streets-and-cafe-culture",
+    "pageTitle": "Velvet Cafe Moment in Balat",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-095-bblok-bakery": {
+    "remoteUrl": "https://media.timeout.com/images/103545637/750/422/image.jpg",
+    "sourcePageUrl": "https://www.timeout.com/istanbul/tr/restoranlar/b-blok-bakery",
+    "pageTitle": "B.BLOK Bakery Storefront",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-096-brekkie-caddebostan": {
+    "remoteUrl": "https://www.lokantalarim.net/wp-content/uploads/2020/02/IMG_5950.jpg",
+    "sourcePageUrl": "https://www.lokantalarim.net/lokantalarim/brekkie-breakfast-club/",
+    "pageTitle": "Brekkie Breakfast Club in Kadıköy",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-097-mendels-akaretler": {
+    "remoteUrl": "https://universitev.com/front/companies_media/istanbul-besiktas-mendels-chocolatier/881601659953829/20220808131709-881601659953829-media-1920x1413.webp",
+    "sourcePageUrl": "https://universitev.com/mekanlar/istanbul-besiktas-mendels-chocolatier",
+    "pageTitle": "Mendel's Chocolatier Beşiktaş and Akaretler storefront",
+    "method": "google_image_search_reviewed"
+  },
+  "rumelihisari-iskele": {
+    "remoteUrl": "https://www.restaurants.com.tr/assets/uploads/restaurants/main_68b5794ae5ddb_1756723530.jpg",
+    "sourcePageUrl": "https://www.restaurants.com.tr/restoran/rumelihisar%C4%B1-iskele-restaurant-156",
+    "pageTitle": "Rumelihisarı İskele Restaurant at Night",
+    "method": "google_image_search_reviewed"
+  },
+  "house-cafe-ortakoy": {
+    "remoteUrl": "https://www.meyhankoli.com/img/cropped/the-house-cafe-ortakoy-552.jpg",
+    "sourcePageUrl": "https://www.meyhankoli.com/restoran/the-house-cafe-ortakoy-552",
+    "pageTitle": "The House Cafe Ortaköy Terrace",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-080-house-cafe-ortakoy": {
+    "remoteUrl": "https://i.pinimg.com/originals/57/f1/33/57f13377fea2f78784e36200ef564478.jpg",
+    "sourcePageUrl": "https://www.pinterest.com/pin/the-house-cafe-ortaky-stanbul--302374562458628475/",
+    "pageTitle": "The House Café at Ortaköy Waterfront",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-099-beltur-fethi-pasa": {
+    "remoteUrl": "https://gezilecekyerler.com/wp-content/uploads/2017/04/Fethipa%C5%9Fa-Korusunda-dinleme.jpg",
+    "sourcePageUrl": "https://gezilecekyerler.com/fethi-pasa-korusu/",
+    "pageTitle": "Café Terrace at Fethi Paşa Korusu",
+    "method": "google_image_search_reviewed"
+  },
+  "cafe-100-beltur-hidiv-kasri": {
+    "remoteUrl": "https://gezentianne.com/wp-content/uploads/2017/11/hidiv_kasri_nerede_nasil_gidilir_kavalti_giris-ucreti_4.jpg",
+    "sourcePageUrl": "https://gezentianne.com/hidiv-kasri-nerede-nasil-gidilir-kahvalti-guncel-giris-ucreti/",
+    "pageTitle": "Hidiv Kasrı Garden Café",
+    "method": "google_image_search_reviewed"
+  }
+}

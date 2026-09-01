@@ -83,6 +83,10 @@ test("Airbnb research distinguishes twelve exact totals from three unavailable l
   for (const item of airbnbSearch.options) {
     assert.match(item.url, new RegExp(`/rooms/${item.listingId}`), item.name);
     assert.match(item.url, /check_in=2027-03-21/);
+    assert.match(item.image, /^\.\/assets\/card-images\/airbnb-.+\.webp$/, item.name);
+    assert.match(item.photoSource, new RegExp(`/rooms/${item.listingId}`), item.name);
+    assert.match(item.photoLabel, /Airbnb 숙소 대표 사진/, item.name);
+    assert.equal(item.photoCheckedAt, "2026-09-01", item.name);
   }
 });
 
@@ -238,6 +242,10 @@ test("dining catalog contains 60 restaurants and 40 cafes with review and map ev
     const thirdPartyInformation = /tripadvisor\.com|google\.com\/maps/i.test(item.officialUrl);
     assert.equal(item.informationLabel, thirdPartyInformation ? "정보 페이지" : "공식 정보", item.name);
     assert.equal(item.checkedAt, "2026-09-01", item.name);
+    assert.match(item.image, /^\.\/assets\/card-images\/.+\.webp$/, item.name);
+    assert.match(item.photoSource, /^https?:\/\//, item.name);
+    assert.match(item.photoLabel, /대표 사진/, item.name);
+    assert.equal(item.photoCheckedAt, "2026-09-01", item.name);
   }
   assert.ok(filterDining(diningSpots, { type: "cafe" }).every((item) => item.type === "cafe"));
   assert.ok(filterDining(diningSpots, { kidOnly: true }).every((item) => /높음/.test(item.kidFit)));

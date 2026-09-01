@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFile, readdir } from "node:fs/promises";
+import { readFile, readdir, stat } from "node:fs/promises";
 import { join } from "node:path";
 
 const here = new URL(".", import.meta.url).pathname;
@@ -83,6 +83,38 @@ test("mobile layout, reduced motion, and safe viewport rules exist", async () =>
   assert.match(css, /bottom-nav\.visible/);
   assert.match(css, /map-popup-close[^}]+width:\s*44px/);
   assert.match(css, /map-layer-controls button[^}]+min-height:\s*44px/);
+  assert.match(css, /\.card-photo[^}]+aspect-ratio:\s*16\s*\/\s*10/);
+  assert.match(css, /content-visibility:\s*auto/);
+  assert.match(css, /@media \(max-width: 460px\)[\s\S]+\.dining-grid[^}]+grid-template-columns:\s*1fr/);
+});
+
+test("all Airbnb and dining cards use unique local WebP photos with source evidence", async () => {
+  const [manifestText, airbnbCatalog, diningCatalog, app] = await Promise.all([
+    readFile(join(here, "research/card-images.json"), "utf8"),
+    readFile(join(here, "airbnb-catalog.mjs"), "utf8"),
+    readFile(join(here, "dining-catalog.mjs"), "utf8"),
+    readFile(join(here, "trip-app.mjs"), "utf8")
+  ]);
+  const manifest = JSON.parse(manifestText);
+  assert.equal(manifest.count, 115);
+  assert.equal(manifest.verifiedCount, 115);
+  assert.equal(manifest.missingCount, 0);
+  assert.deepEqual(manifest.duplicateHashes, []);
+  assert.equal(new Set(manifest.records.map((item) => item.sha256)).size, 115);
+  for (const item of manifest.records) {
+    assert.equal(item.status, "verified", item.id);
+    assert.match(item.localPath, /^\.\/assets\/card-images\/.+\.webp$/, item.id);
+    assert.match(item.sourcePageUrl, /^https?:\/\//, item.id);
+    assert.ok(item.bytes > 4_000, item.id);
+    assert.ok((await stat(join(here, item.localPath))).size > 4_000, item.id);
+  }
+  for (const catalog of [airbnbCatalog, diningCatalog]) {
+    assert.match(catalog, /"image": "\.\/assets\/card-images\//);
+    assert.match(catalog, /"photoSource": "https?:\/\//);
+  }
+  assert.match(app, /width="640" height="400" loading="lazy" decoding="async"/);
+  assert.match(app, /Airbnb 실제 숙소 사진/);
+  assert.match(app, /실제 장소 사진/);
 });
 
 test("assistant remains useful without a deployed remote endpoint", async () => {
