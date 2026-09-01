@@ -1,5 +1,8 @@
 import { lodgingOptions as generatedLodgingOptions, observedTripComQuotes as generatedHotelQuotes } from "./hotel-catalog.mjs";
 import { places as generatedPlaces } from "./place-catalog.mjs";
+export { airbnbSearch } from "./airbnb-catalog.mjs";
+export { diningSpots } from "./dining-catalog.mjs";
+export { budgetModel, decisionChecklist, financeCheckedAt, fxStrategy } from "./travel-finance.mjs";
 
 export const CHECKED_AT = "2026-09-01";
 
@@ -213,13 +216,13 @@ const legacyObservedTripComQuotes = [
       roomPlan: "Four Bedroom Residence with Bosphorus View, Room Only",
       unitLabel: "4베드룸 레지던스 1채, 1박",
       stayLabel: "가족 전체, 10박",
-      nightlyDisplay: "1회 관측 EUR 6,030",
-      projectedDisplay: "1회 관측 EUR 60,300",
-      nightlyKrwDisplay: "약 9,566,000원",
-      projectedKrwDisplay: "약 95,658,000원",
+      nightlyDisplay: "1회 관측 EUR 603",
+      projectedDisplay: "1회 관측 EUR 6,030",
+      nightlyKrwDisplay: "약 956,600원",
+      projectedKrwDisplay: "약 9,565,811원",
       currency: "EUR",
-      nightlyValue: 6030,
-      projectedValue: 60300,
+      nightlyValue: 603,
+      projectedValue: 6030,
       totalIncludesTaxes: null,
       refundable: null,
       breakfast: false,

@@ -341,7 +341,7 @@ function quoteObject(item) {
       provider: "호텔 공식 홈페이지",
       capturedAt: official.observedAt,
       referenceStay: official.basis || "2027-03-21부터 03-31, 10박",
-      occupancy: "성인 6명과 아이 3명, 객실 4실",
+      occupancy: id === "cvk" ? "성인 6명과 아이 3명, 4베드룸 레지던스 1채" : "성인 6명과 아이 3명, 객실 4실",
       roomPlan: officialRaw.room_plan || "공식 예약 검색",
       unitLabel: /cvk/i.test(item.name) ? "4베드룸 레지던스 1채, 1박 역산값" : "객실 1실 1박",
       stayLabel: /cvk/i.test(item.name) ? "가족 전체, 10박" : "객실 4실, 10박 단순 환산",

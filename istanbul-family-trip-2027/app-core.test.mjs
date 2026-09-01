@@ -1,10 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import {
   buildMapPoints,
+  calculateBudget,
   compareHotelPrices,
   distanceKm,
   daysBetween,
+  filterDining,
   filterPlaces,
   itineraryForPace,
   localAnswer,
@@ -17,7 +20,12 @@ import {
   tripStatus,
   weatherMode
 } from "./app-core.mjs";
-import { familyGroups, itinerary, lodgingOptions, mealSuggestions, observedTripComQuotes, places, sources, trip, tripComCostSummary } from "./trip-data.mjs";
+import { airbnbSearch, budgetModel, diningSpots, familyGroups, fxStrategy, itinerary, lodgingOptions, mealSuggestions, observedTripComQuotes, places, sources, trip, tripComCostSummary } from "./trip-data.mjs";
+
+async function readJsonl(relativePath) {
+  const content = await readFile(new URL(relativePath, import.meta.url), "utf8");
+  return content.split(/\r?\n/).filter(Boolean).map((line) => JSON.parse(line));
+}
 
 test("travel dates are internally consistent and total ten nights", () => {
   assert.equal(daysBetween(trip.arrivalDate, trip.checkoutDate), 10);
@@ -33,6 +41,81 @@ test("family totals match six adults and three children", () => {
   assert.equal(familyGroups.length, 2);
   assert.match(familyGroups[0].members, /성인 4, 어린이 1/);
   assert.match(familyGroups[1].members, /성인 2, 어린이 2/);
+});
+
+test("per-person budget separates shared land cost from origin flights", () => {
+  const icn = calculateBudget({ stayId: "airbnb_kabatas_exact", originId: "icn" });
+  const lax = calculateBudget({ stayId: "airbnb_kabatas_exact", originId: "lax" });
+  assert.equal(icn.sharedBeforeBuffer, 18200000);
+  assert.equal(icn.stay.familyTotal, 6026212);
+  assert.equal(icn.contingency, 2422621);
+  assert.equal(icn.landFamilyTotal, 26648833);
+  assert.equal(Math.round(icn.landPerPerson), 2960981);
+  assert.equal(Math.round(icn.perPersonTotal), 4710981);
+  assert.equal(Math.round(lax.perPersonTotal), 5110981);
+  assert.equal(icn.mixedOriginFamilyTotal, 43998833);
+  assert.equal(budgetModel.origins.reduce((sum, item) => sum + item.people, 0), 9);
+});
+
+test("Airbnb research distinguishes twelve exact totals from three unavailable listings", () => {
+  assert.equal(airbnbSearch.options.length, 15);
+  assert.equal(airbnbSearch.exactAvailableCount, 12);
+  assert.equal(airbnbSearch.unavailableCount, 3);
+  assert.equal(airbnbSearch.lowestExactTotal, 2469835);
+  assert.equal(airbnbSearch.highestExactTotal, 15897219);
+  assert.equal(airbnbSearch.options[0].listingId, "31092297");
+  const available = airbnbSearch.options.filter((item) => item.availability === "available_exact");
+  const unavailable = airbnbSearch.options.filter((item) => item.availability === "unavailable_exact");
+  assert.equal(available.length, 12);
+  assert.equal(unavailable.length, 3);
+  for (const item of available) {
+    assert.ok(item.capacity >= 9, item.name);
+    assert.ok(item.exactTotal > 0, item.name);
+    assert.equal(item.nightlyAverage, Math.round(item.exactTotal / 10), item.name);
+    assert.match(item.priceEvidence, /총액|가격 내역/, item.name);
+  }
+  for (const item of unavailable) {
+    assert.equal(item.exactTotal, null, item.name);
+    assert.match(item.price, /예약 불가/, item.name);
+    assert.match(item.cancellation, /취소 조건을 확정할 수 없/, item.name);
+    assert.match(item.cancellationLimit, /표시되지 않았|실제 결제 가능한 요금의 조건으로 볼 수 없/, item.name);
+  }
+  for (const item of airbnbSearch.options) {
+    assert.match(item.url, new RegExp(`/rooms/${item.listingId}`), item.name);
+    assert.match(item.url, /check_in=2027-03-21/);
+  }
+});
+
+test("Airbnb catalog and budget choices stay traceable to the observed JSONL", async () => {
+  const raw = await readJsonl("./research/airbnb-9guests.jsonl");
+  assert.equal(raw.length, airbnbSearch.options.length);
+  for (const source of raw) {
+    const generated = airbnbSearch.options.find((item) => item.listingId === source.listing_id);
+    assert.ok(generated, source.listing_id);
+    assert.equal(generated.availability, source.availability.status, source.listing_id);
+    assert.equal(generated.exactTotal, source.price.total, source.listing_id);
+    assert.equal(generated.url, source.date_query_url, source.listing_id);
+    assert.equal(generated.observedAt, source.observed_at, source.listing_id);
+  }
+  const observedBudgetStays = budgetModel.stayOptions.filter((item) => item.listingId);
+  assert.equal(observedBudgetStays.length, 3);
+  for (const stay of observedBudgetStays) {
+    const listing = airbnbSearch.options.find((item) => item.listingId === stay.listingId);
+    assert.equal(stay.familyTotal, listing.exactTotal, stay.id);
+    assert.equal(stay.sourceUrl, listing.url, stay.id);
+    assert.equal(stay.observedAt, listing.observedAt, stay.id);
+    assert.equal(stay.cancellation, listing.cancellation, stay.id);
+  }
+});
+
+test("currency strategy shows both nominal gain and inflation counterevidence", () => {
+  assert.equal(fxStrategy.rates.eurKrw, 1586.37);
+  assert.equal(fxStrategy.rates.eurTry, 55.9648);
+  assert.equal(Number(fxStrategy.rates.tryKrw.toFixed(4)), 28.3459);
+  assert.equal(fxStrategy.rates.nominalChangeSinceYearEndPct, -15.67);
+  assert.equal(fxStrategy.rates.combinedCostChangePct, 1.08);
+  assert.match(fxStrategy.diagnosis, /환율 기준일보다 물가 기준월이 한 달 이르/);
+  assert.match(fxStrategy.diagnosis, /가격 추정값이 아니라/);
 });
 
 test("recommended residence satisfies the one-home capacity constraint", () => {
@@ -78,6 +161,8 @@ test("Trip.com reference prices and official direct prices keep their evidence c
   assert.equal(cvk.nightlyValue, 603);
   assert.equal(cvk.projectedValue, 6030);
   assert.equal(cvk.status, "observed_once_not_reproduced");
+  assert.match(cvk.occupancy, /4베드룸 레지던스 1채/);
+  assert.doesNotMatch(cvk.occupancy, /객실 4실/);
   assert.equal(compareHotelPrices(observedTripComQuotes.find((quote) => quote.lodgingId === "cvk")).status, "official_unavailable");
   const swissotel = observedTripComQuotes.find((quote) => quote.lodgingId === "swissotel").officialDirect;
   assert.equal(swissotel.nightlyValue, 196);
@@ -132,6 +217,49 @@ test("place data has unique ids, safe links, and plausible local coordinates", (
     assert.ok(item.reviews?.liked.length >= 2, `${item.name} repeated positives`);
     assert.ok(item.reviews?.disliked.length >= 1, `${item.name} repeated negatives`);
     assert.ok(item.reviews?.sources.length >= 1, `${item.name} review sources`);
+  }
+});
+
+test("dining catalog contains 60 restaurants and 40 cafes with review and map evidence", () => {
+  assert.equal(diningSpots.length, 100);
+  assert.equal(diningSpots.filter((item) => item.type === "restaurant").length, 60);
+  assert.equal(diningSpots.filter((item) => item.type === "cafe").length, 40);
+  assert.equal(new Set(diningSpots.map((item) => item.id)).size, 100);
+  assert.equal(new Set(diningSpots.map((item) => item.name)).size, 100);
+  assert.deepEqual(diningSpots.map((item) => item.rank), Array.from({ length: 100 }, (_, index) => index + 1));
+  for (const item of diningSpots) {
+    assert.ok(item.lat > 40.8 && item.lat < 41.3, item.name);
+    assert.ok(item.lng > 28.7 && item.lng < 29.3, item.name);
+    assert.match(item.mapsUrl, /^https:\/\/www\.google\.com\/maps\//, item.name);
+    assert.match(item.officialUrl, /^https?:\/\//, item.name);
+    assert.match(item.reviewSourceUrl, /^https?:\/\//, item.name);
+    assert.ok(item.reviewPros.length >= 2, item.name);
+    assert.match(item.reservation, /9인|9명/, item.name);
+    const thirdPartyInformation = /tripadvisor\.com|google\.com\/maps/i.test(item.officialUrl);
+    assert.equal(item.informationLabel, thirdPartyInformation ? "정보 페이지" : "공식 정보", item.name);
+    assert.equal(item.checkedAt, "2026-09-01", item.name);
+  }
+  assert.ok(filterDining(diningSpots, { type: "cafe" }).every((item) => item.type === "cafe"));
+  assert.ok(filterDining(diningSpots, { kidOnly: true }).every((item) => /높음/.test(item.kidFit)));
+  const ninePersonSearchIds = new Set([
+    ...filterDining(diningSpots, { query: "9인" }),
+    ...filterDining(diningSpots, { query: "9명" })
+  ].map((item) => item.id));
+  assert.equal(ninePersonSearchIds.size, 100);
+});
+
+test("dining catalog keeps every source link and reservation instruction from JSONL", async () => {
+  const raw = [
+    ...await readJsonl("./research/dining-restaurants-60.jsonl"),
+    ...await readJsonl("./research/dining-cafes-40.jsonl")
+  ];
+  assert.equal(raw.length, diningSpots.length);
+  for (const source of raw) {
+    const generated = diningSpots.find((item) => item.id === source.id);
+    assert.ok(generated, source.id);
+    for (const key of ["rank", "name", "type", "lat", "lng", "officialUrl", "mapsUrl", "reviewSourceUrl", "reservation", "checkedAt"]) {
+      assert.deepEqual(generated[key], source[key], `${source.id}: ${key}`);
+    }
   }
 });
 
@@ -194,7 +322,11 @@ test("filters combine search, rain, area, category, and energy", () => {
 });
 
 test("local guide answers high-risk family questions without a server", () => {
-  assert.match(localAnswer("9명이 한 집에서 자려면?").answer, /CVK Park Bosphorus/);
+  assert.match(localAnswer("9명이 한 집에서 자려면?").answer, /12곳/);
+  assert.match(localAnswer("9명이 한 집에서 자려면?").answer, /6,026,212원/);
+  assert.match(localAnswer("1인당 예산은?").answer, /ICN 출발은 1인 약 471만원/);
+  assert.match(localAnswer("원화 강세면 리라를 미리 살까?").answer, /현지 물가/);
+  assert.match(localAnswer("아이랑 갈 카페는?").answer, /카페 40곳/);
   assert.match(localAnswer("비 오면 아이들과 어디 가?").answer, /Basilica Cistern/);
   assert.match(localAnswer("카파도키아도 갈까?").answer, /이번에는 빼는 게 맞/);
   assert.match(localAnswer("Trip.com 실경비는?").answer, /1실 1박 기준/);
@@ -204,6 +336,9 @@ test("local guide answers high-risk family questions without a server", () => {
   assert.match(localAnswer("Trip.com 실경비는?").answer, /차액(?:도|은) 계산하지 않았/);
   assert.ok(searchContext("호텔 4실 Trip.com").some((item) => item.kind === "비용"));
   assert.ok(searchContext("호텔 공식 1박").some((item) => item.title.includes("공식 직접 예약")));
+  assert.ok(searchContext("Airbnb 9인 10박").some((item) => item.kind === "Airbnb"));
+  assert.ok(searchContext("아이 카페").some((item) => item.kind === "카페"));
+  assert.ok(searchContext("1인 예산").some((item) => item.kind === "예산"));
   assert.ok(searchContext("Topkapı 화요일").length > 0);
   assert.ok(searchContext("Dolmabahçe 사진 금지").some((item) => item.title.includes("Dolmabahçe")));
   assert.equal(makeAssistantPayload("숙소 추천").question, "숙소 추천");

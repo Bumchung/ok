@@ -7,7 +7,7 @@ const here = new URL(".", import.meta.url).pathname;
 
 test("page exposes every major Sydney-parity feature surface", async () => {
   const html = await readFile(join(here, "index.html"), "utf8");
-  for (const id of ["today", "nearby", "family", "stay", "plan", "weather", "guide", "map", "ask", "tools"]) {
+  for (const id of ["today", "nearby", "family", "stay", "airbnb", "budget", "plan", "weather", "guide", "dining", "map", "ask", "tools"]) {
     assert.match(html, new RegExp(`id=["']${id}["']`), id);
   }
   assert.match(html, /download-csv/);
@@ -16,6 +16,58 @@ test("page exposes every major Sydney-parity feature surface", async () => {
   assert.match(html, /answer-template/);
   assert.match(html, /tripcom-cost-grid/);
   assert.match(html, /trip-mode-switch/);
+});
+
+test("decision list is compact and nearby appears below dining and the map", async () => {
+  const [html, app, css] = await Promise.all([
+    readFile(join(here, "index.html"), "utf8"),
+    readFile(join(here, "trip-app.mjs"), "utf8"),
+    readFile(join(here, "styles.css"), "utf8")
+  ]);
+  assert.ok(html.indexOf('id="dining"') < html.indexOf('id="map"'));
+  assert.ok(html.indexOf('id="map"') < html.indexOf('id="nearby"'));
+  assert.doesNotMatch(html, /decision-strip-list/);
+  assert.match(app, /decision-list/);
+  assert.match(css, /today-card\.compact/);
+  assert.match(css, /principle-grid\.compact/);
+});
+
+test("map layers expose an immediate accessible popup", async () => {
+  const [html, app, css] = await Promise.all([
+    readFile(join(here, "index.html"), "utf8"),
+    readFile(join(here, "trip-app.mjs"), "utf8"),
+    readFile(join(here, "styles.css"), "utf8")
+  ]);
+  for (const kind of ["place", "restaurant", "cafe"]) assert.match(html, new RegExp(`data-map-kind=["']${kind}["']`));
+  assert.match(app, /role=\"dialog\"/);
+  assert.match(app, /aria-haspopup=\"dialog\"/);
+  assert.match(app, /mapPopupOpen/);
+  assert.match(app, /event\.key === \"Escape\"/);
+  assert.match(app, /map-canvas\"\)\.onkeydown/);
+  assert.doesNotMatch(app, /map-canvas\"\)\.addEventListener\(\"keydown\"/);
+  assert.match(app, /popupRect\.bottom > canvasRect\.bottom/);
+  assert.match(app, /center-x/);
+  assert.match(app, /center-y/);
+  assert.match(css, /map-popup/);
+  assert.match(css, /map-popup\.center-x/);
+  assert.match(css, /map-popup\.center-x\.center-y/);
+  assert.match(css, /map-marker:focus-visible/);
+  assert.match(css, /map-marker[^}]+width:\s*44px/);
+});
+
+test("visible finance and Airbnb claims match the current evidence state", async () => {
+  const [html, finance, airbnb, tripData] = await Promise.all([
+    readFile(join(here, "index.html"), "utf8"),
+    readFile(join(here, "travel-finance.mjs"), "utf8"),
+    readFile(join(here, "airbnb-catalog.mjs"), "utf8"),
+    readFile(join(here, "trip-data.mjs"), "utf8")
+  ]);
+  assert.doesNotMatch(`${html}\n${finance}`, /운임 미오픈|아직 열리지 않았|총액과 재고는 노출되지/);
+  assert.match(html, /예약 가능 12곳과 현재 제외 3곳/);
+  assert.match(finance, /실시간 결제 견적이 아닌 계획 중간값/);
+  assert.match(airbnb, /"exactAvailableCount": 12/);
+  assert.match(airbnb, /"unavailableCount": 3/);
+  assert.doesNotMatch(tripData, /60,300|60300|95,658,000|95658000/);
 });
 
 test("mobile layout, reduced motion, and safe viewport rules exist", async () => {
@@ -28,6 +80,9 @@ test("mobile layout, reduced motion, and safe viewport rules exist", async () =>
   assert.match(css, /prefers-reduced-motion/);
   assert.match(css, /env\(safe-area-inset-bottom\)/);
   assert.match(css, /bottom-nav/);
+  assert.match(css, /bottom-nav\.visible/);
+  assert.match(css, /map-popup-close[^}]+width:\s*44px/);
+  assert.match(css, /map-layer-controls button[^}]+min-height:\s*44px/);
 });
 
 test("assistant remains useful without a deployed remote endpoint", async () => {

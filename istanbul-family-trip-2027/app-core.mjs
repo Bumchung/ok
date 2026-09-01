@@ -1,4 +1,4 @@
-import { CHECKED_AT, climate, familyGroups, itinerary, lodgingOptions, mealSuggestions, observedTripComQuotes, places, rentalChecklist, sources, trip, tripComCostSummary } from "./trip-data.mjs";
+import { CHECKED_AT, airbnbSearch, budgetModel, climate, diningSpots, familyGroups, fxStrategy, itinerary, lodgingOptions, mealSuggestions, observedTripComQuotes, places, rentalChecklist, sources, trip, tripComCostSummary } from "./trip-data.mjs";
 
 const DAY_MS = 86400000;
 
@@ -63,6 +63,54 @@ export function filterPlaces(filters = {}) {
       ...(item.reviews?.disliked || [])
     ].join(" ")).includes(query);
   });
+}
+
+export function filterDining(items = [], filters = {}) {
+  const query = normalize(filters.query);
+  return items.filter((item) => {
+    if (filters.zone && filters.zone !== "all" && item.zone !== filters.zone) return false;
+    if (filters.type && filters.type !== "all" && item.type !== filters.type) return false;
+    if (filters.kidOnly === true && !/^(?:상|높음|매우 높음|매우 좋음)/.test(String(item.kidFit || ""))) return false;
+    if (!query) return true;
+    return normalize([
+      item.name,
+      item.zone,
+      item.neighborhood,
+      item.cuisine,
+      item.reservation,
+      item.priceBand,
+      item.kidFit,
+      item.meal,
+      item.why,
+      item.reviewCaution,
+      ...(item.reviewPros || [])
+    ].join(" ")).includes(query);
+  });
+}
+
+export function calculateBudget(selection = {}, model = budgetModel) {
+  const stay = model.stayOptions.find((item) => item.id === selection.stayId) || model.stayOptions.find((item) => item.id === model.defaultStay) || model.stayOptions[0];
+  const origin = model.origins.find((item) => item.id === selection.originId) || model.origins.find((item) => item.id === model.defaultOrigin) || model.origins[0];
+  const sharedBeforeBuffer = model.sharedLines.reduce((sum, item) => sum + item.familyTotal, 0);
+  const beforeBuffer = stay.familyTotal + sharedBeforeBuffer;
+  const contingency = Math.round(beforeBuffer * model.contingencyRate);
+  const landFamilyTotal = beforeBuffer + contingency;
+  const landPerPerson = landFamilyTotal / model.people;
+  const perPersonTotal = landPerPerson + origin.flightPerPerson;
+  const allFlights = model.origins.reduce((sum, item) => sum + item.people * item.flightPerPerson, 0);
+  return {
+    stay,
+    origin,
+    sharedBeforeBuffer,
+    beforeBuffer,
+    contingency,
+    landFamilyTotal,
+    landPerPerson,
+    flightPerPerson: origin.flightPerPerson,
+    perPersonTotal,
+    mixedOriginFamilyTotal: landFamilyTotal + allFlights,
+    mixedOriginAveragePerPerson: (landFamilyTotal + allFlights) / model.people
+  };
 }
 
 export function itineraryForPace(pace = trip.paceModes?.default || "gentle", days = itinerary) {
@@ -136,6 +184,37 @@ function searchableRecords(days = itinerary) {
     body: `${item.verdict}. ${item.capacity}. ${item.layout}. 장점: ${item.good.join(" ")} 주의: ${item.cautions.join(" ")}`,
     url: item.official
   }));
+  const airbnbRecords = airbnbSearch.options.map((item) => ({
+    kind: "Airbnb",
+    title: item.name,
+    subtitle: `${item.neighborhood}, ${item.availability === "available_exact" ? `9인 10박 ${item.price}` : "요청 일정 예약 불가"}`,
+    body: `침실 ${item.bedrooms}, 욕실 ${item.baths}, 침대 ${item.beds}. 장점: ${item.reason} 약점: ${item.caution} 예약 상태: ${item.availabilityEvidence} 가격 근거: ${item.priceEvidence} 취소: ${item.cancellation}`,
+    url: item.url
+  }));
+  const diningRecords = diningSpots.map((item) => ({
+    kind: item.type === "restaurant" ? "음식점" : "카페",
+    title: item.name,
+    subtitle: `${item.zone}, ${item.neighborhood}, ${item.cuisine}, 아이 ${item.kidFit}`,
+    body: `${item.why} 반복 장점: ${item.reviewPros.join(" ")} 주의: ${item.reviewCaution} 9인 예약: ${item.reservation}`,
+    url: item.officialUrl
+  }));
+  const budgetRecords = budgetModel.stayOptions.map((item) => {
+    const result = calculateBudget({ stayId: item.id, originId: budgetModel.defaultOrigin });
+    return {
+      kind: "예산",
+      title: item.label,
+      subtitle: `가족 숙박 ${item.familyTotal.toLocaleString("ko-KR")}원, ICN 출발 1인 총액 약 ${Math.round(result.perPersonTotal).toLocaleString("ko-KR")}원`,
+      body: `${item.note} 현지 가족 총액 ${Math.round(result.landFamilyTotal).toLocaleString("ko-KR")}원, 두 출발팀 전체 ${Math.round(result.mixedOriginFamilyTotal).toLocaleString("ko-KR")}원.`,
+      url: "#budget"
+    };
+  });
+  const fxRecord = {
+    kind: "환율",
+    title: fxStrategy.headline,
+    subtitle: `1 TRY ${fxStrategy.rates.tryKrw.toFixed(2)}원, 현지 물가 단순 결합 ${fxStrategy.rates.combinedCostChangePct.toFixed(2)}% 높음`,
+    body: `${fxStrategy.diagnosis} ${fxStrategy.actions.map((item) => `${item.title}: ${item.body}`).join(" ")}`,
+    url: fxStrategy.sources[0].url
+  };
   const flightRecords = familyGroups.map((item) => ({
     kind: "항공",
     title: `${item.label} ${item.route}`,
@@ -171,7 +250,7 @@ function searchableRecords(days = itinerary) {
     body: `${tripComCostSummary.benchmarkFormula}. ${tripComCostSummary.exactQuoteStatus}`,
     url: tripComCostSummary.sourceUrl
   };
-  return [...dayRecords, ...placeRecords, ...lodgingRecords, ...quoteRecords, benchmarkRecord, ...flightRecords];
+  return [...dayRecords, ...placeRecords, ...diningRecords, ...lodgingRecords, ...airbnbRecords, ...budgetRecords, fxRecord, ...quoteRecords, benchmarkRecord, ...flightRecords];
 }
 
 export function searchContext(question, limit = 6, days = itinerary) {
@@ -203,30 +282,60 @@ function hotelPriceAnswer() {
   return `호텔 30곳을 1실 1박 기준으로 비교했습니다. Trip.com에서 가격이 보인 상위 후보는 ${priceLine || "아직 없습니다"}입니다. 이 값들은 목표일과 다른 날짜의 시작가입니다. 관측 날짜와 세금 조건은 카드 안에 적었습니다. 2027년 3월 21일부터 31일까지 공식 사이트에서 재현한 가격은 ${directLine}입니다. CVK 4베드룸 레지던스는 10박 전체 EUR 6,030이 한 번 보였지만 재조회에서는 가격이 반환되지 않았습니다. 1박 EUR 603은 이 값을 10으로 나눈 참고값입니다. 날짜와 객실 조건이 다르면 차액은 계산하지 않았습니다.`;
 }
 
+function budgetAnswer() {
+  const icn = calculateBudget({ stayId: budgetModel.defaultStay, originId: "icn" });
+  const lax = calculateBudget({ stayId: budgetModel.defaultStay, originId: "lax" });
+  return `카바타쉬 Airbnb 4BR의 관측 총액을 기준으로 ICN 출발은 1인 약 ${Math.round(icn.perPersonTotal / 10000).toLocaleString("ko-KR")}만원, LAX 출발은 1인 약 ${Math.round(lax.perPersonTotal / 10000).toLocaleString("ko-KR")}만원입니다. 두 팀 9명 전체는 약 ${Math.round(icn.mixedOriginFamilyTotal / 10000).toLocaleString("ko-KR")}만원입니다. 항공은 실시간 결제 견적이 아닌 계획값이고, 숙박과 현지비에는 예비비 ${Math.round(budgetModel.contingencyRate * 100)}%를 넣었습니다.`;
+}
+
+function airbnbAnswer() {
+  const recommended = airbnbSearch.options.find((item) => item.rank === 1);
+  const lowest = airbnbSearch.options.filter((item) => item.exactTotal).sort((a, b) => a.exactTotal - b.exactTotal)[0];
+  return `2027년 3월 21일부터 31일까지 성인 6명과 아이 3명으로 확인한 Airbnb 15곳 중 12곳은 예약 버튼과 10박 총액이 함께 보였고 3곳은 날짜 또는 최소 숙박일 때문에 제외했습니다. 이동을 줄이는 1순위는 카바타쉬 ${recommended.name}, 10박 ${recommended.price}입니다. 가장 낮은 확인 총액은 시슬리 ${lowest.name}, ${lowest.price}지만 아홉 번째 사람의 거실 취침과 작은 주방을 감수해야 합니다. 재고와 원화 총액은 결제 직전에 다시 확인해야 합니다.`;
+}
+
+function diningAnswer() {
+  const restaurants = diningSpots.filter((item) => item.type === "restaurant").length;
+  const cafes = diningSpots.filter((item) => item.type === "cafe").length;
+  return `음식점 ${restaurants}곳과 카페 ${cafes}곳을 한 목록에 넣었습니다. 카드에서 지역, 아이 적합도와 9인 예약 조건을 고르고, 반복 후기의 장점과 불편을 펼쳐 보세요. 일정은 숙소와 같은 권역의 점심 한 곳을 먼저 고르는 방식이 이동을 가장 적게 만듭니다.`;
+}
+
 const questionRules = [
   {
     terms: ["비오", "비가", "우천", "날씨"],
     answer: "비가 오면 멀리 가지 말고 Basilica Cistern, Istanbul Modern, Rahmi M. Koç Museum 중 숙소에서 가까운 한 곳만 가요. 바람까지 세면 Bosphorus 보트는 미루는 게 낫습니다."
   },
   {
-    terms: ["트립닷컴", "trip.com", "가격", "비용", "경비", "예산"],
+    terms: ["트립닷컴", "trip.com", "호텔 가격", "호텔 비용", "공식가"],
     answer: hotelPriceAnswer()
   },
   {
-    terms: ["숙소", "호텔", "에어비앤비", "airbnb", "한집"],
-    answer: "아홉 명이 한 거실을 쓰려면 CVK Park Bosphorus 4 Bedroom Residence를 먼저 확인합니다. 독채형은 관광 임대 허가번호와 엘리베이터를 확인한 뒤 고릅니다. 호텔은 30곳을 같은 기준으로 비교했습니다. 객실 네 개의 같은 층 배정과 커넥팅룸은 예약 전에 서면으로 받아야 합니다."
+    terms: ["예산", "경비", "1인당", "일인당", "총경비"],
+    answer: budgetAnswer()
+  },
+  {
+    terms: ["에어비앤비", "airbnb", "9명 한집", "9명이 한 집", "아홉명 한집", "아홉 명이 한 집"],
+    answer: airbnbAnswer()
+  },
+  {
+    terms: ["숙소", "호텔", "한집"],
+    answer: "한 거실이 중요하면 날짜와 9인 총액이 확인된 Airbnb 12곳부터 보고, 호텔 서비스를 원하면 CVK 4 Bedroom Residence나 호텔 4실을 비교하세요. 한 집은 아홉 번째 실제 침대, 욕실 수, 엘리베이터와 임대 등록을 서면으로 확인하고, 호텔은 같은 층 배정과 커넥팅룸을 예약 전에 서면으로 받아야 합니다."
   },
   {
     terms: ["피곤", "힘들", "쉬", "낮잠"],
     answer: "그날은 한 군데만 가요. 오전에 보고 점심을 먹은 뒤 숙소로 돌아오면 됩니다. 아이들이 지치면 날짜 카드의 ‘힘들면’ 일정으로 바꾸고 예약했더라도 무리해서 가지 않아요."
   },
   {
+    terms: ["식당", "밥", "점심", "저녁", "맛집", "카페", "커피"],
+    answer: diningAnswer()
+  },
+  {
     terms: ["아이", "어린이", "6살", "7살", "9살"],
     answer: "아이 셋 반응을 생각하면 Basilica Cistern과 탈것이 많은 Rahmi M. Koç Museum부터 보세요. 궁전은 2시간 30분 안에 끝내고 식당은 아이 입장 나이와 어린이 의자를 예약할 때 같이 물어보면 됩니다."
   },
   {
-    terms: ["식당", "밥", "점심", "저녁", "맛집"],
-    answer: "아홉 명 식사는 전망보다 한 테이블에 앉을 수 있는지부터 봐야 해요. Pandeli, Hamdi Eminönü, Namlı Gurme에 9인 자리와 어린이 의자를 먼저 물어보세요. Karaköy Lokantası 저녁과 Lokanta 1741은 아이 나이와 인원 제한 때문에 이번에는 빼는 게 맞습니다."
+    terms: ["환율", "리라", "try", "원화 강세", "환전", "dcc"],
+    answer: `${fxStrategy.headline} ${fxStrategy.diagnosis} 카드 결제는 DCC를 거절하고 계약 통화를 택하며, TRY 가격과 EUR 호텔 가격을 분리해서 비교하세요.`
   },
   {
     terms: ["비행", "항공", "직항", "공항"],

@@ -2,8 +2,8 @@ const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
 export function bootTripApp({ data, core }) {
-  const { CHECKED_AT, climate, familyGroups, heroImage, itinerary, lodgingOptions, mealSuggestions, observedTripComQuotes = [], places, rentalChecklist, sources, trip, tripComCostSummary } = data;
-  const { compareHotelPrices, distanceKm, filterPlaces, itineraryForPace = (_pace, days) => days, localAnswer, makeAssistantPayload, makeCsv, makeGoogleCalendarUrl, makeIcs, makeKml, tripStatus, weatherMode } = core;
+  const { CHECKED_AT, airbnbSearch, budgetModel, climate, decisionChecklist = [], diningSpots = [], familyGroups, fxStrategy, heroImage, itinerary, lodgingOptions, mealSuggestions, observedTripComQuotes = [], places, rentalChecklist, sources, trip, tripComCostSummary } = data;
+  const { calculateBudget, compareHotelPrices, distanceKm, filterDining, filterPlaces, itineraryForPace = (_pace, days) => days, localAnswer, makeAssistantPayload, makeCsv, makeGoogleCalendarUrl, makeIcs, makeKml, tripStatus, weatherMode } = core;
   const cityKey = trip.destination === "두바이" ? "dubai" : "istanbul";
   const answerKey = `${cityKey}-family-trip-answers-v2`;
   const endpointKey = trip.destination === "두바이" ? "dubai-assistant-endpoint" : "istanbul-assistant-endpoint";
@@ -14,8 +14,13 @@ export function bootTripApp({ data, core }) {
     pace: trip.paceModes?.default || "gentle",
     mapPlace: places.find((item) => item.id === lodgingOptions[0].id)?.id || places[0].id,
     mapZoom: trip.destination === "두바이" ? 11 : 12,
+    mapCenter: { lat: defaultOrigin.lat, lng: defaultOrigin.lng },
     filters: { query: "", zone: "all", category: "all", rain: false, energy: null },
+    diningFilters: { query: "", zone: "all", type: "all", kidOnly: false },
     hotelFilters: { query: "", type: "all" },
+    budget: { stayId: budgetModel?.defaultStay, originId: budgetModel?.defaultOrigin },
+    mapKind: "place",
+    mapPopupOpen: false,
     nearbyOrigin: { lat: defaultOrigin.lat, lng: defaultOrigin.lng },
     nearbyLabel: `${defaultOrigin.name} 기준`,
     userLocation: null,
@@ -61,9 +66,57 @@ export function bootTripApp({ data, core }) {
     const status = tripStatus();
     const days = activeItinerary();
     const day = days.find((item) => item.date === status.day?.date) || days[0];
-    $("#today-heading").textContent = status.mode === "planning" ? "가장 먼저 결정할 것" : status.mode === "travel" ? "오늘은 이만큼만" : "다시 볼 여행 기록";
-    $("#today-card").innerHTML = `<div class="today-copy"><span class="today-date">${escapeHtml(status.label)} / ${escapeHtml(day.date.slice(5).replace("-", "/"))}</span><h3>${escapeHtml(status.mode === "planning" ? lodgingOptions[0].name : day.title)}</h3><p>${escapeHtml(status.mode === "planning" ? lodgingOptions[0].verdict : day.main)}</p></div><div class="today-actions"><a href="${status.mode === "planning" ? "#stay" : "#plan"}">${status.mode === "planning" ? "숙소 비교 보기" : "오늘 일정 보기"}</a><a href="#nearby">지금 가까운 곳</a><a href="#ask">이 계획에 질문하기</a></div>`;
-    $("#principles").innerHTML = trip.principles.map((item, index) => `<article class="principle-card"><span>원칙 ${index + 1}</span><p>${escapeHtml(item)}</p></article>`).join("");
+    const planningRows = decisionChecklist;
+    const travelRows = [
+      { label: "오전 핵심", detail: day.timeline[0] || day.main, href: "#plan" },
+      { label: "점심 뒤 한 장면", detail: day.timeline[2] || day.main, href: "#plan" },
+      { label: "힘들면 바로 축소", detail: day.low, href: "#nearby" }
+    ];
+    const completeRows = [
+      { label: "사진", detail: "가족이 같이 나온 장면부터 고릅니다.", href: "#guide" },
+      { label: "비용", detail: "숙소와 항공의 실제 결제 총액을 남깁니다.", href: "#budget" },
+      { label: "다시 갈 곳", detail: "다음 여행에서도 남길 장소를 표시합니다.", href: "#map" }
+    ];
+    const rows = status.mode === "planning" ? planningRows : status.mode === "travel" ? travelRows : completeRows;
+    $("#today-heading").textContent = status.mode === "planning" ? "가장 먼저 결정할 목록" : status.mode === "travel" ? "오늘은 이만큼만" : "다시 볼 여행 기록";
+    $("#today-card").className = "today-card compact";
+    $("#today-card").innerHTML = `<ol class="decision-list" aria-label="${escapeHtml($("#today-heading").textContent)}">${rows.map((item, index) => `<li class="decision-item"><span class="decision-index" aria-hidden="true">${index + 1}</span><div class="decision-copy"><strong>${escapeHtml(item.label)}</strong><small>${escapeHtml(item.detail)}</small></div><a class="decision-cta" href="${escapeHtml(item.href)}">보기</a></li>`).join("")}</ol>`;
+    $("#principles").className = "principle-grid compact";
+    $("#principles").innerHTML = trip.principles.map((item, index) => `<article class="principle-card"><span>${index + 1}</span><p>${escapeHtml(item)}</p></article>`).join("");
+  }
+
+  function renderAirbnb() {
+    if (!airbnbSearch) return;
+    $("#airbnb-summary").innerHTML = `<div><span>검색 조건</span><strong>${escapeHtml(airbnbSearch.stay)}</strong><small>${escapeHtml(airbnbSearch.guests)}</small></div><div class="airbnb-evidence"><strong>${airbnbSearch.exactAvailableCount}곳 총액 확인 / ${airbnbSearch.unavailableCount}곳 제외</strong><small>10박 ${formatKrw(airbnbSearch.lowestExactTotal)}부터 ${formatKrw(airbnbSearch.highestExactTotal)}</small><p>${escapeHtml(airbnbSearch.caveat)}</p></div><a href="${escapeHtml(airbnbSearch.searchUrl)}" target="_blank" rel="noreferrer">같은 조건으로 다시 검색</a>`;
+    $("#airbnb-grid").innerHTML = airbnbSearch.options.map((item) => {
+      const available = item.availability === "available_exact";
+      const review = item.rating ? `평점 ${item.rating}${item.reviews ? `, 후기 ${item.reviews}개` : ""}` : "신규 또는 평점 미표시";
+      const priceLabel = available ? `10박 총액 ${item.price}` : item.price;
+      const nightly = available ? `1박 평균 ${formatKrw(item.nightlyAverage)}` : "가격 미표시";
+      return `<article class="airbnb-card ${available ? "available" : "unavailable"}"><div class="airbnb-rank"><span>${item.rank}</span><b>${available ? `가족 적합 ${escapeHtml(item.fit)}` : "현재 제외"}</b></div><h4>${escapeHtml(item.name)}</h4><div class="airbnb-specs"><span>${escapeHtml(item.neighborhood)}</span><span>최대 ${item.capacity}명</span><span>침실 ${item.bedrooms}</span><span>침대 ${item.beds}</span><span>욕실 ${item.baths}</span></div><p>${escapeHtml(item.reason)}</p><div class="airbnb-price"><small>${escapeHtml(nightly)}</small><strong>${escapeHtml(priceLabel)}</strong></div><details><summary>약점, 취소 조건과 관측 근거</summary><p>${escapeHtml(item.caution)}</p><p>${escapeHtml(item.cancellation)}</p><small>${escapeHtml(review)} / 관측일 ${escapeHtml(item.observedAt)}<br>${escapeHtml(item.availabilityEvidence)}<br>${escapeHtml(item.priceEvidence)} / ${escapeHtml(item.taxesAndFees)}<br>${escapeHtml(item.cancellationLimit)}</small></details><a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">날짜와 9인 조건으로 다시 보기</a></article>`;
+    }).join("");
+  }
+
+  function formatKrw(value) { return `${Math.round(Number(value) / 10000).toLocaleString("ko-KR")}만원`; }
+
+  function renderBudget() {
+    if (!budgetModel) return;
+    $("#budget-stay-options").innerHTML = budgetModel.stayOptions.map((item) => `<button type="button" data-budget-stay="${escapeHtml(item.id)}" aria-pressed="${item.id === state.budget.stayId}">${escapeHtml(item.label)}</button>`).join("");
+    $("#budget-origin-options").innerHTML = budgetModel.origins.map((item) => `<button type="button" data-budget-origin="${escapeHtml(item.id)}" aria-pressed="${item.id === state.budget.originId}">${escapeHtml(item.label)}</button>`).join("");
+    const result = calculateBudget(state.budget, budgetModel);
+    $("#budget-result").innerHTML = `<span>${escapeHtml(result.origin.label)} 예상</span><strong>${formatKrw(result.perPersonTotal)}</strong><p>항공 ${formatKrw(result.flightPerPerson)} + 현지 10박 ${formatKrw(result.landPerPerson)}</p><small>두 출발팀 9명 전체는 ${formatKrw(result.mixedOriginFamilyTotal)}, 회계상 1인 평균 ${formatKrw(result.mixedOriginAveragePerPerson)}입니다.</small>`;
+    const lines = [result.stay, ...budgetModel.sharedLines, { label: `예비비 ${Math.round(budgetModel.contingencyRate * 100)}%`, familyTotal: result.contingency, note: "숙박과 현지 운영비가 오를 때 쓰는 완충액입니다." }];
+    $("#budget-breakdown").innerHTML = lines.map((line) => `<article><span>${escapeHtml(line.label)}</span><strong>가족 ${formatKrw(line.familyTotal)}</strong><small>${escapeHtml(line.note)}</small>${line.observedAt ? `<small>관측일 ${escapeHtml(line.observedAt)} / ${escapeHtml(line.cancellation)}</small>` : ""}${line.sourceUrl ? `<a href="${escapeHtml(line.sourceUrl)}" target="_blank" rel="noreferrer">이 가격 출처</a>` : ""}</article>`).join("");
+    $$('[data-budget-stay]').forEach((button) => button.addEventListener("click", () => { state.budget.stayId = button.dataset.budgetStay; renderBudget(); }));
+    $$('[data-budget-origin]').forEach((button) => button.addEventListener("click", () => { state.budget.originId = button.dataset.budgetOrigin; renderBudget(); }));
+  }
+
+  function renderFx() {
+    if (!fxStrategy) return;
+    $("#fx-diagnosis").textContent = fxStrategy.diagnosis;
+    $("#fx-rate-board").innerHTML = `<article><span>현재 교차환율</span><strong>1 TRY = ${fxStrategy.rates.tryKrw.toFixed(2)}원</strong><small>ECB ${escapeHtml(fxStrategy.sourceDate)}</small></article><article><span>2025년 말 대비 명목</span><strong>${Math.abs(fxStrategy.rates.nominalChangeSinceYearEndPct).toFixed(2)}% 낮음</strong><small>원화 기준 리라 가격</small></article><article class="reality"><span>물가 단순 결합</span><strong>${fxStrategy.rates.combinedCostChangePct.toFixed(2)}% 높음</strong><small>환율 할인 착시를 보는 반증 계산</small></article>`;
+    $("#fx-action-list").innerHTML = fxStrategy.actions.map((item) => `<li data-tone="${escapeHtml(item.tone)}"><span>${item.rank}</span><div><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.body)}</p></div></li>`).join("");
+    $("#fx-sources").innerHTML = `<strong>${escapeHtml(fxStrategy.headline)}</strong><div>${fxStrategy.sources.map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">${escapeHtml(source.title)}</a>`).join("")}</div>`;
   }
 
   function renderFamily() {
@@ -220,10 +273,56 @@ export function bootTripApp({ data, core }) {
     attachImageFallbacks($("#place-grid"));
   }
 
+  function diningCard(item) {
+    const label = item.type === "restaurant" ? "음식점" : "카페";
+    return `<article class="dining-card" id="dining-${escapeHtml(item.id)}"><div class="dining-card-head"><span class="dining-card-rank">${item.rank}</span><span class="dining-card-type">${label} / ${escapeHtml(item.priceBand)}</span></div><h3>${escapeHtml(item.name)}</h3><div class="dining-meta"><span>${escapeHtml(item.zone)}</span><span>${escapeHtml(item.neighborhood)}</span><span>${escapeHtml(item.cuisine)}</span><span>아이 ${escapeHtml(item.kidFit)}</span></div><p>${escapeHtml(item.why)}</p><details><summary>실제 후기와 9인 예약 조건</summary><ul>${item.reviewPros.map((point) => `<li>${escapeHtml(point)}</li>`).join("")}</ul><p>${escapeHtml(item.reviewCaution)}</p><div class="dining-reservation">${escapeHtml(item.reservation)}</div><a class="dining-review-source" href="${escapeHtml(item.reviewSourceUrl)}" target="_blank" rel="noreferrer">후기 근거 열기</a></details><div class="dining-actions"><a href="${escapeHtml(item.officialUrl)}" target="_blank" rel="noreferrer">${escapeHtml(item.informationLabel)}</a><a href="${escapeHtml(item.mapsUrl)}" target="_blank" rel="noreferrer">Google Maps</a><button type="button" data-open-map="${escapeHtml(item.id)}" data-open-kind="${escapeHtml(item.type)}">지도에서 바로 보기</button></div></article>`;
+  }
+
+  function renderDining() {
+    const visible = filterDining(diningSpots, state.diningFilters);
+    $("#dining-count").textContent = visible.length;
+    $("#dining-grid").innerHTML = visible.length ? visible.map(diningCard).join("") : `<div class="empty-state">조건에 맞는 음식점이나 카페가 없습니다. 필터를 하나 지워 보세요.</div>`;
+    $$('[data-open-map]', $("#dining-grid")).forEach((button) => button.addEventListener("click", () => openMapItem(button.dataset.openMap, button.dataset.openKind)));
+  }
+
+  function wireDining() {
+    const zones = [...new Set(diningSpots.map((item) => item.zone))].sort((a, b) => a.localeCompare(b, "ko"));
+    $("#dining-zone-filter").innerHTML = `<option value="all">모든 지역</option>${zones.map((value) => `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`).join("")}`;
+    $("#dining-search").addEventListener("input", (event) => { state.diningFilters.query = event.target.value; renderDining(); });
+    $("#dining-type-filter").addEventListener("change", (event) => { state.diningFilters.type = event.target.value; renderDining(); });
+    $("#dining-zone-filter").addEventListener("change", (event) => { state.diningFilters.zone = event.target.value; renderDining(); });
+    $("#dining-kid-filter").addEventListener("click", (event) => { state.diningFilters.kidOnly = !state.diningFilters.kidOnly; event.currentTarget.setAttribute("aria-pressed", String(state.diningFilters.kidOnly)); renderDining(); });
+  }
+
+  function mapRecords() {
+    const placeRecords = places.filter((item) => item.category !== "제외").map((item) => ({
+      id: item.id, kind: "place", category: item.category, zone: item.zone, name: item.name, lat: item.lat, lng: item.lng,
+      bestFor: item.bestFor, reviewSummary: item.reviews.summary, skipIf: item.skipIf, maps: item.maps, official: item.official, cardHref: `#place-${item.id}`
+    }));
+    const diningRecords = diningSpots.map((item) => ({
+      id: item.id, kind: item.type, category: item.type === "restaurant" ? "음식점" : "카페", zone: item.zone, name: item.name, lat: item.lat, lng: item.lng,
+      bestFor: item.why, reviewSummary: item.reviewPros.join(" "), skipIf: item.reviewCaution, maps: item.mapsUrl, official: item.officialUrl, reviewSource: item.reviewSourceUrl, cardHref: `#dining-${item.id}`
+    }));
+    return [...placeRecords, ...diningRecords];
+  }
+
+  function activeMapRecords() { return mapRecords().filter((item) => item.kind === state.mapKind); }
+
+  function openMapItem(id, kind) {
+    const item = mapRecords().find((record) => record.id === id && record.kind === kind);
+    if (!item) return;
+    state.mapKind = kind;
+    state.mapPlace = id;
+    state.mapCenter = { lat: item.lat, lng: item.lng };
+    state.mapPopupOpen = true;
+    renderMap(true);
+    $("#map").scrollIntoView({ block: "start" });
+  }
+
   function renderNearby() {
-    const candidates = places.filter((item) => item.category !== "제외").map((item) => ({ ...item, distance: distanceKm(state.nearbyOrigin, item) })).sort((a, b) => a.distance - b.distance).slice(0, 6);
-    $("#nearby-status").textContent = `${state.nearbyLabel}입니다. 직선거리라 실제 차량 시간은 Google Maps에서 다시 확인하세요.`;
-    $("#nearby-list").innerHTML = candidates.map((item, index) => `<a class="nearby-item" href="#place-${escapeHtml(item.id)}"><span>${index + 1}</span><div><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(item.category)} / ${escapeHtml(item.zone)}</small></div><b>${item.distance < 1 ? `${Math.round(item.distance * 1000)}m` : `${item.distance.toFixed(1)}km`}</b></a>`).join("");
+    const candidates = mapRecords().map((item) => ({ ...item, distance: distanceKm(state.nearbyOrigin, item) })).sort((a, b) => a.distance - b.distance).slice(0, 6);
+    $("#nearby-status").textContent = `${state.nearbyLabel}입니다. 갈 곳, 음식점과 카페를 함께 정렬했습니다. 직선거리라 실제 이동 시간은 지도에서 다시 확인하세요.`;
+    $("#nearby-list").innerHTML = candidates.map((item, index) => `<a class="nearby-item" href="${escapeHtml(item.cardHref)}"><span>${index + 1}</span><div><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(item.category)} / ${escapeHtml(item.zone)}</small></div><b>${item.distance < 1 ? `${Math.round(item.distance * 1000)}m` : `${item.distance.toFixed(1)}km`}</b></a>`).join("");
   }
 
   function wireNearby() {
@@ -235,6 +334,7 @@ export function bootTripApp({ data, core }) {
       navigator.geolocation.getCurrentPosition((position) => {
         state.userLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
         state.nearbyOrigin = state.userLocation;
+        state.mapCenter = state.userLocation;
         state.nearbyLabel = "내 현재 위치 기준";
         button.disabled = false;
         button.textContent = "현재 위치 다시 확인";
@@ -246,7 +346,7 @@ export function bootTripApp({ data, core }) {
         $("#nearby-status").textContent = "위치 권한을 받지 못해 숙소 기준으로 보여드립니다. 권한 없이도 나머지 기능은 그대로 쓸 수 있습니다.";
       }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 });
     });
-    $("#nearby-reset").addEventListener("click", () => { state.nearbyOrigin = { lat: defaultOrigin.lat, lng: defaultOrigin.lng }; state.nearbyLabel = `${defaultOrigin.name} 기준`; state.userLocation = null; renderNearby(); renderMap(); });
+    $("#nearby-reset").addEventListener("click", () => { state.nearbyOrigin = { lat: defaultOrigin.lat, lng: defaultOrigin.lng }; state.nearbyLabel = `${defaultOrigin.name} 기준`; state.mapCenter = { lat: defaultOrigin.lat, lng: defaultOrigin.lng }; state.userLocation = null; renderNearby(); renderMap(); });
   }
 
   function worldPoint(lat, lng, zoom) {
@@ -268,16 +368,80 @@ export function bootTripApp({ data, core }) {
     return tiles.join("");
   }
 
-  function renderMap() {
-    const selected = places.find((item) => item.id === state.mapPlace) || places[0];
-    const center = { lat: selected.lat, lng: selected.lng };
+  function renderMap(focusPopup = false) {
+    const records = activeMapRecords();
+    const selected = records.find((item) => item.id === state.mapPlace) || records[0];
+    if (!selected) return;
+    state.mapPlace = selected.id;
+    const center = state.mapCenter;
     const centerPoint = worldPoint(center.lat, center.lng, state.mapZoom);
-    const markers = places.filter((item) => item.category !== "제외").map((item) => { const point = worldPoint(item.lat, item.lng, state.mapZoom); return `<button class="map-marker ${item.id === selected.id ? "active" : ""}" type="button" data-map-id="${escapeHtml(item.id)}" style="left:calc(50% + ${point.x - centerPoint.x}px);top:calc(50% + ${point.y - centerPoint.y}px)" aria-label="${escapeHtml(item.name)}"><span></span></button>`; }).join("");
+    const selectedPoint = worldPoint(selected.lat, selected.lng, state.mapZoom);
+    const selectedDx = selectedPoint.x - centerPoint.x;
+    const selectedDy = selectedPoint.y - centerPoint.y;
+    const markers = records.map((item) => { const point = worldPoint(item.lat, item.lng, state.mapZoom); const active = item.id === selected.id; return `<button class="map-marker ${active ? "active" : ""}" id="map-marker-${escapeHtml(item.id)}" type="button" data-map-id="${escapeHtml(item.id)}" data-map-kind="${escapeHtml(item.kind)}" style="left:calc(50% + ${point.x - centerPoint.x}px);top:calc(50% + ${point.y - centerPoint.y}px)" aria-label="${escapeHtml(item.name)}, ${escapeHtml(item.category)}, 정보 열기" aria-haspopup="dialog" aria-controls="map-popup" aria-expanded="${active && state.mapPopupOpen}" tabindex="${active ? 0 : -1}"><span></span></button>`; }).join("");
     const user = state.userLocation ? (() => { const point = worldPoint(state.userLocation.lat, state.userLocation.lng, state.mapZoom); return `<span class="user-marker" style="left:calc(50% + ${point.x - centerPoint.x}px);top:calc(50% + ${point.y - centerPoint.y}px)" aria-label="내 위치"></span>`; })() : "";
-    $("#map-canvas").innerHTML = `<div class="tile-layer">${tileMarkup(center, state.mapZoom)}</div>${markers}${user}<div class="map-controls"><button type="button" data-zoom="in" aria-label="지도 확대">+</button><button type="button" data-zoom="out" aria-label="지도 축소">−</button></div><small class="map-attribution">© OpenStreetMap © CARTO</small>`;
-    $("#map-inspector").innerHTML = `<div class="mini">${escapeHtml(selected.category)} / ${escapeHtml(selected.zone)}</div><h3>${escapeHtml(selected.name)}</h3><p>${escapeHtml(selected.bestFor)}</p><p>${escapeHtml(selected.reviews.summary)}</p><p class="map-warning">${escapeHtml(selected.skipIf)}</p><div class="button-row"><a href="${escapeHtml(selected.maps)}" target="_blank" rel="noreferrer">실제 지도 열기</a><a href="#place-${escapeHtml(selected.id)}">장소 카드 보기</a></div>`;
-    $$('[data-map-id]').forEach((marker) => marker.addEventListener("click", () => { state.mapPlace = marker.dataset.mapId; renderMap(); }));
+    const canvasWidth = $("#map-canvas").clientWidth || 948;
+    const canvasHeight = $("#map-canvas").clientHeight || 620;
+    const popupWidth = canvasWidth <= 520 ? 260 : 290;
+    const popupHeight = canvasWidth <= 520 ? (selected.reviewSource ? 260 : 230) : (selected.reviewSource ? 240 : 210);
+    const anchorX = canvasWidth / 2 + selectedDx;
+    const anchorY = canvasHeight / 2 + selectedDy;
+    const canOpenRight = anchorX + 14 + popupWidth <= canvasWidth - 12;
+    const canOpenLeft = anchorX - 14 - popupWidth >= 12;
+    const horizontalPopupClass = canOpenRight ? "" : canOpenLeft ? "flip-x" : "center-x";
+    const canOpenAbove = anchorY - popupHeight - 16 >= 12;
+    const canOpenBelow = anchorY + popupHeight + 16 <= canvasHeight - 12;
+    const verticalPopupClass = canOpenAbove ? "" : canOpenBelow ? "flip-y" : "center-y";
+    const popupClasses = [horizontalPopupClass, verticalPopupClass].filter(Boolean).join(" ");
+    const reviewSourceAction = selected.reviewSource ? `<a href="${escapeHtml(selected.reviewSource)}" target="_blank" rel="noreferrer">후기 근거</a>` : "";
+    const popup = state.mapPopupOpen ? `<section class="map-popup ${popupClasses}" id="map-popup" role="dialog" aria-modal="false" aria-labelledby="map-popup-title" tabindex="-1" style="left:calc(50% + ${selectedDx}px);top:calc(50% + ${selectedDy}px)"><button class="map-popup-close" id="map-popup-close" type="button" aria-label="장소 정보 닫기">×</button><div class="map-popup-meta">${escapeHtml(selected.category)} / ${escapeHtml(selected.zone)}</div><h3 id="map-popup-title">${escapeHtml(selected.name)}</h3><p>${escapeHtml(selected.bestFor)}</p><p>${escapeHtml(selected.reviewSummary)}</p><p class="map-popup-warning">${escapeHtml(selected.skipIf)}</p><div class="map-popup-actions"><a href="${escapeHtml(selected.maps)}" target="_blank" rel="noreferrer">실제 지도</a>${reviewSourceAction}<a href="${escapeHtml(selected.cardHref)}">전체 카드</a></div></section>` : "";
+    $("#map-canvas").innerHTML = `<div class="tile-layer">${tileMarkup(center, state.mapZoom)}</div>${markers}${user}${popup}<div class="map-controls"><button type="button" data-zoom="in" aria-label="지도 확대">+</button><button type="button" data-zoom="out" aria-label="지도 축소">−</button></div><small class="map-attribution">© OpenStreetMap © CARTO</small>`;
+    const popupElement = $("#map-popup");
+    if (popupElement) {
+      const canvas = $("#map-canvas");
+      popupElement.style.maxHeight = `${Math.max(180, canvas.clientHeight - 24)}px`;
+      popupElement.style.overflowY = "auto";
+      const canvasRect = canvas.getBoundingClientRect();
+      const popupRect = popupElement.getBoundingClientRect();
+      let shiftX = 0;
+      let shiftY = 0;
+      if (popupRect.left < canvasRect.left + 12) shiftX = canvasRect.left + 12 - popupRect.left;
+      else if (popupRect.right > canvasRect.right - 12) shiftX = canvasRect.right - 12 - popupRect.right;
+      if (popupRect.top < canvasRect.top + 12) shiftY = canvasRect.top + 12 - popupRect.top;
+      else if (popupRect.bottom > canvasRect.bottom - 12) shiftY = canvasRect.bottom - 12 - popupRect.bottom;
+      popupElement.style.marginLeft = `${shiftX}px`;
+      popupElement.style.marginTop = `${shiftY}px`;
+    }
+    $("#map-inspector").innerHTML = `<div class="mini">${escapeHtml(selected.category)} / ${escapeHtml(selected.zone)}</div><h3>${escapeHtml(selected.name)}</h3><p>${escapeHtml(selected.bestFor)}</p><p>${escapeHtml(selected.reviewSummary)}</p><p class="map-warning">${escapeHtml(selected.skipIf)}</p><div class="button-row"><a href="${escapeHtml(selected.maps)}" target="_blank" rel="noreferrer">실제 지도 열기</a><a href="${escapeHtml(selected.cardHref)}">전체 카드 보기</a></div>`;
+    $$('[data-map-kind]', $("#map-layer-controls")).forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.mapKind === state.mapKind)));
+    $$('[data-map-id]').forEach((marker) => {
+      marker.addEventListener("click", () => { state.mapPlace = marker.dataset.mapId; state.mapPopupOpen = true; renderMap(true); });
+      marker.addEventListener("keydown", (event) => {
+        if (!['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp'].includes(event.key)) return;
+        event.preventDefault();
+        const index = records.findIndex((item) => item.id === marker.dataset.mapId);
+        const direction = ['ArrowRight', 'ArrowDown'].includes(event.key) ? 1 : -1;
+        const next = records[(index + direction + records.length) % records.length];
+        state.mapPlace = next.id;
+        state.mapPopupOpen = true;
+        renderMap();
+        requestAnimationFrame(() => $(`#map-marker-${CSS.escape(next.id)}`)?.focus());
+      });
+    });
+    $("#map-popup-close")?.addEventListener("click", () => { const id = selected.id; state.mapPopupOpen = false; renderMap(); requestAnimationFrame(() => $(`#map-marker-${CSS.escape(id)}`)?.focus()); });
+    $("#map-canvas").onkeydown = (event) => { if (event.key === "Escape" && state.mapPopupOpen) { event.preventDefault(); const id = selected.id; state.mapPopupOpen = false; renderMap(); requestAnimationFrame(() => $(`#map-marker-${CSS.escape(id)}`)?.focus()); } };
     $$('[data-zoom]').forEach((button) => button.addEventListener("click", () => { state.mapZoom = Math.max(9, Math.min(15, state.mapZoom + (button.dataset.zoom === "in" ? 1 : -1))); renderMap(); }));
+    if (focusPopup) requestAnimationFrame(() => $("#map-popup")?.focus());
+  }
+
+  function wireMap() {
+    $$('[data-map-kind]', $("#map-layer-controls")).forEach((button) => button.addEventListener("click", () => {
+      state.mapKind = button.dataset.mapKind;
+      const first = activeMapRecords()[0];
+      if (!activeMapRecords().some((item) => item.id === state.mapPlace) && first) state.mapPlace = first.id;
+      state.mapPopupOpen = false;
+      renderMap();
+    }));
   }
 
   function endpointFromSettings() {
@@ -351,7 +515,13 @@ export function bootTripApp({ data, core }) {
   }
 
   function wireNavigation() {
-    window.addEventListener("scroll", () => $(".topbar").classList.toggle("scrolled", scrollY > 40), { passive: true });
+    const bottomNav = $(".bottom-nav");
+    const updateNavigationChrome = () => {
+      $(".topbar").classList.toggle("scrolled", scrollY > 40);
+      bottomNav.classList.toggle("visible", scrollY > 120);
+    };
+    window.addEventListener("scroll", updateNavigationChrome, { passive: true });
+    updateNavigationChrome();
     const links = $$(".bottom-nav a");
     const targets = links.map((link) => $(link.getAttribute("href"))).filter(Boolean);
     const observer = new IntersectionObserver((entries) => { const current = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]; if (!current) return; links.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === `#${current.target.id}`)); }, { rootMargin: "-20% 0px -65%", threshold: [0, .2, .5] });
@@ -365,6 +535,6 @@ export function bootTripApp({ data, core }) {
   }
 
   $("#hero-image").src = heroImage;
-  renderStatus(); renderToday(); renderFamily(); renderLodgingTabs(); renderLodgingDetail(); wireHotelCatalog(); renderHotelCatalog(); renderTripComCosts(); renderRentalChecklist(); renderPaceSwitch(); renderDateRail(); renderDayDetail(); renderItineraryList(); renderWeather(); renderFilters(); renderPlaces(); renderNearby(); wireNearby(); renderMap(); wireAssistant(); wireUtilities(); wireNavigation(); restoreDeepLink();
+  renderStatus(); renderToday(); renderFamily(); renderLodgingTabs(); renderLodgingDetail(); renderAirbnb(); wireHotelCatalog(); renderHotelCatalog(); renderTripComCosts(); renderRentalChecklist(); renderBudget(); renderFx(); renderPaceSwitch(); renderDateRail(); renderDayDetail(); renderItineraryList(); renderWeather(); renderFilters(); renderPlaces(); wireDining(); renderDining(); renderNearby(); wireNearby(); wireMap(); renderMap(); wireAssistant(); wireUtilities(); wireNavigation(); restoreDeepLink();
   document.documentElement.dataset.checkedAt = CHECKED_AT;
 }

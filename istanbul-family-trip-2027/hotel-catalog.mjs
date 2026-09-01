@@ -1838,7 +1838,7 @@ export const observedTripComQuotes = [
       "provider": "호텔 공식 홈페이지",
       "capturedAt": "2026-09-01",
       "referenceStay": "호텔 객실 4개가 아니라 4베드룸 레지던스 1채에 대한 10박 일회성 견적이다. 이후 조회에서는 같은 견적이 재현되지 않았다.",
-      "occupancy": "성인 6명과 아이 3명, 객실 4실",
+      "occupancy": "성인 6명과 아이 3명, 4베드룸 레지던스 1채",
       "roomPlan": "공식 예약 검색",
       "unitLabel": "4베드룸 레지던스 1채, 1박 역산값",
       "stayLabel": "가족 전체, 10박",
