@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   buildMapPoints,
+  compareHotelPrices,
   distanceKm,
   daysBetween,
   filterPlaces,
@@ -54,15 +55,61 @@ test("lodging comparison includes both one-home and hotel-room plans", () => {
   }
 });
 
-test("Trip.com Istanbul values are clearly marked as reference prices, not 2027 quotes", () => {
+test("Trip.com reference prices and official direct prices keep their evidence conditions", () => {
   assert.match(tripComCostSummary.exactQuoteStatus, /확인되지 않았/);
+  assert.equal(tripComCostSummary.fx.eurToKrw, 1586.37);
   assert.equal(observedTripComQuotes.length, 4);
   for (const quote of observedTripComQuotes) {
     assert.equal(quote.status, "reference_start_price");
     assert.equal(quote.projectedValue, quote.nightlyValue * 4 * 10);
     assert.equal(quote.totalIncludesTaxes, null);
+    assert.match(quote.unitLabel, /1실 1박/);
+    assert.equal(quote.officialDirect.capturedAt, quote.capturedAt);
+    assert.match(quote.officialDirect.sourceUrl, /^https:\/\//);
     assert.match(quote.sourceUrl, /^https:\/\/kr\.trip\.com\//);
+    assert.notEqual(compareHotelPrices(quote).status, "comparable");
   }
+  const cvk = observedTripComQuotes.find((quote) => quote.lodgingId === "cvk").officialDirect;
+  assert.equal(cvk.nightlyValue, 6030);
+  assert.equal(cvk.projectedValue, 60300);
+  assert.equal(cvk.status, "observed_once_not_reproduced");
+  assert.equal(compareHotelPrices(observedTripComQuotes.find((quote) => quote.lodgingId === "cvk")).status, "official_unavailable");
+  const swissotel = observedTripComQuotes.find((quote) => quote.lodgingId === "swissotel").officialDirect;
+  assert.equal(swissotel.nightlyValue, 196);
+  assert.equal(swissotel.projectedValue, 7840);
+  assert.equal(swissotel.totalIncludesTaxes, true);
+  assert.equal(swissotel.refundable, false);
+  assert.equal(swissotel.memberRate.nightlyDisplay, "EUR 176.40");
+  assert.equal(swissotel.rateAlternatives.find((rate) => rate.label === "무료취소 일반가").nightlyDisplay, "EUR 280");
+  assert.equal(observedTripComQuotes.find((quote) => quote.lodgingId === "ritz").officialDirect.nightlyValue, null);
+  assert.equal(observedTripComQuotes.find((quote) => quote.lodgingId === "peninsula").officialDirect.status, "verification_blocked");
+});
+
+test("price differences are calculated only when every comparison condition matches", () => {
+  const quote = {
+    comparisonKey: "same-room-and-stay",
+    currency: "EUR",
+    totalIncludesTaxes: true,
+    nightlyValue: 180,
+    projectedValue: 7200,
+    officialDirect: {
+      status: "observed_exact",
+      comparisonKey: "same-room-and-stay",
+      currency: "EUR",
+      totalIncludesTaxes: true,
+      nightlyValue: 200,
+      projectedValue: 8000
+    }
+  };
+  assert.deepEqual(compareHotelPrices(quote), {
+    status: "comparable",
+    label: "동일 조건, Trip.com이 낮음",
+    reason: "날짜, 객실, 인원, 통화와 세금 포함 조건이 일치합니다.",
+    nightlyDelta: -20,
+    projectedDelta: -800,
+    percent: -10
+  });
+  assert.equal(compareHotelPrices({ ...quote, totalIncludesTaxes: null }).status, "not_comparable");
 });
 
 test("place data has unique ids, safe links, and plausible local coordinates", () => {
@@ -144,8 +191,13 @@ test("local guide answers high-risk family questions without a server", () => {
   assert.match(localAnswer("9명이 한 집에서 자려면?").answer, /CVK Park Bosphorus/);
   assert.match(localAnswer("비 오면 아이들과 어디 가?").answer, /Basilica Cistern/);
   assert.match(localAnswer("카파도키아도 갈까?").answer, /이번에는 빼는 게 맞/);
-  assert.match(localAnswer("Trip.com 실경비는?").answer, /실견적이 아니라 비교선/);
+  assert.match(localAnswer("Trip.com 실경비는?").answer, /1박 기준/);
+  assert.match(localAnswer("Trip.com 실경비는?").answer, /공식 사이트/);
+  assert.match(localAnswer("Trip.com 실경비는?").answer, /1회 관측 EUR 6,030/);
+  assert.match(localAnswer("Trip.com 실경비는?").answer, /재조회에서 가격이 반환되지 않아/);
+  assert.match(localAnswer("Trip.com 실경비는?").answer, /차액도 계산하지 않았/);
   assert.ok(searchContext("호텔 4실 Trip.com").some((item) => item.kind === "비용"));
+  assert.ok(searchContext("호텔 공식 1박").some((item) => item.title.includes("공식 직접 예약")));
   assert.ok(searchContext("Topkapı 화요일").length > 0);
   assert.ok(searchContext("Dolmabahçe 사진 금지").some((item) => item.title.includes("Dolmabahçe")));
   assert.equal(makeAssistantPayload("숙소 추천").question, "숙소 추천");

@@ -74,6 +74,12 @@ def main():
                     "document.documentElement.scrollWidth > document.documentElement.clientWidth"
                 )
                 page.screenshot(path=output / f"{app.split('-')[0]}-{mode}-scrolled.png", full_page=True)
+                price_grid = page.locator("#tripcom-cost-grid")
+                if price_grid.count():
+                    price_grid.screenshot(path=output / f"{app.split('-')[0]}-{mode}-prices.png")
+                    hotel_quotes = price_grid.locator(".hotel-quote")
+                    if hotel_quotes.count():
+                        hotel_quotes.first.screenshot(path=output / f"{app.split('-')[0]}-{mode}-price-detail.png")
                 if app.startswith("istanbul"):
                     gentle = page.locator('[data-pace="gentle"]')
                     focused = page.locator('[data-pace="focused"]')

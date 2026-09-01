@@ -178,11 +178,18 @@ export const tripComCostSummary = {
   requestedStay: "2027-03-21부터 03-31, 10박",
   requestedOccupancy: "성인 6명, 아이 3명, 호텔 객실 4실",
   exactQuoteStatus: "2027년 동일 조건의 객실 조합과 세금 포함 총액은 공개 페이지에서 확인되지 않았습니다.",
+  directQuoteStatus: "호텔 공식 홈페이지에서는 Swissotel의 2027년 동일 날짜 요금을 재현했습니다. CVK는 한 번 가격이 보였지만 재조회에서 반환되지 않았고, 나머지 후보도 같은 날짜의 공개 가격이 나오지 않았습니다.",
   benchmarkLabel: "Trip.com 최근 12개월 이스탄불 5성급 평균",
   benchmarkNightly: "평일 615,652원, 주말 628,070원",
   benchmarkTotal: "약 24,725,424원",
   benchmarkFormula: "평일 8박과 주말 2박, 객실 4실 단순 환산",
-  sourceUrl: "https://kr.trip.com/hotels/istanbul-hotels-list-532/"
+  sourceUrl: "https://kr.trip.com/hotels/istanbul-hotels-list-532/",
+  fx: {
+    label: "ECB 2026-08-31 기준",
+    eurToKrw: 1586.37,
+    sourceUrl: "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
+    note: "원화 환산은 비교를 돕기 위한 값이며 실제 카드 결제 환율과 해외 결제 수수료는 다를 수 있습니다."
+  }
 };
 
 export const observedTripComQuotes = [
@@ -190,33 +197,143 @@ export const observedTripComQuotes = [
     id: "tripcom-cvk", lodgingId: "cvk", provider: "Trip.com", capturedAt: CHECKED_AT,
     referenceStay: "2026-08-21부터 08-27", occupancy: "1실, 성인 2명 시작가", roomPlan: "객실 4실로 환산",
     nightlyDisplay: "393,034원", projectedDisplay: "15,721,360원", currency: "KRW", nightlyValue: 393034, projectedValue: 15721360,
+    unitLabel: "일반 객실 1실 1박 시작가", stayLabel: "일반 객실 4실, 10박 단순 환산",
     totalIncludesTaxes: null, refundable: null, status: "reference_start_price",
     inventoryNote: "2027년 6+3, 4실 또는 4베드룸 레지던스의 실제 재고와 요금은 미노출",
-    sourceUrl: "https://kr.trip.com/hotels/istanbul-hotel-detail-2245771/cvk-park-bosphorus-hotel-istanbul/?curr=&locale=ko-KR&rankingId=100200214877"
+    sourceUrl: "https://kr.trip.com/hotels/istanbul-hotel-detail-2245771/cvk-park-bosphorus-hotel-istanbul/?curr=&locale=ko-KR&rankingId=100200214877",
+    comparisonKey: "2026-08-21/1-standard-room/2-adults/tax-unknown",
+    officialDirect: {
+      provider: "CVK 공식 홈페이지",
+      capturedAt: CHECKED_AT,
+      referenceStay: "2027-03-21부터 03-31, 10박",
+      occupancy: "4베드룸 레지던스 1채, 성인 6명과 아이 3명",
+      roomPlan: "Four Bedroom Residence with Bosphorus View, Room Only",
+      unitLabel: "4베드룸 레지던스 1채, 1박",
+      stayLabel: "가족 전체, 10박",
+      nightlyDisplay: "1회 관측 EUR 6,030",
+      projectedDisplay: "1회 관측 EUR 60,300",
+      nightlyKrwDisplay: "약 9,566,000원",
+      projectedKrwDisplay: "약 95,658,000원",
+      currency: "EUR",
+      nightlyValue: 6030,
+      projectedValue: 60300,
+      totalIncludesTaxes: null,
+      refundable: null,
+      breakfast: false,
+      status: "observed_once_not_reproduced",
+      comparisonKey: "2027-03-21/4-bedroom-residence/6-adults-children-9-7-6/tax-unknown",
+      inventoryNote: "정확한 가족 구성으로 Room Only EUR 6,030이 한 번 표시됐지만 같은 검색의 재조회에서는 가격이 반환되지 않았습니다. 예약 가능한 확정가로 보지 말고 호텔의 서면 견적을 받아야 합니다.",
+      sourceUrl: "https://reservations.cvkhotelsandresorts.com/102378?DateIn=03/21/2027&DateOut=03/31/2027&Adults=6&Children=3&Rooms=1&LanguageID=1"
+    }
   },
   {
     id: "tripcom-swissotel", lodgingId: "swissotel", provider: "Trip.com", capturedAt: CHECKED_AT,
     referenceStay: "2026-08-21부터 08-27", occupancy: "1실, 성인 2명 시작가", roomPlan: "객실 4실로 환산",
     nightlyDisplay: "363,749원", projectedDisplay: "14,549,960원", currency: "KRW", nightlyValue: 363749, projectedValue: 14549960,
+    unitLabel: "일반 객실 1실 1박 시작가", stayLabel: "일반 객실 4실, 10박 단순 환산",
     totalIncludesTaxes: null, refundable: null, status: "reference_start_price",
     inventoryNote: "인접 객실과 어린이 침대, 2027년 4실 총액은 별도 재견적 필요",
-    sourceUrl: "https://kr.trip.com/hotels/istanbul-hotel-detail-744401/swissotel-the-bosphorus-istanbul/?curr=&locale=ko-KR&rankingId=100200214877"
+    sourceUrl: "https://kr.trip.com/hotels/istanbul-hotel-detail-744401/swissotel-the-bosphorus-istanbul/?curr=&locale=ko-KR&rankingId=100200214877",
+    comparisonKey: "2026-08-21/1-standard-room/2-adults/tax-unknown",
+    officialDirect: {
+      provider: "Swissotel 공식 홈페이지",
+      capturedAt: CHECKED_AT,
+      referenceStay: "2027-03-21부터 03-31, 10박",
+      occupancy: "성인 6명과 아이 3명, 객실 4실 검색",
+      roomPlan: "Classic Garden King 또는 Twin, Early Bird Offer",
+      unitLabel: "객실 1실 1박 일반가",
+      stayLabel: "객실 4실, 10박 단순 환산",
+      nightlyDisplay: "EUR 196",
+      projectedDisplay: "EUR 7,840",
+      nightlyKrwDisplay: "약 311,000원",
+      projectedKrwDisplay: "약 12,437,000원",
+      currency: "EUR",
+      nightlyValue: 196,
+      projectedValue: 7840,
+      totalIncludesTaxes: true,
+      refundable: false,
+      breakfast: false,
+      status: "observed_exact",
+      comparisonKey: "2027-03-21/4-classic-garden-rooms/6-adults-children-9-7-6/taxes-included",
+      memberRate: {
+        nightlyDisplay: "EUR 176.40",
+        projectedDisplay: "EUR 7,056",
+        projectedKrwDisplay: "약 11,193,000원",
+        note: "ALL 무료 회원가, 환불 불가, 객실 4실과 10박 단순 환산"
+      },
+      rateAlternatives: [
+        { label: "무료취소 일반가", nightlyDisplay: "EUR 280", projectedDisplay: "EUR 11,200", note: "2027-03-20 18:00까지 무료 취소, 선결제 없음, 조식 불포함, 세금 포함" },
+        { label: "조식 포함 Early Bird", nightlyDisplay: "EUR 240.80", projectedDisplay: "EUR 9,632", note: "환불 불가, 온라인 선결제, 세금 포함" }
+      ],
+      inventoryNote: "공식 최저 일반가는 10박 1실 EUR 1,960으로 세금과 수수료 포함, 조식 불포함, 환불 불가, 온라인 선결제입니다. 검색에는 9명과 4실이 반영됐지만 한 번에 3실 초과 예약 불가 경고가 있어 총액은 1실 요금의 4실 산술값입니다. 같은 층 배정과 아이 침대는 호텔에 별도 확인해야 합니다.",
+      sourceUrl: "https://all.accor.com/booking/en/accor/hotel/A5D2?dateIn=2027-03-21&dateOut=2027-03-31&nights=10&compositions=2-9,2-7,1-6,1&stayplus=false&snu=false&accessibleRooms=false&hideWDR=false&productCode=null&hideHotelDetails=false"
+    }
   },
   {
     id: "tripcom-ritz", lodgingId: "ritz", provider: "Trip.com", capturedAt: CHECKED_AT,
     referenceStay: "2026-05-29부터 06-04", occupancy: "1실, 성인 2명 시작가", roomPlan: "객실 4실로 환산",
     nightlyDisplay: "493,333원", projectedDisplay: "19,733,320원", currency: "KRW", nightlyValue: 493333, projectedValue: 19733320,
+    unitLabel: "일반 객실 1실 1박 시작가", stayLabel: "일반 객실 4실, 10박 단순 환산",
     totalIncludesTaxes: null, refundable: null, status: "reference_start_price",
     inventoryNote: "계절이 다른 공개 시작가이며 연결 객실, 세금, 조식, 취소 조건은 미확인",
-    sourceUrl: "https://kr.trip.com/hotels/istanbul-hotel-detail-2109006/the-ritz-carlton-istanbul/"
+    sourceUrl: "https://kr.trip.com/hotels/istanbul-hotel-detail-2109006/the-ritz-carlton-istanbul/",
+    comparisonKey: "2026-05-29/1-standard-room/2-adults/tax-unknown",
+    officialDirect: {
+      provider: "Ritz-Carlton 공식 홈페이지",
+      capturedAt: CHECKED_AT,
+      referenceStay: "2027-03-21부터 03-31, 10박",
+      occupancy: "객실 1실, 성인 2명",
+      roomPlan: "Marriott 공식 예약 검색",
+      unitLabel: "객실 1실 1박",
+      stayLabel: "객실 4실, 10박",
+      nightlyDisplay: "공식가 미확인",
+      projectedDisplay: "공식가 미확인",
+      nightlyKrwDisplay: "",
+      projectedKrwDisplay: "",
+      currency: null,
+      nightlyValue: null,
+      projectedValue: null,
+      totalIncludesTaxes: null,
+      refundable: null,
+      breakfast: null,
+      status: "no_rate_returned",
+      comparisonKey: "2027-03-21/1-room/2-adults/rate-not-returned",
+      inventoryNote: "공식 예약 페이지가 10박 검색은 받았지만 객실과 가격 결과를 표시하지 않았습니다.",
+      sourceUrl: "https://www.marriott.com/reservation/availability.mi?isSearch=true&propertyCode=ISTRZ&fromDate=03/21/2027&toDate=03/31/2027&roomCount=1&numAdultsPerRoom=2&childrenCount=0&useRewardsPoints=false"
+    }
   },
   {
     id: "tripcom-peninsula", lodgingId: "peninsula", provider: "Trip.com", capturedAt: CHECKED_AT,
     referenceStay: "2026-06-26부터 07-02", occupancy: "1실, 성인 2명 시작가", roomPlan: "객실 4실로 환산",
     nightlyDisplay: "EUR 753", projectedDisplay: "EUR 30,120", currency: "EUR", nightlyValue: 753, projectedValue: 30120,
+    unitLabel: "일반 객실 1실 1박 시작가", stayLabel: "일반 객실 4실, 10박 단순 환산",
     totalIncludesTaxes: null, refundable: null, status: "reference_start_price",
     inventoryNote: "환율 변환 전 원표시이며 가족 패키지, 연결 객실, 세금과 환불 조건은 미확인",
-    sourceUrl: "https://kr.trip.com/hotels/istanbul-hotel-detail-112025256/the-peninsula-istanbul/"
+    sourceUrl: "https://kr.trip.com/hotels/istanbul-hotel-detail-112025256/the-peninsula-istanbul/",
+    comparisonKey: "2026-06-26/1-standard-room/2-adults/tax-unknown",
+    officialDirect: {
+      provider: "Peninsula 공식 홈페이지",
+      capturedAt: CHECKED_AT,
+      referenceStay: "2027-03-21부터 03-31, 10박",
+      occupancy: "객실 1실, 성인 2명",
+      roomPlan: "공식 10박 Stay Longer 조건 검토",
+      unitLabel: "객실 1실 1박",
+      stayLabel: "객실 4실, 10박",
+      nightlyDisplay: "공식가 미확인",
+      projectedDisplay: "공식가 미확인",
+      nightlyKrwDisplay: "",
+      projectedKrwDisplay: "",
+      currency: null,
+      nightlyValue: null,
+      projectedValue: null,
+      totalIncludesTaxes: null,
+      refundable: null,
+      breakfast: true,
+      status: "verification_blocked",
+      comparisonKey: "2027-03-21/1-room/2-adults/rate-not-returned",
+      inventoryNote: "공식 10박 상품은 BAR 30% 할인과 조식을 안내하지만 그룹 예약에는 적용되지 않고, 10% VAT와 5% 서비스료, 1% 숙박세가 별도입니다. 예약 엔진의 정확한 가격은 보안 확인 화면 때문에 관측하지 못했습니다.",
+      sourceUrl: "https://www.peninsula.com/en/istanbul/special-offers/rooms/stay-longer"
+    }
   }
 ];
 

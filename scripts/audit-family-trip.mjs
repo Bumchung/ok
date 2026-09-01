@@ -58,7 +58,7 @@ const checks = [
   (ctx) => JSON.stringify(ctx.data.trip.children) === JSON.stringify([9, 7, 6]) && hasAll(ctx.html, ["만 9세", "7세", "6세"]),
   (ctx) => new Set(ctx.data.familyGroups.map((item) => item.origin)).has("ICN") && new Set(ctx.data.familyGroups.map((item) => item.origin)).has("LAX"),
   (ctx) => ctx.data.lodgingOptions.some((item) => item.hotelPlan?.rooms === 1) && ctx.data.lodgingOptions.some((item) => item.bookingModel === "hotel_rooms" && item.hotelPlan?.rooms === 4),
-  (ctx) => ctx.html.includes("상한 없음") && ctx.html.includes("tripcom-cost-grid") && ctx.data.observedTripComQuotes.length >= 4 && ctx.data.observedTripComQuotes.every((item) => item.capturedAt === ctx.data.CHECKED_AT),
+  (ctx) => ctx.html.includes("상한 없음") && ctx.html.includes("tripcom-cost-grid") && ctx.data.observedTripComQuotes.length >= 4 && ctx.data.observedTripComQuotes.every((item) => item.capturedAt === ctx.data.CHECKED_AT) && (ctx.data.trip.destination !== "이스탄불" || ctx.data.observedTripComQuotes.every((item) => item.unitLabel && item.stayLabel && item.officialDirect?.capturedAt === ctx.data.CHECKED_AT)),
   (ctx) => ctx.data.itinerary.every((day) => day.transport && [day.needs?.parents, day.needs?.kids, day.needs?.together, day.needs?.recovery].every((item) => item?.length >= 12)),
   (ctx) => ctx.data.trip.destination !== "이스탄불" || (ctx.data.trip.paceModes?.options?.length === 2 && ctx.runtime.includes("activeItinerary") && ctx.runtime.includes("renderPaceSwitch")),
   (ctx) => ctx.data.itinerary.every((day, index, days) => day.intensity < 3 || !days[index + 1] || days[index + 1].intensity <= 1),
@@ -85,7 +85,7 @@ const checks = [
   (ctx) => /skip-link/.test(ctx.html) && /prefers-reduced-motion/.test(ctx.css) && ctx.data.places.every((item) => item.photoLabel),
   (ctx) => /attachImageFallbacks/.test(ctx.runtime) && /catch \{/.test(ctx.runtime),
   (ctx) => /from "\.\/trip-app\.mjs"/.test(ctx.app) && !ctx.app.includes("../family-trip-2027") && /from "\.\/trip-data\.mjs"/.test(ctx.app),
-  (ctx) => ctx.data.observedTripComQuotes.every((item) => ["observed_exact", "reference_start_price"].includes(item.status)) && (ctx.data.trip.destination === "두바이" ? ctx.data.observedTripComQuotes.every((item) => item.totalIncludesTaxes === true) : ctx.data.observedTripComQuotes.every((item) => item.status === "reference_start_price" && item.totalIncludesTaxes === null)),
+  (ctx) => ctx.data.observedTripComQuotes.every((item) => ["observed_exact", "reference_start_price"].includes(item.status)) && (ctx.data.trip.destination === "두바이" ? ctx.data.observedTripComQuotes.every((item) => item.totalIncludesTaxes === true) : ctx.data.observedTripComQuotes.every((item) => item.status === "reference_start_price" && item.totalIncludesTaxes === null && ["observed_exact", "observed_once_not_reproduced", "no_rate_returned", "verification_blocked"].includes(item.officialDirect?.status) && (item.officialDirect.status !== "observed_exact" || (Number.isFinite(item.officialDirect.nightlyValue) && Number.isFinite(item.officialDirect.projectedValue))))),
   (ctx) => ctx.manifest.length === ctx.data.places.length && ctx.manifest.every((item) => item.ok && !item.fallback),
   () => visual.score >= 90 && visual.threshold_pass,
   (ctx) => publicFilesOk(ctx)

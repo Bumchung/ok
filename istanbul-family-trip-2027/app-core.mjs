@@ -79,6 +79,41 @@ export function itineraryForPace(pace = trip.paceModes?.default || "gentle", day
   });
 }
 
+export function compareHotelPrices(quote) {
+  const direct = quote?.officialDirect;
+  if (!direct || direct.status !== "observed_exact" || !Number.isFinite(direct.nightlyValue) || !Number.isFinite(direct.projectedValue)) {
+    return {
+      status: "official_unavailable",
+      label: "공식 가격 확인 필요",
+      reason: direct?.inventoryNote || "호텔 공식 예약 사이트에서 같은 조건의 가격을 확인하지 못했습니다."
+    };
+  }
+
+  const sameConditions = quote.comparisonKey === direct.comparisonKey
+    && quote.currency === direct.currency
+    && quote.totalIncludesTaxes !== null
+    && quote.totalIncludesTaxes === direct.totalIncludesTaxes;
+  if (!sameConditions) {
+    return {
+      status: "not_comparable",
+      label: "조건이 달라 차액 계산 안 함",
+      reason: "숙박 날짜, 객실 상품, 투숙 인원 또는 세금 포함 조건이 일치하지 않습니다."
+    };
+  }
+
+  const nightlyDelta = quote.nightlyValue - direct.nightlyValue;
+  const projectedDelta = quote.projectedValue - direct.projectedValue;
+  const percent = direct.nightlyValue === 0 ? null : (nightlyDelta / direct.nightlyValue) * 100;
+  return {
+    status: "comparable",
+    label: nightlyDelta === 0 ? "동일 조건, 같은 가격" : nightlyDelta < 0 ? "동일 조건, Trip.com이 낮음" : "동일 조건, 공식가가 낮음",
+    reason: "날짜, 객실, 인원, 통화와 세금 포함 조건이 일치합니다.",
+    nightlyDelta,
+    projectedDelta,
+    percent
+  };
+}
+
 function searchableRecords(days = itinerary) {
   const dayRecords = days.map((day) => ({
     kind: "일정",
@@ -108,13 +143,27 @@ function searchableRecords(days = itinerary) {
     body: `${item.target}. ${item.carriers}. ${item.status}`,
     url: sources.find((source) => source.title.includes(item.origin === "ICN" ? "Seoul" : "LAX"))?.url || ""
   }));
-  const quoteRecords = observedTripComQuotes.map((quote) => ({
-    kind: "비용",
-    title: `${lodgingOptions.find((item) => item.id === quote.lodgingId)?.name || quote.lodgingId} Trip.com 참고가`,
-    subtitle: `${quote.nightlyDisplay}, 4실 10박 환산 ${quote.projectedDisplay}`,
-    body: `${quote.referenceStay}, ${quote.occupancy}. ${quote.roomPlan}. ${quote.inventoryNote}. 세금 포함 여부와 환불 조건은 공개 페이지에서 확인되지 않았습니다.`,
-    url: quote.sourceUrl
-  }));
+  const quoteRecords = observedTripComQuotes.flatMap((quote) => {
+    const name = lodgingOptions.find((item) => item.id === quote.lodgingId)?.name || quote.lodgingId;
+    const comparison = compareHotelPrices(quote);
+    const direct = quote.officialDirect;
+    return [
+      {
+        kind: "비용",
+        title: `${name} Trip.com 참고가`,
+        subtitle: `${quote.unitLabel} ${quote.nightlyDisplay}, ${quote.stayLabel} ${quote.projectedDisplay}`,
+        body: `${quote.referenceStay}, ${quote.occupancy}. ${quote.inventoryNote}. 관측일 ${quote.capturedAt}. ${comparison.label}.`,
+        url: quote.sourceUrl
+      },
+      {
+        kind: "비용",
+        title: `${name} 호텔 공식 직접 예약`,
+        subtitle: `${direct.unitLabel} ${direct.nightlyDisplay}, ${direct.stayLabel} ${direct.projectedDisplay}`,
+        body: `${direct.referenceStay}, ${direct.occupancy}. ${direct.inventoryNote}. 관측일 ${direct.capturedAt}. ${comparison.label}.`,
+        url: direct.sourceUrl
+      }
+    ];
+  });
   const benchmarkRecord = {
     kind: "비용",
     title: tripComCostSummary.benchmarkLabel,
@@ -145,6 +194,14 @@ export function searchContext(question, limit = 6, days = itinerary) {
     .map(({ score, ...record }) => record);
 }
 
+function hotelPriceAnswer() {
+  const quoteById = (id) => observedTripComQuotes.find((quote) => quote.lodgingId === id);
+  const swissotel = quoteById("swissotel");
+  const cvk = quoteById("cvk");
+  const ritz = quoteById("ritz");
+  return `1박 기준으로 Trip.com 참고가는 Swissotel ${swissotel.nightlyDisplay}, CVK ${cvk.nightlyDisplay}, Ritz-Carlton ${ritz.nightlyDisplay}입니다. 다만 2026년의 다른 날짜에서 본 일반 객실 시작가입니다. 호텔 공식 사이트의 2027년 3월 21일부터 31일 재현 가능한 가격은 Swissotel Classic Garden 1실 일반가 ${swissotel.officialDirect.nightlyDisplay}, ALL 회원가 ${swissotel.officialDirect.memberRate.nightlyDisplay}입니다. CVK 4베드룸은 ${cvk.officialDirect.nightlyDisplay}이 한 번 보였지만 재조회에서 가격이 반환되지 않아 확정가로 쓰지 않았습니다. 날짜, 객실 상품과 세금 조건이 달라 Trip.com과의 차액도 계산하지 않았습니다.`;
+}
+
 const questionRules = [
   {
     terms: ["비오", "비가", "우천", "날씨"],
@@ -152,7 +209,7 @@ const questionRules = [
   },
   {
     terms: ["트립닷컴", "trip.com", "가격", "비용", "경비", "예산"],
-    answer: "Trip.com에 2027년 3월 21일부터 31일까지 성인 6명과 아이 3명, 호텔 4실을 넣었지만 이스탄불 후보들은 정확히 맞는 재고와 세금 포함 총액이 나오지 않았어요. 현재 공개 시작가를 4실 10박으로 단순 환산하면 Swissotel 약 1,455만원, CVK 약 1,572만원, Ritz-Carlton 약 1,973만원입니다. 이것은 실견적이 아니라 비교선이고, 결제 전 동일 조건으로 다시 받아야 합니다."
+    answer: hotelPriceAnswer()
   },
   {
     terms: ["숙소", "호텔", "에어비앤비", "airbnb", "한집"],
