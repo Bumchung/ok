@@ -1,8 +1,11 @@
+import { lodgingOptions as generatedLodgingOptions, observedTripComQuotes as generatedHotelQuotes } from "./hotel-catalog.mjs";
+import { places as generatedPlaces } from "./place-catalog.mjs";
+
 export const CHECKED_AT = "2026-09-01";
 
 export const trip = {
   title: "ISTANBUL TOGETHER",
-  subtitle: "세 가족, 한 거실, 하루 한 가지",
+  subtitle: "세 가족, 한 거실, 같은 권역 두세 장면",
   destination: "이스탄불",
   startDate: "2027-03-20",
   arrivalDate: "2027-03-21",
@@ -18,10 +21,10 @@ export const trip = {
     ]
   },
   principles: [
-    "천천히 모드는 하루 한 곳, 집중 여행은 같은 권역 안에서 두세 장면을 묶는다.",
-    "집중 여행도 오후 3시 전후에는 숙소로 돌아와 저녁 전 회복 시간을 남긴다.",
-    "도보 15분을 넘기면 9인 전용차나 배를 먼저 검토한다.",
-    "비, 피로, 임신 가능성에 대비해 매일 대안을 준비한다."
+    "집중 여행은 같은 권역의 두세 장면을 묶습니다. 천천히 모드는 한 곳만 봅니다.",
+    "대부분 15시대에 숙소로 돌아옵니다. 저녁 전 두 시간은 비워 둡니다.",
+    "아홉 명이 15분 넘게 걸어야 하면 전용차나 배를 먼저 확인합니다.",
+    "매일 비와 피로에 대비한 실내 일정과 조기 귀환안을 둡니다."
   ],
   sourceDeck: "https://docs.google.com/presentation/d/1DqhJV7cJ0mCBQksIhufKVJgnU6vMFRkCA5b5NxnU95Q/edit?slide=id.p15#slide=id.p15"
 };
@@ -34,7 +37,7 @@ export const familyGroups = [
     members: "성인 4, 어린이 1",
     route: "인천 → 이스탄불 직항",
     target: "3월 20일 밤 출발, 3월 21일 아침 도착편 우선",
-    carriers: "Turkish Airlines 직항을 기준으로 두고, 한국계 직항은 2027년 운항표에서 비교",
+    carriers: "Turkish Airlines 직항을 기준으로 두고 한국계 직항은 2027년 운항표에서 비교",
     status: "2027년 정확한 편명과 운항일은 발권 시 재확인"
   },
   {
@@ -49,7 +52,7 @@ export const familyGroups = [
   }
 ];
 
-export const lodgingOptions = [
+const legacyLodgingOptions = [
   {
     id: "cvk",
     rank: 1,
@@ -82,7 +85,7 @@ export const lodgingOptions = [
     fit: 80,
     good: ["가족 패키지에 12세 미만 인접 객실 명시", "구시가지와 아시아 쪽을 배로 연결 가능", "도착일과 휴식일 운영이 편함"],
     cautions: ["모두 한 집에 머무는 형태는 아님", "공식 가족 패키지는 그룹 예약에 적용되지 않음", "객실 조합과 연결문을 서면 확약해야 함"],
-    action: "패키지 자동 적용을 기대하지 말고, 9명 전체의 맞춤 객실 배치도와 PEN1 보트 조건을 컨시어지에 요청",
+    action: "패키지 자동 적용을 기대하지 말고 9명 전체의 맞춤 객실 배치도와 PEN1 보트 조건을 컨시어지에 요청",
     bookingModel: "hotel_rooms",
     hotelPlan: { rooms: 4, arrangement: "객실 4실 또는 스위트와 인접 객실 조합", connection: "request_only", occupancyApproved: false },
     official: "https://www.peninsula.com/en/istanbul/special-offers/rooms/family-package",
@@ -178,7 +181,7 @@ export const tripComCostSummary = {
   requestedStay: "2027-03-21부터 03-31, 10박",
   requestedOccupancy: "성인 6명, 아이 3명, 호텔 객실 4실",
   exactQuoteStatus: "2027년 동일 조건의 객실 조합과 세금 포함 총액은 공개 페이지에서 확인되지 않았습니다.",
-  directQuoteStatus: "호텔 공식 홈페이지에서는 Swissotel의 2027년 동일 날짜 요금을 재현했습니다. CVK는 한 번 가격이 보였지만 재조회에서 반환되지 않았고, 나머지 후보도 같은 날짜의 공개 가격이 나오지 않았습니다.",
+  directQuoteStatus: "호텔 공식 홈페이지에서는 Swissotel의 2027년 동일 날짜 요금을 재현했습니다. CVK는 한 번 가격이 보였지만 재조회에서 반환되지 않았고 나머지 후보도 같은 날짜의 공개 가격이 나오지 않았습니다.",
   benchmarkLabel: "Trip.com 최근 12개월 이스탄불 5성급 평균",
   benchmarkNightly: "평일 615,652원, 주말 628,070원",
   benchmarkTotal: "약 24,725,424원",
@@ -192,7 +195,7 @@ export const tripComCostSummary = {
   }
 };
 
-export const observedTripComQuotes = [
+const legacyObservedTripComQuotes = [
   {
     id: "tripcom-cvk", lodgingId: "cvk", provider: "Trip.com", capturedAt: CHECKED_AT,
     referenceStay: "2026-08-21부터 08-27", occupancy: "1실, 성인 2명 시작가", roomPlan: "객실 4실로 환산",
@@ -331,7 +334,7 @@ export const observedTripComQuotes = [
       breakfast: true,
       status: "verification_blocked",
       comparisonKey: "2027-03-21/1-room/2-adults/rate-not-returned",
-      inventoryNote: "공식 10박 상품은 BAR 30% 할인과 조식을 안내하지만 그룹 예약에는 적용되지 않고, 10% VAT와 5% 서비스료, 1% 숙박세가 별도입니다. 예약 엔진의 정확한 가격은 보안 확인 화면 때문에 관측하지 못했습니다.",
+      inventoryNote: "공식 10박 상품은 BAR 30% 할인과 조식을 안내하지만 그룹 예약에는 적용되지 않고 10% VAT와 5% 서비스료, 1% 숙박세가 별도입니다. 예약 엔진의 정확한 가격은 보안 확인 화면 때문에 관측하지 못했습니다.",
       sourceUrl: "https://www.peninsula.com/en/istanbul/special-offers/rooms/stay-longer"
     }
   }
@@ -346,10 +349,13 @@ const lodgingMedia = {
   ritz: ["./assets/places/dolmabahce.jpg", "리츠칼튼과 돌마바흐체 권역 참고 사진", "https://commons.wikimedia.org/"]
 };
 
-for (const item of lodgingOptions) {
+for (const item of legacyLodgingOptions) {
   const [image, photoLabel, photoSource] = lodgingMedia[item.id];
   Object.assign(item, { image, imageFallback: image, photoLabel, photoSource });
 }
+
+export const lodgingOptions = generatedLodgingOptions;
+export const observedTripComQuotes = generatedHotelQuotes;
 
 export const rentalChecklist = [
   "관광 임대 허가번호가 광고와 건물에 표시되는가",
@@ -367,7 +373,7 @@ export const rentalChecklist = [
 export const itinerary = [
   {
     date: "2027-03-20", dow: "토", title: "각 도시에서 출발", zone: "ICN / LAX", intensity: 1, stay: false,
-    main: "두 팀은 각자 가장 편한 직항으로 출발하고, 두 공항에서 같은 포즈의 출발 사진을 남겨 여행을 함께 시작합니다.",
+    main: "두 팀은 각자 가장 편한 직항으로 출발하고 두 공항에서 같은 포즈의 출발 사진을 남겨 여행을 함께 시작합니다.",
     timeline: ["출발 4시간 전 가족별 여권과 좌석 확인", "ICN팀과 LAX팀 각자 라운지에서 가벼운 식사", "탑승 전 같은 포즈 사진을 단체 채팅에 올리고 기내 수면"],
     rain: "공항 이동 시간만 여유 있게 조정", low: "출발 사진도 생략하고 라운지와 기내 수면만 챙깁니다.",
     transport: "출발 공항 개별 이동", notes: "최종 편명은 2027년 운항표가 열린 뒤 확정"
@@ -381,14 +387,14 @@ export const itinerary = [
   },
   {
     date: "2027-03-22", dow: "월", title: "동네 적응과 첫 바다", zone: "Taksim / Galataport", intensity: 1, stay: true,
-    main: "늦은 아침과 수영으로 시차를 풀고, 오후에는 Galataport 해안에서 바다와 디저트만 보고 돌아옵니다.",
+    main: "늦은 아침과 수영으로 시차를 풀고 오후에는 Galataport 해안에서 바다와 디저트만 보고 돌아옵니다.",
     timeline: ["10:00 늦은 조식", "11:30 부모 한 팀은 장보기, 아이들은 수영 45분", "13:00 낮잠과 자유시간", "16:30 차량으로 Galataport 해안 45분", "18:00 이른 저녁"],
     rain: "숙소 수영장과 가족 영화", low: "오후 산책을 빼고 수영과 낮잠만 남깁니다.",
     transport: "도보 또는 5분 차량", notes: "Dolmabahçe는 월요일 휴관이라 넣지 않음"
   },
   {
     date: "2027-03-23", dow: "화", title: "메두사 찾는 구시가지", zone: "Sultanahmet", intensity: 2, stay: true,
-    main: "부모는 이스탄불의 첫 역사 장면을 보고, 아이들은 Basilica Cistern에서 메두사와 물기둥을 찾습니다.",
+    main: "부모는 이스탄불의 첫 역사 장면을 보고 아이들은 Basilica Cistern에서 메두사와 물기둥을 찾습니다.",
     timeline: ["09:15 전용차 출발", "10:00 Basilica Cistern 메두사 찾기", "11:10 Hippodrome과 Hagia Sophia 외관", "12:00 예약 점심", "13:30 숙소 복귀"],
     rain: "Basilica Cistern과 식사만", low: "Hagia Sophia 광장 30분과 점심만",
     transport: "왕복 전용차, 현지 이동 도보 약 1km", notes: "Topkapı는 화요일 휴관"
@@ -402,7 +408,7 @@ export const itinerary = [
   },
   {
     date: "2027-03-25", dow: "목", title: "샹들리에와 궁전 정원", zone: "Beşiktaş", intensity: 2, stay: true,
-    main: "부모는 Dolmabahçe의 건축과 실내를 보고, 아이들은 큰 샹들리에와 시계와 정원 동물을 찾습니다.",
+    main: "부모는 Dolmabahçe의 건축과 실내를 보고 아이들은 큰 샹들리에와 시계와 정원 동물을 찾습니다.",
     timeline: ["09:20 숙소 출발", "10:00 가이드와 핵심 실내 관람", "11:40 정원에서 20분 쉬기", "12:30 Bosphorus가 보이는 예약 점심", "14:00 숙소 복귀"],
     rain: "동일 진행 가능", low: "궁전 대신 Çırağan 또는 호텔 라운지 점심",
     transport: "차량 10분 안팎", notes: "사진 촬영과 유모차 제한은 직전 재확인"
@@ -423,14 +429,14 @@ export const itinerary = [
   },
   {
     date: "2027-03-28", dow: "일", title: "배 타고 색깔 골목 찾기", zone: "Üsküdar / Kuzguncuk", intensity: 2, stay: true,
-    main: "부모는 아시아 쪽 생활 동네와 목조 주택을 보고, 아이들은 배와 고양이와 색깔 집을 찾습니다.",
+    main: "부모는 아시아 쪽 생활 동네와 목조 주택을 보고 아이들은 배와 고양이와 색깔 집을 찾습니다.",
     timeline: ["09:45 선착장 이동", "10:15 배로 아시아 쪽 건너기", "10:45 Kuzguncuk 평지에서 색깔 집과 고양이 찾기", "12:15 9인 예약 점심", "14:00 Üsküdar 해안 가족사진 후 귀환"],
     rain: "Beylerbeyi Palace와 차량 전망", low: "Üsküdar 해안 점심만",
     transport: "전용 보트 우선, 귀환 차량 대기", notes: "언덕 골목은 경로에서 제외"
   },
   {
     date: "2027-03-29", dow: "월", title: "두 시장을 헤매지 않고 맛보기", zone: "Grand Bazaar / Spice Bazaar", intensity: 2, stay: true,
-    main: "Grand Bazaar는 정한 입구와 가게 두 곳만 보고, Spice Bazaar에서는 향신료 게임과 한 가지 선물 구매로 끝냅니다.",
+    main: "Grand Bazaar는 정한 입구와 가게 두 곳만 보고 Spice Bazaar에서는 향신료 게임과 한 가지 선물 구매로 끝냅니다.",
     timeline: ["08:30 숙소 출발", "09:00 Grand Bazaar 한 구역 75분", "10:35 차량으로 Spice Bazaar", "10:50 향신료 냄새 맞히기", "11:45 Pandeli 예약 점심", "13:15 출발, 14:00 숙소 복귀"],
     rain: "시장 안에서 동일 진행", low: "Grand Bazaar를 빼고 Spice Bazaar와 점심만 남깁니다.",
     transport: "구간별 전용차, 가이드가 입구와 출구 고정", notes: "성인 한 명만 결제하고 구매 품목과 상한은 전날 정함"
@@ -444,7 +450,7 @@ export const itinerary = [
   },
   {
     date: "2027-03-31", dow: "수", title: "귀국", zone: "숙소 → IST", intensity: 1, stay: false,
-    main: "팀별 비행 시각에 맞춰 따로 출발하고, 아이들은 여행에서 가장 좋았던 장면 하나를 고릅니다.",
+    main: "팀별 비행 시각에 맞춰 따로 출발하고 아이들은 여행에서 가장 좋았던 장면 하나를 고릅니다.",
     timeline: ["개별 조식과 마지막 짐 점검", "아이 셋이 가장 좋았던 장면 하나씩 고르기", "항공편 3시간 전 공항 도착", "팀별 전용차 출발"],
     rain: "해당 없음", low: "해당 없음",
     transport: "수하물 포함 전용 밴", notes: "LAX 장거리팀은 레이트 체크아웃 우선"
@@ -457,7 +463,7 @@ const dayDetails = {
   "2027-03-22": { featuredPlace: "galataport", whyNow: "시차를 푸는 날도 할 일이 보이게 구성했습니다. 수영, 장보기, 바다 산책까지만 하고 예약은 넣지 않습니다.", needs: { parents: "커피와 장보기, 숙소 생활을 정리할 한 시간", kids: "수영 45분과 바닷가 디저트", together: "Galataport 해안에서 첫 Bosphorus 가족사진", recovery: "13시부터 세 시간은 모두 숙소에서 눕습니다." } },
   "2027-03-23": { featuredPlace: "cistern", whyNow: "첫 외출은 비 영향을 덜 받고 아이가 탐험처럼 느낄 수 있는 Basilica Cistern으로 시작합니다.", needs: { parents: "Hagia Sophia와 구시가지의 역사적 규모를 처음 마주하는 장면", kids: "어두운 물기둥 사이에서 메두사 머리 두 개 찾기", together: "Hippodrome에서 오늘 가장 신기했던 것을 한 명씩 말하기", recovery: "점심이 끝나면 다른 모스크 내부를 더 넣지 않고 바로 돌아옵니다." } },
   "2027-03-24": { featuredPlace: "topkapi", whyNow: "화요일 휴관 다음 날 개장 시간에 맞춰 넓은 궁전 전체가 아니라 핵심 세 장면만 봅니다.", needs: { parents: "오스만 궁정의 Harem 건축, 보물, Bosphorus 전망", kids: "방 하나, 보석 하나, 궁전 고양이 하나를 찾는 보물지도", together: "제4정원에서 Bosphorus를 배경으로 찍는 아홉 명 사진", recovery: "두 시간 반이 되면 Gülhane으로 나와 점심 뒤 바로 돌아옵니다." } },
-  "2027-03-25": { featuredPlace: "dolmabahce", whyNow: "아이 주도 박물관 다음 날에 부모가 기대할 궁전을 넣고, 정원 찾기 놀이로 아이 몫도 만듭니다.", needs: { parents: "Dolmabahçe의 건축, 역사, Bosphorus 전망", kids: "큰 샹들리에, 시계, 정원의 새를 찾는 세 가지 미션", together: "궁전 정원에서 아홉 명이 20분 앉아 간식 먹기", recovery: "14시까지 숙소로 돌아와 궁전 설명을 더 이어가지 않습니다." } },
+  "2027-03-25": { featuredPlace: "dolmabahce", whyNow: "아이 주도 박물관 다음 날에 부모가 기대할 궁전을 넣고 정원 찾기 놀이로 아이 몫도 만듭니다.", needs: { parents: "Dolmabahçe의 건축, 역사, Bosphorus 전망", kids: "큰 샹들리에, 시계, 정원의 새를 찾는 세 가지 미션", together: "궁전 정원에서 아홉 명이 20분 앉아 간식 먹기", recovery: "14시까지 숙소로 돌아와 궁전 설명을 더 이어가지 않습니다." } },
   "2027-03-26": { featuredPlace: "ortakoy", whyNow: "금요 예배 혼잡을 피하면서 이스탄불의 양쪽 해안을 한 번에 보는 날입니다.", needs: { parents: "차에 갇히지 않고 보는 궁전, 저택, 해안선", kids: "보트에서 다리 두 개, 성 하나, 큰 깃발 찾기", together: "Ortaköy Mosque가 보이는 지점에서 가족사진 한 장", recovery: "멀미하거나 바람이 세면 한 시간 코스로 줄이고 숙소로 돌아옵니다." } },
   "2027-03-27": { featuredPlace: "modern", whyNow: "역사 명소의 언어를 끊고 현대미술과 아이 중심 활동으로 여행 중간의 리듬을 바꿉니다.", needs: { parents: "터키 현대미술과 Renzo Piano 건축을 가까운 거리에서 보는 시간", kids: "작품 세 점 미션이나 현재 2-10세 대상 가족 워크숍", together: "아이들이 자기 작품 제목을 발표하고 어른이 관람객이 되는 거실 전시", recovery: "점심 뒤 돌아와 세 시간 쉬고 저녁 외출은 하지 않습니다." } },
   "2027-03-28": { featuredPlace: "kuzguncuk", whyNow: "왕실 명소 사이에 생활 동네를 넣어 어른의 도시 취향과 아이의 놀이를 같이 만족시킵니다.", needs: { parents: "목조 주택, 동네 카페, 아시아 쪽 생활 풍경", kids: "배 타기와 고양이, 색깔 집 찾기", together: "Üsküdar 해안에서 유럽 쪽을 배경으로 찍는 사진", recovery: "Beylerbeyi는 비가 올 때만 쓰고 맑은 날에는 동네와 점심으로 끝냅니다." } },
@@ -485,7 +491,7 @@ const focusedItineraryOverrides = {
     timeline: ["08:20 전용차 출발", "09:00 Basilica Cistern 첫 회차", "10:05 Hippodrome과 Blue Mosque", "11:15 Hagia Sophia 관람 가능 구역", "12:30 예약 점심", "14:00 광장 마지막 사진", "14:30 숙소 복귀"],
     rain: "지하 궁전, Blue Mosque, 점심만 남깁니다.", low: "지하 궁전과 광장 외관만 보고 12시 전에 나옵니다.",
     transport: "왕복 전용차, 광장 안 도보 약 1.8km", notes: "Topkapı는 화요일 휴관, 기도 시간과 Hagia Sophia 관광 동선은 전날 확인합니다.",
-    whyNow: "첫 구시가지 날에 광장 안 대표 장면을 모아 보고, 다른 날 같은 길을 다시 오지 않게 합니다.",
+    whyNow: "첫 구시가지 날에 광장 안 대표 장면을 모아 보고 다른 날 같은 길을 다시 오지 않게 합니다.",
     needs: { parents: "비잔틴과 오스만 역사가 맞닿는 대표 건축", kids: "메두사, 오벨리스크, 푸른 타일 찾기", together: "광장 네 장면 중 가족 1등을 투표하기", recovery: "14시 30분 복귀 뒤 저녁 외출은 하지 않습니다." },
     featuredPlace: "cistern"
   },
@@ -495,7 +501,7 @@ const focusedItineraryOverrides = {
     timeline: ["08:20 숙소 출발", "09:00 Harem과 보물실", "11:15 제4정원 전망", "11:50 Gülhane 내리막 산책", "12:40 예약 점심", "14:00 Spice Bazaar 45분", "15:20 차량 귀환"],
     rain: "궁전 실내와 Spice Bazaar만 차량으로 연결합니다.", low: "Topkapı Harem과 보물실 뒤 바로 점심, 귀환합니다.",
     transport: "왕복 전용차, 궁전에서 Gülhane까지 내리막, 시장 구간은 차량", notes: "궁전 관람은 세 시간 전에 강제로 끝냅니다.",
-    whyNow: "화요일 휴관 다음 날 Topkapı 첫 회차를 잡고, 같은 반도 동선을 한 번에 끝냅니다.",
+    whyNow: "화요일 휴관 다음 날 Topkapı 첫 회차를 잡고 같은 반도 동선을 한 번에 끝냅니다.",
     needs: { parents: "오스만 궁정과 역사 시장을 하루에 잇는 밀도", kids: "궁전 보석과 향신료 냄새 맞히기", together: "보물 하나와 향신료 하나를 각자 골라 설명하기", recovery: "15시 30분부터 숙소에서 두 시간 쉽니다." },
     featuredPlace: "topkapi"
   },
@@ -521,7 +527,7 @@ const focusedItineraryOverrides = {
   },
   "2027-03-27": {
     title: "Istanbul Modern과 갈라타 전망", zone: "Galataport / Galata", intensity: 3,
-    main: "오전 미술관 뒤 점심을 먹고, 예약 시간에 맞춰 Galata Tower 전망까지 올라갑니다.",
+    main: "오전 미술관 뒤 점심을 먹고 예약 시간에 맞춰 Galata Tower 전망까지 올라갑니다.",
     timeline: ["09:30 숙소 출발", "10:00 Istanbul Modern 90분", "11:45 Galataport 점심", "13:15 차량으로 갈라타 탑 아래", "13:40 예약 입장과 전망", "15:20 숙소 복귀"],
     rain: "미술관과 점심만, 갈라타 탑은 비가 그칠 때만 갑니다.", low: "Istanbul Modern 작품 세 점과 점심만 남깁니다.",
     transport: "구간별 차량, 갈라타 탑 주변 짧은 언덕 도보", notes: "탑 대기가 20분을 넘으면 외관만 보고 귀환합니다.",
@@ -555,7 +561,7 @@ const focusedItineraryOverrides = {
     timeline: ["08:55 숙소 출발", "09:30 Rahmi M. Koç Museum 2시간 20분", "12:00 박물관 점심", "13:10 Balat 평지 골목 45분", "14:15 Pierre Loti 케이블카와 전망", "15:30 숙소 귀환", "18:00 마지막 가족 저녁과 시상식"],
     rain: "박물관과 점심만 보고 돌아와 짐을 쌉니다.", low: "자동차와 기차 전시 90분만 보고 귀환합니다.",
     transport: "권역 내 전용차, 케이블카 대기가 길면 전망은 생략", notes: "15시 30분 출발 상한을 지켜 출국 전 포장 시간을 남깁니다.",
-    whyNow: "마지막 관광일을 아이가 좋아할 박물관으로 시작하고, Golden Horn의 서로 다른 표정을 한 번에 봅니다.",
+    whyNow: "마지막 관광일을 아이가 좋아할 박물관으로 시작하고 Golden Horn의 서로 다른 표정을 한 번에 봅니다.",
     needs: { parents: "산업 디자인, Balat 도시 풍경, Golden Horn 전망", kids: "자동차와 기차, 색깔 집, 케이블카", together: "각자 뽑은 여행 최고의 장면을 마지막 저녁에 발표하기", recovery: "16시부터 짐 정리, 18시 이후에는 숙소 밖으로 나가지 않습니다." },
     featuredPlace: "rahmi"
   }
@@ -575,7 +581,7 @@ export const mealSuggestions = {
   "2027-03-26": "보트 케이터링을 가볍게 하거나 하선 뒤 숙소 가까운 예약 식당 한 곳만 이용한다.",
   "2027-03-27": "Galataport에서 12시 15분 점심을 예약하고 저녁은 아이들이 고른 피자와 샐러드를 거실에서 먹는다.",
   "2027-03-28": "Kuzguncuk의 작은 식당을 현장 탐색하지 말고 컨시어지가 9인 점심을 전날 확정한다.",
-  "2027-03-29": "Pandeli 11시 45분 점심을 우선 문의하고, 계단과 9인 좌석이 어렵다면 Hamdi로 바꾼다.",
+  "2027-03-29": "Pandeli 11시 45분 점심을 우선 문의하고 계단과 9인 좌석이 어렵다면 Hamdi로 바꾼다.",
   "2027-03-30": "Rahmi M. Koç Museum 안이나 Hasköy에서 12시 10분 9인 점심을 예약하고 마지막 저녁은 거실에서 먹는다.",
   "2027-03-31": "팀별 출발 시각에 맞춘 조식 또는 포장식. 공항에서 합류 식사를 만들지 않는다."
 };
@@ -606,7 +612,7 @@ function place(id, name, zone, category, lat, lng, duration, energy, rain, why, 
   };
 }
 
-export const places = [
+const legacyPlaces = [
   place("hagia", "Hagia Sophia", "Sultanahmet", "명소", 41.0086, 28.9802, "45-60분", 2, true, "도시의 역사 층위를 한 장면에서 보여준다.", "예배와 방문 동선이 바뀔 수 있어 직전 확인", "https://muze.gen.tr/muze-detay/ayasofya", images.hagia),
   place("blue", "Blue Mosque", "Sultanahmet", "명소", 41.0054, 28.9768, "30-45분", 2, true, "광장 동선 안에서 선택 가능한 모스크다.", "금요 예배와 기도 시간에는 관광 입장 제한", "https://www.ktb.gov.tr/EN-113799/blue-mosque.html", images.blue),
   place("cistern", "Basilica Cistern", "Sultanahmet", "명소", 41.0084, 28.9779, "45-60분", 1, true, "비와 추위를 피하면서 아이도 몰입하기 좋다.", "바닥이 어둡고 미끄러울 수 있음", "https://yerebatan.com/en/", images.cistern),
@@ -635,7 +641,7 @@ export const places = [
 
 const placeDetails = {
   hagia: {
-    reviewSignal: "역사성과 모자이크는 여전히 압도적이지만, 최근 리뷰는 상층 갤러리만 허용되는 동선, 공사 구조물, 긴 대기와 낮은 가격 만족도를 반복해서 지적합니다.",
+    reviewSignal: "역사성과 모자이크는 여전히 압도적이지만 최근 리뷰는 상층 갤러리만 허용되는 동선, 공사 구조물, 긴 대기와 낮은 가격 만족도를 반복해서 지적합니다.",
     pros: ["비잔틴과 오스만 역사가 한 건물에 겹치는 상징성", "상층 모자이크와 건축 디테일"],
     cons: ["관광객은 지상 예배 공간에 들어갈 수 없고 공사 때문에 시야가 제한될 수 있음"],
     familyCaveat: "2027년 공사와 관광객 동선을 다시 확인합니다. 현 상태라면 유료 내부보다 외관, 광장, Blue Mosque를 먼저 봅니다.",
@@ -647,7 +653,7 @@ const placeDetails = {
     reviewSignal: "무료 입장, 푸른 타일과 넓은 예배 공간은 강점이지만 보안 대기, 기도시간 중단, 복장과 신발 절차가 반복적인 불편으로 언급됩니다.",
     pros: ["무료이며 공간의 크기와 타일을 아이도 바로 느낄 수 있음", "Hagia Sophia와 같은 광장에서 결합 가능"],
     cons: ["기도시간에는 입장이 멈추고 오전 중반부터 보안 줄이 생길 수 있음"],
-    familyCaveat: "기도시간 사이 첫 오전 구간을 쓰고, 신발 가방과 머리 스카프를 준비합니다.",
+    familyCaveat: "기도시간 사이 첫 오전 구간을 쓰고 신발 가방과 머리 스카프를 준비합니다.",
     verdict: "짧게 추천",
     reviewUrl: "https://www.tripadvisor.com/Attraction_Review-g293974-d294495-Reviews-Blue_Mosque-Istanbul.html",
     image: images.blue
@@ -710,7 +716,7 @@ const placeDetails = {
     reviewSignal: "자동차, 비행기, 기차와 선박 체험은 7세와 9세 가족 리뷰에서 큰 호응을 얻었고 비 오는 날에도 혼잡이 분산된다는 평가입니다.",
     pros: ["이번 아이 연령에 가장 잘 맞는 박물관", "교통수단과 과학 체험이 많고 가격 만족도가 높음"],
     cons: ["아이 취향을 따라가면 4시간이 넘고 현장 식사 선택이 제한적"],
-    familyCaveat: "2시간에서 3시간 상한과 간식을 두고, 역사 명소에 지친 날 먼저 교체합니다.",
+    familyCaveat: "2시간에서 3시간 상한과 간식을 두고 역사 명소에 지친 날 먼저 교체합니다.",
     verdict: "이스탄불 가족 명소 1순위",
     reviewUrl: "https://www.tripadvisor.com/Attraction_Review-g293974-d549828-Reviews-Rahmi_M_Koc_Museum-Istanbul.html",
     image: images.rahmi
@@ -866,7 +872,7 @@ const placeAssetExtensions = {
   hafiz: "avif"
 };
 
-for (const item of places) {
+for (const item of legacyPlaces) {
   const details = placeDetails[item.id];
   const originalImage = item.image || images.skyline;
   Object.assign(item, {
@@ -890,6 +896,8 @@ for (const item of places) {
   });
 }
 
+export const places = generatedPlaces;
+
 export const climate = {
   source: "Turkish State Meteorological Service",
   summary: "3월의 장기 평균은 평균 8.5°C, 평균 최고 12.4°C 수준이다.",
@@ -901,14 +909,14 @@ export const climate = {
 export const sources = [
   ["Original family trip planning deck", trip.sourceDeck],
   ["Trip.com Istanbul 5-star market benchmark", tripComCostSummary.sourceUrl],
-  ["Trip.com CVK reference price", observedTripComQuotes[0].sourceUrl],
-  ["Trip.com Swissotel reference price", observedTripComQuotes[1].sourceUrl],
-  ["Trip.com Ritz-Carlton reference price", observedTripComQuotes[2].sourceUrl],
-  ["Trip.com Peninsula reference price", observedTripComQuotes[3].sourceUrl],
-  ["CVK 4 Bedroom Residence", lodgingOptions[0].official],
-  ["The Peninsula family package", lodgingOptions[1].official],
+  ["Trip.com CVK reference price", observedTripComQuotes.find((quote) => quote.lodgingId === "cvk").sourceUrl],
+  ["Trip.com Swissotel reference price", observedTripComQuotes.find((quote) => quote.lodgingId === "swissotel").sourceUrl],
+  ["Trip.com Ritz-Carlton reference price", observedTripComQuotes.find((quote) => quote.lodgingId === "ritz").sourceUrl],
+  ["Trip.com Peninsula reference price", observedTripComQuotes.find((quote) => quote.lodgingId === "peninsula").sourceUrl],
+  ["CVK 4 Bedroom Residence", lodgingOptions.find((item) => item.id === "cvk").official],
+  ["The Peninsula family package", lodgingOptions.find((item) => item.id === "peninsula").official],
   ["The Peninsula transportation", "https://www.peninsula.com/en/istanbul/transportation-service-reservation"],
-  ["Somerset Maslak", lodgingOptions[3].official],
+  ["Somerset Maslak", lodgingOptions.find((item) => item.id === "somerset").official],
   ["Türkiye tourism rental permit guidance", "https://vatandas.ktb.gov.tr/turizm"],
   ["Airbnb Türkiye hosting rules", "https://www.airbnb.com/help/article/2455"],
   ["Turkish Airlines LAX to Istanbul", "https://www.turkishairlines.com/en-us/flights-from-los-angeles-to-istanbul"],

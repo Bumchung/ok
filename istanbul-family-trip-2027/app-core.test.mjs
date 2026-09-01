@@ -17,7 +17,7 @@ import {
   tripStatus,
   weatherMode
 } from "./app-core.mjs";
-import { familyGroups, itinerary, lodgingOptions, mealSuggestions, observedTripComQuotes, places, trip, tripComCostSummary } from "./trip-data.mjs";
+import { familyGroups, itinerary, lodgingOptions, mealSuggestions, observedTripComQuotes, places, sources, trip, tripComCostSummary } from "./trip-data.mjs";
 
 test("travel dates are internally consistent and total ten nights", () => {
   assert.equal(daysBetween(trip.arrivalDate, trip.checkoutDate), 10);
@@ -46,32 +46,37 @@ test("recommended residence satisfies the one-home capacity constraint", () => {
 
 test("lodging comparison includes both one-home and hotel-room plans", () => {
   assert.equal(new Set(lodgingOptions.map((item) => item.id)).size, lodgingOptions.length);
+  assert.equal(lodgingOptions.filter((item) => item.bookingModel !== "whole_home").length, 30);
+  assert.equal(lodgingOptions.filter((item) => item.bookingModel === "whole_home").length, 1);
   assert.ok(lodgingOptions.some((item) => item.bookingModel === "whole_home"));
   assert.ok(lodgingOptions.filter((item) => item.bookingModel === "hotel_rooms").length >= 3);
   for (const item of lodgingOptions) {
     assert.ok(item.hotelPlan?.rooms >= 1, item.name);
-    assert.match(item.image, /^\.\/assets\//, item.name);
+    assert.match(item.image, /^(?:https:\/\/|\.\/assets\/)/, item.name);
     assert.ok(item.photoLabel.length >= 8, item.name);
+    if (item.bookingModel !== "whole_home") assert.match(item.photoLabel, /실제 숙소 사진/, item.name);
+    assert.match(item.photoSource, /^https:\/\//, item.name);
   }
+  assert.equal(sources.find((item) => item.title === "The Peninsula family package").url, lodgingOptions.find((item) => item.id === "peninsula").official);
+  assert.equal(sources.find((item) => item.title === "Somerset Maslak").url, lodgingOptions.find((item) => item.id === "somerset").official);
 });
 
 test("Trip.com reference prices and official direct prices keep their evidence conditions", () => {
   assert.match(tripComCostSummary.exactQuoteStatus, /확인되지 않았/);
   assert.equal(tripComCostSummary.fx.eurToKrw, 1586.37);
-  assert.equal(observedTripComQuotes.length, 4);
+  assert.equal(observedTripComQuotes.length, 30);
   for (const quote of observedTripComQuotes) {
-    assert.equal(quote.status, "reference_start_price");
-    assert.equal(quote.projectedValue, quote.nightlyValue * 4 * 10);
-    assert.equal(quote.totalIncludesTaxes, null);
+    assert.ok(["observed_exact", "reference_start_price", "unavailable"].includes(quote.status), quote.id);
+    if (Number.isFinite(quote.nightlyValue)) assert.equal(quote.projectedValue, quote.nightlyValue * 4 * 10);
     assert.match(quote.unitLabel, /1실 1박/);
     assert.equal(quote.officialDirect.capturedAt, quote.capturedAt);
     assert.match(quote.officialDirect.sourceUrl, /^https:\/\//);
-    assert.match(quote.sourceUrl, /^https:\/\/kr\.trip\.com\//);
-    assert.notEqual(compareHotelPrices(quote).status, "comparable");
+    assert.match(quote.sourceUrl, /^https:\/\/(?:www\.|kr\.)?trip\.com\//);
+    assert.ok(["comparable", "not_comparable", "official_unavailable"].includes(compareHotelPrices(quote).status));
   }
   const cvk = observedTripComQuotes.find((quote) => quote.lodgingId === "cvk").officialDirect;
-  assert.equal(cvk.nightlyValue, 6030);
-  assert.equal(cvk.projectedValue, 60300);
+  assert.equal(cvk.nightlyValue, 603);
+  assert.equal(cvk.projectedValue, 6030);
   assert.equal(cvk.status, "observed_once_not_reproduced");
   assert.equal(compareHotelPrices(observedTripComQuotes.find((quote) => quote.lodgingId === "cvk")).status, "official_unavailable");
   const swissotel = observedTripComQuotes.find((quote) => quote.lodgingId === "swissotel").officialDirect;
@@ -113,12 +118,13 @@ test("price differences are calculated only when every comparison condition matc
 });
 
 test("place data has unique ids, safe links, and plausible local coordinates", () => {
+  assert.equal(places.length, 100);
   assert.equal(new Set(places.map((item) => item.id)).size, places.length);
   for (const item of places) {
     assert.match(item.official, /^https:\/\//, item.name);
     assert.match(item.maps, /^https:\/\/www\.google\.com\/maps\//, item.name);
-    assert.ok(item.lat > 40.9 && item.lat < 41.2, item.name);
-    assert.ok(item.lng > 28.8 && item.lng < 29.2, item.name);
+    assert.ok(item.lat > 40.8 && item.lat < 41.3, item.name);
+    assert.ok(item.lng > 28.7 && item.lng < 29.3, item.name);
     assert.ok(item.warning.length >= 8, item.name);
     assert.match(item.image, /^(?:https:\/\/|\.\/assets\/)/, `${item.name} primary image`);
     assert.match(item.imageFallback, /^https:\/\//, `${item.name} fallback image`);
@@ -191,11 +197,11 @@ test("local guide answers high-risk family questions without a server", () => {
   assert.match(localAnswer("9명이 한 집에서 자려면?").answer, /CVK Park Bosphorus/);
   assert.match(localAnswer("비 오면 아이들과 어디 가?").answer, /Basilica Cistern/);
   assert.match(localAnswer("카파도키아도 갈까?").answer, /이번에는 빼는 게 맞/);
-  assert.match(localAnswer("Trip.com 실경비는?").answer, /1박 기준/);
+  assert.match(localAnswer("Trip.com 실경비는?").answer, /1실 1박 기준/);
   assert.match(localAnswer("Trip.com 실경비는?").answer, /공식 사이트/);
-  assert.match(localAnswer("Trip.com 실경비는?").answer, /1회 관측 EUR 6,030/);
-  assert.match(localAnswer("Trip.com 실경비는?").answer, /재조회에서 가격이 반환되지 않아/);
-  assert.match(localAnswer("Trip.com 실경비는?").answer, /차액도 계산하지 않았/);
+  assert.match(localAnswer("Trip.com 실경비는?").answer, /10박 전체 EUR 6,030/);
+  assert.match(localAnswer("Trip.com 실경비는?").answer, /재조회에서는 가격이 반환되지 않았/);
+  assert.match(localAnswer("Trip.com 실경비는?").answer, /차액(?:도|은) 계산하지 않았/);
   assert.ok(searchContext("호텔 4실 Trip.com").some((item) => item.kind === "비용"));
   assert.ok(searchContext("호텔 공식 1박").some((item) => item.title.includes("공식 직접 예약")));
   assert.ok(searchContext("Topkapı 화요일").length > 0);
@@ -207,11 +213,12 @@ test("CSV, KML, and map points retain all curated places", () => {
   const csv = makeCsv();
   const kml = makeKml();
   assert.equal(csv.split("\n").length, places.length + 1);
-  assert.match(csv, /Karaköy Lokantası/);
+  assert.match(csv, /아야 소피아/);
+  assert.match(csv, /치야 소프라스/);
   assert.match(kml, /<kml xmlns=/);
   assert.equal((kml.match(/<Placemark>/g) || []).length, places.length);
   const points = buildMapPoints();
-  assert.ok(points.length >= places.length - 1);
+  assert.equal(points.length, places.length);
   assert.ok(points.every((item) => item.x >= 28 && item.x <= 972 && item.y >= 28 && item.y <= 532));
 });
 

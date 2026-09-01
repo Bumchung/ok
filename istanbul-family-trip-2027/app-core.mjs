@@ -195,11 +195,12 @@ export function searchContext(question, limit = 6, days = itinerary) {
 }
 
 function hotelPriceAnswer() {
-  const quoteById = (id) => observedTripComQuotes.find((quote) => quote.lodgingId === id);
-  const swissotel = quoteById("swissotel");
-  const cvk = quoteById("cvk");
-  const ritz = quoteById("ritz");
-  return `1박 기준으로 Trip.com 참고가는 Swissotel ${swissotel.nightlyDisplay}, CVK ${cvk.nightlyDisplay}, Ritz-Carlton ${ritz.nightlyDisplay}입니다. 다만 2026년의 다른 날짜에서 본 일반 객실 시작가입니다. 호텔 공식 사이트의 2027년 3월 21일부터 31일 재현 가능한 가격은 Swissotel Classic Garden 1실 일반가 ${swissotel.officialDirect.nightlyDisplay}, ALL 회원가 ${swissotel.officialDirect.memberRate.nightlyDisplay}입니다. CVK 4베드룸은 ${cvk.officialDirect.nightlyDisplay}이 한 번 보였지만 재조회에서 가격이 반환되지 않아 확정가로 쓰지 않았습니다. 날짜, 객실 상품과 세금 조건이 달라 Trip.com과의 차액도 계산하지 않았습니다.`;
+  const byRank = new Map(lodgingOptions.map((item) => [item.id, item.rank]));
+  const priced = observedTripComQuotes.filter((quote) => Number.isFinite(quote.nightlyValue)).sort((a, b) => (byRank.get(a.lodgingId) || 99) - (byRank.get(b.lodgingId) || 99)).slice(0, 5);
+  const exactDirect = observedTripComQuotes.filter((quote) => quote.officialDirect?.status === "observed_exact");
+  const priceLine = priced.map((quote) => `${lodgingOptions.find((item) => item.id === quote.lodgingId)?.name || quote.lodgingId} ${quote.nightlyDisplay}`).join(", ");
+  const directLine = exactDirect.length ? exactDirect.map((quote) => `${lodgingOptions.find((item) => item.id === quote.lodgingId)?.name || quote.lodgingId} ${quote.officialDirect.nightlyDisplay}`).join(", ") : "재현 가능한 공식가는 아직 없습니다";
+  return `호텔 30곳을 1실 1박 기준으로 비교했습니다. Trip.com에서 가격이 보인 상위 후보는 ${priceLine || "아직 없습니다"}입니다. 이 값들은 목표일과 다른 날짜의 시작가입니다. 관측 날짜와 세금 조건은 카드 안에 적었습니다. 2027년 3월 21일부터 31일까지 공식 사이트에서 재현한 가격은 ${directLine}입니다. CVK 4베드룸 레지던스는 10박 전체 EUR 6,030이 한 번 보였지만 재조회에서는 가격이 반환되지 않았습니다. 1박 EUR 603은 이 값을 10으로 나눈 참고값입니다. 날짜와 객실 조건이 다르면 차액은 계산하지 않았습니다.`;
 }
 
 const questionRules = [
@@ -213,15 +214,15 @@ const questionRules = [
   },
   {
     terms: ["숙소", "호텔", "에어비앤비", "airbnb", "한집"],
-    answer: "한 집으로 묵으려면 CVK Park Bosphorus 4 Bedroom Residence가 1순위예요. 호텔식이면 The Peninsula, Swissotel, Ritz-Carlton의 객실 4실을 같은 층 또는 연결 조합으로 요청하세요. Trip.com에는 아직 2027년 동일 조건의 확정 총액이 없으니, 공개 시작가는 비교선으로만 보고 호텔의 서면 배정 답변까지 받아야 합니다."
+    answer: "아홉 명이 한 거실을 쓰려면 CVK Park Bosphorus 4 Bedroom Residence를 먼저 확인합니다. 독채형은 관광 임대 허가번호와 엘리베이터를 확인한 뒤 고릅니다. 호텔은 30곳을 같은 기준으로 비교했습니다. 객실 네 개의 같은 층 배정과 커넥팅룸은 예약 전에 서면으로 받아야 합니다."
   },
   {
     terms: ["피곤", "힘들", "쉬", "낮잠"],
-    answer: "그날은 한 군데만 가요. 오전에 보고 점심을 먹은 뒤 숙소로 돌아오면 됩니다. 아이들이 지치면 날짜 카드의 ‘힘들면’ 일정으로 바꾸고, 예약했더라도 무리해서 가지 않아요."
+    answer: "그날은 한 군데만 가요. 오전에 보고 점심을 먹은 뒤 숙소로 돌아오면 됩니다. 아이들이 지치면 날짜 카드의 ‘힘들면’ 일정으로 바꾸고 예약했더라도 무리해서 가지 않아요."
   },
   {
     terms: ["아이", "어린이", "6살", "7살", "9살"],
-    answer: "아이 셋 반응을 생각하면 Basilica Cistern과 탈것이 많은 Rahmi M. Koç Museum부터 보세요. 궁전은 2시간 30분 안에 끝내고, 식당은 아이 입장 나이와 어린이 의자를 예약할 때 같이 물어보면 됩니다."
+    answer: "아이 셋 반응을 생각하면 Basilica Cistern과 탈것이 많은 Rahmi M. Koç Museum부터 보세요. 궁전은 2시간 30분 안에 끝내고 식당은 아이 입장 나이와 어린이 의자를 예약할 때 같이 물어보면 됩니다."
   },
   {
     terms: ["식당", "밥", "점심", "저녁", "맛집"],
@@ -343,8 +344,17 @@ export function makeIcs(days = itinerary) {
 }
 
 export function buildMapPoints(items = places, width = 1000, height = 560) {
-  const usable = items.filter((item) => Number.isFinite(item.lat) && Number.isFinite(item.lng) && item.lat < 41.09);
-  const bounds = { west: 28.93, east: 29.07, south: 40.98, north: 41.06 };
+  const usable = items.filter((item) => Number.isFinite(item.lat) && Number.isFinite(item.lng));
+  const longitudes = usable.map((item) => item.lng);
+  const latitudes = usable.map((item) => item.lat);
+  const longitudePadding = Math.max(0.01, (Math.max(...longitudes) - Math.min(...longitudes)) * 0.04);
+  const latitudePadding = Math.max(0.01, (Math.max(...latitudes) - Math.min(...latitudes)) * 0.04);
+  const bounds = {
+    west: Math.min(...longitudes) - longitudePadding,
+    east: Math.max(...longitudes) + longitudePadding,
+    south: Math.min(...latitudes) - latitudePadding,
+    north: Math.max(...latitudes) + latitudePadding
+  };
   return usable.map((item) => ({
     ...item,
     x: Math.max(28, Math.min(width - 28, ((item.lng - bounds.west) / (bounds.east - bounds.west)) * width)),

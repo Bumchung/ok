@@ -38,10 +38,11 @@ test("assistant remains useful without a deployed remote endpoint", async () => 
 });
 
 test("Sydney-parity details include day photos, reviews, location sorting, and calendar links", async () => {
-  const [entry, shared, css] = await Promise.all([
+  const [entry, shared, css, html] = await Promise.all([
     readFile(join(here, "app.mjs"), "utf8"),
     readFile(join(here, "trip-app.mjs"), "utf8"),
-    readFile(join(here, "styles.css"), "utf8")
+    readFile(join(here, "styles.css"), "utf8"),
+    readFile(join(here, "index.html"), "utf8")
   ]);
   const app = `${entry}\n${shared}`;
   assert.match(app, /navigator\.geolocation/);
@@ -50,11 +51,14 @@ test("Sydney-parity details include day photos, reviews, location sorting, and c
   assert.match(app, /day-photo/);
   assert.match(app, /renderTripComCosts/);
   assert.match(app, /quote-price-grid/);
+  assert.match(`${app}\n${html}`, /호텔 30곳/);
   assert.match(app, /호텔 공식 사이트에서 확인/);
   assert.match(app, /관측일/);
   assert.match(app, /aria-pressed/);
   for (const label of ["부모가 기대할 것", "아이들이 기다릴 것", "같이 남길 장면", "오후 회복"]) assert.match(app, new RegExp(label));
   assert.match(css, /review-signal/);
+  assert.match(css, /hotel-catalog-grid/);
+  assert.match(css, /grid-template-columns:\s*repeat\(3/);
   assert.match(css, /nearby-list/);
   assert.match(css, /day-needs/);
   assert.match(css, /quote-comparison/);

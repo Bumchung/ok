@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "test": "node --test *.test.mjs",
-    "build:data": "node build-map-data.mjs"
+    "build:data": "node build-map-data.mjs",
+    "verify:images": "node ../scripts/verify-istanbul-images.mjs"
   }
 }
