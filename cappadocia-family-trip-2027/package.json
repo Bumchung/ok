@@ -1,0 +1,11 @@
+{
+  "name": "cappadocia-family-trip-2027",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test *.test.mjs",
+    "verify:images": "node --test quality.test.mjs",
+    "images:build": "node build-images.mjs",
+    "images:repair": "node repair-images.mjs"
+  }
+}

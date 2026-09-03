@@ -110,7 +110,8 @@ export function bootTripApp({ data, core }) {
     $("#budget-origin-options").innerHTML = budgetModel.origins.map((item) => `<button type="button" data-budget-origin="${escapeHtml(item.id)}" aria-pressed="${item.id === state.budget.originId}">${escapeHtml(item.label)}</button>`).join("");
     const result = calculateBudget(state.budget, budgetModel);
     $("#budget-result").innerHTML = `<span>${escapeHtml(result.origin.label)} 예상</span><strong>${formatKrw(result.perPersonTotal)}</strong><p>항공 ${formatKrw(result.flightPerPerson)} + ${escapeHtml(trip.budgetStayLabel || `현지 ${trip.nights}박`)} ${formatKrw(result.landPerPerson)}</p><small>${escapeHtml(trip.budgetGroupLabel || "두 출발팀 9명 전체")}는 ${formatKrw(result.mixedOriginFamilyTotal)}, 회계상 1인 평균 ${formatKrw(result.mixedOriginAveragePerPerson)}입니다.</small>`;
-    const lines = [result.stay, ...budgetModel.sharedLines, { label: `예비비 ${Math.round(budgetModel.contingencyRate * 100)}%`, familyTotal: result.contingency, note: "숙박과 현지 운영비가 오를 때 쓰는 완충액입니다." }];
+    const excluded = (budgetModel.excludedOptions || []).map((line) => ({ ...line, label: `기본 총액 제외, ${line.label}` }));
+    const lines = [result.stay, ...budgetModel.sharedLines, { label: `예비비 ${Math.round(budgetModel.contingencyRate * 100)}%`, familyTotal: result.contingency, note: "숙박과 현지 운영비가 오를 때 쓰는 완충액입니다." }, ...excluded];
     $("#budget-breakdown").innerHTML = lines.map((line) => `<article><span>${escapeHtml(line.label)}</span><strong>가족 ${formatKrw(line.familyTotal)}</strong><small>${escapeHtml(line.note)}</small>${line.observedAt ? `<small>관측일 ${escapeHtml(line.observedAt)} / ${escapeHtml(line.cancellation)}</small>` : ""}${line.sourceUrl ? `<a href="${escapeHtml(line.sourceUrl)}" target="_blank" rel="noreferrer">이 가격 출처</a>` : ""}</article>`).join("");
     $$('[data-budget-stay]').forEach((button) => button.addEventListener("click", () => { state.budget.stayId = button.dataset.budgetStay; renderBudget(); }));
     $$('[data-budget-origin]').forEach((button) => button.addEventListener("click", () => { state.budget.originId = button.dataset.budgetOrigin; renderBudget(); }));
@@ -253,7 +254,10 @@ export function bootTripApp({ data, core }) {
       const average = (values) => Math.round(values.reduce((sum, value) => sum + value, 0) / values.length);
       $(".weather-metric strong").textContent = `${average(lows)}–${average(highs)}°`;
       $(".weather-metric span").textContent = "여행 기간 예보 범위";
-      $("#weather-note").textContent = `Open-Meteo 예보를 불러왔습니다. 기간 중 최고 강수확률은 ${Math.max(...rain)}%입니다. 보트와 야외 시설은 하루 전 풍속을 다시 보세요.`;
+      const liveCaveat = trip.destination === "카파도키아"
+        ? "열기구 공식 신호, 풍속과 도로 결빙은 전날과 당일 새벽에 다시 보세요."
+        : "보트와 야외 시설은 하루 전 풍속을 다시 보세요.";
+      $("#weather-note").textContent = `Open-Meteo 예보를 불러왔습니다. 기간 중 최고 강수확률은 ${Math.max(...rain)}%입니다. ${liveCaveat}`;
     } catch { $("#weather-note").textContent = `${climate.note} 예보를 불러오지 못해 장기 통계를 보여드립니다.`; }
   }
 

@@ -1,0 +1,67 @@
+:root {
+  --cappadocia-deep: #302a3c;
+  --cappadocia-earth: #7a3f2f;
+  --cappadocia-clay: #c96e4b;
+  --cappadocia-sand: #ead7b7;
+}
+
+body.theme-cappadocia {
+  --green: #684e42;
+  --coral: #c96e4b;
+  --amber: #d7a767;
+  --mint: #eee4d3;
+  background: #f6efe5;
+}
+
+body.theme-cappadocia .topbar.scrolled { background: rgba(48, 42, 60, .97); }
+body.theme-cappadocia .brand-mark { border-color: rgba(255, 255, 255, .5); }
+body.theme-cappadocia .hero { min-height: 690px; height: min(780px, 90svh); }
+body.theme-cappadocia .hero > img { filter: saturate(.84) contrast(1.08); }
+body.theme-cappadocia .hero-scrim { background: linear-gradient(90deg, rgba(38, 31, 45, .9) 0%, rgba(52, 37, 40, .66) 54%, rgba(75, 45, 34, .18) 100%), linear-gradient(0deg, rgba(40, 29, 35, .58), transparent 55%); }
+body.theme-cappadocia .hero h1 span { color: #f4b38b; }
+body.theme-cappadocia .hero-copy-block { max-width: 940px; }
+body.theme-cappadocia .hero-metrics article { background: rgba(68, 45, 45, .7); }
+body.theme-cappadocia .hero-alternative { background: rgba(62, 42, 48, .82); }
+body.theme-cappadocia .today-card { background: linear-gradient(135deg, #714332, #3d3548); box-shadow: 0 14px 34px rgba(77, 48, 43, .22); }
+body.theme-cappadocia .lodging-section { background: #eee5d8; }
+body.theme-cappadocia .itinerary-section { background: #faf5ed; }
+body.theme-cappadocia .weather-shell { background: linear-gradient(135deg, #57404a, #8a5b46); }
+body.theme-cappadocia .guide-section { background: #f0e8dc; }
+body.theme-cappadocia .map-section { background: #302a3c; }
+body.theme-cappadocia .assistant-section { background: #eee4d8; }
+
+.option-compare { padding-block: 58px; background: #ead7b7; }
+.option-compare .section-heading { margin-bottom: 22px; }
+.option-scorecard { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.option-scorecard article { min-height: 190px; padding: 23px; border: 1px solid rgba(86, 55, 47, .16); border-radius: 16px; background: rgba(255, 255, 255, .72); }
+.option-scorecard span, .option-scorecard strong { display: block; }
+.option-scorecard span { color: var(--green); font-size: 11px; font-weight: 850; letter-spacing: .06em; }
+.option-scorecard strong { margin-top: 20px; color: #49342f; font-size: 20px; line-height: 1.25; }
+.option-scorecard p { margin-top: 13px; color: #6d5e58; font-size: 13px; line-height: 1.65; }
+.option-scorecard article:last-child { color: white; border-color: transparent; background: #7a3f2f; }
+.option-scorecard article:last-child span, .option-scorecard article:last-child strong, .option-scorecard article:last-child p { color: white; }
+
+@media (max-width: 900px) {
+  .option-scorecard { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 720px) {
+  body.theme-cappadocia .hero { min-height: 0; height: auto; }
+  body.theme-cappadocia .hero-content { padding-top: 104px; padding-bottom: 28px; }
+  body.theme-cappadocia .hero h1 { font-size: clamp(45px, 14vw, 62px); }
+  body.theme-cappadocia .hero-metrics { grid-template-columns: 1fr; }
+  body.theme-cappadocia .hero-metrics article { display: grid; grid-template-columns: 88px 1fr; gap: 4px 10px; align-items: center; }
+  body.theme-cappadocia .hero-metrics article span { grid-row: 1 / 3; margin: 0; }
+  body.theme-cappadocia .hero-metrics article strong { font-size: 15px; }
+  body.theme-cappadocia .hero-metrics article small { display: block; font-size: 10px; }
+  .option-compare { padding-block: 42px; }
+  .option-scorecard { grid-template-columns: 1fr; gap: 8px; }
+  .option-scorecard article { min-height: 0; padding: 18px; }
+  .option-scorecard strong { margin-top: 10px; font-size: 18px; }
+}
+
+@media (max-width: 460px) {
+  body.theme-cappadocia .hero-content { min-height: 730px; justify-content: flex-end; }
+  body.theme-cappadocia .hero-copy { font-size: 15px; }
+  body.theme-cappadocia .hero-alternative { margin-top: 8px; }
+}
