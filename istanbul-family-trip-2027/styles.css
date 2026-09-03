@@ -616,6 +616,11 @@ body {
 .hero-metrics span { margin-bottom: 7px; color: rgba(255,255,255,.66); font-size: 11px; font-weight: 750; }
 .hero-metrics strong { font-size: clamp(18px, 2vw, 24px); line-height: 1.2; }
 .hero-metrics small { margin-top: 5px; color: rgba(255,255,255,.62); font-size: 11px; }
+.hero-alternative { display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; min-height: 54px; margin-top: 12px; padding: 10px 16px; border: 1px solid rgba(255,255,255,.28); border-radius: 13px; color: white; background: rgba(30,39,47,.52); backdrop-filter: blur(15px); text-decoration: none; }
+.hero-alternative:hover { background: rgba(30,39,47,.72); }
+.hero-alternative span { color: #efb592; font-size: 10px; font-weight: 850; letter-spacing: .1em; }
+.hero-alternative strong { font-size: 13px; }
+.hero-alternative b { font-size: 11px; }
 
 .quick-section { position: relative; z-index: 5; padding: 22px 0; border-bottom: 1px solid var(--line); background: white; }
 .quick-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
@@ -705,6 +710,9 @@ body.theme-dubai .map-section { background: #3f3326; }
   .hero-metrics { grid-template-columns: 1fr; gap: 7px; margin-top: 22px; }
   .hero-metrics article { min-height: 0; padding: 13px 14px; }
   .hero-metrics small { display: none; }
+  .hero-alternative { grid-template-columns: auto 1fr; gap: 5px 10px; padding: 11px 13px; }
+  .hero-alternative strong { font-size: 12px; line-height: 1.35; }
+  .hero-alternative b { grid-column: 2; color: rgba(255,255,255,.68); }
   .quick-section { padding: 14px 0; }
   .quick-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
   .quick-grid a { grid-column: auto; min-height: 84px; padding: 13px 12px 12px 39px; }
