@@ -121,7 +121,7 @@ test("assistant remains useful without a deployed remote endpoint", async () => 
   const app = `${await readFile(join(here, "app.mjs"), "utf8")}\n${await readFile(join(here, "trip-app.mjs"), "utf8")}`;
   assert.match(app, /localAnswer\(clean,\s*activeItinerary\(\)\)/);
   assert.match(app, /연결이 안 되어 저장된 여행 자료에서 찾았어요/);
-  assert.match(app, /istanbul-assistant-endpoint/);
+  assert.match(app, /endpointKey = `\$\{cityKey\}-assistant-endpoint`/);
 });
 
 test("Sydney-parity details include day photos, reviews, location sorting, and calendar links", async () => {

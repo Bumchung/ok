@@ -56,10 +56,10 @@ test("page is lightweight, accessible, responsive, and font-independent", async 
   assert.match(css, /overflow-x: hidden/);
 });
 
-test("existing Istanbul page links to this alternative", async () => {
+test("existing Istanbul page links to the full Antalya alternative", async () => {
   const html = await readFile(join(root, "istanbul-family-trip-2027", "index.html"), "utf8");
-  assert.match(html, /href="\.\.\/istanbul-antalya-family-trip-2027\/"/);
-  assert.match(html, /안탈리아 대안/);
+  assert.match(html, /href="\.\.\/antalya-family-trip-2027\/"/);
+  assert.match(html, /안탈리아 3박 대안/);
 });
 
 test("assistant-authored page files contain no Unicode middle dot", async () => {
