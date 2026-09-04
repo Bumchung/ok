@@ -13,86 +13,98 @@ async function pageFiles() {
   ]);
 }
 
-test("page answers both destination replacement and neutral third-country questions", async () => {
+test("page keeps Istanbul fixed and adds one warm country", async () => {
   const html = await readFile(join(here, "index.html"), "utf8");
   for (const phrase of [
-    "목적지 교체 1위",
-    "호놀룰루",
-    "제3국 1위",
-    "두바이",
+    "이스탄불은 고정",
+    "이스탄불 7박",
+    "두바이 3박",
     "ICN팀 5명과 LAX팀 4명",
     "2027.03.20—03.31",
     "6 ADULTS + 3 CHILDREN"
   ]) assert.ok(html.includes(phrase), phrase);
-  assert.match(html, /호놀룰루는 미국입니다/);
-  assert.match(html, /완벽한 중간점은 없습니다/);
+  assert.doesNotMatch(html, /튀르키예 대신|목적지 교체 1위|호놀룰루/);
 });
 
-test("all four serious options include routes, climate, hotel and falsifiers", async () => {
+test("route shows both origins, merge, shared leg and split home", async () => {
   const html = await readFile(join(here, "index.html"), "utf8");
-  for (const id of ["honolulu", "dubai", "singapore", "phuket"]) assert.match(html, new RegExp(`id="${id}"`));
-  assert.equal((html.match(/이 결론을 뒤집는 조건/g) || []).length, 4);
-  for (const price of ["US$10,960", "AED 23,160", "S$10,942.40", "THB 248,800"]) assert.ok(html.includes(price), price);
-  for (const climate of ["27.3 / 20.1°C", "27.9 / 17.0°C", "32.2 / 24.9°C", "33.8 / 24.9°C"]) assert.ok(html.includes(climate), climate);
+  for (const phrase of [
+    "한국팀 5명",
+    "LA팀 4명",
+    "IST 직항 약 11:30—12:00",
+    "IST 직항 약 13:05—13:10",
+    "같은 편",
+    "약 4:25",
+    "현재 주 9회 직항",
+    "현재 매일 직항"
+  ]) assert.ok(html.includes(phrase), phrase);
+  assert.match(html, /aria-label="ICN과 LAX에서 이스탄불로 합류한 뒤 두바이를 거쳐 각자 귀국하는 경로"/);
 });
 
-test("airfare references contain no blank prices and state their evidence boundaries", async () => {
+test("order comparison exposes the rendezvous tradeoff", async () => {
   const html = await readFile(join(here, "index.html"), "utf8");
-  for (const price of ["₩1,498,600~", "US$179~", "₩2,308,400~", "US$905~", "₩511,500~", "US$875~", "₩611,500~", "₩476,200", "US$860~"]) {
+  for (const phrase of [
+    "이스탄불 → 두바이",
+    "두바이 → 이스탄불",
+    "도착 격차 0",
+    "약 9시간 35분",
+    "LAX팀이 17시간 귀국편"
+  ]) assert.ok(html.includes(phrase), phrase);
+  assert.match(html, /함께 쓰는 시간을 가장 적게 잃습니다/);
+});
+
+test("Dubai and Doha are compared with route, climate, hotel and falsifiers", async () => {
+  const html = await readFile(join(here, "index.html"), "utf8");
+  for (const phrase of [
+    "두바이와 도하만 남습니다",
+    "4:25—4:55",
+    "17.0—27.9°C",
+    "AED 6,948",
+    "US$49/인부터",
+    "QAR 4,428",
+    "이 결론을 뒤집는 조건",
+    "2027년 3월 31일 DOH→LAX"
+  ]) assert.ok(html.includes(phrase), phrase);
+});
+
+test("price references are nonblank and state evidence boundaries", async () => {
+  const html = await readFile(join(here, "index.html"), "utf8");
+  for (const price of ["₩933,200~", "US$1,011~", "₩2,308,400~", "AED 6,948", "US$49/인부터"]) {
     assert.ok(html.includes(price), price);
   }
-  for (const label of ["목표일 공개가", "목표 기간 참고가", "다른 날짜 참고가", "시장 평균"]) assert.ok(html.includes(label), label);
-  assert.match(html, /날짜, 항공사, 직항 여부와 세금 조건이 달라 통화 환산 총액이나 도시별 차액은 만들지 않았습니다/);
-  assert.match(html, /LAX 운임은 Emirates 직항 가격이 아닙니다/);
-  assert.match(html, /9석은 낮은 운임 버킷이 한꺼번에 나오지 않을 수 있고/);
+  for (const label of ["목표일 참고", "목표 기간", "인접 기간", "시장 평균"]) assert.ok(html.includes(label), label);
+  assert.match(html, /추천 다구간 가격으로 대입하지 않고/);
+  assert.match(html, /서로 다른 공개 운임을 더해 만든 총액은 정확하지 않습니다/);
+  assert.match(html, /원래 IST 왕복 총액과 차감 비교/);
 });
 
 test("hotel reference formulas are arithmetically correct", () => {
-  assert.equal(274 * 4 * 10, 10960);
-  assert.equal(579 * 4 * 10, 23160);
-  assert.equal(273.56 * 4 * 10, 10942.4);
-  assert.equal(6220 * 4 * 10, 248800);
+  assert.equal(579 * 4 * 3, 6948);
+  assert.equal(369 * 4 * 3, 4428);
 });
 
-test("flight fairness shows worst-side burden and gap instead of a synthetic score", async () => {
-  const html = await readFile(join(here, "index.html"), "utf8");
-  for (const phrase of ["최장 8:50", "격차 약 3:00", "최장 16:50", "격차 약 7:20", "최장 17:20", "격차 최대 10:50", "최장 19:05+", "격차 약 12:25+"]) {
-    assert.ok(html.includes(phrase), phrase);
-  }
-  assert.doesNotMatch(html, /계획 점수|종합 점수|총점/);
-  assert.match(html, /푸켓<small>ICN 직항, LAX 1회 경유/);
-});
-
-test("sources cover airfare, routes, climate, hotel and entry for every candidate", async () => {
+test("sources separate official route evidence from filed schedules", async () => {
   const html = await readFile(join(here, "index.html"), "utf8");
   for (const domain of [
-    "koreanair.com",
-    "alaskaair.com",
-    "southwest.com",
-    "weather.gov",
-    "hawaiitourismauthority.org",
-    "help.cbp.gov",
     "emirates.com",
-    "lufthansa.com",
+    "turkishairlines.com",
+    "koreanair.com",
+    "dubaidet.gov.ae",
     "worldweather.wmo.int",
-    "mediaoffice.ae",
-    "u.ae",
-    "singaporeair.com",
-    "cathaypacific.com",
-    "weather.gov.sg",
-    "stb.gov.sg",
-    "ica.gov.sg",
-    "phuketrealtor.com",
-    "tdac.immigration.go.th"
+    "qatarairways.com",
+    "qatartourism.com",
+    "zbordirect.com",
+    "flight.info"
   ]) assert.match(html, new RegExp(domain.replaceAll(".", "\\.")), domain);
+  assert.match(html, /제출된 2027 시간표/);
+  assert.match(html, /실제 판매편은 발권 전에 다시 확인/);
   assert.match(html, /Checked 2026-09-04/);
 });
 
 test("page is accessible, responsive and image-independent", async () => {
   const [html, css] = await pageFiles();
-  for (const id of ["main", "verdict", "options", "flights", "prices", "sources"]) assert.match(html, new RegExp(`id="${id}"`));
+  for (const id of ["main", "verdict", "route", "order", "options", "prices", "booking", "sources"]) assert.match(html, new RegExp(`id="${id}"`));
   assert.match(html, /skip-link/);
-  assert.match(html, /aria-label="후보별 두 출발지 편도 이동시간 비교"/);
   assert.doesNotMatch(html, /<img\b/);
   assert.doesNotMatch(html, /<script\b/);
   assert.match(css, /@media \(max-width: 720px\)/);
@@ -118,7 +130,7 @@ test("button palette clears WCAG AA contrast", () => {
   assert.ok(contrast("#ffffff", "#7b3023") >= 4.5);
 });
 
-test("existing destination pages link to the country-switch option", async () => {
+test("existing destination pages link to the Istanbul plus warm-stop option", async () => {
   for (const dir of ["istanbul-family-trip-2027", "antalya-family-trip-2027", "cappadocia-family-trip-2027", "dubai-family-trip-2027", "istanbul-antalya-family-trip-2027", "family-trip-2027"]) {
     const html = await readFile(join(root, dir, "index.html"), "utf8");
     assert.match(html, /href="\.\.\/warm-family-trip-2027\/"/, dir);
