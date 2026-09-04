@@ -50,13 +50,16 @@ test("twelve hotels and six residences retain honest booking boundaries", () => 
   }
 });
 
-test("unobserved 2027 hotel prices never become exact quotes", () => {
+test("all hotels expose a public comparison price without pretending it is a 2027 exact quote", () => {
   assert.equal(observedTripComQuotes.length, 12);
   for (const quote of observedTripComQuotes) {
+    assert.equal(quote.status, "reference_start_price", quote.lodgingId);
     assert.notEqual(quote.status, "observed_exact", quote.lodgingId);
     assert.notEqual(quote.officialDirect?.status, "observed_exact", quote.lodgingId);
     assert.equal(Number.isFinite(quote.nightlyValue), false, quote.lodgingId);
-    assert.match(`${quote.nightlyDisplay} ${quote.inventoryNote}`, /확인|미정|없/, quote.lodgingId);
+    assert.match(quote.nightlyDisplay, /[$£€₽₺]|HK|US|CA/, quote.lodgingId);
+    assert.match(quote.projectedDisplay, /단순 환산/, quote.lodgingId);
+    assert.match(quote.inventoryNote, /실제 가족 견적이 아닙니다/, quote.lodgingId);
   }
 });
 
@@ -123,6 +126,8 @@ test("budget separates stay, shared costs, flights, contingency and optional bal
   assert.equal(result.sharedBeforeBuffer, expectedShared);
   assert.equal(result.contingency, Math.round(result.beforeBuffer * budgetModel.contingencyRate));
   assert.equal(budgetModel.people, 9);
+  assert.equal(budgetModel.origins.length, 2);
+  assert.equal(budgetModel.origins[1].flightPerPerson, 189500);
   assert.equal(budgetModel.excludedOptions[0].familyTotal, 3600000);
   assert.ok(!budgetModel.sharedLines.some((item) => /열기구/.test(item.label)));
 });

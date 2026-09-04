@@ -7,9 +7,11 @@
 
 body.theme-cappadocia {
   --green: #684e42;
-  --coral: #c96e4b;
+  --coral: #a9472f;
   --amber: #d7a767;
   --mint: #eee4d3;
+  --accent: #6b3428;
+  --accent-soft: #f3e4dc;
   background: #f6efe5;
 }
 
@@ -29,6 +31,21 @@ body.theme-cappadocia .weather-shell { background: linear-gradient(135deg, #5740
 body.theme-cappadocia .guide-section { background: #f0e8dc; }
 body.theme-cappadocia .map-section { background: #302a3c; }
 body.theme-cappadocia .assistant-section { background: #eee4d8; }
+
+body.theme-cappadocia :is(.lodging-tab, .date-tab, .chip-toggle, .text-button, .prompt-chips button, .nearby-head button, .button-row button, .budget-options button, .hotel-card-actions button, .hotel-card-actions a, .quote-links a, .utility-card) {
+  border-color: #8f7c73;
+}
+body.theme-cappadocia :is(.lodging-tab, .date-tab, .chip-toggle, .text-button, .prompt-chips button, .nearby-head button, .button-row button, .budget-options button, .hotel-card-actions a, .quote-links a, .utility-card) { background-color: #fffaf5; }
+body.theme-cappadocia :is(.lodging-tab[aria-selected="true"], .date-tab[aria-selected="true"], .chip-toggle[aria-pressed="true"], .text-button.primary, .primary-button, .pace-buttons button[aria-pressed="true"], .budget-options button[aria-pressed="true"], .hotel-card-actions button, .nearby-head button:first-child, .ask-fab) {
+  color: #fff;
+  border-color: #6b3428;
+  background: #6b3428;
+}
+body.theme-cappadocia .date-tab[aria-selected="true"] { border-color: #a9472f; background: #a9472f; }
+body.theme-cappadocia .date-tab[aria-selected="true"] small { color: rgba(255, 255, 255, .92); }
+body.theme-cappadocia .map-layer-controls button { color: rgba(255, 255, 255, .94); border-color: rgba(255, 255, 255, .68); background: rgba(255, 255, 255, .06); }
+body.theme-cappadocia .map-layer-controls button[aria-pressed="true"] { color: #302a3c; border-color: #fff; background: #fff; }
+body.theme-cappadocia :where(button, a, input, select, textarea):focus-visible { outline: 3px solid #2c7a73; outline-offset: 3px; }
 
 .option-compare { padding-block: 58px; background: #ead7b7; }
 .option-compare .section-heading { margin-bottom: 22px; }

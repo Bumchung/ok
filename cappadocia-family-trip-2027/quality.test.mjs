@@ -31,7 +31,7 @@ test("visible comparison states the physical stay and paid double-booking separa
     "국내선, 4일 차량, 새벽 선택",
     "중단 조건"
   ]) assert.ok(html.includes(phrase), phrase);
-  assert.match(html, /2027년 3월 실제 운항 시각과 운임은 확정값이 아닙니다/);
+  assert.match(html, /2027년 자료는 2월 왕복 이코노미 최저 TRY 6,715/);
   assert.match(html, /2027년 재고, 총액, 침실별 창과 계단은 아직 확정하지 않았습니다/);
 });
 
@@ -105,6 +105,27 @@ test("shared and local styles preserve mobile and accessibility contracts", asyn
   assert.match(css, /\.card-photo[^}]+aspect-ratio:\s*16\s*\/\s*10/);
   assert.match(css, /content-visibility:\s*auto/);
   assert.match(css, /@media \(max-width: 460px\)[\s\S]+\.dining-grid[^}]+grid-template-columns:\s*1fr/);
+});
+
+test("Cappadocia action colors retain readable text and visible control boundaries", async () => {
+  const css = await readFile(join(here, "styles.css"), "utf8");
+  const luminance = (hex) => {
+    const values = hex.match(/[a-f\d]{2}/gi).map((part) => Number.parseInt(part, 16) / 255)
+      .map((value) => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4);
+    return .2126 * values[0] + .7152 * values[1] + .0722 * values[2];
+  };
+  const contrast = (first, second) => {
+    const a = luminance(first);
+    const b = luminance(second);
+    return (Math.max(a, b) + .05) / (Math.min(a, b) + .05);
+  };
+  const accent = css.match(/--accent:\s*(#[a-f\d]{6})/i)?.[1];
+  const coral = css.match(/--coral:\s*(#[a-f\d]{6})/i)?.[1];
+  assert.ok(contrast(accent, "#ffffff") >= 4.5, `accent contrast ${contrast(accent, "#ffffff")}`);
+  assert.ok(contrast(coral, "#ffffff") >= 4.5, `coral contrast ${contrast(coral, "#ffffff")}`);
+  assert.ok(contrast("#8f7c73", "#fffaf5") >= 3, "inactive control border contrast");
+  assert.match(css, /:focus-visible\s*\{[^}]*outline:\s*3px solid #2c7a73/);
+  assert.match(css, /map-layer-controls button[^}]+border-color:\s*rgba\(255, 255, 255, \.68\)/);
 });
 
 test("map, nearby, assistant and export controls keep their accessible labels", async () => {

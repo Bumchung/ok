@@ -1,6 +1,6 @@
 import { media } from "./image-catalog.mjs";
 
-export const CHECKED_AT = "2026-09-03";
+export const CHECKED_AT = "2026-09-04";
 export const financeCheckedAt = CHECKED_AT;
 
 const goCappadocia = "https://goturkiye.com/cappadocia/see-cappadocia";
@@ -115,8 +115,8 @@ export const trip = {
 };
 
 export const familyGroups = [
-  { id: "ist-family-nine-outbound", label: "카파도키아행", origin: "IST", members: "성인 6, 어린이 3", route: "이스탄불 IST → 네브셰히르 NAV", target: "3월 26일 오전 출발을 우선하고 도착일 관광은 전망 한 곳까지만", carriers: "Turkish Airlines의 현재 IST-NAV 직항을 기준으로 2027년 운항표가 열린 뒤 ASR과 비교", status: "현재 직항 비행시간은 약 1시간 20분이지만 2027년 편명, 시간, 운임과 수하물 조건은 미확정" },
-  { id: "ist-family-nine-return", label: "이스탄불 복귀", origin: "NAV", members: "성인 6, 어린이 3", route: "네브셰히르 NAV → 이스탄불 IST", target: "3월 29일 오후 복귀를 우선하고 출발일 열기구는 넣지 않음", carriers: "좋은 NAV 시간대가 없을 때만 IST-ASR 직항과 더 긴 전용차 이동을 함께 비교", status: "NAV와 ASR 모두 2027년 운항표와 숙소까지 실제 차량 시간이 나온 뒤 결정" }
+  { id: "ist-family-nine-outbound", label: "카파도키아행", origin: "IST", members: "성인 6, 어린이 3", route: "이스탄불 IST → 네브셰히르 NAV", target: "3월 26일 오전 출발을 우선하고 도착일 관광은 전망 한 곳까지만", carriers: "Turkish Airlines 공식 페이지가 공개한 가장 가까운 2027년 자료는 2월 왕복 이코노미 최저 TRY 6,715입니다.", status: "2026-09-02 ECB 환율로 성인 1인 약 18만 9천원, 9명 단순 환산 약 171만원입니다. 2027-03-26부터 29까지의 실제 운임, 어린이 운임, 수하물과 좌석은 아직 미공개입니다." },
+  { id: "ist-family-nine-return", label: "이스탄불 복귀", origin: "NAV", members: "성인 6, 어린이 3", route: "네브셰히르 NAV → 이스탄불 IST", target: "3월 29일 오후 복귀를 우선하고 출발일 열기구는 넣지 않음", carriers: "현재 IST-NAV 직항은 약 1시간 20분입니다. 목표일 NAV가 비싸거나 시간대가 나쁘면 IST-ASR과 더 긴 차량 이동을 합산합니다.", status: "공식 월별 최저가 표는 현재 2027년 2월까지만 열려 있습니다. 3월 26일부터 29일까지 9석을 같은 운임으로 살 수 있다는 뜻이 아닙니다." }
 ];
 
 export const decisionChecklist = [
@@ -141,23 +141,46 @@ export const lodgingOptions = [
   hotel({ id: "hotel_avanos_evi", rank: 12, mediaId: "hotel_avanos_evi", name: "Avanos Evi", type: "주거형 스위트", location: "Avanos", fit: 68, mapQuery: "Avanos Evi", official: "https://www.avanosevi.com/en/rooms", verdict: "100㎡ Family Suite의 주방, 침실 2개와 욕실 2개는 좋지만 여러 유닛의 거리와 전체 단독 사용을 확인해야 합니다.", capacity: "Family Suite 공식 최대 5명, 다른 Luxury Suite 조합으로 최대 11명 구조", layout: "Family Suite 1개와 3인 스위트 2개", arrangement: "5인 Family Suite와 3인 Luxury Suite 2개", good: ["가족 스위트에 침실 2개, 욕실 2개와 주방", "Avanos 도예와 강변 접근", "호텔보다 독립 주거형에 가까움"], cautions: ["실내 수영장 없음", "유닛 간 거리와 계단 미확인", "전체 부지 단독 사용과 2027년 재고 미확인"] })
 ];
 
-export const observedTripComQuotes = lodgingOptions.map((item) => ({
-  id: `unobserved-${item.id}`, lodgingId: item.id, provider: "Trip.com", capturedAt: CHECKED_AT,
-  referenceStay: "2027-03-26부터 03-29, 3박", occupancy: "성인 6명, 어린이 3명, 객실 4실", roomPlan: item.hotelPlan.arrangement,
-  nightlyDisplay: "2027 가격 미확인", projectedDisplay: "3박 총액 미확인", currency: "KRW", nightlyValue: null, projectedValue: null,
-  unitLabel: "객실 1실, 1박", stayLabel: "가족 4실, 3박", totalIncludesTaxes: null, refundable: null, breakfast: null, status: "unavailable",
-  inventoryNote: "목표 날짜의 동일 객실, 인원, 세금 조건을 관측하지 않았습니다. 숫자를 추정하지 않습니다.",
-  sourceUrl: `https://kr.trip.com/hotels/list?city=1760&searchWord=${encodeURIComponent(item.name)}`,
-  comparisonKey: `2027-03-26/2027-03-29/${item.id}/4-rooms/6-adults-3-children/unobserved`,
-  officialDirect: { provider: `${item.name} 공식 홈페이지`, capturedAt: CHECKED_AT, referenceStay: "2027-03-26부터 03-29, 3박", occupancy: "성인 6명, 어린이 3명, 객실 4실", roomPlan: item.hotelPlan.arrangement, unitLabel: "객실 1실, 1박", stayLabel: "가족 4실, 3박", nightlyDisplay: "2027 가격 미확인", projectedDisplay: "3박 총액 미확인", currency: "KRW", nightlyValue: null, projectedValue: null, totalIncludesTaxes: null, refundable: null, breakfast: null, status: "unavailable", inventoryNote: "동일 날짜와 9인 객실 배치의 공식 결제 견적을 확인하지 않았습니다.", sourceUrl: item.official, comparisonKey: `2027-03-26/2027-03-29/${item.id}/4-rooms/6-adults-3-children/unobserved` }
-}));
+const publicHotelRateRefs = {
+  hotel_doubletree: { provider: "Google Hotels", referenceStay: "2026년 9월 공개 비교가, 목표일 아님", nightlyDisplay: "US$174, 세금 포함", projectedDisplay: "US$2,088 단순 환산", currency: "USD", totalIncludesTaxes: true, sourceUrl: "https://www.google.com/travel/hotels/entity/ChoItsfElP___bnaARoNL2cvMTFiNmowaDR6ZBAB" },
+  hotel_kayakapi: { provider: "Trip.com", referenceStay: "2026-06-21부터 27 사이 공개 시작가", nightlyDisplay: "€263부터", projectedDisplay: "€3,156 단순 환산", currency: "EUR", totalIncludesTaxes: null, sourceUrl: "https://www.trip.com/hotels/nevsehir-province-hotel-detail-2551953/kayakapi-premium-caves-cappadocia/" },
+  hotel_marriott: { provider: "Booking.com", referenceStay: "2026년 9월 공개 3박 요금, 목표일 아님", nightlyDisplay: "US$92부터, 세금 별도", projectedDisplay: "US$1,104 단순 환산", currency: "USD", totalIncludesTaxes: false, sourceUrl: "https://www.booking.com/hotel/tr/cappadocia-turkey-marriott.html" },
+  hotel_ajwa: { provider: "Destinia", referenceStay: "현재 공개 시작가, 날짜 미지정", nightlyDisplay: "€152.86부터", projectedDisplay: "약 €1,834 단순 환산", currency: "EUR", totalIncludesTaxes: null, sourceUrl: "https://destinia.com/en/hotels/europe/turkey/nevsehir/urgup/ajwa-cappadocia-preferred-hotels-legend-collection/ho-2333504" },
+  hotel_kelebek: { provider: "Expedia", referenceStay: "2026-09-05부터 06, 성인 2명", nightlyDisplay: "£260, 세금 포함", projectedDisplay: "£3,120 단순 환산", currency: "GBP", totalIncludesTaxes: true, sourceUrl: "https://www.expedia.co.uk/Nevsehir-Hotels-Kelebek-Special-Cave-Hotel.h15969407.Hotel-Information" },
+  hotel_suhan: { provider: "Booking.com", referenceStay: "2026-09-03부터 06, 성인 2명", nightlyDisplay: "US$86부터, 세금 별도", projectedDisplay: "US$1,032 단순 환산", currency: "USD", totalIncludesTaxes: false, sourceUrl: "https://www.booking.com/hotel/tr/suhan-cappadocia.html" },
+  hotel_carus: { provider: "Trip.com", referenceStay: "조회 시점 다음 7일 공개 시작가", nightlyDisplay: "US$159부터", projectedDisplay: "US$1,908 단순 환산", currency: "USD", totalIncludesTaxes: null, sourceUrl: "https://www.trip.com/hotels/goreme-hotel-detail-36282938/carus-cappadocia/" },
+  hotel_argos: { provider: "Trip.com", referenceStay: "조회 시점 다음 7일 공개 시작가", nightlyDisplay: "US$510부터", projectedDisplay: "US$6,120 단순 환산", currency: "USD", totalIncludesTaxes: null, sourceUrl: "https://www.trip.com/hotels/uchisar-hotel-detail-3447614/argos-in-cappadocia/" },
+  hotel_kappadoks: { provider: "Trip.com", referenceStay: "2026-06-16부터 22 사이 공개 시작가", nightlyDisplay: "HK$895부터", projectedDisplay: "HK$10,740 단순 환산", currency: "HKD", totalIncludesTaxes: null, sourceUrl: "https://hk.trip.com/hotels/tekelli-mahallesi-hotel-detail-95122032/kappadoks-cave-hotel/" },
+  hotel_sultan: { provider: "Trip.com", referenceStay: "2026-05-29부터 06-04 사이 공개 시작가", nightlyDisplay: "₽19,790부터", projectedDisplay: "₽237,480 단순 환산", currency: "RUB", totalIncludesTaxes: null, sourceUrl: "https://ru.trip.com/hotels/goreme-hotel-detail-7022338/sultan-cave-suites/" },
+  hotel_dinler: { provider: "Google Hotels", referenceStay: "2026-09-20부터 21, 성인 2명", nightlyDisplay: "US$104, 세금 포함", projectedDisplay: "US$1,248 단순 환산", currency: "USD", totalIncludesTaxes: true, sourceUrl: "https://www.google.com/travel/hotels/entity/CgsIj-SDuoOB8fWTARAB" },
+  hotel_avanos_evi: { provider: "Tripadvisor", referenceStay: "2026년 표준 객실 공개 평균 범위, 날짜 미지정", nightlyDisplay: "₺3,622~₺8,837, 세금 포함", projectedDisplay: "₺43,464~₺106,044 단순 환산", currency: "TRY", totalIncludesTaxes: true, sourceUrl: "https://www.tripadvisor.com.tr/Hotel_Review-g297981-d575905-Reviews-Avanos_Evi-Avanos_Nevsehir_Province_Cappadocia.html" }
+};
+
+const exactTargetChecked = new Set(["hotel_doubletree", "hotel_kayakapi", "hotel_marriott", "hotel_kelebek"]);
+
+export const observedTripComQuotes = lodgingOptions.map((item) => {
+  const reference = publicHotelRateRefs[item.id];
+  const exactCheckNote = exactTargetChecked.has(item.id)
+    ? "Trip.com에서 2027-03-26부터 29, 성인 2명, 1실을 조회했으나 동일 날짜의 예약 가능한 객실가가 표시되지 않았습니다."
+    : "2027-03-26부터 29까지의 동일 객실과 가족 총액은 아직 공개되지 않았습니다.";
+  return {
+    id: `reference-${item.id}`, lodgingId: item.id, provider: reference.provider, capturedAt: CHECKED_AT,
+    referenceStay: reference.referenceStay, occupancy: "성인 2명, 객실 1실 공개가", roomPlan: item.hotelPlan.arrangement,
+    nightlyDisplay: reference.nightlyDisplay, projectedDisplay: reference.projectedDisplay, currency: reference.currency, nightlyValue: null, projectedValue: null,
+    unitLabel: "객실 1실, 1박", stayLabel: "공개 1실 가격을 4실, 3박으로 단순 곱한 비교값", totalIncludesTaxes: reference.totalIncludesTaxes, refundable: null, breakfast: null, status: "reference_start_price",
+    inventoryNote: `${exactCheckNote} 표시 총액은 현재 공개 1실 가격에 12실박을 곱했을 뿐이며, 실제 가족 견적이 아닙니다.`,
+    sourceUrl: reference.sourceUrl,
+    comparisonKey: `non-target-reference/${item.id}/${reference.currency}/not-comparable`,
+    officialDirect: { provider: `${item.name} 공식 홈페이지`, capturedAt: CHECKED_AT, referenceStay: "2027-03-26부터 03-29, 3박", occupancy: "성인 6명, 어린이 3명, 객실 4실", roomPlan: item.hotelPlan.arrangement, unitLabel: "객실 1실, 1박", stayLabel: "가족 4실, 3박", nightlyDisplay: "목표일 공식가 미공개", projectedDisplay: "가족 총액 미공개", currency: "KRW", nightlyValue: null, projectedValue: null, totalIncludesTaxes: null, refundable: null, breakfast: null, status: "unavailable", inventoryNote: "동일 날짜와 9인 객실 배치의 공식 결제 견적을 재현하지 못했습니다.", sourceUrl: item.official, comparisonKey: `2027-03-26/2027-03-29/${item.id}/4-rooms/6-adults-3-children/unavailable` }
+  };
+});
 
 export const tripComCostSummary = {
   provider: "Trip.com", capturedAt: CHECKED_AT, requestedStay: "2027-03-26부터 03-29, 3박", requestedOccupancy: "성인 6명, 어린이 3명, 호텔 객실 4실",
-  exactQuoteStatus: "2027년 동일 조건의 공개 결제 견적을 관측하지 않았습니다. 모든 가격 칸은 미확인으로 유지합니다.",
+  exactQuoteStatus: "상위 4곳은 목표일, 성인 2명, 1실로 직접 다시 조회했지만 예약 가능한 객실가가 열리지 않았습니다. 아래 12개 숫자는 모두 다른 날짜의 공개 비교가입니다.",
   directQuoteStatus: "호텔 공식 사이트에서도 동일 날짜, 9명, 4실 조건의 재현 가능한 총액을 기록하지 않았습니다.",
-  benchmarkLabel: "카파도키아 2027 호텔 시장 평균", benchmarkNightly: "미산정", benchmarkTotal: "산정하지 않음",
-  benchmarkFormula: "실제 동일 조건 견적이 없으므로 평균과 4실 3박 환산을 만들지 않음", sourceUrl: "https://kr.trip.com/hotels/list?city=1760",
+  benchmarkLabel: "Avanos 3월 과거 시장 평균", benchmarkNightly: "€163", benchmarkTotal: "€1,956, 약 309만원",
+  benchmarkFormula: "Trip.com의 2025-06-26부터 2026-06-26 데이터 중 3월 평균 €163 × 4실 × 3박", sourceUrl: "https://ca.trip.com/hotels/avanos-hotels-list-40469/",
   fx: { label: "ECB 2026-09-02 참고", eurToKrw: 1577.57, sourceUrl: "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html", note: "현재 비교용 환율일 뿐 2027년 호텔 가격이나 실제 카드 환율이 아닙니다." }
 };
 
@@ -343,7 +366,10 @@ export const budgetModel = {
     { label: "입장권과 도예 체험 한도", familyTotal: 750000, note: "9명의 박물관, 지하도시와 체험을 위한 내부 한도이며 2027년 요금이 아닙니다." },
     { label: "이스탄불 대비 식사 증분 한도", familyTotal: 950000, note: "호텔 조식과 현지 식사 차이를 보수적으로 둔 계획값입니다." }
   ],
-  origins: [{ id: "ist-nav-envelope", label: "IST-NAV 왕복 계획 한도", people: 9, flightPerPerson: 350000, note: "1인 왕복 35만원을 의사결정 한도로 둡니다. 실제 운임이나 예측치가 아닙니다." }],
+  origins: [
+    { id: "ist-nav-envelope", label: "IST-NAV 왕복 계획 한도", people: 9, flightPerPerson: 350000, note: "1인 왕복 35만원을 의사결정 한도로 둡니다. 실제 운임이나 예측치가 아닙니다." },
+    { id: "ist-nav-feb-reference", label: "공식 2027년 2월 최저가 참고", people: 9, flightPerPerson: 189500, note: "Turkish Airlines 성인 왕복 최저 TRY 6,715를 현재 ECB 환율로 바꾼 값입니다. 목표일, 어린이, 9석, 수하물과 좌석 지정 견적이 아닙니다." }
+  ],
   excludedOptions: [{ label: "선택 열기구 한도", familyTotal: 3600000, note: "운항, 어린이 탑승 가능 여부와 실제 견적을 모르는 선택 비용이라 기본 총액에서 제외합니다." }]
 };
 
@@ -382,6 +408,7 @@ export const sources = [
   { title: "UNESCO Göreme National Park and the Rock Sites of Cappadocia", url: unescoCappadocia, checkedAt: CHECKED_AT },
   { title: "MGM Nevşehir 공식 기후 통계", url: climate.official, checkedAt: CHECKED_AT },
   { title: "Turkish Airlines Istanbul-Nevşehir 노선", url: "https://www.turkishairlines.com/en-tr/flights-from-istanbul-to-nevsehir", checkedAt: CHECKED_AT },
+  { title: "Turkish Airlines IST-NAV 2027년 2월 공개 최저가", url: "https://www.turkishairlines.com/tr-tr/istanbul-kalkisli-nevsehir-varisli-ucak-bileti", checkedAt: CHECKED_AT },
   { title: "Turkish Airlines Istanbul-Kayseri 노선", url: "https://www.turkishairlines.com/en-tr/flights-from-istanbul-to-kayseri", checkedAt: CHECKED_AT },
   { title: "카파도키아 공식 열기구 비행 신호", url: balloonStatus, checkedAt: CHECKED_AT },
   { title: "카파도키아 열기구 Slot Service Center", url: "https://hotairballoon.kapadokya.edu.tr/slot-hizmet-merkezi/", checkedAt: CHECKED_AT },
@@ -400,6 +427,7 @@ export const sources = [
   { title: "AJWA Cappadocia 객실", url: lodgingOptions[3].official, checkedAt: CHECKED_AT },
   { title: "Kelebek Family Suite", url: lodgingOptions[4].official, checkedAt: CHECKED_AT },
   { title: "Suhan Cappadocia", url: lodgingOptions[5].official, checkedAt: CHECKED_AT },
+  ...observedTripComQuotes.map((quote) => ({ title: `${quote.provider} ${lodgingOptions.find((hotel) => hotel.id === quote.lodgingId).name} 공개 비교가`, url: quote.sourceUrl, checkedAt: CHECKED_AT })),
   { title: "Museum Hotel 아동 정책 확인", url: "https://www.relaischateaux.com/us/hotel/museum-hotel/", checkedAt: CHECKED_AT },
   { title: "ECB 공식 환율", url: "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html", checkedAt: CHECKED_AT },
   { title: "TÜİK 2026년 7월 소비자물가", url: "https://veriportali.tuik.gov.tr/Bulten/Index?dil=1&p=Tuketici-Fiyat-Endeksi-Temmuz-2026-58297", checkedAt: CHECKED_AT }
