@@ -67,6 +67,28 @@ test("Dubai and Doha are compared with route, climate, hotel and falsifiers", as
   ]) assert.ok(html.includes(phrase), phrase);
 });
 
+test("Middle East audit proves only Dubai and conditional Doha survive all three nonstop gates", async () => {
+  const html = await readFile(join(here, "index.html"), "utf8");
+  for (const phrase of [
+    "MIDDLE EAST NONSTOP AUDIT",
+    "두바이 DXB",
+    "도하 DOH",
+    "제다 JED",
+    "아부다비 AUH",
+    "리야드 RUH",
+    "카이로 CAI",
+    "암만 AMM",
+    "무스카트 MCT",
+    "쿠웨이트 KWI",
+    "바레인 BAH",
+    "베이루트 BEY",
+    "텔아비브 TLV",
+    "정확한 2027년 3월 31일 여정 기준으로 지금 확실히 추천할 수 있는 곳은 두바이 하나"
+  ]) assert.ok(html.includes(phrase), phrase);
+  assert.match(html, /href="\.\.\/istanbul-dubai-family-trip-2027\/"/);
+  assert.match(html, /href="\.\.\/istanbul-doha-family-trip-2027\/"/);
+});
+
 test("price references are nonblank and state evidence boundaries", async () => {
   const html = await readFile(join(here, "index.html"), "utf8");
   for (const price of ["₩933,200~", "US$1,011~", "₩2,308,400~", "AED 6,948", "US$49/인부터"]) {
@@ -131,7 +153,7 @@ test("button palette clears WCAG AA contrast", () => {
 });
 
 test("existing destination pages link to the Istanbul plus warm-stop option", async () => {
-  for (const dir of ["istanbul-family-trip-2027", "antalya-family-trip-2027", "cappadocia-family-trip-2027", "dubai-family-trip-2027", "istanbul-antalya-family-trip-2027", "family-trip-2027"]) {
+  for (const dir of ["istanbul-family-trip-2027", "antalya-family-trip-2027", "cappadocia-family-trip-2027", "dubai-family-trip-2027", "istanbul-antalya-family-trip-2027", "family-trip-2027", "istanbul-dubai-family-trip-2027", "istanbul-doha-family-trip-2027"]) {
     const html = await readFile(join(root, dir, "index.html"), "utf8");
     assert.match(html, /href="\.\.\/warm-family-trip-2027\/"/, dir);
   }

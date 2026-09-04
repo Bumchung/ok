@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#173d43">
+  <meta name="description" content="ICN팀 5명과 LAX팀 4명이 이스탄불 7박 뒤 두바이 3박을 함께 여행하고 각자 직항으로 귀국하는 실행 앱">
+  <title>Istanbul + Dubai Together 2027</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23173d43'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Georgia' font-size='22' fill='white'%3EID%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../istanbul-family-trip-2027/styles.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="theme-dubai">
+  <a class="skip-link" href="#main">본문으로 바로 가기</a>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="첫 화면으로"><span class="brand-mark">ID</span><span>ISTANBUL + DUBAI <b>FAMILY TRIP</b></span></a>
+    <nav class="desktop-nav" aria-label="주요 메뉴">
+      <a href="#compare">비교</a><a href="#stay">숙소</a><a href="#budget">예산</a><a href="#plan">일정</a><a href="#guide">장소</a><a href="#dining">식당</a><a href="#map">지도</a>
+    </nav>
+    <div class="status-pill" id="status-pill" aria-live="polite">계획 불러오는 중</div>
+  </header>
+
+  <main id="main">
+    <section class="hero dubai-hero" id="top">
+      <img id="hero-image" alt="두바이의 도시와 해안 풍경">
+      <div class="hero-scrim"></div>
+      <div class="hero-content wrap">
+        <div class="hero-copy-block">
+          <p class="eyebrow">ROUTE PASS, 2027.03.28—03.31</p>
+          <h1><span>이스탄불 + 두바이</span> 가족여행</h1>
+          <p class="hero-copy">두 가족이 이스탄불에서 7박하고, 아홉 명이 같은 직항으로 두바이에 가서 3박한 뒤 DXB에서 서울과 LA 직항으로 갈라집니다.</p>
+        </div>
+        <div class="hero-metrics" aria-label="여행 핵심 정보">
+          <article><span>전체 배분</span><strong>IST 7박 → DXB 3박</strong><small>달력상 여행은 10박</small></article>
+          <article><span>가족 구성</span><strong>성인 6명, 아이 3명</strong><small>만 9세, 7세, 6세</small></article>
+          <article><span>귀국 구조</span><strong>DXB → ICN / LAX 직항</strong><small>마지막 날만 두 팀 분리</small></article>
+        </div>
+        <a class="hero-alternative" href="../istanbul-family-trip-2027/"><span>OPTION A</span><strong>이스탄불 한 도시에서 10박하는 원안</strong><b>원안 보기 →</b></a>
+        <a class="hero-alternative" href="../warm-family-trip-2027/"><span>ROUTE AUDIT</span><strong>중동 후보 전체와 제외 이유 비교</strong><b>비교 페이지 보기 →</b></a>
+        <a class="hero-alternative" href="../istanbul-doha-family-trip-2027/"><span>CONDITIONAL</span><strong>LAX 직항 날짜가 맞을 때의 도하 3박</strong><b>도하 보기 →</b></a>
+      </div>
+    </section>
+
+    <section class="section option-compare" id="compare">
+      <div class="wrap wide">
+        <div class="section-heading"><div><p class="kicker">WHAT CHANGES</p><h2>세 날을 옮기면<br>무엇을 얻고 잃는가</h2></div><a class="text-button" href="../warm-family-trip-2027/">중동 직항 전수 검증</a></div>
+        <div class="option-scorecard">
+          <article><span>노선 통과</span><strong>IST, ICN, LAX 세 방향 모두 직항</strong><p>중간 이동은 함께 하고 마지막 날 각 집으로 바로 갈 수 있습니다.</p></article>
+          <article><span>얻는 것</span><strong>17—28°C, 해변과 아이 시설</strong><p>이스탄불과 다른 날씨와 가족형 실내외 선택을 얻습니다.</p></article>
+          <article><span>대가</span><strong>LAX행 약 17시간</strong><p>환승은 없지만 마지막 장거리 비행이 매우 깁니다.</p></article>
+          <article><span>중단 조건</span><strong>세 직항, 9석, 4실</strong><p>한 조건이라도 목표일에 맞지 않으면 원안 또는 도하 날짜 조정안을 다시 봅니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section today-section" id="today">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="kicker">RIGHT NOW</p><h2 id="today-heading">지금 해야 할 일</h2></div><span class="mode-badge" id="mode-badge">계획 모드</span></div>
+        <article class="today-card" id="today-card"></article><div class="principle-grid" id="principles"></div>
+      </div>
+    </section>
+
+    <section class="section" id="family">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="kicker">MERGE, MOVE, SPLIT</p><h2>이스탄불에서 함께 이동하고<br>두바이에서 직항으로 나뉩니다</h2></div><p class="section-note">3월 28일 IST-DXB는 아홉 명이 같은 편입니다. 3월 31일에만 ICN팀 5명과 LAX팀 4명이 갈라집니다.</p></div>
+        <div class="family-grid" id="family-grid"></div>
+        <div class="callout warning"><strong>항공 가격의 정확한 상태</strong><span>ICN 출발 Emirates 목표 기간 왕복은 ₩933,200부터, LAX-IST 인접 기간은 US$1,011부터 공개됐지만 추천 다구간과는 다른 상품입니다. 두 팀의 실제 다구간 총액은 판매편이 열리면 따로 견적해야 합니다.</span></div>
+      </div>
+    </section>
+
+    <section class="section lodging-section" id="stay">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="kicker">12 HOTELS</p><h2>워터파크 사진보다<br>실제 9인 4실 구조를 먼저 봅니다</h2></div><p class="section-note">Palm, Jumeirah, Downtown과 Creek의 12곳입니다. 연결 객실, 실제 침대와 공항 차량 시간을 함께 확인합니다.</p></div>
+        <div class="lodging-tabs" id="lodging-tabs" role="tablist" aria-label="숙소 후보"></div>
+        <article class="lodging-detail" id="lodging-detail"></article>
+        <div class="airbnb-block" id="airbnb">
+          <div class="hotel-catalog-heading"><div><p class="kicker">VILLA / RESIDENCE</p><h3>9명이 한 구조로 머물 수 있는 후보 6곳</h3></div><p>호텔형 레지던스와 다침실 권역 후보입니다. 2027년 재고, 관광 임대 허가, 총액과 실제 침대는 아직 확정하지 않았습니다.</p></div>
+          <div class="airbnb-summary" id="airbnb-summary"></div><div class="airbnb-grid" id="airbnb-grid"></div>
+        </div>
+        <div class="hotel-catalog-heading"><div><p class="kicker">FULL SHORTLIST</p><h3>호텔 12곳을 같은 기준으로 비교</h3></div><p>2027년 같은 기간 10박 견적 6곳과 현재 공개가 또는 시장 ADR 6곳을 채웠습니다. 추천 3박과 다른 값은 순위 계산에 쓰지 않습니다.</p></div>
+        <div class="hotel-catalog-controls"><label class="search-field"><span class="sr-only">호텔 검색</span><input id="hotel-search" type="search" placeholder="호텔명, 권역, 실내 수영장 검색"></label><select id="hotel-type-filter" aria-label="호텔 유형 필터"><option value="all">모든 호텔 유형</option></select><span><b id="hotel-count">12</b>곳</span></div>
+        <div class="hotel-catalog-grid" id="hotel-catalog-grid"></div>
+        <div class="cost-heading"><div><p class="kicker">PRICE EVIDENCE</p><h3>12곳 모두 가격 상태를 표시</h3></div><p>목표 3박 실가격, 10박 관측값의 30% 단순 환산, 비목표일 공개가와 시장 ADR을 구분합니다. 같은 조건일 때만 실제 차액을 계산합니다.</p></div>
+        <div class="tripcom-cost-grid" id="tripcom-cost-grid"></div>
+        <details class="checklist-panel"><summary>숙소를 예약하기 전 10가지 검증</summary><ol id="rental-checklist"></ol></details>
+      </div>
+    </section>
+
+    <section class="section budget-section" id="budget">
+      <div class="wrap wide">
+        <div class="section-heading"><div><p class="kicker">LAND COST + FARE GATE</p><h2>현지 3박 비용과<br>항공 차액을 분리합니다</h2></div><p class="section-note">다구간 항공권은 실가격이 없으므로 0원처럼 확정하지 않습니다. 숙소, 차량, 식사와 입장권의 계획 한도만 계산합니다.</p></div>
+        <div class="budget-calculator"><div class="budget-options"><fieldset><legend>두바이 숙소</legend><div id="budget-stay-options"></div></fieldset><fieldset><legend>항공 가격 상태</legend><div id="budget-origin-options"></div></fieldset></div><article class="budget-result" id="budget-result" aria-live="polite"></article></div>
+        <div class="budget-breakdown" id="budget-breakdown"></div>
+        <div class="fx-heading"><div><p class="kicker">KRW / AED</p><h3>달러 고정 통화와 원화 변동을 분리하기</h3></div><p id="fx-diagnosis"></p></div>
+        <div class="fx-rate-board" id="fx-rate-board"></div><ol class="fx-action-list" id="fx-action-list"></ol><div class="fx-sources" id="fx-sources"></div>
+      </div>
+    </section>
+
+    <section class="section itinerary-section" id="plan">
+      <div class="wrap wide">
+        <div class="section-heading"><div><p class="kicker">FOUR DAYS / TWO PACES</p><h2>도착과 출발은 비우고<br>온전한 이틀만 설계합니다</h2></div><p class="section-note">Old Dubai와 아이 체험 하루, 물 또는 미래 하루입니다. Aquaventure와 Downtown 완주를 같은 날 강요하지 않습니다.</p></div>
+        <div class="trip-mode-switch" id="trip-mode-switch" role="group" aria-label="여행 속도 선택"></div><div class="date-rail" id="date-rail" role="tablist" aria-label="날짜 선택"></div><article class="day-detail" id="day-detail"></article><div class="itinerary-list" id="itinerary-list"></div>
+      </div>
+    </section>
+
+    <section class="section weather-section" id="weather"><div class="wrap"><div class="weather-shell"><div><p class="kicker light">MARCH REALITY</p><h2>따뜻하지만<br>한낮은 실내로 비웁니다</h2><p id="climate-summary"></p><p class="weather-note" id="weather-note"></p></div><div class="weather-metric"><strong>27.9°</strong><span>3월 평균 최고</span></div><div class="packing" id="packing-list"></div></div></div></section>
+
+    <section class="section guide-section" id="guide">
+      <div class="wrap wide">
+        <div class="section-heading"><div><p class="kicker">30 PLACES</p><h2>3박에 필요한 30곳만<br>실패 조건까지 펼칩니다</h2></div><p class="section-note"><span id="place-count">0</span>곳. 공식 운영 정보와 가족 판단을 분리했습니다.</p></div>
+        <div class="guide-controls"><label class="search-field"><span class="sr-only">장소 검색</span><input id="place-search" type="search" placeholder="장소, 권역, 주의사항 검색"></label><select id="zone-filter" aria-label="지역 필터"><option value="all">모든 지역</option></select><select id="category-filter" aria-label="분류 필터"><option value="all">모든 분류</option></select><button class="chip-toggle" id="rain-filter" type="button" aria-pressed="false">비에도 가능</button><button class="chip-toggle" id="low-filter" type="button" aria-pressed="false">에너지 1</button></div>
+        <div class="place-grid" id="place-grid"></div>
+      </div>
+    </section>
+
+    <section class="section dining-section" id="dining">
+      <div class="wrap wide">
+        <div class="section-heading"><div><p class="kicker">30 TO EAT</p><h2>음식점 20곳과 카페 10곳</h2></div><p class="section-note"><span id="dining-count">0</span>곳. 9인 예약과 아이 메뉴, 같은 권역 이동을 함께 봅니다.</p></div>
+        <div class="guide-controls dining-controls"><label class="search-field"><span class="sr-only">음식점과 카페 검색</span><input id="dining-search" type="search" placeholder="이름, 권역, 음식, 주의사항 검색"></label><select id="dining-type-filter" aria-label="음식 유형 필터"><option value="all">음식점과 카페 모두</option><option value="restaurant">음식점 20</option><option value="cafe">카페 10</option></select><select id="dining-zone-filter" aria-label="음식 지역 필터"><option value="all">모든 지역</option></select><button class="chip-toggle" id="dining-kid-filter" type="button" aria-pressed="false">아이 적합 상</button></div>
+        <div class="dining-grid" id="dining-grid"></div>
+      </div>
+    </section>
+
+    <section class="section map-section" id="map">
+      <div class="wrap wide">
+        <div class="section-heading map-heading"><div><p class="kicker light">DUBAI MAP</p><h2>Old Dubai, Downtown과 해안을<br>권역별로 읽습니다</h2></div><p class="section-note light">핀을 누르면 지도 안에 가족 판단과 건너뛸 조건이 열립니다.</p></div>
+        <div class="map-layer-controls" id="map-layer-controls" role="group" aria-label="지도에 표시할 종류"><button type="button" data-map-kind="place" aria-pressed="true">갈 곳 30</button><button type="button" data-map-kind="restaurant" aria-pressed="false">음식점 20</button><button type="button" data-map-kind="cafe" aria-pressed="false">카페 10</button></div>
+        <div class="map-layout"><div class="map-canvas" id="map-canvas" role="group" aria-label="두바이 장소 지도"></div><aside class="map-inspector" id="map-inspector" aria-live="polite"></aside></div>
+      </div>
+    </section>
+
+    <section class="section nearby-section" id="nearby"><div class="wrap"><div class="section-heading"><div><p class="kicker">지금 여기서</p><h2>가까운 곳부터 고르기</h2></div><p class="section-note">처음에는 추천 숙소, 현지에서는 현재 위치 기준으로 장소와 식당을 함께 정렬합니다.</p></div><div class="nearby-shell"><div class="nearby-head"><p id="nearby-status">숙소 기준 후보를 준비하고 있습니다.</p><div class="button-row"><button id="locate-me" type="button">현재 위치로 보기</button><button id="nearby-reset" type="button">숙소 기준</button></div></div><div class="nearby-list" id="nearby-list"></div></div></div></section>
+
+    <section class="section assistant-section" id="ask">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="kicker">여행 검색</p><h2>두바이 계획에서 바로 찾기</h2></div><p class="section-note">직항 구조, 아이 체력, 사막과 숙소 조건을 물으면 이 계획 안에서 답합니다.</p></div>
+        <div class="prompt-chips" id="prompt-chips"><button type="button">LAX 직항은 확실해?</button><button type="button">가족에게 맞는 호텔은?</button><button type="button">사막을 꼭 가야 해?</button><button type="button">비나 모래바람이면?</button></div>
+        <form class="ask-form" id="ask-form"><label for="question" class="sr-only">여행 질문</label><textarea id="question" maxlength="500" rows="3" placeholder="예: 3월 28일 비가 오면 어디로 바꾸지?"></textarea><button class="primary-button" type="submit">가족 데스크에 묻기</button></form><p class="assistant-state" id="assistant-state">이 여행 계획에서 답변합니다</p><div class="answer-board" id="answer-board" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section utility-section" id="tools">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="kicker">TAKE IT WITH YOU</p><h2>지도와 근거 내보내기</h2></div></div>
+        <div class="utility-grid"><button class="utility-card" id="download-csv" type="button"><strong>CSV</strong><span>장소와 주의사항 표</span></button><button class="utility-card" id="download-kml" type="button"><strong>KML</strong><span>Google My Maps용 핀</span></button><button class="utility-card" id="download-ics" type="button"><strong>CAL</strong><span>4일 일정을 캘린더 파일로</span></button><a class="utility-card" href="https://www.google.com/maps/d/" target="_blank" rel="noreferrer"><strong>MY MAPS</strong><span>KML 불러오기</span></a></div>
+        <details class="sources-panel budget-panel"><summary>예약 순서와 중단 조건</summary><div class="budget-grid"><div><small>BOOKING RULE</small><strong>세 직항을 먼저, 숙소는 그다음</strong><p>IST-DXB, DXB-ICN, DXB-LAX가 목표일에 모두 판매될 때만 9인 4실 견적을 잠급니다.</p></div><ol><li><strong>항공</strong><span>두 팀 다구간과 9인 공동편</span></li><li><strong>숙소</strong><span>4실 또는 9인 레지던스</span></li><li><strong>차량</strong><span>9명과 짐이 들어가는 16석급</span></li><li><strong>시설</strong><span>유료 시설은 하루 한 곳</span></li></ol><p class="budget-caveat">세 직항 중 하나라도 사라지거나 실제 다구간 차액이 가족 한도를 넘으면 이스탄불 10박 또는 도하 날짜 조정안을 다시 봅니다.</p></div></details>
+        <details class="sources-panel"><summary>검증 출처와 확인일 보기</summary><div id="source-list"></div></details>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="주요 메뉴"><a href="#today"><span>◷</span>판단</a><a href="#stay"><span>⌂</span>숙소</a><a href="#plan"><span>▤</span>일정</a><a href="#map"><span>⌖</span>지도</a><a href="#ask"><span>?</span>질문</a></nav>
+  <a class="ask-fab" href="#ask" aria-label="여행 계획에 질문하기">질문</a>
+  <footer><p>ISTANBUL + DUBAI TOGETHER 2027</p><p>세 직항, 객실, 차량, 시설 운영과 지역 안전 상황은 예약 직전 공식 페이지에서 다시 확인하세요.</p></footer>
+  <template id="answer-template"><article class="answer-card"><div class="answer-meta"></div><h3></h3><p class="answer-text"></p><div class="answer-sources"></div></article></template>
+  <script type="module" src="./app.mjs"></script>
+</body>
+</html>

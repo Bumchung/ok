@@ -156,11 +156,30 @@ a, button { -webkit-tap-highlight-color: transparent; }
 .falsifier { margin-top: 19px; padding: 16px; border-radius: 14px; background: #f6e9e4; }
 .falsifier strong { color: var(--coral-dark); font-size: 9px; letter-spacing: .08em; }
 .falsifier p { margin: 5px 0 0; color: var(--muted); font-size: 10px; }
+.option-detail { min-height: 44px; display: flex; align-items: center; justify-content: space-between; margin-top: 12px; padding: 0 14px; border: 1px solid var(--sea); border-radius: 10px; color: var(--sea); background: white; text-decoration: none; font-size: 10px; font-weight: 850; }
+.option-detail:hover { color: white; background: var(--sea); }
 .rejected-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; }
 .rejected-grid article { padding: 18px; border-top: 3px solid var(--coral); background: #eeeae0; }
 .rejected-grid strong, .rejected-grid span { display: block; }
 .rejected-grid strong { font-family: Georgia, serif; font-size: 18px; font-weight: 400; }
 .rejected-grid span { margin-top: 7px; color: var(--muted); font-size: 9px; }
+.route-audit { margin-top: 28px; padding-top: 34px; border-top: 1px solid var(--line); }
+.route-audit-head { display: grid; grid-template-columns: 1fr .7fr; gap: 45px; align-items: end; margin-bottom: 18px; }
+.route-audit-head h3 { margin: 0; font-family: Georgia, serif; font-size: clamp(30px, 4vw, 46px); font-weight: 400; line-height: 1.04; letter-spacing: -.035em; }
+.route-audit-head > p { margin: 0; color: var(--muted); font-size: 11px; }
+.route-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 18px; background: var(--white); }
+.route-table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 10px; }
+.route-table th, .route-table td { padding: 13px 15px; text-align: left; border-bottom: 1px solid var(--line); }
+.route-table thead th { color: white; background: var(--sea-dark); font-size: 9px; letter-spacing: .05em; }
+.route-table tbody th { color: var(--ink); font-size: 11px; }
+.route-table tbody td { color: var(--muted); }
+.route-table tbody tr:last-child th, .route-table tbody tr:last-child td { border-bottom: 0; }
+.route-table .route-pass { background: #e0f0ed; }
+.route-table .route-conditional { background: #fff1d7; }
+.route-table .route-pass strong { color: #0f5b53; }
+.route-table .route-conditional strong { color: #7b5210; }
+.audit-note { margin: 12px 0 0; padding: 17px 19px; border-left: 3px solid var(--coral); color: var(--muted); background: #f6e9e4; font-size: 11px; }
+.audit-note strong { color: var(--coral-dark); }
 
 .price-section { background: var(--white); }
 .booking-shape { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 19px; }
@@ -235,7 +254,7 @@ footer p { margin: 4px; }
 @media (max-width: 940px) {
   .topbar { grid-template-columns: 1fr auto; }
   .topbar nav { display: none; }
-  .hero-grid, .split-heading, .verdict-grid { grid-template-columns: 1fr; }
+  .hero-grid, .split-heading, .verdict-grid, .route-audit-head { grid-template-columns: 1fr; }
   .hero-grid { gap: 44px; }
   .split-heading, .verdict-grid { gap: 28px; }
   .journey { grid-template-columns: 1fr; gap: 8px; }
