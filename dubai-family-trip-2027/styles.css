@@ -617,7 +617,7 @@ body {
 .hero-metrics small { margin-top: 5px; color: rgba(255,255,255,.62); font-size: 11px; }
 
 .quick-section { position: relative; z-index: 5; padding: 22px 0; border-bottom: 1px solid var(--line); background: white; }
-.quick-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.quick-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
 .quick-grid a { position: relative; min-height: 90px; padding: 16px 16px 14px 48px; border: 1px solid var(--line); border-radius: 14px; color: var(--ink); background: #fff; text-decoration: none; transition: border-color .18s, transform .18s, box-shadow .18s; }
 .quick-grid a:hover { transform: translateY(-2px); border-color: #9db5b1; box-shadow: 0 10px 26px rgba(28,39,51,.08); }
 .quick-grid a > span { position: absolute; left: 15px; top: 17px; color: var(--green); font-size: 11px; font-weight: 900; }
