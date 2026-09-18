@@ -1,7 +1,7 @@
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
-export function bootTripApp({ data, core }) {
+export function bootTripApp({ data, core, initAssistant }) {
   const { CHECKED_AT, airbnbSearch, budgetModel, climate, decisionChecklist = [], diningSpots = [], familyGroups, fxStrategy, heroImage, itinerary, lodgingOptions, mealSuggestions, observedTripComQuotes = [], places, rentalChecklist, sources, trip, tripComCostSummary } = data;
   const { calculateBudget, compareHotelPrices, distanceKm, filterDining, filterPlaces, itineraryForPace = (_pace, days) => days, localAnswer, makeAssistantPayload, makeCsv, makeGoogleCalendarUrl, makeIcs, makeKml, tripStatus, weatherMode } = core;
   const cityKey = trip.slug || (trip.destination === "두바이" ? "dubai" : "istanbul");
@@ -558,6 +558,9 @@ export function bootTripApp({ data, core }) {
   }
 
   $("#hero-image").src = heroImage;
-  renderStatus(); renderToday(); renderFamily(); renderLodgingTabs(); renderLodgingDetail(); renderAirbnb(); wireHotelCatalog(); renderHotelCatalog(); renderTripComCosts(); renderRentalChecklist(); renderBudget(); renderFx(); renderPaceSwitch(); renderDateRail(); renderDayDetail(); renderItineraryList(); renderWeather(); renderFilters(); renderPlaces(); wireDining(); renderDining(); renderNearby(); wireNearby(); wireMap(); renderMap(); wireAssistant(); wireUtilities(); wireNavigation(); restoreDeepLink();
+  renderStatus(); renderToday(); renderFamily(); renderLodgingTabs(); renderLodgingDetail(); renderAirbnb(); wireHotelCatalog(); renderHotelCatalog(); renderTripComCosts(); renderRentalChecklist(); renderBudget(); renderFx(); renderPaceSwitch(); renderDateRail(); renderDayDetail(); renderItineraryList(); renderWeather(); renderFilters(); renderPlaces(); wireDining(); renderDining(); renderNearby(); wireNearby(); wireMap(); renderMap();
+  if (initAssistant) initAssistant({ data, core, getItinerary: activeItinerary });
+  else wireAssistant();
+  wireUtilities(); wireNavigation(); restoreDeepLink();
   document.documentElement.dataset.checkedAt = CHECKED_AT;
 }

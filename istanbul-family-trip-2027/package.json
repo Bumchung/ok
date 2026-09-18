@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "assistant": "node local-assistant.mjs",
     "fetch:card-images": "node fetch-card-images.mjs",
     "test": "node --test *.test.mjs",
     "build:airbnb": "node build-airbnb-data.mjs",

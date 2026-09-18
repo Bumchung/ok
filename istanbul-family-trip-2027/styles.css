@@ -1135,3 +1135,148 @@ body.theme-dubai .map-section { background: #3f3326; }
   .dining-actions a, .dining-actions button, .dining-review-source { min-height: 44px; }
   .card-photo figcaption { right: 8px; bottom: 8px; left: 8px; font-size: 9px; }
 }
+
+/* Istanbul's local Codex desk. Other cities keep their existing assistant. */
+#ask { padding-block: 64px; background: #edf2ef; }
+#ask [hidden] { display: none !important; }
+#ask .section-heading { margin-bottom: 28px; }
+#ask .kicker { color: #386c5f; font-size: 10px; letter-spacing: .14em; }
+#ask .section-note { max-width: 420px; color: #627268; font-size: 13px; }
+.assistant-workspace { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 20px; align-items: start; }
+.assistant-compose { min-width: 0; padding: 26px; border: 1px solid #d5dfd8; border-radius: 20px; background: #fffefa; box-shadow: 0 10px 35px #183b2b05; }
+.assistant-compose-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 24px; }
+.assistant-context { color: #365b4e; font-size: 11px; font-weight: 800; letter-spacing: .02em; }
+.assistant-private { color: #78877c; font-size: 10px; }
+.assistant-modes { display: inline-flex; gap: 4px; padding: 4px; border: 1px solid #e2e7df; border-radius: 12px; background: #eef1e9; }
+.assistant-modes button { min-height: 44px; padding: 9px 19px; border: 0; border-radius: 8px; color: #57675c; background: transparent; cursor: pointer; font-size: 13px; font-weight: 750; }
+.assistant-modes button[aria-pressed="true"] { color: #173e31; background: #fffefa; box-shadow: 0 1px 5px #213d2a12; }
+.assistant-modes button span { margin-left: 8px; color: #61826c; }
+.assistant-mode-note { min-height: 22px; margin: 14px 0 16px; color: #677369; font-size: 12px; line-height: 1.65; }
+.assistant-composer { overflow: hidden; border: 1px solid #c8d6cb; border-radius: 14px; background: white; transition: border-color .15s, box-shadow .15s; }
+.assistant-composer:focus-within { border-color: #347057; box-shadow: 0 0 0 3px #34705712; }
+.assistant-composer textarea { display: block; width: 100%; min-height: 150px; padding: 20px; resize: vertical; border: 0; outline: 0; color: #203b2e; background: transparent; font-size: 15px; line-height: 1.8; word-break: normal; }
+.assistant-composer textarea::placeholder { color: #939c91; }
+.assistant-composer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 14px; border-top: 1px solid #eef1ea; }
+.assistant-composer-bottom > span { padding-left: 5px; color: #7f8b7f; font-size: 10px; font-variant-numeric: tabular-nums; }
+.assistant-composer-bottom button { min-height: 44px; padding: 11px 20px; border: 0; border-radius: 9px; color: white; background: #22523e; cursor: pointer; font-size: 12px; font-weight: 800; }
+.assistant-composer-bottom button > span { margin-left: 15px; }
+.assistant-composer-bottom button:disabled { color: #78867a; background: #e6ece4; cursor: default; }
+.assistant-prompts { flex-wrap: wrap; overflow: visible; gap: 7px; margin: 16px 0 0; padding: 0; }
+.assistant-prompts button { min-height: 38px; padding: 8px 10px; border-color: #e0e6dc; color: #5a6c5d; background: transparent; font-size: 10px; }
+.assistant-prompts button:hover { color: #214933; border-color: #a8beab; background: #f4f7ef; }
+#ask .assistant-state { margin: 18px 0 0; color: #62705f; font-size: 11px; line-height: 1.8; }
+#ask[data-busy="true"] .assistant-state::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 50%; background: #558d65; animation: assistant-pulse 1.4s ease-in-out infinite; }
+.assistant-error { padding: 12px 14px; margin: 14px 0 0; border: 1px solid #eed6c2; border-radius: 10px; color: #8a4d29; background: #fff6ea; font-size: 12px; line-height: 1.7; overflow-wrap: anywhere; }
+.assistant-retry { min-height: 44px; padding: 8px 0; margin-top: 5px; border: 0; color: #315b3e; background: transparent; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; font-size: 12px; font-weight: 700; }
+.assistant-sidebar { min-width: 0; }
+.assistant-connection { padding: 23px; border: 1px solid #d5dfd8; border-radius: 18px; background: #f8faf5; }
+.assistant-sidebar-kicker { margin: 0 0 15px; color: #667c69; font-size: 9px; font-weight: 750; letter-spacing: .08em; }
+.assistant-connection-heading { display: flex; align-items: center; gap: 8px; }
+.assistant-connection-heading strong { font-size: 14px; }
+.assistant-connection-dot { flex: 0 0 7px; width: 7px; height: 7px; border-radius: 50%; background: #baaa83; box-shadow: 0 0 0 4px #baaa8315; }
+#ask[data-connected="true"] .assistant-connection-dot { background: #3b8660; box-shadow: 0 0 0 4px #3b866015; }
+#assistant-connection-detail { margin: 9px 0 17px; color: #6b796b; font-size: 11px; line-height: 1.7; }
+.assistant-preview { display: flex; justify-content: space-between; align-items: center; min-height: 44px; padding: 10px 13px; border: 1px solid #c6d3c6; border-radius: 9px; color: #2d553a; background: white; text-decoration: none; font-size: 11px; font-weight: 800; }
+.assistant-device-note { margin: 9px 0 16px; color: #7b8576; font-size: 10px; line-height: 1.7; }
+.assistant-connection-settings, .assistant-setup { border-top: 1px solid #dfe6db; }
+.assistant-connection-settings summary, .assistant-setup summary { min-height: 44px; padding-block: 13px; color: #5b705d; cursor: pointer; font-size: 11px; font-weight: 650; }
+.assistant-connection-settings form { padding-bottom: 15px; }
+.assistant-connection-settings label { display: block; margin: 10px 0 5px; color: #596e5b; font-size: 10px; font-weight: 750; }
+.assistant-connection-settings input { width: 100%; min-width: 0; min-height: 44px; padding: 10px; border: 1px solid #ccd8c9; border-radius: 8px; background: white; font-size: 12px; }
+.assistant-connection-settings form > p { margin: 8px 0; color: #778473; font-size: 10px; }
+.assistant-connection-settings button { width: 100%; min-height: 44px; padding: 10px; border: 0; border-radius: 8px; color: white; background: #22523e; cursor: pointer; font-size: 12px; font-weight: 750; }
+.assistant-setup p { color: #6b7869; font-size: 10px; line-height: 1.8; overflow-wrap: anywhere; }
+.assistant-setup pre { overflow-x: auto; padding: 10px; border: 1px solid #dfe6d9; border-radius: 7px; background: white; font-size: 11px; }
+.assistant-disconnect { min-height: 44px; width: 100%; border: 0; color: #6d7869; background: transparent; cursor: pointer; font-size: 10px; }
+.assistant-how { position: relative; padding: 23px 14px 0; }
+.assistant-how-mark { display: grid; place-items: center; width: 25px; height: 25px; margin-bottom: 12px; border-radius: 50%; color: #5a7e5d; background: #e0e9dc; font-size: 17px; }
+.assistant-how h3 { margin: 0 0 8px; color: #40563d; font-size: 13px; }
+.assistant-how p { margin: 0; color: #6a7b66; font-size: 11px; line-height: 1.9; }
+.assistant-how small { display: block; margin-top: 12px; color: #7f8a79; font-size: 10px; line-height: 1.8; }
+.assistant-conversation, .assistant-updates-panel { margin-top: 32px; }
+.assistant-subheading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.assistant-subheading h3 { margin: 0; color: #314c3b; font-size: 16px; letter-spacing: -.02em; }
+.assistant-subheading h3 > span { margin-left: 8px; color: #83907e; font-size: 11px; font-weight: 500; }
+.assistant-subheading > button { min-height: 44px; padding: 8px 0 8px 12px; border: 0; color: #6d7f68; background: transparent; cursor: pointer; font-size: 10px; }
+.assistant-history-note { margin: 5px 0 15px; color: #7a8673; font-size: 10px; }
+.assistant-empty { display: flex; align-items: center; gap: 16px; padding: 25px; border: 1px dashed #c8d4c6; border-radius: 14px; }
+.assistant-empty > span { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid #cbd8c9; border-radius: 50%; color: #668862; font-size: 19px; }
+.assistant-empty p { margin: 0; color: #5f725a; font-size: 13px; }
+.assistant-empty small { display: block; margin-top: 4px; color: #899280; font-size: 11px; }
+#ask .answer-board { margin-top: 16px; gap: 16px; }
+#ask .answer-board:empty { margin-top: 0; }
+.assistant-turn { overflow: hidden; border: 1px solid #d5dfd2; border-radius: 16px; background: #fffefa; }
+.assistant-question { padding: 18px 23px; border-bottom: 1px solid #e2e8dc; background: #f5f8f0; }
+.assistant-turn-label { color: #678461; font-size: 10px; font-weight: 800; }
+.assistant-question h4 { margin: 6px 0 0; color: #344d35; font-size: 14px; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; }
+.assistant-answer { padding: 22px 23px; }
+.assistant-turn-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.assistant-turn-meta time { color: #88927e; font-size: 10px; }
+.assistant-answer-text { margin: 0; color: #435340; font-size: 14px; line-height: 1.9; white-space: pre-wrap; overflow-wrap: anywhere; }
+.assistant-saved { margin: 17px 0 0; padding-top: 12px; border-top: 1px solid #e7ecdf; color: #578054; font-size: 11px; }
+.planner-updates-empty { margin: 0; padding: 18px 20px; border-radius: 12px; color: #79866f; background: #e5ece0; font-size: 12px; line-height: 1.8; }
+.planner-updates, .planner-section-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.planner-note { padding: 20px; border: 1px solid #d5dfcc; border-radius: 13px; background: #fffef8; }
+.planner-note-meta { display: flex; align-items: center; gap: 9px; color: #819270; font-size: 9px; }
+.planner-note-meta a { padding: 4px 7px; border-radius: 5px; color: #527344; background: #e9efdf; text-decoration: none; font-weight: 750; }
+.planner-note h4 { margin: 11px 0 8px; color: #3d5230; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
+.planner-note > p { margin: 0; color: #69755c; font-size: 12px; line-height: 1.8; white-space: pre-wrap; overflow-wrap: anywhere; }
+.planner-note-scope { display: block; margin-top: 14px; color: #95a087; font-size: 9px; }
+.planner-note .answer-sources a, .assistant-turn .answer-sources a, .travel-search .answer-sources a { display: inline-flex; align-items: center; min-height: 32px; max-width: 100%; color: #5b7650; background: #eef2e8; overflow-wrap: anywhere; }
+.planner-section-updates { margin-top: 28px; padding-top: 24px; border-top: 1px solid #d8e0cc; }
+.planner-section-heading .kicker { margin-bottom: 6px; color: #82926e; font-size: 9px; }
+.planner-section-heading h3 { margin: 0 0 16px; color: #526644; font-size: 18px; }
+.travel-search { margin-top: 32px; padding: 0 20px; border: 1px solid #d2dccd; border-radius: 13px; background: #f4f7ef; }
+.travel-search > summary { padding: 19px 0; color: #5b6f50; cursor: pointer; font-size: 12px; font-weight: 750; }
+.travel-search summary small { margin-left: 12px; color: #8a957e; font-size: 10px; font-weight: 400; }
+.travel-search form { display: flex; gap: 8px; padding-bottom: 19px; }
+.travel-search input { min-width: 0; flex: 1; min-height: 44px; padding: 10px 12px; border: 1px solid #cbd7c3; border-radius: 8px; background: white; font-size: 13px; }
+.travel-search button { min-height: 44px; padding: 10px 16px; border: 1px solid #cbd7c3; border-radius: 8px; color: #47663a; background: #e5ecdf; cursor: pointer; font-size: 11px; font-weight: 700; }
+.travel-search-result { padding: 0 0 20px; }
+#ask button:focus-visible, #ask a:focus-visible, #ask summary:focus-visible, #ask input:focus-visible { outline: 3px solid #6e9d64; outline-offset: 3px; }
+#ask button:disabled { cursor: default; }
+.assistant-prompts button:disabled, .assistant-retry:disabled, .assistant-subheading button:disabled { opacity: .5; }
+@keyframes assistant-pulse { 50% { opacity: .3; } }
+@media (max-width: 960px) {
+  .assistant-workspace { grid-template-columns: minmax(0, 1fr) 270px; gap: 14px; }
+  .assistant-compose { padding: 20px; }
+  .assistant-connection { padding: 20px; }
+}
+@media (max-width: 720px) {
+  #ask { padding-block: 40px; }
+  #ask .section-heading { margin-bottom: 22px; }
+  #ask .section-heading h2 { font-size: 27px; }
+  #ask .section-note { margin-top: 10px; font-size: 12px; }
+  .assistant-workspace { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .assistant-compose { padding: 18px; border-radius: 16px; }
+  .assistant-compose-top { margin-bottom: 20px; }
+  .assistant-private { font-size: 9px; }
+  .assistant-modes { width: 100%; }
+  .assistant-modes button { flex: 1; padding-inline: 10px; font-size: 12px; }
+  .assistant-mode-note { min-height: 40px; margin-block: 12px; }
+  .assistant-composer textarea { min-height: 150px; padding: 15px; font-size: 16px; }
+  .assistant-composer-bottom { gap: 6px; padding: 10px; }
+  .assistant-composer-bottom > span { font-size: 9px; padding-left: 0; }
+  .assistant-composer-bottom button { padding: 11px 13px; font-size: 11px; }
+  .assistant-prompts { gap: 6px; }
+  .assistant-prompts button { min-height: 44px; font-size: 10px; }
+  .assistant-sidebar { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .assistant-connection { padding: 20px; }
+  .assistant-how { padding: 20px 4px 0 42px; }
+  .assistant-how-mark { position: absolute; top: 21px; left: 4px; }
+  .assistant-how small { margin-top: 8px; }
+  .assistant-conversation, .assistant-updates-panel { margin-top: 26px; }
+  .assistant-empty { gap: 12px; padding: 20px 15px; }
+  .assistant-empty p { font-size: 12px; }
+  .assistant-empty small { font-size: 10px; }
+  .assistant-empty > span { flex: 0 0 30px; width: 30px; height: 30px; }
+  .assistant-question, .assistant-answer { padding: 17px; }
+  .planner-updates, .planner-section-grid { grid-template-columns: minmax(0, 1fr); }
+  .travel-search { padding-inline: 15px; }
+  .travel-search summary small { display: block; margin: 4px 0 0 15px; }
+  .assistant-connection-settings input { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #ask[data-busy="true"] .assistant-state::before { animation: none; }
+  .assistant-composer { transition: none; }
+}
